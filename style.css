@@ -710,6 +710,7 @@ main {
 
 .shortents-text {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 2px;
 }
@@ -802,6 +803,120 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+/* 아코디언 전체 */
+.accordion {
+  margin-top: 16px;
+}
+
+/* 아코디언 아이템 */
+.accordion-item {
+  border: 1px solid var(--GRAY-01);
+  border-radius: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  background: var(--WHITE);
+}
+
+.accordion-item.open {
+  border: 1px solid var(--TERTIARY-08);
+}
+
+/* 제목 영역 */
+.accordion-header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  gap: 8px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: var(--WHITE);
+}
+
+.accordion-header .accordion-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.accordion-header .accordion-title {
+  flex: 1;
+  font: var(--B2);
+  color: var(--BLACK-MAIN);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accordion-header .accordion-thumb {
+  width: 80px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.accordion-header .accordion-chevron {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s;
+}
+
+/* 열린 상태 - 제목 */
+.accordion-item.open .accordion-header {
+  background: var(--WHITE);
+}
+
+.accordion-item.open .accordion-thumb {
+  display: none;
+}
+
+.accordion-item.open .accordion-header .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+/* 본문 영역 */
+.accordion-body {
+  display: none;
+  padding: 12px;
+  background-color: var(--WHITE);
+  border-top: 1px solid var(--TERTIARY-01); /* header와 body 경계 */
+  display: none;
+}
+
+.accordion-item.open .accordion-body {
+  display: flex; /* 열린 상태에서는 flex로 표시 */
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* 본문 텍스트 */
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recipe-title {
+  font: var(--B2);
+  color: var(--BLACK-MAIN);
+}
+
+.recipe-author {
+  font: var(--C1);
+  color: var(--BLACK-SUB);
+}
+
+/* 본문 썸네일 */
+.accordion-body-thumb {
+  width: 120px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
 
 
 

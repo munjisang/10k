@@ -99,3 +99,21 @@ customSelects.forEach(select => {
     }
   });
 });
+
+
+
+document.querySelectorAll(".accordion-header").forEach(header => {
+  header.addEventListener("click", () => {
+    const item = header.parentElement;
+
+    // 열려 있으면 닫기
+    if (item.classList.contains("open")) {
+      item.classList.remove("open");
+    } else {
+      // 다른 아코디언 닫기 (단일 열림)
+      document.querySelectorAll(".accordion-item").forEach(i => i.classList.remove("open"));
+      // 현재 아이템 열기
+      item.classList.add("open");
+    }
+  });
+});
