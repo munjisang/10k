@@ -1,4 +1,13 @@
-﻿/* 기본 스타일 */
+﻿@media screen and (max-width: 640px) {
+    body, .fixed-header {
+        width: 100%;
+    }
+
+    .fixed-header {
+        padding: 0 16px;
+    }
+}
+
 body {
     max-width: 640px;
     width: 100%;
@@ -9,7 +18,6 @@ body {
     padding-bottom: 80px;
 }
 
-/* 헤더 */
 .fixed-header {
     position: static;
     width: 100%;
@@ -37,7 +45,6 @@ body {
     cursor: pointer;
 }
 
-/* 메인 콘텐츠 패딩 */
 main {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -45,7 +52,6 @@ main {
     padding-right: 16px;
 }
 
-/* 검색창 */
 .search-area {
     background-color: var(--WHITE);
     width: 100%;
@@ -102,7 +108,6 @@ main {
     color: var(--BLACK-SUB);
 }
 
-/* 토스트 기본 스타일 */
 #toast {
     visibility: hidden;
     min-width: 240px;
@@ -127,7 +132,6 @@ main {
     transform: translateX(-50%) translateY(0);
 }
 
-/* 상단 배너 영역 */
 .banner-area {
     position: relative;
     width: 100%;
@@ -172,7 +176,6 @@ main {
     border-radius: 200px;
 }
 
-/* 메인 메뉴 */
 .main-menu {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -228,7 +231,6 @@ main {
   box-sizing: border-box;
 }
 
-/* 중간 배너 영역 */
 .middle-banner-area {
   width: 100%;
   max-width: 640px;
@@ -247,7 +249,6 @@ main {
   object-fit: cover;
 }
 
-/* 페이지 네비게이션 */
 .page-navi {
   display: flex;
   justify-content: center;
@@ -275,8 +276,6 @@ main {
   color: var(--BLACK-SUB);
 }
 
-
-/* KADX 영역 */
 .kadx-area {
   display: flex;
   flex-direction: column;
@@ -435,7 +434,6 @@ main {
   color: var(--BLACK-SUB)
 }
 
-/* 카테고리 */
 .main-category {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -479,7 +477,6 @@ main {
 }
 
 
-/* 레시피 그리드 (2열 × 3행) */
 .recipe-grid {
   display: flex;
   flex-direction: column;
@@ -603,7 +600,6 @@ main {
   object-fit: contain;
 }
 
-/* 더보기 버튼 (라인 버튼 스타일) */
 .recipe-more {
   width: 100%;
   height: 48px;
@@ -624,7 +620,6 @@ main {
   height: 16px;
 }
 
-/* 레시피 리스트 (1열 × N행) */
 .recipe-list {
   display: flex;
   flex-direction: column;
@@ -688,8 +683,6 @@ main {
   gap: 4px;
 }
 
-
-/* 레시피 숏텐츠 */
 .shortents-area {
   display: flex;
   flex-direction: column;
@@ -804,19 +797,15 @@ main {
   text-overflow: ellipsis;
 }
 
-
-/* 아코디언 전체 */
 .accordion {
   margin-top: 16px;
 }
 
-/* 아코디언 아이템 */
 .accordion-item {
-  border: 1px solid var(--GRAY-01);
   border-radius: 6px;
   overflow: hidden;
   box-sizing: border-box;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   background: var(--WHITE);
 }
 
@@ -824,20 +813,19 @@ main {
   border: 1px solid var(--TERTIARY-08);
 }
 
-/* 제목 영역 */
 .accordion-header {
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 50px;
   gap: 8px;
   padding: 12px;
   cursor: pointer;
-  background-color: var(--WHITE);
+  background-color: var(--GRAY-03);
 }
 
 .accordion-header .accordion-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .accordion-header .accordion-title {
@@ -863,7 +851,6 @@ main {
   transition: transform 0.3s;
 }
 
-/* 열린 상태 - 제목 */
 .accordion-item.open .accordion-header {
   background: var(--WHITE);
 }
@@ -876,23 +863,21 @@ main {
   transform: rotate(180deg);
 }
 
-/* 본문 영역 */
 .accordion-body {
   display: none;
   padding: 12px;
   background-color: var(--WHITE);
-  border-top: 1px solid var(--TERTIARY-01); /* header와 body 경계 */
+  border-top: 1px solid var(--TERTIARY-01);
   display: none;
 }
 
 .accordion-item.open .accordion-body {
-  display: flex; /* 열린 상태에서는 flex로 표시 */
+  display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
 }
 
-/* 본문 텍스트 */
 .recipe-info {
   display: flex;
   flex-direction: column;
@@ -909,7 +894,6 @@ main {
   color: var(--BLACK-SUB);
 }
 
-/* 본문 썸네일 */
 .accordion-body-thumb {
   width: 120px;
   aspect-ratio: 16/9;
@@ -918,16 +902,38 @@ main {
 }
 
 
+/* Bottom Navigation 전체 */
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 78px;
+  background-color: var(--WHITE);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+}
 
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: var(--B8);
+  color: #767676;
+  cursor: pointer;
+  gap: 2px;
+}
 
+.nav-item.active {
+  color: #46AE4F;
+}
 
-/* 반응형 미디어쿼리 */
-@media screen and (max-width: 640px) {
-    body, .fixed-header {
-        width: 100%;
-    }
-
-    .fixed-header {
-        padding: 0 16px;
-    }
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
 }
