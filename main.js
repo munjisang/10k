@@ -101,19 +101,51 @@ customSelects.forEach(select => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".accordion-item");
+  let current = 0;
+  let autoTimer;          // setInterval 저장
+  let resumeTimer;        // 재시작용 setTimeout 저장
+  const INTERVAL = 3000;  // 자동 간격(3초)
+  const RESUME = 3000;   // 사용자 클릭 후 자동 재개 대기(3초)
 
-document.querySelectorAll(".accordion-header").forEach(header => {
-  header.addEventListener("click", () => {
-    const item = header.parentElement;
+  function closeAll() {
+    items.forEach(item => item.classList.remove("open"));
+  }
 
-    // 열려 있으면 닫기
-    if (item.classList.contains("open")) {
-      item.classList.remove("open");
-    } else {
-      // 다른 아코디언 닫기 (단일 열림)
-      document.querySelectorAll(".accordion-item").forEach(i => i.classList.remove("open"));
-      // 현재 아이템 열기
-      item.classList.add("open");
-    }
+  function openItem(index) {
+    closeAll();
+    items[index].classList.add("open");
+    current = index;
+  }
+
+  function startAuto() {
+    autoTimer = setInterval(() => {
+      const next = (current + 1) % items.length;
+      openItem(next);
+    }, INTERVAL);
+  }
+
+  function stopAuto() {
+    clearInterval(autoTimer);
+    clearTimeout(resumeTimer);
+  }
+
+  items.forEach((item, idx) => {
+    const header = item.querySelector(".accordion-header");
+    header.addEventListener("click", () => {
+      if (item.classList.contains("open")) {
+        item.classList.remove("open");
+      } else {
+        openItem(idx);
+      }
+
+      stopAuto();
+      resumeTimer = setTimeout(startAuto, RESUME);
+    });
   });
+
+  // 최초 1개 열고 자동 시작
+  openItem(0);
+  startAuto();
 });
