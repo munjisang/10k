@@ -1,6 +1,9 @@
-// ===========================
-// 토스트 클릭 이벤트
-// ===========================
+//recipe.json 로드//
+
+
+
+
+// 토스트 클릭 이벤트 // 
 const galleryIcon = document.querySelector(".gallery-icon");
 const toast = document.getElementById("toast");
 
@@ -12,9 +15,7 @@ galleryIcon.addEventListener("click", () => {
     }, 2500);
 });
 
-// ===========================
-// 배너 자동롤링 + 스와이프
-// ===========================
+// 배너 자동롤링 + 스와이프 // 
 const bannerWrapper = document.querySelector('.banner-wrapper');
 const slides = document.querySelectorAll('.banner-slide');
 const currentNav = document.querySelector('.banner-navigation .current');
@@ -100,14 +101,14 @@ customSelects.forEach(select => {
   });
 });
 
-
+// 숏텐츠 아코디언 //
 document.addEventListener("DOMContentLoaded", () => {
   const items = document.querySelectorAll(".accordion-item");
   let current = 0;
-  let autoTimer;          // setInterval 저장
-  let resumeTimer;        // 재시작용 setTimeout 저장
-  const INTERVAL = 3000;  // 자동 간격(3초)
-  const RESUME = 3000;   // 사용자 클릭 후 자동 재개 대기(3초)
+  let autoTimer;
+  let resumeTimer;
+  const INTERVAL = 3000;
+  const RESUME = 3000;
 
   function closeAll() {
     items.forEach(item => item.classList.remove("open"));
@@ -145,7 +146,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 최초 1개 열고 자동 시작
+  openItem(0);
+  startAuto();
+});
+
+// 인기검색어 아코디언 //
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".search-accordion-item");
+  let current = 0;
+  let autoTimer;
+  let resumeTimer;
+  const INTERVAL = 5000;
+  const RESUME = 5000;
+
+  function closeAll() {
+    items.forEach(item => item.classList.remove("open"));
+  }
+
+  function openItem(index) {
+    closeAll();
+    items[index].classList.add("open");
+    current = index;
+  }
+
+  function startAuto() {
+    autoTimer = setInterval(() => {
+      const next = (current + 1) % items.length;
+      openItem(next);
+    }, INTERVAL);
+  }
+
+  function stopAuto() {
+    clearInterval(autoTimer);
+    clearTimeout(resumeTimer);
+  }
+
+  items.forEach((item, idx) => {
+    const header = item.querySelector(".search-accordion-header");
+    header.addEventListener("click", () => {
+      if (item.classList.contains("open")) {
+        item.classList.remove("open");
+      } else {
+        openItem(idx);
+      }
+
+      stopAuto();
+      resumeTimer = setTimeout(startAuto, RESUME);
+    });
+  });
+
   openItem(0);
   startAuto();
 });
