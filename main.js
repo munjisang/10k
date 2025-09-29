@@ -74,7 +74,8 @@ fetch('./data/recipe.json')
     const items = document.querySelectorAll(".accordion-item");
     let current = 0;
     let autoTimer;
-    const INTERVAL = 3000;
+    const INTERVAL = 5000;
+    const RESUME = 5000;
 
     function closeAll() { items.forEach(i => i.classList.remove("open")); }
     function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
@@ -224,4 +225,65 @@ document.querySelectorAll(".custom-select").forEach(select => {
       optionsContainer.style.display = "none";
     }
   });
+});
+
+
+// -------------------- 리뷰 JSON 로드 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".review-items");
+  if (!container) return;
+
+  const maxCount = parseInt(container.dataset.count, 10) || 5;
+
+  fetch("./data/review.json")
+    .then(res => res.json())
+    .then(list => {
+      const reviews = list.sort(() => Math.random() - 0.5).slice(0, maxCount);
+
+      reviews.forEach(r => {
+        const item = document.createElement("div");
+        item.className = "review-item";
+
+        // 후기사진이 있을 때만 추가
+        const reviewPhoto = r.review_thumb
+          ? `<img src="${r.review_thumb}" alt="후기사진" class="review-photo">`
+          : "";
+
+        item.innerHTML = `
+          <div class="review-info">
+            <div class="review-item-thumb">
+              <img src="${r.user_thumb}" alt="프로필사진">
+            </div>
+            <div class="review-user-info">
+              <div class="review-user-name">${r.review_nickname}</div>
+              <div class="review-date">${r.review_date}</div>
+            </div>
+            <div class="review-rate-wrap">
+              <img src="/img/star.png" alt="별점">
+              <span class="review-rate">${r.review_rate}</span>
+            </div>
+          </div>
+
+          <div class="review-text-wrap">
+            <span class="review-text">${r.review_message}</span>
+            ${reviewPhoto}
+          </div>
+
+          <div class="review-body">
+            <div class="review-recipe-info">
+              <div class="review-recipe-name">${r.cok_title}</div>
+              <div class="review-recipe-chef">by. ${r.cok_reg_nm}</div>
+            </div>
+            <img src="${r.cok_thumb}" class="review-body-thumb" alt="레시피썸네일">
+          </div>
+        `;
+
+        item.addEventListener("click", () => {
+          window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_blank");
+        });
+
+        container.appendChild(item);
+      });
+    })
+    .catch(err => console.error("리뷰 로드 실패:", err));
 });
