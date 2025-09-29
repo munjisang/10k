@@ -245,138 +245,30 @@
           <div class="recipe-area-subtitle">저장해두고 따라하고싶은 만개셰프들의 추천 레시피</div>
         </div>
       </div>  
-
-      <div class="grid-items">
-        <!-- 1 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe01.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-            <div class="recipe-chef">by. 잔근육</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">신의경지</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">2시간이상</span>
+      <div class="grid-items" data-count="6">
+        <template id="recipe-template">
+          <div class="grid-item">
+            <div class="grid-item-thumb">
+              <img class="thumb-img" src="" alt="레시피사진">
+              <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+            </div>
+            <div class="recipe-info">
+              <div class="recipe-name"></div>
+              <div class="recipe-chef"></div>
+              <div class="recipe-cook">
+                <div class="cook-degree-wrap">
+                  <img src="/img/degree.png" alt="난이도 아이콘">
+                  <span class="cook-degree"></span>
+                </div>
+                <div class="cook-time-wrap">
+                  <img src="/img/time.png" alt="시간 아이콘">
+                  <span class="cook-time"></span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- 2 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe02.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">닭가슴살 토마토 스프</div>
-            <div class="recipe-chef">by. 뿡씨스터즈</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">10분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe03.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">맛있는는 감자전</div>
-            <div class="recipe-chef">by. 용주부</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">30분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe04.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-            <div class="recipe-chef">by. 우수푸드</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe05.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-            <div class="recipe-chef">by. 밥심은국력</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe06.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">색다른 여름 반찬, 달콤 매콤 ‘참외 깍두기’ 만들기</div>
-            <div class="recipe-chef">by. 홈쿡샘</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+        </template>
+      </div>      
       <button class="more-btn" type="button">
         레시피 더보기
         <img src="/img/right.png" alt="더보기 아이콘">
@@ -392,115 +284,30 @@
         </div>
       </div>  
 
-      <div class="list-items">
-        <!-- 1 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe01.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-            <div class="recipe-chef">by. 잔근육</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">신의경지</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">2시간이상</span>
+      <div class="list-items" data-count="5">
+        <template id="recipe-template">
+          <div class="list-item">
+            <div class="list-item-thumb">
+              <img class="thumb-img" src="" alt="레시피사진">
+              <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+            </div>
+            <div class="recipe-info">
+              <div class="recipe-name"></div>
+              <div class="recipe-chef"></div>
+              <div class="recipe-cook">
+                <div class="cook-degree-wrap">
+                  <img src="/img/degree.png" alt="난이도 아이콘">
+                  <span class="cook-degree"></span>
+                </div>
+                <div class="cook-time-wrap">
+                  <img src="/img/time.png" alt="시간 아이콘">
+                  <span class="cook-time"></span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- 2 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe02.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">닭가슴살 토마토 스프</div>
-            <div class="recipe-chef">by. 뿡씨스터즈</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">10분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe03.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">맛있는는 감자전</div>
-            <div class="recipe-chef">by. 용주부</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">30분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe04.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-            <div class="recipe-chef">by. 우수푸드</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe05.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-            <div class="recipe-chef">by. 밥심은국력</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </template>
+      </div>      
 
       <button class="more-btn" type="button">
         레시피 더보기
@@ -532,86 +339,7 @@
         </div>
        </div>
       <div class="accordion-items">
-        <!--1-->
-        <div class="accordion-item">
-          <div class="accordion-header">
-            <img src="/img/search.png" alt="search" class="accordion-icon">
-            <span class="accordion-title">김치볶음밥</span>
-            <img src="/img/recipe01.png" alt="thumbnail" class="accordion-thumb">
-            <img src="/img/chevron_down.png" alt="toggle" class="accordion-chevron">
-          </div>
-          <div class="accordion-body">
-            <div class="recipe-info">
-              <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-              <div class="recipe-chef">by 잔근육</div>
-            </div>
-            <img src="/img/recipe01.png" alt="thumbnail" class="accordion-body-thumb">
-          </div>
-        </div>
-        <!--2-->
-        <div class="accordion-item">
-          <div class="accordion-header">
-            <img src="/img/search.png" alt="search" class="accordion-icon">
-            <span class="accordion-title">계란장조림</span>
-            <img src="/img/recipe02.png" alt="thumbnail" class="accordion-thumb">
-            <img src="/img/chevron_down.png" alt="toggle" class="accordion-chevron">
-          </div>
-          <div class="accordion-body">
-            <div class="recipe-info">
-              <div class="recipe-name">계란장조림과 찰떡궁합 닭가슴살 토마토 스프</div>
-              <div class="recipe-chef">by 만개의레시피</div>
-            </div>
-            <img src="/img/recipe02.png" alt="thumbnail" class="accordion-body-thumb">
-          </div>
-        </div>
-        <!--3-->
-        <div class="accordion-item">
-          <div class="accordion-header">
-            <img src="/img/search.png" alt="search" class="accordion-icon">
-            <span class="accordion-title">콩나물국</span>
-            <img src="/img/recipe03.png" alt="thumbnail" class="accordion-thumb">
-            <img src="/img/chevron_down.png" alt="toggle" class="accordion-chevron">
-          </div>
-          <div class="accordion-body">
-            <div class="recipe-info">
-              <div class="recipe-name">술먹은 다음날 해장으로 딱! 이거면 해장완료</div>
-              <div class="recipe-chef">by 취해떠취해떠나취해떠</div>
-            </div>
-            <img src="/img/recipe03.png" alt="thumbnail" class="accordion-body-thumb">
-          </div>
-        </div>
-        <!--4-->
-        <div class="accordion-item">
-          <div class="accordion-header">
-            <img src="/img/search.png" alt="search" class="accordion-icon">
-            <span class="accordion-title">오이양파무침</span>
-            <img src="/img/recipe04.png" alt="thumbnail" class="accordion-thumb">
-            <img src="/img/chevron_down.png" alt="toggle" class="accordion-chevron">
-          </div>
-          <div class="accordion-body">
-            <div class="recipe-info">
-              <div class="recipe-name">아삭아삭 씹히는 맛이 일품 밥도록 오이양파무침</div>
-              <div class="recipe-chef">by 난공산당이싫어요</div>
-            </div>
-            <img src="/img/recipe04.png" alt="thumbnail" class="accordion-body-thumb">
-          </div>
-        </div>
-        <!--5-->
-        <div class="accordion-item">
-          <div class="accordion-header">
-            <img src="/img/search.png" alt="search" class="accordion-icon">
-            <span class="accordion-title">치킨또띠아롤스낵랩맛있겠다 냠냠냠</span>
-            <img src="/img/recipe05.png" alt="thumbnail" class="accordion-thumb">
-            <img src="/img/chevron_down.png" alt="toggle" class="accordion-chevron">
-          </div>
-          <div class="accordion-body">
-            <div class="recipe-info">
-              <div class="recipe-name">돌돌말이 스낵랩, 단백질 듬뿍 닭가슴살과 함께 하루한끼 건강식</div>
-              <div class="recipe-chef">by 김종국</div>
-            </div>
-            <img src="/img/recipe05.png" alt="thumbnail" class="accordion-body-thumb">
-          </div>
-        </div>
+
       </div>      
     </div>
 
@@ -624,136 +352,31 @@
         </div>
       </div>  
 
-      <div class="grid-items">
-        <!-- 1 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe01.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-            <div class="recipe-chef">by. 잔근육</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">신의경지</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">2시간이상</span>
+      <div class="grid-items" data-count="6">
+        <template id="recipe-template">
+          <div class="grid-item">
+            <div class="grid-item-thumb">
+              <img class="thumb-img" src="" alt="레시피사진">
+              <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+            </div>
+            <div class="recipe-info">
+              <div class="recipe-name"></div>
+              <div class="recipe-chef"></div>
+              <div class="recipe-cook">
+                <div class="cook-degree-wrap">
+                  <img src="/img/degree.png" alt="난이도 아이콘">
+                  <span class="cook-degree"></span>
+                </div>
+                <div class="cook-time-wrap">
+                  <img src="/img/time.png" alt="시간 아이콘">
+                  <span class="cook-time"></span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </template>
+      </div>      
 
-        <!-- 2 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe02.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">닭가슴살 토마토 스프</div>
-            <div class="recipe-chef">by. 뿡씨스터즈</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">10분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe03.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">맛있는는 감자전</div>
-            <div class="recipe-chef">by. 용주부</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">30분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe04.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-            <div class="recipe-chef">by. 우수푸드</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe05.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-            <div class="recipe-chef">by. 밥심은국력</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 -->
-        <div class="grid-item">
-          <div class="grid-item-thumb">
-            <img src="/img/recipe06.png" alt="레시피사진">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">색다른 여름 반찬, 달콤 매콤 ‘참외 깍두기’ 만들기</div>
-            <div class="recipe-chef">by. 홈쿡샘</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <button class="more-btn" type="button">
         레시피 더보기
         <img src="/img/right.png" alt="더보기 아이콘">
@@ -777,134 +400,30 @@
               <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
             </div>
             <div class="search-accordion-body">
-              <div class="horizontal-items">
-                <!-- 1 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe01.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-                    <div class="recipe-chef">by. 잔근육</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">신의경지</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">2시간이상</span>
+              <div class="horizontal-items" data-count="5">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 2 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe02.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">닭가슴살 토마토 스프</div>
-                    <div class="recipe-chef">by. 뿡씨스터즈</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 3 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe03.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">맛있는는 감자전</div>
-                    <div class="recipe-chef">by. 용주부</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">고급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">30분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 4 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe04.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-                    <div class="recipe-chef">by. 우수푸드</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 5 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe05.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-                    <div class="recipe-chef">by. 밥심은국력</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 6 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe06.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">색다른 여름 반찬, 달콤 매콤 ‘참외 깍두기’ 만들기</div>
-                    <div class="recipe-chef">by. 홈쿡샘</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-              </div>
+                </template>
+              </div>              
               <button class="search-more-btn" type="button">
                 레시피 더보기
                 <img src="/img/right.png" alt="더보기 아이콘">
@@ -919,139 +438,35 @@
               <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
             </div>
             <div class="search-accordion-body">
-              <div class="horizontal-items">
-                <!-- 1 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe01.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-                    <div class="recipe-chef">by. 잔근육</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">신의경지</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">2시간이상</span>
+              <div class="horizontal-items" data-count="6">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 2 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe02.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">닭가슴살 토마토 스프</div>
-                    <div class="recipe-chef">by. 뿡씨스터즈</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 3 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe03.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">맛있는는 감자전</div>
-                    <div class="recipe-chef">by. 용주부</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">고급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">30분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 4 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe04.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-                    <div class="recipe-chef">by. 우수푸드</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 5 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe05.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-                    <div class="recipe-chef">by. 밥심은국력</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 6 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe06.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">색다른 여름 반찬, 달콤 매콤 ‘참외 깍두기’ 만들기</div>
-                    <div class="recipe-chef">by. 홈쿡샘</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-              </div>
+                </template>
+              </div>              
               <button class="search-more-btn" type="button">
                 레시피 더보기
                 <img src="/img/right.png" alt="더보기 아이콘">
-              </button>              
-            </div>
+              </button>
+            </div>   
           </div> 
           <!--3위-->
           <div class="search-accordion-item">
@@ -1061,139 +476,35 @@
               <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
             </div>
             <div class="search-accordion-body">
-              <div class="horizontal-items">
-                <!-- 1 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe01.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-                    <div class="recipe-chef">by. 잔근육</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">신의경지</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">2시간이상</span>
+              <div class="horizontal-items" data-count="4">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 2 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe02.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">닭가슴살 토마토 스프</div>
-                    <div class="recipe-chef">by. 뿡씨스터즈</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 3 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe03.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">맛있는는 감자전</div>
-                    <div class="recipe-chef">by. 용주부</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">고급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">30분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 4 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe04.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-                    <div class="recipe-chef">by. 우수푸드</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 5 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe05.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-                    <div class="recipe-chef">by. 밥심은국력</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 6 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe06.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">색다른 여름 반찬, 달콤 매콤 ‘참외 깍두기’ 만들기</div>
-                    <div class="recipe-chef">by. 홈쿡샘</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-              </div>
+                </template>
+              </div>              
               <button class="search-more-btn" type="button">
                 레시피 더보기
                 <img src="/img/right.png" alt="더보기 아이콘">
-              </button>              
-            </div>
+              </button>
+            </div>   
           </div>
           <!--4위-->
           <div class="search-accordion-item">
@@ -1203,139 +514,35 @@
               <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
             </div>
             <div class="search-accordion-body">
-              <div class="horizontal-items">
-                <!-- 1 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe01.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-                    <div class="recipe-chef">by. 잔근육</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">신의경지</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">2시간이상</span>
+              <div class="horizontal-items" data-count="5">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 2 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe02.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">닭가슴살 토마토 스프</div>
-                    <div class="recipe-chef">by. 뿡씨스터즈</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 3 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe03.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">맛있는는 감자전</div>
-                    <div class="recipe-chef">by. 용주부</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">고급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">30분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 4 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe04.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-                    <div class="recipe-chef">by. 우수푸드</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 5 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe05.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-                    <div class="recipe-chef">by. 밥심은국력</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 6 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe06.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">색다른 여름 반찬, 달콤 매콤 ‘참외 깍두기’ 만들기</div>
-                    <div class="recipe-chef">by. 홈쿡샘</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-              </div>
+                </template>
+              </div>              
               <button class="search-more-btn" type="button">
                 레시피 더보기
                 <img src="/img/right.png" alt="더보기 아이콘">
-              </button>              
-            </div>
+              </button>
+            </div>   
           </div>
           <!--5위-->
           <div class="search-accordion-item">
@@ -1345,139 +552,35 @@
               <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
             </div>
             <div class="search-accordion-body">
-              <div class="horizontal-items">
-                <!-- 1 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe01.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-                    <div class="recipe-chef">by. 잔근육</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">신의경지</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">2시간이상</span>
+              <div class="horizontal-items" data-count="7">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 2 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe02.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">닭가슴살 토마토 스프</div>
-                    <div class="recipe-chef">by. 뿡씨스터즈</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 3 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe03.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">맛있는는 감자전</div>
-                    <div class="recipe-chef">by. 용주부</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">고급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">30분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 4 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe04.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-                    <div class="recipe-chef">by. 우수푸드</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">10분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 5 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe05.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-                    <div class="recipe-chef">by. 밥심은국력</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">초급</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-                <!-- 6 -->
-                <div class="horizontal-item">
-                  <div class="horizontal-item-thumb">
-                    <img src="/img/recipe06.png" alt="레시피사진">
-                    <img src="/img/move.png" alt="" class="video-icon">
-                  </div>
-                  <div class="recipe-info">
-                    <div class="recipe-name">색다른 여름 반찬, 달콤 매콤 ‘참외 깍두기’ 만들기</div>
-                    <div class="recipe-chef">by. 홈쿡샘</div>
-                    <div class="recipe-cook">
-                      <div class="cook-degree-wrap">
-                        <img src="/img/degree.png" alt="난이도 아이콘">
-                        <span class="cook-degree">아무나</span>
-                      </div>
-                      <div class="cook-time-wrap">
-                        <img src="/img/time.png" alt="시간 아이콘">
-                        <span class="cook-time">20분 이내</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>                                
-              </div>
+                </template>
+              </div>              
               <button class="search-more-btn" type="button">
                 레시피 더보기
                 <img src="/img/right.png" alt="더보기 아이콘">
-              </button>              
-            </div>
+              </button>
+            </div>   
           </div>
         </div>
     </div>
@@ -1491,116 +594,29 @@
         </div>
       </div>  
 
-      <div class="list-items">
-        <!-- 1 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe01.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">최화정 양배추 샐러드, 들기름 드레싱</div>
-            <div class="recipe-chef">by. 잔근육</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">신의경지</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">2시간이상</span>
+      <div class="list-items" data-count="5">
+        <template id="recipe-template">
+          <div class="list-item">
+            <div class="list-item-thumb">
+              <img class="thumb-img" src="" alt="레시피사진">
+              <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+            </div>
+            <div class="recipe-info">
+              <div class="recipe-name"></div>
+              <div class="recipe-chef"></div>
+              <div class="recipe-cook">
+                <div class="cook-degree-wrap">
+                  <img src="/img/degree.png" alt="난이도 아이콘">
+                  <span class="cook-degree"></span>
+                </div>
+                <div class="cook-time-wrap">
+                  <img src="/img/time.png" alt="시간 아이콘">
+                  <span class="cook-time"></span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- 2 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe02.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">닭가슴살 토마토 스프</div>
-            <div class="recipe-chef">by. 뿡씨스터즈</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">10분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe03.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">맛있는는 감자전</div>
-            <div class="recipe-chef">by. 용주부</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">아무나</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">30분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe04.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">부추 고추장떡 부추장떡 막걸리안주 밑반찬</div>
-            <div class="recipe-chef">by. 우수푸드</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="list-item">
-          <div class="list-item-thumb">
-            <img src="/img/recipe05.png" alt="레시피사진">
-            <img src="/img/move.png" alt="" class="video-icon">
-          </div>
-          <div class="recipe-info">
-            <div class="recipe-name">천원으로 완성하는 관자 식감! 알토란 궁쉐프 이상만 팽이관자 레시피</div>
-            <div class="recipe-chef">by. 밥심은국력</div>
-            <div class="recipe-cook">
-              <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도 아이콘">
-                <span class="cook-degree">초급</span>
-              </div>
-              <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간 아이콘">
-                <span class="cook-time">20분 이내</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        </template>
       </div>
 
       <button class="more-btn" type="button">
