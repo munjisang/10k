@@ -346,13 +346,14 @@ main {
 .recipe-area-content {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .recipe-area-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-right: 16px;
+  
 }
 
 .recipe-area-title {
@@ -1115,7 +1116,7 @@ main {
 }
 
 .review-recipe-name {
-  font: var(--B6);
+  font: var(--B8);
   color: var(--BLACK-MAIN);
   display: -webkit-box;
   -webkit-line-clamp: 1;
