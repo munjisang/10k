@@ -126,7 +126,9 @@ body::-webkit-scrollbar {
     box-sizing: border-box;
     border-bottom: 1px solid var(--GRAY-02);
     border-radius: 0px 0px 16px 16px;
+    /*
     position:sticky;
+    */
     top: 0px;
     z-index: 900;
 }
@@ -1132,4 +1134,88 @@ main {
   gap: 4px;
   font: var(--B8);
   color: var(--BLACK-SUB);
+}
+
+/* 오버레이 배경 */
+.overlay {
+  display: none; /* 기본 숨김 */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: flex-end; /* 하단에 바텀시트 위치 */
+  z-index: 1000;
+}
+
+.bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--WHITE);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 30px 16px 30px 16px; /* 버튼 주변 여백 */
+  gap: 16px;
+  box-sizing: border-box;
+  transform: translateY(100%); /* 초기: 화면 아래로 숨김 */
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-sheet.show {
+  transform: translateY(0); /* 나타날 때 버튼 영역만 보이도록 */
+}
+
+.sheet-area-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sheet-area-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  
+}
+
+.sheet-area-title {
+  font: var(--B1);
+  color: var(--BLACK-MAIN);
+}
+
+.sheet-area-icon {
+  height: 22px;
+  display: block;
+  margin-left: auto;
+}
+
+/* 버튼 영역 */
+.sheet-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.sheet-btn {
+  width: 100%;
+  height: 56px;  
+  background: var(--WHITE);
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sheet-btn img {
+  width: 32px;
+  height: 32px;
 }

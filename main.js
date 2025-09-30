@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔹 리뷰 시간 포맷 함수
   function formatReviewDate(dateStr) {
     const now = new Date();
-    const reviewDate = new Date(dateStr.replace(/-/g, "/"));
+    const reviewDate = new Date(dateStr.replace(/-/g, "/")); // Safari 호환
     const diffMs = now - reviewDate;
     const diffMin = Math.floor(diffMs / 60000);
     const diffHr = Math.floor(diffMin / 60);
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diffMin < 60) return "방금";
     else if (diffHr < 12) return `${diffHr}시간전`;
     else {
-      const yyyy = reviewDate.getFullYear();
+      const yy = String(reviewDate.getFullYear()).slice(2);
       const mm = String(reviewDate.getMonth() + 1).padStart(2, "0");
       const dd = String(reviewDate.getDate()).padStart(2, "0");
       const hh = String(reviewDate.getHours()).padStart(2, "0");
@@ -255,64 +255,97 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-fetch("./data/review.json")
-  .then(res => res.json())
-  .then(list => {
-    const sorted = list.sort(
-      (a, b) =>
+  fetch("./data/review.json")
+    .then(res => res.json())
+    .then(list => {
+      // 1️⃣ 전체를 날짜+시간 기준 최신순으로 우선 정렬
+      const sorted = list.sort((a, b) =>
         new Date(b.review_date.replace(/-/g, "/")) -
         new Date(a.review_date.replace(/-/g, "/"))
-    );
+      );
 
-    const topCandidates = sorted.slice(0, 10); 
+      // 2️⃣ 최신 데이터 중 상위 10개만 후보
+      const topCandidates = sorted.slice(0, 10);
 
-    const reviews = topCandidates.sort(() => Math.random() - 0.5).slice(0, maxCount);
+      // 3️⃣ 후보에서 랜덤 5개 추출
+      const randomFive = topCandidates
+        .sort(() => Math.random() - 0.5)
+        .slice(0, maxCount);
 
-    reviews.forEach(r => {
-      const item = document.createElement("div");
-      item.className = "review-item";
+      // 4️⃣ 추출된 5개를 다시 "시간까지 포함한 최신순"으로 재정렬
+      const reviews = randomFive.sort((a, b) =>
+        new Date(b.review_date.replace(/-/g, "/")) -
+        new Date(a.review_date.replace(/-/g, "/"))
+      );
 
-      const reviewPhoto = r.review_thumb
-        ? `<img src="${r.review_thumb}" alt="후기사진" class="review-photo">`
-        : "";
+      // 5️⃣ DOM에 삽입
+      reviews.forEach(r => {
+        const item = document.createElement("div");
+        item.className = "review-item";
 
-      const displayDate = formatReviewDate(r.review_date);
+        const reviewPhoto = r.review_thumb
+          ? `<img src="${r.review_thumb}" alt="후기사진" class="review-photo">`
+          : "";
 
-      item.innerHTML = `
-        <div class="review-info">
-          <div class="review-item-thumb">
-            <img src="${r.user_thumb}" alt="프로필사진">
+        const displayDate = formatReviewDate(r.review_date);
+
+        item.innerHTML = `
+          <div class="review-info">
+            <div class="review-item-thumb">
+              <img src="${r.user_thumb}" alt="프로필사진">
+            </div>
+            <div class="review-user-info">
+              <div class="review-user-name">${r.review_nickname}</div>
+              <div class="review-date">${displayDate}</div>
+            </div>
+            <div class="review-rate-wrap">
+              <img src="/img/star.png" alt="별점">
+              <span class="review-rate">${r.review_rate}</span>
+            </div>
           </div>
-          <div class="review-user-info">
-            <div class="review-user-name">${r.review_nickname}</div>
-            <div class="review-date">${displayDate}</div>
-          </div>
-          <div class="review-rate-wrap">
-            <img src="/img/star.png" alt="별점">
-            <span class="review-rate">${r.review_rate}</span>
-          </div>
-        </div>
 
-        <div class="review-text-wrap">
-          <span class="review-text">${r.review_message}</span>
-          ${reviewPhoto}
-        </div>
-
-        <div class="review-body">
-          <div class="review-recipe-info">
-            <div class="review-recipe-name">${r.cok_title}</div>
-            <div class="review-recipe-chef">by. ${r.cok_reg_nm}</div>
+          <div class="review-text-wrap">
+            <span class="review-text">${r.review_message}</span>
+            ${reviewPhoto}
           </div>
-          <img src="${r.cok_thumb}" class="review-body-thumb" alt="레시피썸네일">
-        </div>
-      `;
 
-      item.addEventListener("click", () => {
-        window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_blank");
+          <div class="review-body">
+            <div class="review-recipe-info">
+              <div class="review-recipe-name">${r.cok_title}</div>
+              <div class="review-recipe-chef">by. ${r.cok_reg_nm}</div>
+            </div>
+            <img src="${r.cok_thumb}" class="review-body-thumb" alt="레시피썸네일">
+          </div>
+        `;
+
+        item.addEventListener("click", () => {
+          window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_blank");
+        });
+
+        container.appendChild(item);
       });
+    })
+    .catch(err => console.error("리뷰 로드 실패:", err));
+});
 
-      container.appendChild(item);
-    });
-  })
-  .catch(err => console.error("리뷰 로드 실패:", err));
+
+
+// -------------------- 오버레이 --------------------
+const registerBtn = document.querySelector(".recipe-register");
+const bottomSheet = document.querySelector(".bottom-sheet");
+const overlay = document.querySelector(".overlay");
+const bottomNavigation = document.querySelector(".bottom-navigation");
+
+registerBtn.addEventListener("click", () => {
+  overlay.style.display = "block"; // 배경 표시
+  bottomSheet.classList.add("show"); // 바텀시트 슬라이드 업
+  registerBtn.style.display = "none"; // 등록 버튼 숨김
+  bottomNavigation.style.display = "none"; // 하단 네비 숨김
+});
+
+overlay.addEventListener("click", () => {
+  bottomSheet.classList.remove("show"); // 바텀시트 숨김
+  overlay.style.display = "none"; // 배경 숨김
+  registerBtn.style.display = "flex"; // 등록 버튼 다시 표시
+  bottomNavigation.style.display = "flex"; // 하단 네비 다시 표시
 });
