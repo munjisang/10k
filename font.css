@@ -1,38 +1,38 @@
 :root {
     /* Title */
-    --T1: 700 42px/50px "Pretendard", sans-serif;
-    --T2: 600 42px/50px "Pretendard", sans-serif;
-    --T3: 700 36px/44px "Pretendard", sans-serif;
-    --T4: 600 36px/44px "Pretendard", sans-serif;
-    --T5: 700 32px/38px "Pretendard", sans-serif;
-    --T6: 600 32px/38px "Pretendard", sans-serif;
+    --T1: 700 42px/48px "Pretendard", sans-serif;
+    --T2: 600 42px/48px "Pretendard", sans-serif;
+    --T3: 700 36px/42px "Pretendard", sans-serif;
+    --T4: 600 36px/42px "Pretendard", sans-serif;
+    --T5: 700 32px/36px "Pretendard", sans-serif;
+    --T6: 600 32px/36px "Pretendard", sans-serif;
     /* Header */
-    --H1: 700 28px/34px "Pretendard", sans-serif;
-    --H2: 600 28px/34px "Pretendard", sans-serif;
-    --H3: 700 24px/30px "Pretendard", sans-serif;
-    --H4: 600 24px/30px "Pretendard", sans-serif;
-    --H5: 700 22px/28px "Pretendard", sans-serif;
-    --H6: 500 22px/28px "Pretendard", sans-serif;
-    --H7: 700 20px/26px "Pretendard", sans-serif;
-    --H8: 600 20px/26px "Pretendard", sans-serif;
+    --H1: 700 28px/32px "Pretendard", sans-serif;
+    --H2: 600 28px/32px "Pretendard", sans-serif;
+    --H3: 700 24px/28px "Pretendard", sans-serif;
+    --H4: 600 24px/28px "Pretendard", sans-serif;
+    --H5: 700 22px/26px "Pretendard", sans-serif;
+    --H6: 500 22px/26px "Pretendard", sans-serif;
+    --H7: 700 20px/24px "Pretendard", sans-serif;
+    --H8: 600 20px/24px "Pretendard", sans-serif;
     /* Subtitle */
-    --S1: 700 18px/24px "Pretendard", sans-serif;
-    --S2: 600 18px/24px "Pretendard", sans-serif;
-    --S3: 500 18px/24px "Pretendard", sans-serif;
-    --S4: 400 18px/24px "Pretendard", sans-serif;
+    --S1: 700 18px/22px "Pretendard", sans-serif;
+    --S2: 600 18px/22px "Pretendard", sans-serif;
+    --S3: 500 18px/22px "Pretendard", sans-serif;
+    --S4: 400 18px/22px "Pretendard", sans-serif;
     /* Body */
-    --B1: 700 16px/22px "Pretendard", sans-serif;
-    --B2: 600 16px/22px "Pretendard", sans-serif;
-    --B3: 500 16px/22px "Pretendard", sans-serif;
-    --B4: 400 16px/22px "Pretendard", sans-serif;
-    --B5: 700 14px/20px "Pretendard", sans-serif;
-    --B6: 600 14px/20px "Pretendard", sans-serif;
-    --B7: 500 14px/20px "Pretendard", sans-serif;
-    --B8: 400 14px/20px "Pretendard", sans-serif;
+    --B1: 700 16px/20px "Pretendard", sans-serif;
+    --B2: 600 16px/20px "Pretendard", sans-serif;
+    --B3: 500 16px/20px "Pretendard", sans-serif;
+    --B4: 400 16px/20px "Pretendard", sans-serif;
+    --B5: 700 14px/18px "Pretendard", sans-serif;
+    --B6: 600 14px/18px "Pretendard", sans-serif;
+    --B7: 500 14px/18px "Pretendard", sans-serif;
+    --B8: 400 14px/18px "Pretendard", sans-serif;
     /* Caption */
-    --C1: 700 12px/16px "Pretendard", sans-serif;
-    --C2: 600 12px/16px "Pretendard", sans-serif;
-    --C3: 500 12px/16px "Pretendard", sans-serif;
-    --C4: 400 12px/16px "Pretendard", sans-serif;
-    --C5: 700 10px/14px "Pretendard", sans-serif;
+    --C1: 700 12px/14px "Pretendard", sans-serif;
+    --C2: 600 12px/14px "Pretendard", sans-serif;
+    --C3: 500 12px/14px "Pretendard", sans-serif;
+    --C4: 400 12px/14px "Pretendard", sans-serif;
+    --C5: 700 10px/12px "Pretendard", sans-serif;
 }

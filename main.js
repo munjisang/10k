@@ -49,8 +49,27 @@ bannerWrapper?.addEventListener('touchend', e => {
 
 // -------------------- 중간 배너 랜덤 --------------------
 const middleBanner = document.getElementById('middleBanner');
-const banners = ['/img/middle_banner_1.png', '/img/middle_banner_2.png'];
-if (middleBanner) middleBanner.src = banners[Math.floor(Math.random() * banners.length)];
+const middleBannerLink = document.getElementById('middleBannerLink');
+
+const banners = [
+  {
+    src: '/img/middle_banner_1.png',
+    link: 'https://timingapp.onelink.me/uEn0/4jc12k0n',
+    target: '_blank'  
+  },
+  {
+    src: '/img/middle_banner_2.png',
+    link: 'https://m.10000recipe.com/chef/celeb_list.html',
+    target: '_self'  
+  }
+];
+
+if (middleBanner && middleBannerLink) {
+  const randomBanner = banners[Math.floor(Math.random() * banners.length)];
+  middleBanner.src = randomBanner.src;
+  middleBannerLink.href = randomBanner.link;
+  middleBannerLink.target = randomBanner.target; // 배너별 target 적용
+}
 
 // -------------------- 커스텀 드롭다운 --------------------
 document.querySelectorAll(".custom-select").forEach(select => {

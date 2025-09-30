@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="font.css">
   <link rel="stylesheet" href="color.css">
@@ -26,6 +26,7 @@
       <img src="/img/gallery.png" alt="갤러리" class="gallery-icon">
     </div>
   </div>
+  <div id="toast">사진으로 레시피 검색 with AI</div>
 
   <!-- 메인 콘텐츠 -->
   <main>
@@ -78,19 +79,27 @@
         <img src="/img/user_off.svg" alt="마이" class="nav-icon">
         <span class="nav-label">마이</span>
       </div>
-    </div>
-
-    <div id="toast">사진으로 레시피 검색 with AI</div>
+    </div> 
 
     <!-- 상단배너 -->
     <div class="banner-area">
       <div class="banner-wrapper">
-        <div class="banner-slide"><img src="/img/banner1.jpg" alt="배너1"></div>
-        <div class="banner-slide"><img src="/img/banner2.jpg" alt="배너2"></div>
-        <div class="banner-slide"><img src="/img/banner3.jpg" alt="배너3"></div>
-        <div class="banner-slide"><img src="/img/banner4.jpg" alt="배너4"></div>
-        <div class="banner-slide"><img src="/img/banner5.jpg" alt="배너5"></div>
-      </div>
+        <a href="https://m.10000recipe.com/event/484" class="banner-slide">
+          <img src="/img/banner1.jpg" alt="배너1">
+        </a>
+        <a href="https://m.10000recipe.com/event/478" class="banner-slide">
+          <img src="/img/banner2.jpg" alt="배너2">
+        </a>
+        <a href="https://m.10000recipe.com/event/467" class="banner-slide">
+          <img src="/img/banner3.jpg" alt="배너3">
+        </a>
+        <a href="https://m.10000recipe.com/event/446" class="banner-slide">
+          <img src="/img/banner4.jpg" alt="배너4">
+        </a>
+        <a href="https://m.10000recipe.com/event/415" class="banner-slide">
+          <img src="/img/banner5.jpg" alt="배너5">
+        </a>       
+      </div> 
       <div class="banner-navigation">
         <span class="current">1</span>/<span class="total">5</span>
       </div>
@@ -98,62 +107,64 @@
 
     <!-- 메인 메뉴 -->
     <div class="icon-menu">
-      <div class="menu-item">
+      <a href="https://m.10000recipe.com/recipe/ingredients.html" class="menu-item">
         <img src="/img/main_01.png" alt="냉장고 파먹기">
         <span>냉장고 파먹기</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/today_recommend.html" class="menu-item">
         <img src="/img/main_02.png" alt="오늘 뭐먹지?">
         <span>오늘 뭐먹지?</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/more_item.html?q_mode=topic&cid=9999scrap&titles=%EB%AA%85%EC%98%88%EC%9D%98+%EC%A0%84%EB%8B%B9" class="menu-item">
         <img src="/img/main_03.png" alt="명예의 전당">
         <span>명예의 전당</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/ranking/home_new.html" class="menu-item">
         <img src="/img/main_04.png" alt="랭킹">
         <span>랭킹</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/issue/home.html" class="menu-item">
         <img src="/img/main_05.png" alt="매거진">
         <span>매거진</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/list.html?order=date" class="menu-item">
         <img src="/img/main_06.png" alt="최신 레시피">
         <span>최신 레시피</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/more_item.html?q_mode=recentreview&titles=%EC%9A%94%EB%A6%AC+%ED%9B%84%EA%B8%B0" class="menu-item">
         <img src="/img/main_07.png" alt="요리후기">
         <span>요리후기</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/chef/chef_list.html" class="menu-item">
         <img src="/img/main_08.png" alt="만개쉐프">
         <span>만개쉐프</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/chef/celeb_list.html" class="menu-item">
         <img src="/img/main_09.png" alt="만개 크리에이터">
-        <span>크리에이터</span>
-      </div>
-      <div class="menu-item">
+        <span>만개 크리에이터</span>
+      </a>
+      <a href="https://m.10000recipe.com/chef/celeb_apply.html" class="menu-item">
         <img src="/img/main_10.png" alt="출석 포인트">
         <span>출석 포인트</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/event/list.html" class="menu-item">
         <img src="/img/main_11.png" alt="혜택">
         <span>혜택</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://timingapp.onelink.me/uEn0/4jc12k0n" target="_blank" class="menu-item" >
         <div class="icon-wrapper">
           <img src="/img/main_12.png" alt="최저가 알림 타이밍">
           <span class="ad-badge">AD</span>
         </div>
         <span>최저가 알림 <br> 타이밍</span>
-      </div>
+      </a>
     </div>
 
     <!-- 중간배너 -->
     <div class="middle-banner-area">
-      <img id="middleBanner" src="" alt="중간 배너">
+      <a id="middleBannerLink" href="#">
+        <img id="middleBanner" src="" alt="중간 배너">
+      </a>
     </div>
 
     <!-- KADX 영역 -->
@@ -226,38 +237,38 @@
 
     <!-- 카테고리 -->
     <div class="icon-menu">
-      <div class="menu-item">
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=12" class="menu-item">
         <img src="/img/category_01.png" alt="일상">
         <span>일상</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=13" class="menu-item">
         <img src="/img/category_02.png" alt="손님접대">
         <span>손님접대</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=21" class="menu-item">
         <img src="/img/category_03.png" alt="다이어트">
         <span>다이어트</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=43" class="menu-item">
         <img src="/img/category_04.png" alt="영양식">
         <span>영양식</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=17" class="menu-item">
         <img src="/img/category_05.png" alt="간식">
-        <span>간식</span>
-      </div>
-      <div class="menu-item">
+        <span>일상</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=19" class="menu-item">
         <img src="/img/category_06.png" alt="술안주">
         <span>술안주</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=46" class="menu-item">
         <img src="/img/category_07.png" alt="해장">
         <span>해장</span>
-      </div>
-      <div class="menu-item">
+      </a>
+      <a href="https://m.10000recipe.com/recipe/index.html?tab=2" class="menu-item">
         <img src="/img/category_08.png" alt="전체보기">
         <span>전체보기</span>
-      </div>
+      </a>
     </div>
 
     <!-- 레시피 추천 - 그리드 -->

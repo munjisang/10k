@@ -15,7 +15,10 @@ body {
     font: var(--B4);
     background: var(--GRAY-03);
     color: var(--BLACK-MAIN);
-    padding-bottom: 100px;
+
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    padding-bottom: calc(64px + constant(safe-area-inset-bottom));
+
     overflow-y: scroll; 
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -67,6 +70,8 @@ body::-webkit-scrollbar {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: constant(safe-area-inset-bottom);
 }
 
 .nav-item {
@@ -93,7 +98,8 @@ body::-webkit-scrollbar {
 
 .recipe-register {
   position: fixed;
-  bottom: 64px;
+  bottom: calc(60px + env(safe-area-inset-bottom));
+  bottom: calc(60px + constant(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -295,6 +301,8 @@ main {
     text-align: center;
     font: var(--B7);
     color: var(--BLACK-MAIN);
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
 }
 
@@ -309,6 +317,9 @@ main {
   position: relative;
   width: 48px;
   height: 48px;
+  color: inherit;
+  cursor: pointer;
+  margin-bottom: 6px;
 }
 
 .icon-wrapper img {
@@ -328,6 +339,16 @@ main {
   border-radius: 200px;
   border: 1px solid var(--GRAY-02);
   box-sizing: border-box;
+}
+
+.icon-wrapper span {
+    font: var(--B7);
+    color: var(--BLACK-MAIN);
+    text-align: center;
+    display: block; /* <br> 줄바꿈 적용 시 필요 */
+    line-height: 1.4; /* 원하는 줄간격 조절 */
+    color: inherit;
+    cursor: pointer;
 }
 
 /* 기본 UI */
@@ -359,7 +380,7 @@ main {
 }
 
 .recipe-area-title {
-  font: var(--B1);
+  font: var(--S1);
   color: var(--BLACK-MAIN);
 }
 
@@ -381,7 +402,7 @@ main {
 }
 
 .recipe-name {
-  font: var(--B2);
+  font: var(--B3);
   color: var(--BLACK-MAIN);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1024,16 +1045,17 @@ main {
 }
 
 .review-item-thumb {
-  flex: 0 0 46px; 
-  position: relative;
+  display: flex;  
+  align-items: center;
 }
 
 .review-item-thumb img {
-  width: 100%;
-  height: 46px;
+  width: 36px;
+  height: 36px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 12px;
   display: block;
+  align-items: center;
 }
 
 .review-user-info {
@@ -1077,7 +1099,7 @@ main {
 }
 
 .review-text-wrap {
-  margin-left: 58px;
+  margin-left: 48px;
   display: flex;
   gap: 12px;
   font: var(--B7);
@@ -1096,6 +1118,7 @@ main {
   display: inline-flex;
   width: fit-content;
   align-items: center;
+  margin-left: 48px;
   margin-top: 8px;
   padding: 8px 16px;
   cursor: pointer;
