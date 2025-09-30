@@ -1093,14 +1093,28 @@ main {
 }
 
 .review-body {
-  display: inline-flex;
-  width: fit-content;
+  display: flex;
   align-items: center;
   margin-top: 8px;
-  padding: 8px 16px;
+  gap: 8px;
+  padding: 12px;
   cursor: pointer;
-  background-color: var(--DIM-TERTIARY);
-  border-radius: 200px;
+  background-color: var(--GRAY-03);
+  border-radius: 6px;
+}
+
+.review-body-thumb {
+  width: 80px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-left: auto;
+}
+
+.review-recipe-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .review-recipe-name {
@@ -1112,6 +1126,14 @@ main {
   overflow: hidden;
   word-break: break-word;
   white-space: normal;
+}
+
+.review-recipe-chef {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--B8);
+  color: var(--BLACK-SUB);
 }
 
 /* 오버레이 배경 */

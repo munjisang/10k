@@ -308,9 +308,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="review-text">${r.review_message}</span>
             ${reviewPhoto}
           </div>
+
           <div class="review-body">
-            <div class="review-recipe-name">${r.cok_title}
-            </div>          
+            <div class="review-recipe-info">
+              <div class="review-recipe-name">${r.cok_title}</div>
+              <div class="review-recipe-chef">by. ${r.cok_reg_nm}</div>
+            </div>
+            <img src="${r.cok_thumb}" class="review-body-thumb" alt="레시피썸네일">
           </div>
         `;
 
