@@ -1210,3 +1210,11 @@ main {
   font: var(--B8);
   color: var(--BLACK-MAIN);
 }
+
+
+.editor-icon {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin-bottom: 8px;
+}
