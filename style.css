@@ -210,10 +210,7 @@ body::-webkit-scrollbar {
 
 /* main contents 영역 */
 main {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 16px;
-    padding-right: 16px;
+  padding: 20px 16px;
 }
 
 /* 상단 배너 영역 */
@@ -355,7 +352,7 @@ main {
 .recipe-area {
   display: flex;
   flex-direction: column;
-  padding: 30px 12px 30px 12px;
+  padding: 20px 12px;
   background-color: var(--WHITE);
   border-radius: 12px;
   gap: 20px;
@@ -392,6 +389,9 @@ main {
 .recipe-area-icon {
   height: 14px;
   display: block;
+}
+
+.recipe-area-content a {
   margin-left: auto;
 }
 
@@ -495,123 +495,6 @@ main {
 .more-btn img {
   width: 16px;
   height: 16px;
-}
-
-/* kadx 아이템 UI */
-.kadx-items {
-  display: flex;
-  border-radius: 12px;
-  gap: 4px;
-  overflow: hidden;
-  background-color: var(--GRAY-03);
-  padding: 16px 4px;
-}
-
-.kadx-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: center;
-  position: relative;
-}
-
-.kadx-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 16px;
-  bottom: 16px;
-  right: 0;
-  width: 1px;
-  background-color: var(--GRAY-02);
-}
-
-.kadx-item img {
-  width: 56px;
-  height: 56px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.kadx-item-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.kadx-item-name {
-  font: var(--B5); 
-  color: var(--BLACK-MAIN); 
-  display: -webkit-box; 
-  -webkit-line-clamp: 1; 
-  -webkit-box-orient: vertical; 
-  overflow: hidden; 
-} 
-
-.kadx-item-price {
-  text-align: center;
-  font: var(--B6);
-}
-
-.kadx-price-value {
-  display: inline-block;
-  font: var(--C1);
-  color: var(--BLACK-MAIN);
-}
-
-.kadx-price-unit {
-  display: inline-block;
-  margin-left: 2px;
-  font: var(--C2);
-  color: var(--BLACK-SUB);
-}
-
-.kadx-price-down { 
-  font: var(--C1); 
-  color: var(--SECONDARY-08);
-}
-
-.kadx-price-up { 
-  font: var(--C1); 
-  color: var(--PRIMARY-08);
-}
-
-.kadx-item-history {
-  width: 100%;
-  padding: 0 5%;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-items: stretch;
-  font: var(--C4);
-  color: var(--WHITE);
-  box-sizing: border-box;
-}
-
-.kadx-history-labels,
-.kadx-history-values {
-  display: flex;
-  justify-content: space-between;
-  gap: 6px;
-}
-
-.kadx-history-labels span { 
-  flex: 1; 
-  text-align: center; 
-  background-color: var(--BLACK-SUB); 
-  color: var(--WHITE); 
-  border-radius: 40px; 
-  padding: 2px 4px; 
-  font: var(--C4); 
-}
-
-.kadx-history-values span {
-  flex: 1;
-  text-align: center;
-  font: var(--C4);
-  color: var(--BLACK-SUB)
 }
 
 /* 레시피 목록_그리드 UI */
@@ -835,7 +718,7 @@ main {
 }
 
 .accordion-body-thumb {
-  width: 120px;
+  width: 80px;
   aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 6px;
@@ -1035,7 +918,10 @@ main {
   gap: 4px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--GRAY-02);
+}
 
+.review-items > .review-item:last-child {
+  border-bottom: none;
 }
 
 .review-info {
@@ -1219,4 +1105,133 @@ main {
 .sheet-btn img {
   width: 32px;
   height: 32px;
+}
+
+/* kadx 아이템 UI */
+.ka-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.ka-item {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--GRAY-02);
+}
+
+.ka-items > .ka-item:last-child {
+  border-bottom: none;
+}
+
+.ka-items > .ka-item:has(+ .page-navi) {
+  border-bottom: none;
+}
+
+.ka-items > .ka-item:first-child {
+  padding-top: 0;
+  padding-bottom: 16px;
+}
+
+.ka-items > .ka-item:last-child {
+  padding-top: 16px;
+  padding-bottom: 0px;
+}
+
+.ka-item-product {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ka-item-thumb {
+  width: 68px;
+  height: 68px; 
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.ka-item-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 6px;
+}
+
+.ka-item-name {
+  font: var(--B3); 
+  color: var(--BLACK-MAIN); 
+  display: -webkit-box; 
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+} 
+
+.ka-item-price {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.ka-price-value {
+  display: inline-block;
+  font: var(--B6);
+  color: var(--BLACK-MAIN);
+}
+
+.ka-price-unit {
+  display: inline-block;
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+}
+
+.ka-price-down { 
+  font: var(--C4); 
+  color: var(--SECONDARY-08);
+}
+
+.ka-price-up { 
+  font: var(--C4); 
+  color: var(--PRIMARY-08);
+}
+
+.ka-item-history {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: stretch;
+  font: var(--C4);
+  color: var(--WHITE);
+  box-sizing: border-box;
+}
+
+.ka-history-labels,
+.ka-history-values {
+  display: flex;
+  gap: 6px;
+}
+
+.ka-history-labels span { 
+  flex: 1; 
+  text-align: center; 
+  background-color: var(--GRAY-02); 
+  color: var(--BLACK-MAIN); 
+  border-radius: 40px; 
+  padding: 2px 4px; 
+  font: var(--C4); 
+}
+
+.ka-history-values span {
+  flex: 1;
+  text-align: center;
+  font: var(--C4);
+  color: var(--BLACK-MAIN);
+  display: -webkit-box; 
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
 }

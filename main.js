@@ -6,6 +6,7 @@ galleryIcon?.addEventListener("click", () => {
   setTimeout(() => toast?.classList.remove("show"), 2500);
 });
 
+
 // -------------------- 배너 자동롤링 + 스와이프 --------------------
 const bannerWrapper = document.querySelector('.banner-wrapper');
 const slides = document.querySelectorAll('.banner-slide');
@@ -68,8 +69,124 @@ if (middleBanner && middleBannerLink) {
   const randomBanner = banners[Math.floor(Math.random() * banners.length)];
   middleBanner.src = randomBanner.src;
   middleBannerLink.href = randomBanner.link;
-  middleBannerLink.target = randomBanner.target; // 배너별 target 적용
+  middleBannerLink.target = randomBanner.target; 
 }
+
+
+// -------------------- 오버레이 --------------------
+const registerBtn = document.querySelector(".recipe-register");
+const bottomSheet = document.querySelector(".bottom-sheet");
+const overlay = document.querySelector(".overlay");
+const bottomNavigation = document.querySelector(".bottom-navigation");
+
+registerBtn.addEventListener("click", () => {
+  overlay.style.display = "block"; 
+  bottomSheet.classList.add("show"); 
+  registerBtn.style.display = "none"; 
+  bottomNavigation.style.display = "none"; 
+});
+
+overlay.addEventListener("click", () => {
+  bottomSheet.classList.remove("show");
+  overlay.style.display = "none"; 
+  registerBtn.style.display = "flex"; 
+  bottomNavigation.style.display = "flex"; 
+});
+
+
+// -------------------- KADX --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const kaContainer = document.querySelector(".ka-items");
+  const prevBtn = document.querySelector(".page-btn.prev");
+  const nextBtn = document.querySelector(".page-btn.next");
+  const pageInfo = document.querySelector(".page-info");
+
+  if (!kaContainer || !prevBtn || !nextBtn || !pageInfo) return;
+
+  const itemsPerPage = 3;
+  let currentPage = 1;
+  let totalPages = 1;
+  let kaData = [];
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function renderPage(page) {
+    kaContainer.innerHTML = "";
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageItems = kaData.slice(start, end);
+
+    pageItems.forEach(item => {
+      const diffClass = item["kadx-price-ud"] === "down" ? "ka-price-down" : "ka-price-up";
+
+      const card = document.createElement("div");
+      card.classList.add("ka-item");
+
+      card.innerHTML = `
+        <div class="ka-item-product">
+          <img src="${item["kadx-item-img"]}" alt="${item["kadx-item-name"]}" class="ka-item-thumb">
+          <div class="ka-item-info">
+            <div class="ka-item-name">${item["kadx-item-name"]}</div>
+            <div class="ka-item-price">
+              <span class="ka-price-value">${item["kadx-price-value"]}</span>
+              <span class="ka-price-unit">${item["kadx-price-unit"]}</span>
+            </div>
+            <div class="${diffClass}">${item["kadx-price"]}</div>
+          </div>
+        </div>
+        <div class="ka-item-history">
+          <div class="ka-history-labels">
+            <span>10일전</span>
+            <span>전월</span>
+            <span>전년</span>
+          </div>
+          <div class="ka-history-values">
+            <span>${item["kadx-history-d"]}</span>
+            <span>${item["kadx-history-m"]}</span>
+            <span>${item["kadx-history-y"]}</span>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener("click", () => {
+        window.open(`https://m.10000recipe.com/recipe/kadx.html?cate=&pno=${item.kadx_seq}`, "_blank");
+      });
+
+      kaContainer.appendChild(card);
+    });
+
+    pageInfo.textContent = `${currentPage} / ${totalPages}`;
+
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+  }
+
+  function goPage(page) {
+    if (page < 1) page = 1;
+    if (page > totalPages) page = totalPages;
+    currentPage = page;
+    renderPage(currentPage);
+  }
+
+  prevBtn.addEventListener("click", () => goPage(currentPage - 1));
+  nextBtn.addEventListener("click", () => goPage(currentPage + 1));
+
+  fetch("./data/kadx.json")
+    .then(res => res.json())
+    .then(data => {
+      kaData = shuffle(data); 
+      totalPages = Math.ceil(kaData.length / itemsPerPage);
+      renderPage(currentPage); 
+    })
+    .catch(err => console.error("KADX 데이터 로드 실패:", err));
+});
+
 
 // -------------------- 커스텀 드롭다운 --------------------
 document.querySelectorAll(".custom-select").forEach(select => {
@@ -98,13 +215,13 @@ document.querySelectorAll(".custom-select").forEach(select => {
   });
 });
 
+
 // -------------------- 레시피 JSON 로드 --------------------
 fetch('./data/recipe.json')
   .then(res => res.json())
   .then(data => {
     const list = data.recipes;
 
-    // 리스트/그리드/가로 영역
     document.querySelectorAll('.list-items, .grid-items, .horizontal-items').forEach(area => {
       const count = parseInt(area.dataset.count, 10) || 0;
       const randomRecipes = list.sort(() => Math.random() - 0.5).slice(0, count);
@@ -145,106 +262,108 @@ fetch('./data/recipe.json')
       });
     });
 
-    // -------------------- 숏츠 아코디언 --------------------
-    const accordionArea = document.querySelector('.accordion-items');
-    const maxAccCount = parseInt(accordionArea.dataset.count, 10) || 5;
-    const accordionRecipes = list.sort(() => Math.random() - 0.5).slice(0, maxAccCount);
 
-    accordionRecipes.forEach(recipe => {
-      const accItem = document.createElement('div');
-      accItem.className = 'accordion-item';
-      accItem.innerHTML = `
-        <div class="accordion-header">
-          <img src="/img/search.png" class="accordion-icon">
-          <span class="accordion-title">${recipe.food_name}</span>
-          <img src="${recipe.cok_thumb}" class="accordion-thumb">
-          <img src="/img/chevron_down.png" class="accordion-chevron">
-        </div>
-        <div class="accordion-body">
-          <div class="recipe-info">
-            <div class="recipe-name">${recipe.cok_title}</div>
-            <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
-          </div>
-          <img src="${recipe.cok_thumb}" class="accordion-body-thumb">
-        </div>
-      `;
-      accordionArea.appendChild(accItem);
+// -------------------- 숏츠 아코디언 --------------------
+const accordionArea = document.querySelector('.accordion-items');
+const maxAccCount = parseInt(accordionArea.dataset.count, 10) || 5;
+const accordionRecipes = list.sort(() => Math.random() - 0.5).slice(0, maxAccCount);
+
+accordionRecipes.forEach(recipe => {
+  const accItem = document.createElement('div');
+  accItem.className = 'accordion-item';
+  accItem.innerHTML = `
+    <div class="accordion-header">
+      <img src="/img/search.png" class="accordion-icon">
+      <span class="accordion-title">${recipe.food_name}</span>
+      <img src="${recipe.cok_thumb}" class="accordion-thumb">
+      <img src="/img/chevron_down.png" class="accordion-chevron">
+    </div>
+    <div class="accordion-body">
+      <div class="recipe-info">
+        <div class="recipe-name">${recipe.cok_title}</div>
+        <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
+      </div>
+      <img src="${recipe.cok_thumb}" class="accordion-body-thumb">
+    </div>
+  `;
+  accordionArea.appendChild(accItem);
+});
+
+
+// ✅ 자동 롤링 + 1개만 열림
+const items = document.querySelectorAll(".accordion-item");
+let current = 0;
+let autoTimer;
+const INTERVAL = 5000;
+const RESUME = 5000;
+
+function closeAll() { items.forEach(i => i.classList.remove("open")); }
+function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
+function startAuto() {
+  autoTimer = setInterval(() => {
+    const next = (current + 1) % items.length;
+    openItem(next);
+  }, INTERVAL);
+}
+function stopAuto() { clearInterval(autoTimer); }
+
+items.forEach((item, idx) => {
+  const header = item.querySelector(".accordion-header");
+  const body = item.querySelector(".accordion-body");
+
+  header.addEventListener("click", () => {
+    item.classList.contains("open") ? item.classList.remove("open") : openItem(idx);
+    stopAuto();
+    setTimeout(startAuto, INTERVAL);
+  });
+
+  body.addEventListener("click", e => {
+    window.open(`https://m.10000recipe.com/recipe/${accordionRecipes[idx].cok_sq_board}`, "_blank");
+    e.stopPropagation();
+  });
+});
+
+openItem(0);
+startAuto();
+
+// -------------------- 인기검색어 아코디언 --------------------
+function initSearchAccordion() {
+  const items = document.querySelectorAll(".search-accordion-item");
+  let current = 0;
+  let autoTimer;
+  let resumeTimer;
+  const INTERVAL = 5000;
+  const RESUME = 5000;
+
+  function closeAll() { items.forEach(i => i.classList.remove("open")); }
+  function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
+  function startAuto() {
+    autoTimer = setInterval(() => {
+      const next = (current + 1) % items.length;
+      openItem(next);
+    }, INTERVAL);
+  }
+  function stopAuto() {
+    clearInterval(autoTimer);
+    clearTimeout(resumeTimer);
+  }
+
+  items.forEach((item, idx) => {
+    const header = item.querySelector(".search-accordion-header");
+    header.addEventListener("click", () => {
+      item.classList.contains("open") ? item.classList.remove("open") : openItem(idx);
+      stopAuto();
+      resumeTimer = setTimeout(startAuto, RESUME);
     });
+  });
 
-    // ✅ 자동 롤링 + 1개만 열림
-    const items = document.querySelectorAll(".accordion-item");
-    let current = 0;
-    let autoTimer;
-    const INTERVAL = 5000;
-    const RESUME = 5000;
+  openItem(0);
+  startAuto();
+}
 
-    function closeAll() { items.forEach(i => i.classList.remove("open")); }
-    function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
-    function startAuto() {
-      autoTimer = setInterval(() => {
-        const next = (current + 1) % items.length;
-        openItem(next);
-      }, INTERVAL);
-    }
-    function stopAuto() { clearInterval(autoTimer); }
-
-    items.forEach((item, idx) => {
-      const header = item.querySelector(".accordion-header");
-      const body = item.querySelector(".accordion-body");
-
-      header.addEventListener("click", () => {
-        item.classList.contains("open") ? item.classList.remove("open") : openItem(idx);
-        stopAuto();
-        setTimeout(startAuto, INTERVAL);
-      });
-
-      body.addEventListener("click", e => {
-        window.open(`https://m.10000recipe.com/recipe/${accordionRecipes[idx].cok_sq_board}`, "_blank");
-        e.stopPropagation();
-      });
-    });
-
-    openItem(0);
-    startAuto();
-
-    // -------------------- 인기검색어 아코디언 --------------------
-    function initSearchAccordion() {
-      const items = document.querySelectorAll(".search-accordion-item");
-      let current = 0;
-      let autoTimer;
-      let resumeTimer;
-      const INTERVAL = 5000;
-      const RESUME = 5000;
-
-      function closeAll() { items.forEach(i => i.classList.remove("open")); }
-      function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
-      function startAuto() {
-        autoTimer = setInterval(() => {
-          const next = (current + 1) % items.length;
-          openItem(next);
-        }, INTERVAL);
-      }
-      function stopAuto() {
-        clearInterval(autoTimer);
-        clearTimeout(resumeTimer);
-      }
-
-      items.forEach((item, idx) => {
-        const header = item.querySelector(".search-accordion-header");
-        header.addEventListener("click", () => {
-          item.classList.contains("open") ? item.classList.remove("open") : openItem(idx);
-          stopAuto();
-          resumeTimer = setTimeout(startAuto, RESUME);
-        });
-      });
-
-      openItem(0);
-      startAuto();
-    }
-
-    initSearchAccordion();
-  })
-  .catch(err => console.error('레시피 로드 실패:', err));
+initSearchAccordion();
+})
+.catch(err => console.error('레시피 로드 실패:', err));
 
 
 // -------------------- 리뷰 JSON 로드 --------------------
@@ -254,10 +373,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const maxCount = parseInt(container.dataset.count, 10) || 5;
 
-  // 🔹 리뷰 시간 포맷 함수
   function formatReviewDate(dateStr) {
     const now = new Date();
-    const reviewDate = new Date(dateStr.replace(/-/g, "/")); // Safari 호환
+    const reviewDate = new Date(dateStr.replace(/-/g, "/")); 
     const diffMs = now - reviewDate;
     const diffMin = Math.floor(diffMs / 60000);
     const diffHr = Math.floor(diffMin / 60);
@@ -277,27 +395,22 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("./data/review.json")
     .then(res => res.json())
     .then(list => {
-      // 1️⃣ 전체를 날짜+시간 기준 최신순으로 우선 정렬
       const sorted = list.sort((a, b) =>
         new Date(b.review_date.replace(/-/g, "/")) -
         new Date(a.review_date.replace(/-/g, "/"))
       );
 
-      // 2️⃣ 최신 데이터 중 상위 10개만 후보
       const topCandidates = sorted.slice(0, 10);
 
-      // 3️⃣ 후보에서 랜덤 5개 추출
       const randomFive = topCandidates
         .sort(() => Math.random() - 0.5)
         .slice(0, maxCount);
 
-      // 4️⃣ 추출된 5개를 다시 "시간까지 포함한 최신순"으로 재정렬
       const reviews = randomFive.sort((a, b) =>
         new Date(b.review_date.replace(/-/g, "/")) -
         new Date(a.review_date.replace(/-/g, "/"))
       );
 
-      // 5️⃣ DOM에 삽입
       reviews.forEach(r => {
         const item = document.createElement("div");
         item.className = "review-item";
@@ -343,24 +456,3 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("리뷰 로드 실패:", err));
 });
 
-
-
-// -------------------- 오버레이 --------------------
-const registerBtn = document.querySelector(".recipe-register");
-const bottomSheet = document.querySelector(".bottom-sheet");
-const overlay = document.querySelector(".overlay");
-const bottomNavigation = document.querySelector(".bottom-navigation");
-
-registerBtn.addEventListener("click", () => {
-  overlay.style.display = "block"; // 배경 표시
-  bottomSheet.classList.add("show"); // 바텀시트 슬라이드 업
-  registerBtn.style.display = "none"; // 등록 버튼 숨김
-  bottomNavigation.style.display = "none"; // 하단 네비 숨김
-});
-
-overlay.addEventListener("click", () => {
-  bottomSheet.classList.remove("show"); // 바텀시트 숨김
-  overlay.style.display = "none"; // 배경 숨김
-  registerBtn.style.display = "flex"; // 등록 버튼 다시 표시
-  bottomNavigation.style.display = "flex"; // 하단 네비 다시 표시
-});
