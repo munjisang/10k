@@ -1,0 +1,572 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="style.css">
+  <title>만개의 레시피</title>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <img src="/img/logo.png" alt="로고" class="logo">
+    <div class="header-icons">
+      <img src="/img/alram.png" alt="알림함" class="icon">
+    </div>
+  </header>
+
+  <!-- 검색창 -->
+  <div class="search-area">
+    <div class="search-bar">
+      <img src="/img/search.png" alt="검색" class="search-icon">
+      <input type="text" placeholder="레시피 또는 재료명 입력">
+      <img src="/img/gallery.png" alt="갤러리" class="gallery-icon">
+    </div>
+  </div>
+  <div id="toast">사진으로 레시피 검색 with AI</div>
+
+  <!-- 메인 콘텐츠 -->
+  <main>
+    <!-- Bottom Navigation -->
+    <div class="recipe-register">
+      레시피 등록하기
+      <img src="/img/arrow_up.png" alt="화살표" class="arrow">
+    </div>
+
+    <div id="recipeOverlay" class="overlay">
+      <div class="bottom-sheet">
+        <div class="sheet-area-content">
+          <div class="sheet-area-text">
+            <div class="sheet-area-title">레시피 등록하기</div>
+          </div>
+          <img src="/img/clear.png" alt="닫기" class="sheet-area-icon">
+        </div>
+
+        <div class="sheet-buttons">
+          <a href="https://m.10000recipe.com/inbox/insert.html" class="sheet-btn">
+            <img src="/img/cookbook.png" alt="아이콘">
+            <span>직접 등록</span>
+          </a>
+          <a href="https://m.10000recipe.com/inbox/get_insta.html" class="sheet-btn">
+            <img src="/img/video.png" alt="아이콘">
+            <span>영상 레시피 가져오기</span>
+          </a>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="bottom-navigation">
+      <div class="nav-item active" data-index="0">
+        <img src="/img/chefs_hat_on.svg" alt="홈" class="nav-icon">
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item" data-index="1">
+        <img src="/img/bookmark_off.svg" alt="스크랩" class="nav-icon">
+        <span class="nav-label">스크랩</span>
+      </div>
+      <div class="nav-item" data-index="2">
+        <img src="/img/widgets_off.svg" alt="분류" class="nav-icon">
+        <span class="nav-label">분류</span>
+      </div>
+      <div class="nav-item" data-index="3">
+        <img src="/img/shopping_off.svg" alt="장보기" class="nav-icon">
+        <span class="nav-label">장보기</span>
+      </div>
+      <div class="nav-item" data-index="4">
+        <img src="/img/user_off.svg" alt="마이" class="nav-icon">
+        <span class="nav-label">마이</span>
+      </div>
+    </div> 
+
+    <!-- 상단배너 -->
+    <div class="banner-area">
+      <div class="banner-wrapper">
+        <a href="https://m.10000recipe.com/event/484" class="banner-slide">
+          <img src="/img/banner1.jpg" alt="배너1">
+        </a>
+        <a href="https://m.10000recipe.com/event/478" class="banner-slide">
+          <img src="/img/banner2.jpg" alt="배너2">
+        </a>
+        <a href="https://m.10000recipe.com/event/467" class="banner-slide">
+          <img src="/img/banner3.jpg" alt="배너3">
+        </a>
+        <a href="https://m.10000recipe.com/event/446" class="banner-slide">
+          <img src="/img/banner4.jpg" alt="배너4">
+        </a>
+        <a href="https://m.10000recipe.com/event/415" class="banner-slide">
+          <img src="/img/banner5.jpg" alt="배너5">
+        </a>       
+      </div> 
+      <div class="banner-navigation">
+        <span class="current">1</span>/<span class="total">5</span>
+      </div>
+    </div>
+
+    <!-- 메인 메뉴 -->
+    <div class="icon-menu">
+      <a href="https://m.10000recipe.com/recipe/ingredients.html" class="menu-item">
+        <img src="/img/main_01.png" alt="냉장고 파먹기">
+        <span>냉장고 파먹기</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/today_recommend.html" class="menu-item">
+        <img src="/img/main_02.png" alt="오늘 뭐먹지?">
+        <span>오늘 뭐먹지?</span>
+      </a>
+      <a href="https://m.10000recipe.com/more_item.html?q_mode=topic&cid=9999scrap&titles=%EB%AA%85%EC%98%88%EC%9D%98+%EC%A0%84%EB%8B%B9" class="menu-item">
+        <img src="/img/main_03.png" alt="명예의 전당">
+        <span>명예의 전당</span>
+      </a>
+      <a href="https://m.10000recipe.com/ranking/home_new.html" class="menu-item">
+        <img src="/img/main_04.png" alt="랭킹">
+        <span>랭킹</span>
+      </a>
+      <a href="https://m.10000recipe.com/issue/home.html" class="menu-item">
+        <img src="/img/main_05.png" alt="매거진">
+        <span>매거진</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/list.html?order=date" class="menu-item">
+        <img src="/img/main_06.png" alt="최신 레시피">
+        <span>최신 레시피</span>
+      </a>
+      <a href="https://m.10000recipe.com/more_item.html?q_mode=recentreview&titles=%EC%9A%94%EB%A6%AC+%ED%9B%84%EA%B8%B0" class="menu-item">
+        <img src="/img/main_07.png" alt="요리후기">
+        <span>요리후기</span>
+      </a>
+      <a href="https://m.10000recipe.com/chef/chef_list.html" class="menu-item">
+        <img src="/img/main_08.png" alt="만개쉐프">
+        <span>만개쉐프</span>
+      </a>
+      <a href="https://m.10000recipe.com/chef/celeb_list.html" class="menu-item">
+        <img src="/img/main_09.png" alt="만개 크리에이터">
+        <span>만개 크리에이터</span>
+      </a>
+      <a href="https://m.10000recipe.com/chef/celeb_apply.html" class="menu-item">
+        <img src="/img/main_10.png" alt="출석 포인트">
+        <span>출석 포인트</span>
+      </a>
+      <a href="https://m.10000recipe.com/event/list.html" class="menu-item">
+        <img src="/img/main_11.png" alt="혜택">
+        <span>혜택</span>
+      </a>
+      <a href="https://timingapp.onelink.me/uEn0/4jc12k0n" target="_blank" class="menu-item" >
+        <div class="icon-wrapper">
+          <img src="/img/main_12.png" alt="최저가 알림 타이밍">
+          <span class="ad-badge">AD</span>
+        </div>
+        <span>최저가 알림 <br> 타이밍</span>
+      </a>
+    </div>
+
+    <!-- 중간배너 -->
+    <div class="middle-banner-area">
+      <a id="middleBannerLink" href="#">
+        <img id="middleBanner" src="" alt="중간 배너">
+      </a>
+    </div>
+
+    <!-- KADX 영역 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">알뜰한 살람꾼의 맛있는 한끼</div>
+          <div class="recipe-area-subtitle">가격이 내린 농산물로 만드는 오늘의 요리!</div>
+        </div>        
+        <a href="https://kadx.co.kr" target="_blank">
+          <img src="/img/kadx.png" alt="KADX" class="recipe-area-icon">
+        </a>
+      </div>
+      <div class="ka-items"></div>
+      <!-- 페이지네이션 -->
+      <div class="page-navi">
+        <button class="page-btn prev">
+          <img src="/img/pageleft.png" alt="이전">
+        </button>
+        <span class="page-info">1 / 1</span>
+        <button class="page-btn next">
+          <img src="/img/pageright.png" alt="다음">
+        </button>
+      </div>
+    </div>
+
+    <!-- 카테고리 -->
+    <div class="icon-menu">
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=12" class="menu-item">
+        <img src="/img/category_01.png" alt="일상">
+        <span>일상</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=13" class="menu-item">
+        <img src="/img/category_02.png" alt="손님접대">
+        <span>손님접대</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=21" class="menu-item">
+        <img src="/img/category_03.png" alt="다이어트">
+        <span>다이어트</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=43" class="menu-item">
+        <img src="/img/category_04.png" alt="영양식">
+        <span>영양식</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=17" class="menu-item">
+        <img src="/img/category_05.png" alt="간식">
+        <span>일상</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=19" class="menu-item">
+        <img src="/img/category_06.png" alt="술안주">
+        <span>술안주</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=46" class="menu-item">
+        <img src="/img/category_07.png" alt="해장">
+        <span>해장</span>
+      </a>
+      <a href="https://m.10000recipe.com/recipe/index.html?tab=2" class="menu-item">
+        <img src="/img/category_08.png" alt="전체보기">
+        <span>전체보기</span>
+      </a>
+    </div>
+
+    <!-- 레시피 추천 - 그리드 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">만개 PICK! 따라하고싶은 만개셰프 레시피!</div>
+          <div class="recipe-area-subtitle">저장해두고 따라하고싶은 만개셰프들의 추천 레시피</div>
+        </div>
+      </div>  
+      <div class="grid-items" data-count="6">
+      </div>      
+      <button class="more-btn" type="button">
+        레시피 더보기
+        <img src="/img/right.png" alt="더보기 아이콘">
+      </button>
+    </div>
+
+    <!-- 레시피 추천 - 리스트 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">NOW TRENDING</div>
+          <div class="recipe-area-subtitle">지금 뜨고있는 레시피</div>
+        </div>
+      </div>  
+
+      <div class="list-items" data-count="5">
+      </div>      
+
+      <button class="more-btn" type="button">
+        레시피 더보기
+        <img src="/img/right.png" alt="더보기 아이콘">
+      </button>
+    </div>
+
+    <!-- 레시피 숏텐츠 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">레시피 숏텐츠</div>
+          <div class="shortents-subtitle">
+            <div class="select-wrapper">
+              <div class="custom-select">
+                <span class="selected">아무나</span>
+                <ul class="options">
+                  <li data-value="아무나">아무나</li>
+                  <li data-value="초급">초급</li>
+                  <li data-value="중급">중급</li>
+                  <li data-value="고급">고급</li>
+                  <li data-value="신의경지">신의경지</li>
+                </ul>
+                <img src="/img/chevron_down.png" alt="dropdown" class="chevron-icon">
+              </div>
+            </div>
+            <span class="recipe-area-subtitle">난이도로 만들 수 있는 레시피</span>
+          </div>        
+        </div>
+       </div>
+      <div class="accordion-items" data-count="5">
+      </div>
+    </div>
+
+    <!-- 레시피 추천 - 그리드 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">더울수록 뜨겁게! 이열치열 한 그릇</div>
+          <div class="recipe-area-subtitle">더위도 잊게 만드는 뜨끈한 한입</div>
+        </div>
+      </div>  
+
+      <div class="grid-items" data-count="6">
+        <template id="recipe-template">
+          <div class="grid-item">
+            <div class="grid-item-thumb">
+              <img class="thumb-img" src="" alt="레시피사진">
+              <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+            </div>
+            <div class="recipe-info">
+              <div class="recipe-name"></div>
+              <div class="recipe-chef"></div>
+              <div class="recipe-cook">
+                <div class="cook-degree-wrap">
+                  <img src="/img/degree.png" alt="난이도 아이콘">
+                  <span class="cook-degree"></span>
+                </div>
+                <div class="cook-time-wrap">
+                  <img src="/img/time.png" alt="시간 아이콘">
+                  <span class="cook-time"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>      
+
+      <button class="more-btn" type="button">
+        레시피 더보기
+        <img src="/img/right.png" alt="더보기 아이콘">
+      </button>
+    </div>    
+
+    <!-- 인기 검색어 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">인기 검색어</div>
+          <div class="recipe-area-subtitle">어제 제일 많이 검색한 레시피</div>
+        </div>        
+      </div>
+        <div class="search-accordion-items">
+          <!--1위-->
+          <div class="search-accordion-item">
+            <div class="search-accordion-header">
+              <span class="search-accordion-rank">1</span>
+              <span class="search-accordion-title">김치볶음밥</span>
+              <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
+            </div>
+            <div class="search-accordion-body">
+              <div class="horizontal-items" data-count="5">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>              
+              <button class="search-more-btn" type="button">
+                레시피 더보기
+                <img src="/img/right.png" alt="더보기 아이콘">
+              </button>
+            </div>                           
+          </div>
+          <!--2위-->
+          <div class="search-accordion-item">
+            <div class="search-accordion-header">
+              <span class="search-accordion-rank">2</span>
+              <span class="search-accordion-title">오징어볶음</span>
+              <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
+            </div>
+            <div class="search-accordion-body">
+              <div class="horizontal-items" data-count="6">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>              
+              <button class="search-more-btn" type="button">
+                레시피 더보기
+                <img src="/img/right.png" alt="더보기 아이콘">
+              </button>
+            </div>   
+          </div> 
+          <!--3위-->
+          <div class="search-accordion-item">
+            <div class="search-accordion-header">
+              <span class="search-accordion-rank">3</span>
+              <span class="search-accordion-title">떡볶이</span>
+              <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
+            </div>
+            <div class="search-accordion-body">
+              <div class="horizontal-items" data-count="4">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>              
+              <button class="search-more-btn" type="button">
+                레시피 더보기
+                <img src="/img/right.png" alt="더보기 아이콘">
+              </button>
+            </div>   
+          </div>
+          <!--4위-->
+          <div class="search-accordion-item">
+            <div class="search-accordion-header">
+              <span class="search-accordion-rank">4</span>
+              <span class="search-accordion-title">연근조림</span>
+              <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
+            </div>
+            <div class="search-accordion-body">
+              <div class="horizontal-items" data-count="5">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>              
+              <button class="search-more-btn" type="button">
+                레시피 더보기
+                <img src="/img/right.png" alt="더보기 아이콘">
+              </button>
+            </div>   
+          </div>
+          <!--5위-->
+          <div class="search-accordion-item">
+            <div class="search-accordion-header">
+              <span class="search-accordion-rank">5</span>
+              <span class="search-accordion-title">갈비찜</span>
+              <img src="/img/chevron_down.png" alt="toggle" class="search-accordion-chevron">
+            </div>
+            <div class="search-accordion-body">
+              <div class="horizontal-items" data-count="7">
+                <template id="recipe-template">
+                  <div class="horizontal-item">
+                    <div class="horizontal-item-thumb">
+                      <img class="thumb-img" src="" alt="레시피사진">
+                      <img src="/img/move.png" alt="" class="video-icon" style="display:none;">
+                    </div>
+                    <div class="recipe-info">
+                      <div class="recipe-name"></div>
+                      <div class="recipe-chef"></div>
+                      <div class="recipe-cook">
+                        <div class="cook-degree-wrap">
+                          <img src="/img/degree.png" alt="난이도 아이콘">
+                          <span class="cook-degree"></span>
+                        </div>
+                        <div class="cook-time-wrap">
+                          <img src="/img/time.png" alt="시간 아이콘">
+                          <span class="cook-time"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>              
+              <button class="search-more-btn" type="button">
+                레시피 더보기
+                <img src="/img/right.png" alt="더보기 아이콘">
+              </button>
+            </div>   
+          </div>
+        </div>
+    </div>
+
+    <!-- 레시피 추천 - 리스트 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">동영상 레시피</div>
+          <div class="recipe-area-subtitle">동영상을 보고 쉽게 따라해보세요</div>
+        </div>
+      </div>  
+
+      <div class="list-items" data-count="5">
+      </div>
+
+      <button class="more-btn" type="button">
+        레시피 더보기
+        <img src="/img/right.png" alt="더보기 아이콘">
+      </button>
+    </div>
+
+    <!-- 최근리뷰 -->
+    <div class="recipe-area">
+      <div class="recipe-area-content">
+        <div class="recipe-area-text">
+          <div class="recipe-area-title">요리 후기</div>
+          <div class="recipe-area-subtitle">직접 요리 후에 맛보고 남긴 찐후기에요!</div>
+        </div>
+      </div>  
+      <div class="review-items" data-count="5"></div>
+      <button class="more-btn" type="button">
+        요리후기 더보기
+        <img src="/img/right.png" alt="더보기 아이콘">
+      </button>
+    </div>
+
+
+
+
+  </main>
+</body>
+<script src="main.js"></script>
+</html>
