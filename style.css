@@ -316,8 +316,6 @@ main {
   top: -5px;
   right: -14px;
   background-color: var(--GRAY-03);
-  color: var(--BLACK-MAIN);
-  font : var(--C5);
   padding: 2px 8px;
   border-radius: 200px;
   border: 1px solid var(--GRAY-02);
@@ -325,13 +323,8 @@ main {
 }
 
 .icon-wrapper span {
-    font: var(--B7);
+    font: var(--C5);
     color: var(--BLACK-MAIN);
-    text-align: center;
-    display: block; /* <br> 줄바꿈 적용 시 필요 */
-    line-height: 1.4; /* 원하는 줄간격 조절 */
-    color: inherit;
-    cursor: pointer;
 }
 
 /* 기본 UI */
@@ -1219,16 +1212,15 @@ main {
   margin-bottom: 8px;
 }
 
-
-
 .editor-badge {
-  display: inline-flex;       /* 내용에 맞춰 폭 조절 */
+  display: inline-flex;
   align-items: center;
-  border-radius: 20px;
-  gap: 8px;
-  padding: 4px 8px;           /* 여백은 내용에 맞게 */
-  background-color: var(--GRAY-03);
-  width: auto;                /* 부모 폭과 무관하게 */
+  border-radius: 4px;
+  gap: 2px;
+  padding: 4px 6px;
+  margin-bottom: 8px;
+  background-color: var(--DIM-TERTIARY);
+  align-self: flex-start;  /* 부모 flex 영향 차단 */
 }
 
 .editor-badge 
@@ -1238,6 +1230,6 @@ main {
 }
 
 .editor-badge .editor-badge-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
