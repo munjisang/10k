@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!kaContainer || !prevBtn || !nextBtn || !pageInfo) return;
 
-  const itemsPerPage = 3;
+  const itemsPerPage = 2;
   let currentPage = 1;
   let totalPages = 1;
   let kaData = [];
@@ -141,15 +141,17 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="ka-item-history">
-          <div class="ka-history-labels">
-            <span>10일전</span>
-            <span>전월</span>
-            <span>전년</span>
+          <div class="ka-history-row">
+            <span class="ka-history-label">10일전</span>
+            <span class="ka-history-value">${item["kadx-history-d"]}</span>
           </div>
-          <div class="ka-history-values">
-            <span>${item["kadx-history-d"]}</span>
-            <span>${item["kadx-history-m"]}</span>
-            <span>${item["kadx-history-y"]}</span>
+          <div class="ka-history-row">
+            <span class="ka-history-label">전월</span>
+            <span class="ka-history-value">${item["kadx-history-m"]}</span>
+          </div>
+          <div class="ka-history-row">
+            <span class="ka-history-label">전년</span>
+            <span class="ka-history-value">${item["kadx-history-y"]}</span>
           </div>
         </div>
       `;
@@ -160,6 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       kaContainer.appendChild(card);
     });
+
+    const itemHeight = kaContainer.querySelector(".ka-item")?.offsetHeight || 0;
+    kaContainer.style.minHeight = `${itemHeight * itemsPerPage}px`;
 
     pageInfo.textContent = `${currentPage} / ${totalPages}`;
 
