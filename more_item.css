@@ -1,0 +1,189 @@
+@media screen and (max-width: 640px) {
+    body, .fixed-header {
+        width: 100%;
+    }
+
+    .fixed-header {
+        padding: 0 16px;
+    }
+}
+
+body {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--WHITE);
+
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    padding-bottom: calc(24px + constant(safe-area-inset-bottom));
+
+    overflow-y: scroll; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.sub-header {
+  position: fixed;
+  width: 100%;
+  max-width: 640px;
+  height: 64px;
+  background: var(--WHITE);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(173, 173, 173, 0.2);
+  /*
+  border-bottom: 1px solid var(--GRAY-02);
+  */
+}
+
+.sub-header .leding-icons {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center; 
+}
+
+.sub-header .leding-icon {
+    height: 24px;
+    cursor: pointer;
+}
+
+
+.sub-contents {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  background-color: var(--WHITE);
+}
+
+
+/*레시피 더보기 페이지*/
+.recipe-more {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  background-color: var(--WHITE);
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.recipe-more-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.recipe-more-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  
+}
+
+.recipe-more-title {
+  font: var(--S2);
+  color: var(--BLACK-MAIN);
+}
+
+.recipe-more-subtitle {
+  font: var(--B4);
+  color: var(--BLACK-SUB);
+}
+
+/* 레시피 목록_리스트 UI */
+.list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.list-item-thumb {
+  flex: 0 0 146px; 
+  position: relative;
+}
+
+.list-item-thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 9; 
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.list-item-thumb
+.video-icon {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recipe-name {
+  font: var(--B3);
+  color: var(--BLACK-MAIN);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.recipe-chef {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+}
+
+.recipe-chef img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.recipe-cook {
+  display: flex;
+  margin-top: 4px;
+  gap: 12px; 
+}
+
+.cook-degree-wrap,
+.cook-time-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px; 
+  font: var(--C3);
+  color: var(--BLACK-SUB);
+}
+
+.cook-degree-wrap img,
+.cook-time-wrap img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
