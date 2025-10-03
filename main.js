@@ -548,6 +548,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (item["chef-active"] === 2) activeText = "새로운 셰프";
 
         chefItem.innerHTML = `
+          <div class="chef-active">${activeText}</div>
           <div class="chef-item-thumb">
             <img src="${item["chef-img"]}" alt="profile" class="thumb-img">
           </div>
@@ -567,7 +568,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="chef-sns-wrap">
             ${snsHtml}
           </div>
-          <div class="chef-active">${activeText}</div>
         `;
 
         // chef-item 클릭 시 chef_seq 페이지 이동

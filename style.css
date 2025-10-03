@@ -1247,8 +1247,6 @@ main {
   height: 18px;
 }
 
-
-
 /* 셰프 목록_horizon UI */
 .chef-items { 
   display: flex;
@@ -1309,7 +1307,6 @@ main {
   white-space: normal;       /* 공백은 정상 처리 */
 }
 
-
 .chef-cook {
   display: flex;
   margin-top: 4px;
@@ -1346,6 +1343,6 @@ main {
 }
 
 .chef-active {
-  font: var(--C3);
-  color: var(--BLACK-SUB);
+  font: var(--C1);
+  color: var(--TERTIARY-08);
 }
