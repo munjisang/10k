@@ -122,6 +122,24 @@ body::-webkit-scrollbar {
   vertical-align: middle;
 }
 
+/* bottom-navigation 숨김 상태 처리 */
+.bottom-navigation,
+.recipe-register {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.bottom-navigation.hidden {
+  transform: translate(-50%, 100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.recipe-register.hidden {
+  transform: translate(-50%, 200%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* 검책창 영역 */
 .search-area {
     background-color: var(--WHITE);
@@ -205,7 +223,6 @@ body::-webkit-scrollbar {
 main {
   padding-bottom: 30px;
 }
-
 
 /* 상단 배너 영역 */
 .banner-area {
@@ -1228,4 +1245,107 @@ main {
 .editor-badge .editor-badge-icon {
   width: 18px;
   height: 18px;
+}
+
+
+
+/* 셰프 목록_horizon UI */
+.chef-items { 
+  display: flex;
+  flex-direction: row; 
+  overflow-x: auto; 
+  gap: 16px; 
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.chef-items::-webkit-scrollbar {
+  display: none;
+}
+
+.chef-items {
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+.chef-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 자식 중앙 정렬 */
+  flex: 0 0 150px;
+  box-sizing: border-box;
+  background: var(--GRAY-03);
+  border-radius: 8px;
+  padding: 14px;
+  gap: 10px;
+}
+
+.chef-item-thumb { 
+  width: 90px;
+} 
+
+.chef-item-thumb img { 
+  width: 100%;
+  object-fit: cover; 
+  border-radius: 200px; 
+  display: block; 
+} 
+
+.chef-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+.chef-name {
+  font: var(--B6);
+  color: var(--BLACK-MAIN);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;     /* 글자 단위로 줄바꿈 */
+  white-space: normal;       /* 공백은 정상 처리 */
+}
+
+
+.chef-cook {
+  display: flex;
+  margin-top: 4px;
+  gap: 12px; 
+}
+
+.chef-reg-wrap,
+.chef-flow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px; 
+  font: var(--C3);
+  color: var(--BLACK-SUB);
+}
+
+.chef-reg-wrap img,
+.chef-flow-wrap img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.chef-sns-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+}
+
+.chef-sns-wrap img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.chef-active {
+  font: var(--C3);
+  color: var(--BLACK-SUB);
 }

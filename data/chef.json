@@ -1,0 +1,122 @@
+[
+    {
+        "chef_seq": "jun8707",
+        "chef-name": "시크제이맘",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2016/01/19/3ebaebc5e49f53dd2f66b71932e5a33d1.jpg",
+        "chef-food": "2,080",
+        "chef-fllower": "1,311",
+        "chef-instargram": "",
+        "chef-youtube": "",
+        "chef-blog":"https://blog.naver.com/misoo0612",
+        "chef-link":"",
+        "chef-active": 1
+    },
+    {
+        "chef_seq": "20618485",
+        "chef-name": "조밍키♥",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2020/06/05/67ebc9100bec839cbff7fa660ad139f31.1d3c00132bbe67d06b7c7817824d48ef",
+        "chef-food": "249",
+        "chef-fllower": "20,822",
+        "chef-instargram": "https://www.instagram.com/salon_de_hong/",
+        "chef-youtube": "",
+        "chef-blog":"",
+        "chef-link":"",
+        "chef-active": 1
+    },
+    {
+        "chef_seq": "kjo2456",
+        "chef-name": "김진옥요리가좋다",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/02/13/9eb713c257e3f2f8cd257050f04a6db11.png",
+        "chef-food": "677",
+        "chef-fllower": "17,317",
+        "chef-instargram": "https://www.instagram.com/_kjofood_/",
+        "chef-youtube": "https://www.youtube.com/channel/UCiRZbVu6oO8M5O0LeXDbNkw",
+        "chef-blog":"https://blog.naver.com/kjo2456",
+        "chef-link":"https://in.naver.com/kjofood",
+        "chef-active": 1
+    },
+    {
+        "chef_seq": "ksy9623",
+        "chef-name": "뽀유TV",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2018/08/09/05a3826f9317b517e0fa6fd3caac70b71.png",
+        "chef-food": "348",
+        "chef-fllower": "15,567",
+        "chef-instargram": "",
+        "chef-youtube": "https://www.youtube.com/c/%EB%BD%80%EC%9C%A0TV",
+        "chef-blog":"",
+        "chef-link":"",
+        "chef-active": 1
+    },
+    {
+        "chef_seq": "mk9689",
+        "chef-name": "판교댁쏭아",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2016/08/10/e78da4586c411cd6d75a001b8e8d0a5f1.jpg",
+        "chef-food": "387",
+        "chef-fllower": "12,236",
+        "chef-instargram": "",
+        "chef-youtube": "https://www.youtube.com/@thecook10000",
+        "chef-blog":"",
+        "chef-link":"http://mk968921.blog.me/",
+        "chef-active": 1
+    },
+    {
+        "chef_seq": "98924365",
+        "chef-name": "꼬순네집밥HomeCooking",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2023/09/11/ce079f263a8305734466cdb1badba7bc1.jpg",
+        "chef-food": "1,168",
+        "chef-fllower": "11,772",
+        "chef-instargram": "",
+        "chef-youtube": "",
+        "chef-blog":"https://blog.naver.com/ho1772",
+        "chef-link":"",
+        "chef-active":2
+    },
+    {
+        "chef_seq": "rh0301",
+        "chef-name": "꽃청춘이주부",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2015/08/06/f477e1d171e87b02accfd939cdb17c9e1.jpg",
+        "chef-food": "1,245",
+        "chef-fllower": "123,146",
+        "chef-instargram": "",
+        "chef-youtube": "",
+        "chef-blog":"http://blog.naver.com/dksmf2626",
+        "chef-link":"",
+        "chef-active":2
+    },
+    {
+        "chef_seq": "0807twins",
+        "chef-name": "배고픈엄마",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2019/02/20/8273030fbd7be90a65ac82e1fae1df361.jpg",
+        "chef-food": "2,447",
+        "chef-fllower": "8,385",
+        "chef-instargram": "",
+        "chef-youtube": "",
+        "chef-blog":"",
+        "chef-link":"http://0807twins.blog.me/",
+        "chef-active":2
+    },
+    {
+        "chef_seq": "kyss7700",
+        "chef-name": "요리쿡조리쿡",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2015/06/20/1c4f606b86c2c2bdee09bc767c786c6e1.jpg",
+        "chef-food": "11,822",
+        "chef-fllower": "8,193",
+        "chef-instargram": "https://www.instagram.com/holic0921/",
+        "chef-youtube": "",
+        "chef-blog":"http://blog.naver.com/kyss7700",
+        "chef-link":"",
+        "chef-active":2
+    },
+    {
+        "chef_seq": "junhh1023",
+        "chef-name": "고래언니",
+        "chef-img": "https://recipe1.ezmember.co.kr/cache/rpf/2015/10/20/30c5155151be45497a383bca6a26097a1.jpg",
+        "chef-food": "85",
+        "chef-fllower": "721",
+        "chef-instargram": "",
+        "chef-youtube": "",
+        "chef-blog":"http://blog.naver.com/2015hotpink",
+        "chef-link":"",
+        "chef-active":2
+    }
+]

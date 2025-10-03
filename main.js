@@ -461,3 +461,132 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("리뷰 로드 실패:", err));
 });
 
+
+// -------------------- bottom-navigation 스크롤 이벤트 -------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const bottomNav = document.querySelector(".bottom-navigation");
+  const recipeRegister = document.querySelector(".recipe-register");
+
+  let lastScrollY = window.scrollY;
+  let scrollTimer;
+
+  function hideBars() {
+    bottomNav.classList.add("hidden");
+    recipeRegister.classList.add("hidden");
+  }
+
+  function showBars() {
+    bottomNav.classList.remove("hidden");
+    recipeRegister.classList.remove("hidden");
+  }
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    // 방향 감지
+    if (currentScrollY > lastScrollY + 5) {
+      // ▼ 스크롤 내림 → 숨김
+      hideBars();
+    } else if (currentScrollY < lastScrollY - 5) {
+      // ▲ 스크롤 올림 → 보임
+      showBars();
+    }
+
+    lastScrollY = currentScrollY;
+
+    // 스크롤 멈췄을 때 처리 (0.2초 뒤 보이게)
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      showBars();
+    }, 1000);
+  });
+});
+
+
+
+// -------------------- chef JSON 로드 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const chefContainer = document.querySelector(".chef-items");
+  if (!chefContainer) return;
+
+  // HTML data-count 속성으로 노출 갯수 결정
+  const displayCount = parseInt(chefContainer.dataset.count, 10) || 5;
+
+  // 숫자 천 단위 표시 함수 (0.0k)
+  function formatNumber(num) {
+    // 숫자에 콤마 제거 후 숫자로 변환
+    let n = parseInt(String(num).replace(/,/g, ''), 10);
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+    return n.toString();
+  }
+
+  fetch("./data/chef.json")
+    .then(res => res.json())
+    .then(data => {
+      if (!Array.isArray(data)) return;
+
+      // 1. 랜덤 정렬
+      const shuffled = data.sort(() => Math.random() - 0.5);
+
+      // 2. data-count 만큼만 노출
+      const chefsToShow = shuffled.slice(0, displayCount);
+
+      chefsToShow.forEach(item => {
+        const chefItem = document.createElement("div");
+        chefItem.className = "chef-item";
+
+        // SNS 아이콘 생성 (링크 있는 것만)
+        let snsHtml = '';
+        if (item["chef-instargram"]) snsHtml += `<img src="/img/instar.png" alt="인스타그램" class="sns-icon" data-link="${item["chef-instargram"]}">`;
+        if (item["chef-youtube"]) snsHtml += `<img src="/img/youtube.png" alt="유튜브" class="sns-icon" data-link="${item["chef-youtube"]}">`;
+        if (item["chef-blog"]) snsHtml += `<img src="/img/blog.png" alt="블로그" class="sns-icon" data-link="${item["chef-blog"]}">`;
+        if (item["chef-link"]) snsHtml += `<img src="/img/link.png" alt="기타" class="sns-icon" data-link="${item["chef-link"]}">`;
+
+        // chef-active 텍스트
+        let activeText = '';
+        if (item["chef-active"] === 1) activeText = "최근활동 셰프";
+        else if (item["chef-active"] === 2) activeText = "새로운 셰프";
+
+        chefItem.innerHTML = `
+          <div class="chef-item-thumb">
+            <img src="${item["chef-img"]}" alt="profile" class="thumb-img">
+          </div>
+          <div class="chef-info">
+            <div class="chef-name">${item["chef-name"]}</div>
+            <div class="chef-cook">
+              <div class="chef-reg-wrap">
+                <img src="/img/food.png" alt="레시피수">
+                <span class="chef-reg">${formatNumber(item["chef-food"])}</span>
+              </div>
+              <div class="chef-flow-wrap">
+                <img src="/img/user.png" alt="팔로워수">
+                <span class="chef-flow">${formatNumber(item["chef-fllower"])}</span>
+              </div>
+            </div>
+          </div>
+          <div class="chef-sns-wrap">
+            ${snsHtml}
+          </div>
+          <div class="chef-active">${activeText}</div>
+        `;
+
+        // chef-item 클릭 시 chef_seq 페이지 이동
+        chefItem.addEventListener("click", (e) => {
+          if (e.target.classList.contains("sns-icon")) return;
+          window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${item.chef_seq}`, '_blank');
+        });
+
+        // SNS 아이콘 클릭 → 새창
+        chefItem.querySelectorAll(".sns-icon").forEach(icon => {
+          icon.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const link = icon.getAttribute("data-link");
+            if (link) window.open(link, "_blank");
+          });
+        });
+
+        chefContainer.appendChild(chefItem);
+      });
+    })
+    .catch(err => console.error("chef.json 로드 실패:", err));
+});
