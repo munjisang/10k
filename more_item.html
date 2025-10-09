@@ -23,8 +23,8 @@
      <div class="recipe-more">
       <div class="recipe-more-content">
         <div class="recipe-more-text">
-          <div class="recipe-more-title">만개 PICK! 따라하고싶은 만개셰프 레시피!</div>
-          <div class="recipe-more-subtitle">저장해두고 따라하고싶은 만개셰프들의 추천 레시피</div>
+          <div class="recipe-more-title"></div>
+          <div class="recipe-more-subtitle"></div>
         </div>
       </div>  
       <div class="list-items">
@@ -34,4 +34,8 @@
   </main>
 </body>
 <script src="more.js"></script>
+<script type="module">
+    import { renderMorePage } from './recipe_area.js';
+    renderMorePage(); // URL의 ?id=값 기반으로 제목/설명 렌더링
+  </script>
 </html>

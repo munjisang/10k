@@ -480,6 +480,7 @@ main {
   justify-content: center;
   gap: 6px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .more-btn img {
@@ -1252,7 +1253,7 @@ main {
   display: flex;
   flex-direction: row; 
   overflow-x: auto; 
-  gap: 16px; 
+  gap: 8px; 
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }

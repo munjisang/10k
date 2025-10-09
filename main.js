@@ -498,7 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollTimer) clearTimeout(scrollTimer);
     scrollTimer = setTimeout(() => {
       showBars();
-    }, 1000);
+    }, 500);
   });
 });
 

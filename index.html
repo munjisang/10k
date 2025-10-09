@@ -192,15 +192,15 @@
     </div>
 
     <!-- 레시피 추천 - 그리드 -->
-    <div class="recipe-area">      
+    <div class="recipe-area" data-id="10K_01">      
       <div class="recipe-area-content">        
         <div class="recipe-area-text">
           <div class="editor-badge">
            <img src="/img/editor.png" alt="에디터추천" class="editor-badge-icon">
            <span class="editor-badge-title">에디터추천</span>
           </div>
-          <div class="recipe-area-title">만개 PICK! 따라하고싶은 만개셰프 레시피!</div>
-          <div class="recipe-area-subtitle">저장해두고 따라하고싶은 만개셰프들의 추천 레시피</div>
+          <div class="recipe-area-title"></div>
+          <div class="recipe-area-subtitle"></div>
         </div>
       </div>      
       <div class="grid-items" data-count="6">
@@ -248,11 +248,11 @@
     </div>
     
     <!-- 레시피 추천 - 리스트 -->
-    <div class="recipe-area">
+    <div class="recipe-area" data-id="trending">
       <div class="recipe-area-content">
         <div class="recipe-area-text">
-          <div class="recipe-area-title">NOW TRENDING</div>
-          <div class="recipe-area-subtitle">지금 뜨고있는 레시피</div>
+          <div class="recipe-area-title"></div>
+          <div class="recipe-area-subtitle"></div>
         </div>
       </div>  
 
@@ -293,15 +293,15 @@
     </div>
 
     <!-- 레시피 추천 - 그리드 -->
-    <div class="recipe-area">
+    <div class="recipe-area" data-id="10K_02">
       <div class="recipe-area-content">
         <div class="recipe-area-text">
           <div class="editor-badge">
            <img src="/img/editor.png" alt="에디터추천" class="editor-badge-icon">
            <span class="editor-badge-title">에디터추천</span>
           </div>
-          <div class="recipe-area-title">더울수록 뜨겁게! 이열치열 한 그릇</div>
-          <div class="recipe-area-subtitle">더위도 잊게 만드는 뜨끈한 한입</div>
+          <div class="recipe-area-title"></div>
+          <div class="recipe-area-subtitle"></div>
         </div>
       </div>  
 
@@ -407,11 +407,11 @@
     </div>
 
     <!-- 레시피 추천 - 리스트 -->
-    <div class="recipe-area">
+    <div class="recipe-area" data-id="movie">
       <div class="recipe-area-content">
         <div class="recipe-area-text">
-          <div class="recipe-area-title">동영상 레시피</div>
-          <div class="recipe-area-subtitle">동영상을 보고 쉽게 따라해보세요</div>
+          <div class="recipe-area-title"></div>
+          <div class="recipe-area-subtitle"></div>
         </div>
       </div>  
 
@@ -433,10 +433,10 @@
         </div>
       </div>  
       <div class="review-items" data-count="5"></div>
-      <button class="more-btn" type="button">
+      <a href="https://m.10000recipe.com/more_item.html?q_mode=recentreview&titles=%EC%9A%94%EB%A6%AC+%ED%9B%84%EA%B8%B0" class="more-btn">
         요리후기 더보기
         <img src="/img/right.png" alt="더보기 아이콘">
-      </button>
+      </a>
     </div>
 
     <!-- 만개셰프 -->
@@ -448,13 +448,28 @@
       </div>  
       <div class="chef-items" data-count="5">
       </div>
-      <button class="more-btn" type="button">
+      <a href="https://m.10000recipe.com/chef/chef_list.html" class="more-btn">
         만개의레시피 쉐프 더보기
         <img src="/img/right.png" alt="더보기 아이콘">
-      </button>
+      </a>
     </div>
     
   </main>
 </body>
 <script src="main.js"></script>
+<script type="module">
+    import { renderRecipeAreas } from './recipe_area.js';
+    renderRecipeAreas();
+
+    // ✅ "레시피 더보기" 클릭 시 해당 data-id를 URL에 추가하여 이동
+    document.querySelectorAll('.recipe-area .more-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const area = e.target.closest('.recipe-area');
+        const id = area?.dataset.id;
+        if (id) {
+          window.location.href = `more_item.html?id=${id}`;
+        }
+      });
+    });
+  </script>
 </html>
