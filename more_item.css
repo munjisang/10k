@@ -39,7 +39,7 @@ body::-webkit-scrollbar {
   padding: 0 16px;
   box-sizing: border-box;
   z-index: 1000;
-  box-shadow: 0 4px 8px rgba(173, 173, 173, 0.2);
+  box-shadow: 0 4px 8px rgba(198, 198, 198, 0.1);
   /*
   border-bottom: 1px solid var(--GRAY-02);
   */
