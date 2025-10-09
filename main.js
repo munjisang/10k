@@ -6,7 +6,6 @@ galleryIcon?.addEventListener("click", () => {
   setTimeout(() => toast?.classList.remove("show"), 2500);
 });
 
-
 // -------------------- 배너 자동롤링 + 스와이프 --------------------
 const bannerWrapper = document.querySelector('.banner-wrapper');
 const slides = document.querySelectorAll('.banner-slide');
@@ -72,7 +71,6 @@ if (middleBanner && middleBannerLink) {
   middleBannerLink.target = randomBanner.target; 
 }
 
-
 // -------------------- 오버레이 --------------------
 const registerBtn = document.querySelector(".recipe-register");
 const bottomSheet = document.querySelector(".bottom-sheet");
@@ -92,7 +90,6 @@ overlay.addEventListener("click", () => {
   registerBtn.style.display = "flex"; 
   bottomNavigation.style.display = "flex"; 
 });
-
 
 // -------------------- KADX --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -192,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("KADX 데이터 로드 실패:", err));
 });
 
-
 // -------------------- 커스텀 드롭다운 --------------------
 document.querySelectorAll(".custom-select").forEach(select => {
   const selected = select.querySelector(".selected");
@@ -219,7 +215,6 @@ document.querySelectorAll(".custom-select").forEach(select => {
     }
   });
 });
-
 
 // -------------------- 레시피 JSON 로드 --------------------
 fetch('./data/recipe.json')
@@ -370,7 +365,6 @@ initSearchAccordion();
 })
 .catch(err => console.error('레시피 로드 실패:', err));
 
-
 // -------------------- 리뷰 JSON 로드 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".review-items");
@@ -461,7 +455,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("리뷰 로드 실패:", err));
 });
 
-
 // -------------------- bottom-navigation 스크롤 이벤트 -------------------
 document.addEventListener("DOMContentLoaded", () => {
   const bottomNav = document.querySelector(".bottom-navigation");
@@ -501,8 +494,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500);
   });
 });
-
-
 
 // -------------------- chef JSON 로드 --------------------
 document.addEventListener("DOMContentLoaded", () => {
