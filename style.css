@@ -83,6 +83,8 @@ body::-webkit-scrollbar {
   cursor: pointer;
   margin-top: 10px;
   margin-bottom: 10px;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .nav-item.active {
@@ -301,6 +303,8 @@ main {
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 .menu-item img {

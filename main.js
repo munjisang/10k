@@ -8,63 +8,56 @@ galleryIcon?.addEventListener("click", () => {
 
 // -------------------- 배너 자동롤링 + 스와이프 --------------------
 const bannerWrapper = document.querySelector('.banner-wrapper');
-const slides = document.querySelectorAll('.banner-slide');
-const currentNav = document.querySelector('.banner-navigation .current');
-const totalNav = document.querySelector('.banner-navigation .total');
+if (bannerWrapper) {
+  const slides = document.querySelectorAll('.banner-slide');
+  const currentNav = document.querySelector('.banner-navigation .current');
+  const totalNav = document.querySelector('.banner-navigation .total');
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+  if (totalNav) totalNav.textContent = totalSlides;
 
-let currentIndex = 0;
-const totalSlides = slides.length;
-totalNav.textContent = totalSlides;
+  function updateBanner() {
+    bannerWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    if (currentNav) currentNav.textContent = currentIndex + 1;
+  }
 
-function updateBanner() {
-  bannerWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-  currentNav.textContent = currentIndex + 1;
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateBanner();
+  }, 3000);
+
+  let startX = 0;
+  let isDragging = false;
+
+  bannerWrapper.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  bannerWrapper.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    const moveX = e.touches[0].clientX - startX;
+    bannerWrapper.style.transform =
+      `translateX(${ -currentIndex * 100 + moveX / bannerWrapper.offsetWidth * 100 }%)`;
+  });
+
+  bannerWrapper.addEventListener('touchend', e => {
+    isDragging = false;
+    const diff = e.changedTouches[0].clientX - startX;
+    if (diff > 50) currentIndex = Math.max(0, currentIndex - 1);
+    else if (diff < -50) currentIndex = Math.min(totalSlides - 1, currentIndex + 1);
+    updateBanner();
+  });
 }
-
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % totalSlides;
-  updateBanner();
-}, 3000);
-
-let startX = 0;
-let isDragging = false;
-
-bannerWrapper?.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
-});
-bannerWrapper?.addEventListener('touchmove', e => {
-  if (!isDragging) return;
-  const moveX = e.touches[0].clientX - startX;
-  bannerWrapper.style.transform =
-    `translateX(${ -currentIndex * 100 + moveX / bannerWrapper.offsetWidth * 100 }%)`;
-});
-bannerWrapper?.addEventListener('touchend', e => {
-  isDragging = false;
-  const diff = e.changedTouches[0].clientX - startX;
-  if (diff > 50) currentIndex = Math.max(0, currentIndex - 1);
-  else if (diff < -50) currentIndex = Math.min(totalSlides - 1, currentIndex + 1);
-  updateBanner();
-});
 
 // -------------------- 중간 배너 랜덤 --------------------
 const middleBanner = document.getElementById('middleBanner');
 const middleBannerLink = document.getElementById('middleBannerLink');
-
-const banners = [
-  {
-    src: '/img/middle_banner_1.png',
-    link: 'https://timingapp.onelink.me/uEn0/4jc12k0n',
-    target: '_blank'  
-  },
-  {
-    src: '/img/middle_banner_2.png',
-    link: 'https://m.10000recipe.com/chef/celeb_list.html',
-    target: '_self'  
-  }
-];
-
 if (middleBanner && middleBannerLink) {
+  const banners = [
+    { src: '/img/middle_banner_1.png', link: 'https://timingapp.onelink.me/uEn0/4jc12k0n', target: '_blank' },
+    { src: '/img/middle_banner_2.png', link: 'https://m.10000recipe.com/chef/celeb_list.html', target: '_self' }
+  ];
   const randomBanner = banners[Math.floor(Math.random() * banners.length)];
   middleBanner.src = randomBanner.src;
   middleBannerLink.href = randomBanner.link;
@@ -76,20 +69,21 @@ const registerBtn = document.querySelector(".recipe-register");
 const bottomSheet = document.querySelector(".bottom-sheet");
 const overlay = document.querySelector(".overlay");
 const bottomNavigation = document.querySelector(".bottom-navigation");
+if (registerBtn && bottomSheet && overlay && bottomNavigation) {
+  registerBtn.addEventListener("click", () => {
+    overlay.style.display = "block"; 
+    bottomSheet.classList.add("show"); 
+    registerBtn.style.display = "none"; 
+    bottomNavigation.style.display = "none"; 
+  });
 
-registerBtn.addEventListener("click", () => {
-  overlay.style.display = "block"; 
-  bottomSheet.classList.add("show"); 
-  registerBtn.style.display = "none"; 
-  bottomNavigation.style.display = "none"; 
-});
-
-overlay.addEventListener("click", () => {
-  bottomSheet.classList.remove("show");
-  overlay.style.display = "none"; 
-  registerBtn.style.display = "flex"; 
-  bottomNavigation.style.display = "flex"; 
-});
+  overlay.addEventListener("click", () => {
+    bottomSheet.classList.remove("show");
+    overlay.style.display = "none"; 
+    registerBtn.style.display = "flex"; 
+    bottomNavigation.style.display = "flex"; 
+  });
+}
 
 // -------------------- KADX --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -322,7 +316,6 @@ fetch('./data/recipe.json')
 
       openItem(0);
 
-      // ✅ 화면 보일 때만 자동 롤링
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) startAuto();
@@ -334,7 +327,7 @@ fetch('./data/recipe.json')
 
     // -------------------- 인기검색어 아코디언 --------------------
     function initSearchAccordion() {
-      const container = document.querySelector(".search-accordion-items"); // ✅ 수정됨
+      const container = document.querySelector(".search-accordion-items");
       const items = container ? container.querySelectorAll(".search-accordion-item") : [];
       if (!container || items.length === 0) return;
 
@@ -353,7 +346,7 @@ fetch('./data/recipe.json')
       }
 
       function startAuto() {
-        if (autoTimer) return; // 중복 방지
+        if (autoTimer) return;
         autoTimer = setInterval(() => {
           const next = (current + 1) % items.length;
           openItem(next);
@@ -365,7 +358,6 @@ fetch('./data/recipe.json')
         autoTimer = null;
       }
 
-      // ✅ 클릭 시 수동 제어
       items.forEach((item, idx) => {
         const header = item.querySelector(".search-accordion-header");
         if (!header) return;
@@ -381,10 +373,8 @@ fetch('./data/recipe.json')
         });
       });
 
-      // ✅ 초기 상태 (1위 열기)
       openItem(0);
 
-      // ✅ 화면 보일 때만 자동 롤링
       const observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
@@ -516,18 +506,14 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
 
-    // 방향 감지
     if (currentScrollY > lastScrollY + 5) {
-      // ▼ 스크롤 내림 → 숨김
       hideBars();
     } else if (currentScrollY < lastScrollY - 5) {
-      // ▲ 스크롤 올림 → 보임
       showBars();
     }
 
     lastScrollY = currentScrollY;
 
-    // 스크롤 멈췄을 때 처리 (0.2초 뒤 보이게)
     if (scrollTimer) clearTimeout(scrollTimer);
     scrollTimer = setTimeout(() => {
       showBars();
@@ -540,12 +526,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const chefContainer = document.querySelector(".chef-items");
   if (!chefContainer) return;
 
-  // HTML data-count 속성으로 노출 갯수 결정
   const displayCount = parseInt(chefContainer.dataset.count, 10) || 5;
 
-  // 숫자 천 단위 표시 함수 (0.0k)
   function formatNumber(num) {
-    // 숫자에 콤마 제거 후 숫자로 변환
     let n = parseInt(String(num).replace(/,/g, ''), 10);
     if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
     return n.toString();
@@ -556,24 +539,20 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       if (!Array.isArray(data)) return;
 
-      // 1. 랜덤 정렬
       const shuffled = data.sort(() => Math.random() - 0.5);
 
-      // 2. data-count 만큼만 노출
       const chefsToShow = shuffled.slice(0, displayCount);
 
       chefsToShow.forEach(item => {
         const chefItem = document.createElement("div");
         chefItem.className = "chef-item";
 
-        // SNS 아이콘 생성 (링크 있는 것만)
         let snsHtml = '';
         if (item["chef-instargram"]) snsHtml += `<img src="/img/instar.png" alt="인스타그램" class="sns-icon" data-link="${item["chef-instargram"]}">`;
         if (item["chef-youtube"]) snsHtml += `<img src="/img/youtube.png" alt="유튜브" class="sns-icon" data-link="${item["chef-youtube"]}">`;
         if (item["chef-blog"]) snsHtml += `<img src="/img/blog.png" alt="블로그" class="sns-icon" data-link="${item["chef-blog"]}">`;
         if (item["chef-link"]) snsHtml += `<img src="/img/link.png" alt="기타" class="sns-icon" data-link="${item["chef-link"]}">`;
 
-        // chef-active 텍스트
         let activeText = '';
         if (item["chef-active"] === 1) activeText = "최근활동 셰프";
         else if (item["chef-active"] === 2) activeText = "새로운 셰프";
@@ -603,13 +582,11 @@ document.addEventListener("DOMContentLoaded", () => {
 -->
         `;
 
-        // chef-item 클릭 시 chef_seq 페이지 이동
         chefItem.addEventListener("click", (e) => {
           if (e.target.classList.contains("sns-icon")) return;
           window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${item.chef_seq}`, '_self');
         });
 
-        // SNS 아이콘 클릭 → 새창
         chefItem.querySelectorAll(".sns-icon").forEach(icon => {
           icon.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -622,4 +599,47 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     })
     .catch(err => console.error("chef.json 로드 실패:", err));
+});
+
+
+// -------------------- 하단 네비게이션 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const navItems = document.querySelectorAll(".bottom-navigation .nav-item");
+  if (!navItems.length) return;
+
+  let currentPage = window.location.pathname.split("/").pop();
+  if (!currentPage || currentPage === "") currentPage = "index.html";
+
+  const pages = [
+    "index.html",
+    "scrap.html",
+    "category.html",
+    "shopping.html",
+    "my.html"
+  ];
+
+  const setIconState = (icon, active) => {
+    if (!icon) return;
+    const newSrc = icon.src.replace(/_on\.svg|_off\.svg/, active ? "_on.svg" : "_off.svg");
+    icon.src = newSrc;
+  };
+
+  navItems.forEach((item, idx) => {
+    const page = pages[idx];
+    const icon = item.querySelector("img");
+    if (currentPage === page) {
+      item.classList.add("active");
+      setIconState(icon, true);
+    } else {
+      setIconState(icon, false);
+    }
+  });
+
+  navItems.forEach((item, idx) => {
+    item.addEventListener("click", () => {
+      const target = pages[idx];
+      if (currentPage === target) return;
+      window.location.href = target;
+    });
+  });
 });

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="font.css">
   <link rel="stylesheet" href="color.css">
   <link rel="stylesheet" href="style.css">
-  <title>만개의 레시피</title>
+  <title>만개의 레시피-홈</title>
 </head>
 <body>
   <!-- 헤더 -->
@@ -59,8 +59,8 @@
     </div>
  
     <div class="bottom-navigation">
-      <div class="nav-item active" data-index="0">
-        <img src="/img/chefs_hat_on.svg" alt="홈" class="nav-icon">
+      <div class="nav-item" data-index="0">
+        <img src="/img/chefs_hat_off.svg" alt="홈" class="nav-icon">
         <span class="nav-label">홈</span>
       </div>
       <div class="nav-item" data-index="1">
@@ -79,7 +79,8 @@
         <img src="/img/user_off.svg" alt="마이" class="nav-icon">
         <span class="nav-label">마이</span>
       </div>
-    </div> 
+    </div>
+
 
     <!-- 상단배너 -->
     <div class="banner-area">
@@ -214,35 +215,35 @@
     <!-- 카테고리 -->
     <div class="icon-menu">
       <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=12" class="menu-item">
-        <img src="/img/category_01.png" alt="일상">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate2_11.png" alt="일상">
         <span>일상</span>
       </a>
       <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=13" class="menu-item">
-        <img src="/img/category_02.png" alt="손님접대">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate2_05.png" alt="손님접대">
         <span>손님접대</span>
       </a>
       <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=21" class="menu-item">
-        <img src="/img/category_03.png" alt="다이어트">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate2_03.png" alt="다이어트">
         <span>다이어트</span>
       </a>
       <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=43" class="menu-item">
-        <img src="/img/category_04.png" alt="영양식">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate2_09.png" alt="영양식">
         <span>영양식</span>
       </a>
       <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=17" class="menu-item">
-        <img src="/img/category_05.png" alt="간식">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate2_01.png" alt="간식">
         <span>간식</span>
       </a>
       <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=19" class="menu-item">
-        <img src="/img/category_06.png" alt="술안주">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate2_07.png" alt="술안주">
         <span>술안주</span>
       </a>
       <a href="https://m.10000recipe.com/recipe/cate_list.html?cat2=46" class="menu-item">
-        <img src="/img/category_07.png" alt="해장">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate2_14.png" alt="해장">
         <span>해장</span>
       </a>
       <a href="https://m.10000recipe.com/recipe/index.html?tab=2" class="menu-item">
-        <img src="/img/category_08.png" alt="전체보기">
+        <img src="https://recipe1.ezmember.co.kr/img/mobile/cate1_01.png" alt="전체보기">
         <span>전체보기</span>
       </a>
     </div>
@@ -461,7 +462,6 @@
     import { renderRecipeAreas } from './recipe_area.js';
     renderRecipeAreas();
 
-    // ✅ "레시피 더보기" 클릭 시 해당 data-id를 URL에 추가하여 이동
     document.querySelectorAll('.recipe-area .more-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         const area = e.target.closest('.recipe-area');
@@ -471,5 +471,5 @@
         }
       });
     });
-  </script>
+</script>
 </html>
