@@ -1,10 +1,72 @@
-// -------------------- 토스트 --------------------
-const galleryIcon = document.querySelector(".gallery-icon");
-const toast = document.getElementById("toast");
-galleryIcon?.addEventListener("click", () => {
-  toast?.classList.add("show");
-  setTimeout(() => toast?.classList.remove("show"), 2500);
+// -------------------- 검색창 검색 기능 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector('.search-bar input');
+  const searchIcon = document.querySelector('.search-bar .search-icon');
+
+  if (!searchInput || !searchIcon) return;
+
+  function goSearch() {
+    const query = searchInput.value.trim();
+    if (!query) return;
+    
+    window.location.href = `https://m.10000recipe.com/recipe/list.html?q=${encodeURIComponent(query)}`;
+
+    searchInput.value = '';
+    searchInput.placeholder = '레시피 또는 재료명 입력';
+  }
+
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') goSearch();
+  });
+
+  searchIcon.addEventListener('click', goSearch);
 });
+
+// -------------------- 헤더 알림 클릭 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const alarmIcon = document.querySelector('.header-icons .icon');
+  if (!alarmIcon) return;
+
+  alarmIcon.addEventListener('click', () => {
+    window.location.href = 'https://m.10000recipe.com/profile/alim2.html';
+  });
+});
+
+// -------------------- 갤러리 오버레이 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryIcon = document.querySelector('.search-bar .gallery-icon');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchBottomSheet = searchOverlay?.querySelector('.bottom-sheet');
+  const closeBtn = searchOverlay?.querySelector('.sheet-area-icon');
+  const recipeRegister = document.querySelector('.recipe-register');
+  const bottomNavigation = document.querySelector('.bottom-navigation');
+
+  if (!galleryIcon || !searchOverlay || !searchBottomSheet || !closeBtn) return;
+
+  galleryIcon.addEventListener('click', () => {
+    searchOverlay.style.display = 'block';
+    searchBottomSheet.classList.add('show');
+    if (recipeRegister) recipeRegister.style.display = 'none';
+    if (bottomNavigation) bottomNavigation.style.display = 'none';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    searchBottomSheet.classList.remove('show');
+    searchOverlay.style.display = 'none';
+    if (recipeRegister) recipeRegister.style.display = 'flex';
+    if (bottomNavigation) bottomNavigation.style.display = 'flex';
+  });
+
+  searchOverlay.addEventListener('click', e => {
+    if (e.target === searchOverlay) {
+      searchBottomSheet.classList.remove('show');
+      searchOverlay.style.display = 'none';
+      if (recipeRegister) recipeRegister.style.display = 'flex';
+      if (bottomNavigation) bottomNavigation.style.display = 'flex';
+    }
+  });
+});
+
 
 // -------------------- 배너 자동롤링 + 스와이프 --------------------
 const bannerWrapper = document.querySelector('.banner-wrapper');
@@ -64,22 +126,33 @@ if (middleBanner && middleBannerLink) {
   middleBannerLink.target = randomBanner.target; 
 }
 
-// -------------------- 오버레이 --------------------
+// -------------------- 레시피 등록 오버레이 -------------------- 
 const registerBtn = document.querySelector(".recipe-register");
-const bottomSheet = document.querySelector(".bottom-sheet");
-const overlay = document.querySelector(".overlay");
+const recipeOverlay = document.getElementById("recipeOverlay");
+const recipeBottomSheet = recipeOverlay?.querySelector(".bottom-sheet");
 const bottomNavigation = document.querySelector(".bottom-navigation");
-if (registerBtn && bottomSheet && overlay && bottomNavigation) {
+
+if (registerBtn && recipeOverlay && recipeBottomSheet && bottomNavigation) {
   registerBtn.addEventListener("click", () => {
-    overlay.style.display = "block"; 
-    bottomSheet.classList.add("show"); 
+    recipeOverlay.style.display = "block"; 
+    recipeBottomSheet.classList.add("show"); 
     registerBtn.style.display = "none"; 
     bottomNavigation.style.display = "none"; 
   });
 
-  overlay.addEventListener("click", () => {
-    bottomSheet.classList.remove("show");
-    overlay.style.display = "none"; 
+  recipeOverlay.addEventListener("click", e => {
+    if (e.target === recipeOverlay) {
+      recipeBottomSheet.classList.remove("show");
+      recipeOverlay.style.display = "none"; 
+      registerBtn.style.display = "flex"; 
+      bottomNavigation.style.display = "flex"; 
+    }
+  });
+
+  const closeBtn = recipeOverlay.querySelector(".sheet-area-icon");
+  closeBtn?.addEventListener("click", () => {
+    recipeBottomSheet.classList.remove("show");
+    recipeOverlay.style.display = "none"; 
     registerBtn.style.display = "flex"; 
     bottomNavigation.style.display = "flex"; 
   });
@@ -321,7 +394,7 @@ fetch('./data/recipe.json')
           if (entry.isIntersecting) startAuto();
           else stopAuto();
         });
-      }, { threshold: 0.3 });
+      }, { threshold: 0.5 });
       observer.observe(accordionArea);
     }
 
@@ -385,7 +458,7 @@ fetch('./data/recipe.json')
             }
           });
         },
-        { threshold: 0.3 }
+        { threshold: 0.5 }
       );
 
       observer.observe(container);
