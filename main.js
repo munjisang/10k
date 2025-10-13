@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       card.addEventListener("click", () => {
-        window.open(`https://m.10000recipe.com/recipe/kadx.html?cate=&pno=${item.kadx_seq}`, "_blank");
+        window.open(`https://m.10000recipe.com/recipe/kadx.html?cate=&pno=${item.kadx_seq}`, "_self");
       });
 
       kaContainer.appendChild(card);
@@ -256,114 +256,154 @@ fetch('./data/recipe.json')
           </div>
         `;
         item.addEventListener('click', () =>
-          window.open(`https://m.10000recipe.com/recipe/${recipe.cok_sq_board}`, '_blank')
+          window.open(`https://m.10000recipe.com/recipe/${recipe.cok_sq_board}`, '_self')
         );
         area.appendChild(item);
       });
     });
 
+    // -------------------- 숏츠 아코디언 --------------------
+    const accordionArea = document.querySelector('.accordion-items');
+    if (accordionArea) {
+      const maxAccCount = parseInt(accordionArea.dataset.count, 10) || 5;
+      const accordionRecipes = list.sort(() => Math.random() - 0.5).slice(0, maxAccCount);
 
-// -------------------- 숏츠 아코디언 --------------------
-const accordionArea = document.querySelector('.accordion-items');
-const maxAccCount = parseInt(accordionArea.dataset.count, 10) || 5;
-const accordionRecipes = list.sort(() => Math.random() - 0.5).slice(0, maxAccCount);
+      accordionRecipes.forEach(recipe => {
+        const accItem = document.createElement('div');
+        accItem.className = 'accordion-item';
+        accItem.innerHTML = `
+          <div class="accordion-header">
+            <img src="/img/search.png" class="accordion-icon">
+            <span class="accordion-title">${recipe.food_name}</span>
+            <img src="${recipe.cok_thumb}" class="accordion-thumb">
+            <img src="/img/chevron_down.png" class="accordion-chevron">
+          </div>
+          <div class="accordion-body">
+            <div class="recipe-info">
+              <div class="recipe-name">${recipe.cok_title}</div>
+              <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
+            </div>
+            <img src="${recipe.cok_thumb}" class="accordion-body-thumb">
+          </div>
+        `;
+        accordionArea.appendChild(accItem);
+      });
 
-accordionRecipes.forEach(recipe => {
-  const accItem = document.createElement('div');
-  accItem.className = 'accordion-item';
-  accItem.innerHTML = `
-    <div class="accordion-header">
-      <img src="/img/search.png" class="accordion-icon">
-      <span class="accordion-title">${recipe.food_name}</span>
-      <img src="${recipe.cok_thumb}" class="accordion-thumb">
-      <img src="/img/chevron_down.png" class="accordion-chevron">
-    </div>
-    <div class="accordion-body">
-      <div class="recipe-info">
-        <div class="recipe-name">${recipe.cok_title}</div>
-        <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
-      </div>
-      <img src="${recipe.cok_thumb}" class="accordion-body-thumb">
-    </div>
-  `;
-  accordionArea.appendChild(accItem);
-});
+      const items = accordionArea.querySelectorAll(".accordion-item");
+      let current = 0;
+      let autoTimer;
+      const INTERVAL = 5000;
 
+      function closeAll() { items.forEach(i => i.classList.remove("open")); }
+      function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
+      function startAuto() {
+        autoTimer = setInterval(() => {
+          const next = (current + 1) % items.length;
+          openItem(next);
+        }, INTERVAL);
+      }
+      function stopAuto() { clearInterval(autoTimer); }
 
-// ✅ 자동 롤링 + 1개만 열림
-const items = document.querySelectorAll(".accordion-item");
-let current = 0;
-let autoTimer;
-const INTERVAL = 5000;
-const RESUME = 5000;
+      items.forEach((item, idx) => {
+        const header = item.querySelector(".accordion-header");
+        const body = item.querySelector(".accordion-body");
 
-function closeAll() { items.forEach(i => i.classList.remove("open")); }
-function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
-function startAuto() {
-  autoTimer = setInterval(() => {
-    const next = (current + 1) % items.length;
-    openItem(next);
-  }, INTERVAL);
-}
-function stopAuto() { clearInterval(autoTimer); }
+        header.addEventListener("click", () => {
+          item.classList.contains("open") ? item.classList.remove("open") : openItem(idx);
+          stopAuto();
+          setTimeout(startAuto, INTERVAL);
+        });
 
-items.forEach((item, idx) => {
-  const header = item.querySelector(".accordion-header");
-  const body = item.querySelector(".accordion-body");
+        body.addEventListener("click", e => {
+          window.open(`https://m.10000recipe.com/recipe/${accordionRecipes[idx].cok_sq_board}`, "_self");
+          e.stopPropagation();
+        });
+      });
 
-  header.addEventListener("click", () => {
-    item.classList.contains("open") ? item.classList.remove("open") : openItem(idx);
-    stopAuto();
-    setTimeout(startAuto, INTERVAL);
-  });
+      openItem(0);
 
-  body.addEventListener("click", e => {
-    window.open(`https://m.10000recipe.com/recipe/${accordionRecipes[idx].cok_sq_board}`, "_blank");
-    e.stopPropagation();
-  });
-});
+      // ✅ 화면 보일 때만 자동 롤링
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) startAuto();
+          else stopAuto();
+        });
+      }, { threshold: 0.3 });
+      observer.observe(accordionArea);
+    }
 
-openItem(0);
-startAuto();
+    // -------------------- 인기검색어 아코디언 --------------------
+    function initSearchAccordion() {
+      const container = document.querySelector(".search-accordion-items"); // ✅ 수정됨
+      const items = container ? container.querySelectorAll(".search-accordion-item") : [];
+      if (!container || items.length === 0) return;
 
-// -------------------- 인기검색어 아코디언 --------------------
-function initSearchAccordion() {
-  const items = document.querySelectorAll(".search-accordion-item");
-  let current = 0;
-  let autoTimer;
-  let resumeTimer;
-  const INTERVAL = 5000;
-  const RESUME = 5000;
+      let current = 0;
+      let autoTimer = null;
+      const INTERVAL = 5000;
 
-  function closeAll() { items.forEach(i => i.classList.remove("open")); }
-  function openItem(i) { closeAll(); items[i].classList.add("open"); current = i; }
-  function startAuto() {
-    autoTimer = setInterval(() => {
-      const next = (current + 1) % items.length;
-      openItem(next);
-    }, INTERVAL);
-  }
-  function stopAuto() {
-    clearInterval(autoTimer);
-    clearTimeout(resumeTimer);
-  }
+      function closeAll() {
+        items.forEach(i => i.classList.remove("open"));
+      }
 
-  items.forEach((item, idx) => {
-    const header = item.querySelector(".search-accordion-header");
-    header.addEventListener("click", () => {
-      item.classList.contains("open") ? item.classList.remove("open") : openItem(idx);
-      stopAuto();
-      resumeTimer = setTimeout(startAuto, RESUME);
-    });
-  });
+      function openItem(i) {
+        closeAll();
+        items[i].classList.add("open");
+        current = i;
+      }
 
-  openItem(0);
-  startAuto();
-}
+      function startAuto() {
+        if (autoTimer) return; // 중복 방지
+        autoTimer = setInterval(() => {
+          const next = (current + 1) % items.length;
+          openItem(next);
+        }, INTERVAL);
+      }
 
-initSearchAccordion();
-})
-.catch(err => console.error('레시피 로드 실패:', err));
+      function stopAuto() {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+
+      // ✅ 클릭 시 수동 제어
+      items.forEach((item, idx) => {
+        const header = item.querySelector(".search-accordion-header");
+        if (!header) return;
+
+        header.addEventListener("click", () => {
+          if (item.classList.contains("open")) {
+            item.classList.remove("open");
+          } else {
+            openItem(idx);
+          }
+          stopAuto();
+          setTimeout(startAuto, INTERVAL);
+        });
+      });
+
+      // ✅ 초기 상태 (1위 열기)
+      openItem(0);
+
+      // ✅ 화면 보일 때만 자동 롤링
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              startAuto();
+            } else {
+              stopAuto();
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      observer.observe(container);
+    }
+    initSearchAccordion();
+  }) 
+  .catch(err => console.error('레시피 로드 실패:', err));
+
 
 // -------------------- 리뷰 JSON 로드 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -446,7 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         item.addEventListener("click", () => {
-          window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_blank");
+          window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_self");
         });
 
         container.appendChild(item);
@@ -556,15 +596,17 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           </div>
+<!--
           <div class="chef-sns-wrap">
             ${snsHtml}
           </div>
+-->
         `;
 
         // chef-item 클릭 시 chef_seq 페이지 이동
         chefItem.addEventListener("click", (e) => {
           if (e.target.classList.contains("sns-icon")) return;
-          window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${item.chef_seq}`, '_blank');
+          window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${item.chef_seq}`, '_self');
         });
 
         // SNS 아이콘 클릭 → 새창
