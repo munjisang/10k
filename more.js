@@ -17,18 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
       item.innerHTML = `
         <div class="list-item-thumb">
           <img src="${recipe.cok_thumb}" alt="${recipe.food_name || recipe.cok_title}" class="thumb-img">
-          <img src="/img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
+          <img src="./img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
         </div>
         <div class="recipe-info">
           <div class="recipe-name">${recipe.cok_title}</div>
           <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
           <div class="recipe-cook">
             <div class="cook-degree-wrap">
-              <img src="/img/degree.png" alt="난이도">
+              <img src="./img/degree.png" alt="난이도">
               <span class="cook-degree">${recipe.cok_degree}</span>
             </div>
             <div class="cook-time-wrap">
-              <img src="/img/time.png" alt="시간">
+              <img src="./img/time.png" alt="시간">
               <span class="cook-time">${recipe.cok_time}</span>
             </div>
           </div>

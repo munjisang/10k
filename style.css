@@ -645,7 +645,7 @@ main {
 
 .custom-select.open 
 .chevron-icon {
-  content: url('/img/chevron_up.png');
+  content: url('./img/chevron_up.png');
 }
 
 /*숏텐츠 아코디언 UI */

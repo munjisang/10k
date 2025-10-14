@@ -117,8 +117,8 @@ const middleBanner = document.getElementById('middleBanner');
 const middleBannerLink = document.getElementById('middleBannerLink');
 if (middleBanner && middleBannerLink) {
   const banners = [
-    { src: '/img/middle_banner_1.png', link: 'https://timingapp.onelink.me/uEn0/4jc12k0n', target: '_blank' },
-    { src: '/img/middle_banner_2.png', link: 'https://m.10000recipe.com/chef/celeb_list.html', target: '_self' }
+    { src: './img/middle_banner_1.png', link: 'https://timingapp.onelink.me/uEn0/4jc12k0n', target: '_blank' },
+    { src: './img/middle_banner_2.png', link: 'https://m.10000recipe.com/chef/celeb_list.html', target: '_self' }
   ];
   const randomBanner = banners[Math.floor(Math.random() * banners.length)];
   middleBanner.src = randomBanner.src;
@@ -305,18 +305,18 @@ fetch('./data/recipe.json')
         item.innerHTML = `
           <div class="${layout}-thumb">
             <img src="${recipe.cok_thumb}" alt="${recipe.food_name || recipe.cok_title}" class="thumb-img">
-            <img src="/img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
+            <img src="./img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
           </div>
           <div class="recipe-info">
             <div class="recipe-name">${recipe.cok_title}</div>
             <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
             <div class="recipe-cook">
               <div class="cook-degree-wrap">
-                <img src="/img/degree.png" alt="난이도">
+                <img src="./img/degree.png" alt="난이도">
                 <span class="cook-degree">${recipe.cok_degree}</span>
               </div>
               <div class="cook-time-wrap">
-                <img src="/img/time.png" alt="시간">
+                <img src="./img/time.png" alt="시간">
                 <span class="cook-time">${recipe.cok_time}</span>
               </div>
             </div>
@@ -340,10 +340,10 @@ fetch('./data/recipe.json')
         accItem.className = 'accordion-item';
         accItem.innerHTML = `
           <div class="accordion-header">
-            <img src="/img/search.png" class="accordion-icon">
+            <img src="./img/search.png" class="accordion-icon">
             <span class="accordion-title">${recipe.food_name}</span>
             <img src="${recipe.cok_thumb}" class="accordion-thumb">
-            <img src="/img/chevron_down.png" class="accordion-chevron">
+            <img src="./img/chevron_down.png" class="accordion-chevron">
           </div>
           <div class="accordion-body">
             <div class="recipe-info">
@@ -533,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="review-date">${displayDate}</div>
             </div>
             <div class="review-rate-wrap">
-              <img src="/img/star.png" alt="별점">
+              <img src="./img/star.png" alt="별점">
               <span class="review-rate">${r.review_rate}</span>
             </div>
           </div>
@@ -624,10 +624,10 @@ document.addEventListener("DOMContentLoaded", () => {
         chefItem.className = "chef-item";
 
         let snsHtml = '';
-        if (item["chef-instargram"]) snsHtml += `<img src="/img/instar.png" alt="인스타그램" class="sns-icon" data-link="${item["chef-instargram"]}">`;
-        if (item["chef-youtube"]) snsHtml += `<img src="/img/youtube.png" alt="유튜브" class="sns-icon" data-link="${item["chef-youtube"]}">`;
-        if (item["chef-blog"]) snsHtml += `<img src="/img/blog.png" alt="블로그" class="sns-icon" data-link="${item["chef-blog"]}">`;
-        if (item["chef-link"]) snsHtml += `<img src="/img/link.png" alt="기타" class="sns-icon" data-link="${item["chef-link"]}">`;
+        if (item["chef-instargram"]) snsHtml += `<img src="./img/instar.png" alt="인스타그램" class="sns-icon" data-link="${item["chef-instargram"]}">`;
+        if (item["chef-youtube"]) snsHtml += `<img src="./img/youtube.png" alt="유튜브" class="sns-icon" data-link="${item["chef-youtube"]}">`;
+        if (item["chef-blog"]) snsHtml += `<img src="./img/blog.png" alt="블로그" class="sns-icon" data-link="${item["chef-blog"]}">`;
+        if (item["chef-link"]) snsHtml += `<img src="./img/link.png" alt="기타" class="sns-icon" data-link="${item["chef-link"]}">`;
 
         let activeText = '';
         if (item["chef-active"] === 1) activeText = "최근활동 셰프";
@@ -642,11 +642,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="chef-name">${item["chef-name"]}</div>
             <div class="chef-cook">
               <div class="chef-reg-wrap">
-                <img src="/img/food.png" alt="레시피수">
+                <img src="./img/food.png" alt="레시피수">
                 <span class="chef-reg">${formatNumber(item["chef-food"])}</span>
               </div>
               <div class="chef-flow-wrap">
-                <img src="/img/user.png" alt="팔로워수">
+                <img src="./img/user.png" alt="팔로워수">
                 <span class="chef-flow">${formatNumber(item["chef-fllower"])}</span>
               </div>
             </div>
