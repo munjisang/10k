@@ -1,3 +1,7 @@
+main {
+  padding-bottom: 0px;
+}
+
 .folder-area {
     position: sticky;
     background-color: var(--WHITE);
