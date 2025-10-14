@@ -1,0 +1,209 @@
+.folder-area {
+    position: sticky;
+    background-color: var(--WHITE);
+    width: 100%;
+    box-sizing: border-box;    
+    border-radius: 0px 0px 8px 8px;
+    top: 0px;
+    z-index: 900;
+}
+
+.folder-area-top {
+  background-color: var(--WHITE);
+  width: 100%;
+  padding: 10px 16px 0px 16px;
+  box-sizing: border-box;    
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.folder-edit-wrap {
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.folder-edit-wrap img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.folder-add {
+  padding: 8px 14px;
+  border: 1px solid var(--GRAY-02);
+  border-radius: 4px;
+  background: var(--GRAY-03);
+  font: var(--B8);
+  color: var(--BLACK-MAIN);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.folder-add img {
+  width: 20px;
+  height: 20px;
+}
+
+.folder-list {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 8px;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+.folder-list::-webkit-scrollbar {
+  display: none;
+}
+
+.folder-active {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--TERTIARY-08);
+  gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.folder-active-name {
+  font: var(--B7);
+  color: var(--WHITE);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  max-width: 120px;
+  text-align: center;
+}
+
+.folder-active-count {
+  padding: 2px 4px;
+  border-radius: 200px;
+  background: var(--TERTIARY-01);
+  font: var(--C3);
+  color: var(--TERTIARY-08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.folder-nonactive {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--GRAY-02);
+  gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.folder-nonactive-name {
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  max-width: 120px;
+  text-align: center;
+}
+
+.folder-nonactive-count {
+  padding: 2px 4px;
+  border-radius: 200px;
+  background: var(--BLACK-MAIN);
+  font: var(--C3);
+  color: var(--WHITE);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.scrap-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  background-color: var(--WHITE);
+  border-radius: 8px;
+  gap: 16px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+.scrap-area-sort {
+  background-color: var(--WHITE);
+  width: 100%;
+  box-sizing: border-box;    
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scrap-edit {
+  padding: 8px 10px;
+  border: 1px solid var(--GRAY-02);
+  border-radius: 4px;
+  background: var(--GRAY-03);
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.scrap-edit img {
+  width: 20px;
+  height: 20px;
+}
+
+.scrap-count {
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+}
+
+.scrap-area-nodata {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 16px;
+  gap: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.scrap-area-nodata img {
+  width: 32px;
+  height: 32px;
+}
+
+.folder-nonactive-txt {
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  text-align: center;
+}

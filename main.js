@@ -563,17 +563,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const bottomNav = document.querySelector(".bottom-navigation");
   const recipeRegister = document.querySelector(".recipe-register");
 
+  if (!bottomNav) return; 
+
   let lastScrollY = window.scrollY;
   let scrollTimer;
 
   function hideBars() {
     bottomNav.classList.add("hidden");
-    recipeRegister.classList.add("hidden");
+    if (recipeRegister) recipeRegister.classList.add("hidden");
   }
 
   function showBars() {
     bottomNav.classList.remove("hidden");
-    recipeRegister.classList.remove("hidden");
+    if (recipeRegister) recipeRegister.classList.remove("hidden");
   }
 
   window.addEventListener("scroll", () => {
@@ -593,6 +595,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500);
   });
 });
+
 
 // -------------------- chef JSON 로드 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -715,4 +718,60 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = target;
     });
   });
+});
+
+
+// -------------------- 스크랩 폴더 활성화 전환 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const folders = document.querySelectorAll(".folder-list > div");
+  const folderList = document.querySelector(".folder-list");
+  const listItems = document.querySelector(".scrap-area .list-items");
+  const scrapArea = document.querySelector(".scrap-area"); // ✅ 추가
+  const nodata = document.querySelector(".scrap-area-nodata");
+
+  folders.forEach(folder => {
+    folder.addEventListener("click", () => {
+      // 1. 폴더 활성화 상태 전환
+      folders.forEach(f => {
+        f.className = "folder-nonactive";
+        const name = f.querySelector("span");
+        const count = f.querySelector("div");
+
+        name.className = "folder-nonactive-name";
+        count.className = "folder-nonactive-count";
+      });
+
+      folder.className = "folder-active";
+      const name = folder.querySelector("span");
+      const countDiv = folder.querySelector("div");
+      name.className = "folder-active-name";
+      countDiv.className = "folder-active-count";
+
+      // 2. 스크랩 영역 data-count 갱신
+      let count = parseInt(countDiv.textContent.replace("+", ""), 10);
+      listItems.setAttribute("data-count", count);
+
+      // 3. 데이터 없으면 nodata 표시
+      if (count === 0) {
+        scrapArea.style.display = "none"; // ✅ 스크랩 영역 전체 숨김
+        nodata.style.display = "flex";
+      } else {
+        scrapArea.style.display = "flex"; // ✅ 다시 표시
+        nodata.style.display = "none";
+      }
+
+      // 4. 클릭한 폴더가 화면 중앙으로 오도록 스크롤 이동
+      const folderRect = folder.getBoundingClientRect();
+      const listRect = folderList.getBoundingClientRect();
+      const offset = folderRect.left - listRect.left - (listRect.width / 4) + (folderRect.width / 2);
+      folderList.scrollBy({
+        left: offset,
+        behavior: "smooth"
+      });
+    });
+  });
+
+  // 초기 표시: 활성 폴더 기준으로 스크랩 영역 갱신
+  const initialFolder = document.querySelector(".folder-active");
+  if (initialFolder) initialFolder.click();
 });
