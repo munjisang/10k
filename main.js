@@ -721,57 +721,108 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// -------------------- 스크랩 폴더 활성화 전환 --------------------
+// -------------------- 스크랩 폴더 활성화 전환 + list-items 갱신 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const folders = document.querySelectorAll(".folder-list > div");
   const folderList = document.querySelector(".folder-list");
+  const scrapArea = document.querySelector(".scrap-area");
   const listItems = document.querySelector(".scrap-area .list-items");
-  const scrapArea = document.querySelector(".scrap-area"); // ✅ 추가
   const nodata = document.querySelector(".scrap-area-nodata");
+  const scrapCountElem = document.querySelector(".scrap-count");
+
+  if (!scrapArea || !listItems || !nodata || !scrapCountElem) return;
+
+  // 레시피 JSON 미리 로드
+  let recipeList = [];
+  fetch('./data/recipe.json')
+    .then(res => res.json())
+    .then(data => {
+      recipeList = data.recipes || [];
+    })
+    .catch(err => console.error('레시피 로드 실패:', err));
 
   folders.forEach(folder => {
     folder.addEventListener("click", () => {
+
       // 1. 폴더 활성화 상태 전환
       folders.forEach(f => {
         f.className = "folder-nonactive";
         const name = f.querySelector("span");
         const count = f.querySelector("div");
-
-        name.className = "folder-nonactive-name";
-        count.className = "folder-nonactive-count";
+        if (name && count) {
+          name.className = "folder-nonactive-name";
+          count.className = "folder-nonactive-count";
+        }
       });
 
       folder.className = "folder-active";
       const name = folder.querySelector("span");
       const countDiv = folder.querySelector("div");
-      name.className = "folder-active-name";
-      countDiv.className = "folder-active-count";
+      if (name && countDiv) {
+        name.className = "folder-active-name";
+        countDiv.className = "folder-active-count";
+      }
 
       // 2. 스크랩 영역 data-count 갱신
-      let count = parseInt(countDiv.textContent.replace("+", ""), 10);
+      let count = parseInt(countDiv?.textContent.replace("+", ""), 10);
+      if (isNaN(count)) count = 0;
       listItems.setAttribute("data-count", count);
+      scrapCountElem.textContent = `레시피 ${count}개`;
 
       // 3. 데이터 없으면 nodata 표시
       if (count === 0) {
-        scrapArea.style.display = "none"; // ✅ 스크랩 영역 전체 숨김
+        scrapArea.style.display = "none";
         nodata.style.display = "flex";
       } else {
-        scrapArea.style.display = "flex"; // ✅ 다시 표시
+        scrapArea.style.display = "flex";
         nodata.style.display = "none";
       }
 
-      // 4. 클릭한 폴더가 화면 중앙으로 오도록 스크롤 이동
+      // 4. 클릭한 폴더가 중앙으로 오도록 스크롤 이동
       const folderRect = folder.getBoundingClientRect();
       const listRect = folderList.getBoundingClientRect();
       const offset = folderRect.left - listRect.left - (listRect.width / 4) + (folderRect.width / 2);
-      folderList.scrollBy({
-        left: offset,
-        behavior: "smooth"
+      folderList.scrollBy({ left: offset, behavior: "smooth" });
+
+      // 5. list-items 갱신 (폴더 count 기준으로 랜덤 레시피 표시)
+      listItems.innerHTML = ""; // 기존 내용 삭제
+      const recipesToShow = recipeList.sort(() => Math.random() - 0.5).slice(0, count);
+
+      recipesToShow.forEach(recipe => {
+        const item = document.createElement("div");
+        const layout = "list-item";
+        item.className = layout;
+
+        item.innerHTML = `
+          <div class="${layout}-thumb">
+            <img src="${recipe.cok_thumb}" alt="${recipe.food_name || recipe.cok_title}" class="thumb-img">
+            <img src="./img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
+          </div>
+          <div class="recipe-info">
+            <div class="recipe-name">${recipe.cok_title}</div>
+            <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
+            <div class="recipe-cook">
+              <div class="cook-degree-wrap">
+                <img src="./img/degree.png" alt="난이도">
+                <span class="cook-degree">${recipe.cok_degree}</span>
+              </div>
+              <div class="cook-time-wrap">
+                <img src="./img/time.png" alt="시간">
+                <span class="cook-time">${recipe.cok_time}</span>
+              </div>
+            </div>
+          </div>
+        `;
+        item.addEventListener("click", () =>
+          window.open(`https://m.10000recipe.com/recipe/${recipe.cok_sq_board}`, "_self")
+        );
+
+        listItems.appendChild(item);
       });
     });
   });
 
-  // 초기 표시: 활성 폴더 기준으로 스크랩 영역 갱신
+  // 초기 표시
   const initialFolder = document.querySelector(".folder-active");
-  if (initialFolder) initialFolder.click();
+  if (initialFolder) setTimeout(() => initialFolder.click(), 50);
 });
