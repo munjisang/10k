@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // -------------------- 배너 자동롤링 + 스와이프 --------------------
 const bannerWrapper = document.querySelector('.banner-wrapper');
 if (bannerWrapper) {
@@ -126,7 +125,7 @@ if (middleBanner && middleBannerLink) {
   middleBannerLink.target = randomBanner.target; 
 }
 
-// -------------------- 레시피 등록 오버레이 -------------------- 
+// -------------------- 레시피 등록 오버레이 --------------------
 const registerBtn = document.querySelector(".recipe-register");
 const recipeOverlay = document.getElementById("recipeOverlay");
 const recipeBottomSheet = recipeOverlay?.querySelector(".bottom-sheet");
@@ -149,8 +148,8 @@ if (registerBtn && recipeOverlay && recipeBottomSheet && bottomNavigation) {
     }
   });
 
-  const closeBtn = recipeOverlay.querySelector(".sheet-area-icon");
-  closeBtn?.addEventListener("click", () => {
+  const closeBtnRecipe = recipeOverlay.querySelector(".sheet-area-icon");
+  closeBtnRecipe?.addEventListener("click", () => {
     recipeBottomSheet.classList.remove("show");
     recipeOverlay.style.display = "none"; 
     registerBtn.style.display = "flex"; 
@@ -596,7 +595,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // -------------------- chef JSON 로드 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const chefContainer = document.querySelector(".chef-items");
@@ -676,7 +674,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("chef.json 로드 실패:", err));
 });
-
 
 // -------------------- 하단 네비게이션 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -871,14 +868,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const folderName = input.value.trim();
     closeSheet();
 
-    const toast = document.getElementById("toast");
-    if (toast) {
-      toast.classList.remove("show");
-      void toast.offsetWidth; 
-      toast.textContent = `"${folderName}" 폴더가 추가되었습니다.`;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2500);
+    let toast = document.getElementById("toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "toast";
+      document.body.appendChild(toast);
     }
+    toast.classList.remove("show");
+    void toast.offsetWidth;
+    toast.textContent = `"${folderName}" 폴더가 추가되었습니다.`;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2500);
   });
 
   bottomSheetOverlay.addEventListener("click", (e) => {
@@ -895,10 +895,56 @@ document.addEventListener("DOMContentLoaded", () => {
   if (pageAdd) pageAdd.addEventListener("click", openSheet);
 });
 
+// -------------------- 안드로이드 뒤로가기 오버레이 제어 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const overlays = [
+    document.querySelector(".folder-add-overlay"),
+    document.getElementById("searchOverlay"),
+    document.getElementById("recipeOverlay")
+  ].filter(Boolean);
 
-let toast = document.getElementById("toast");
-if (!toast) {
-  toast = document.createElement("div");
-  toast.id = "toast";
-  document.body.appendChild(toast);
-}
+  // 각 오버레이마다 closeOverlay 이벤트 연결
+  overlays.forEach(overlay => {
+    overlay.addEventListener("closeOverlay", () => {
+      if (overlay === document.querySelector(".folder-add-overlay")) {
+        const bottomSheet = document.querySelector(".folder-add");
+        bottomSheet.classList.remove("show");
+        setTimeout(() => overlay.style.display = "none", 300);
+      } else if (overlay.id === "searchOverlay") {
+        const bottomSheet = overlay.querySelector(".bottom-sheet");
+        bottomSheet.classList.remove("show");
+        overlay.style.display = "none";
+        const recipeRegister = document.querySelector('.recipe-register');
+        const bottomNav = document.querySelector('.bottom-navigation');
+        if (recipeRegister) recipeRegister.style.display = 'flex';
+        if (bottomNav) bottomNav.style.display = 'flex';
+      } else if (overlay.id === "recipeOverlay") {
+        const bottomSheet = overlay.querySelector(".bottom-sheet");
+        bottomSheet.classList.remove("show");
+        overlay.style.display = "none";
+        const registerBtn = document.querySelector(".recipe-register");
+        const bottomNav = document.querySelector(".bottom-navigation");
+        if (registerBtn) registerBtn.style.display = 'flex';
+        if (bottomNav) bottomNav.style.display = 'flex';
+      }
+    });
+
+    // overlay가 열리면 history push
+    const observer = new MutationObserver(() => {
+      if (overlay.style.display === "flex" || overlay.style.display === "block") {
+        history.pushState({ overlay: true }, "");
+      }
+    });
+    observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
+  });
+
+  // 뒤로가기 감지
+  window.addEventListener("popstate", (e) => {
+    const anyOpen = overlays.find(o => o.style.display === "flex" || o.style.display === "block");
+    if (anyOpen) {
+      e.preventDefault?.();
+      anyOpen.dispatchEvent(new Event("closeOverlay"));
+      history.pushState({}, ""); // 뒤로가기 막기
+    }
+  });
+});

@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const deleteBtn = document.querySelector(".dialog-delete");
   const toast = document.getElementById("toast");
 
-  // 폴더 삭제 버튼 클릭
   delButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const folderName = btn.closest(".folder-list-option")?.querySelector(".folder-list-option-txt")?.textContent || "이 폴더";
@@ -99,19 +98,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 취소 버튼
   cancelBtn.addEventListener("click", () => {
     dialog.style.display = "none";
   });
 
-  // 삭제 버튼
   deleteBtn.addEventListener("click", () => {
     dialog.style.display = "none";
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 2500);
   });
 
-  // 다이얼로그 배경 클릭 시 닫기
   dialog.addEventListener("click", (e) => {
     if (e.target === dialog) dialog.style.display = "none";
   });
@@ -126,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
 
 // -------------------- 폴더추가 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -199,7 +194,6 @@ if (!toast) {
   document.body.appendChild(toast);
 }
 
-
 // -------------------- 폴더명 수정 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const editOverlay = document.querySelector(".folder-edit-overlay");
@@ -208,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelBtn = document.querySelector(".folder-edit-cancel");
   const saveBtn = document.querySelector(".folder-edit-save");
 
-  // ✅ 수정시트 열기 함수
   const openEditSheet = (folderNameElem) => {
     const folderName = folderNameElem.textContent.trim();
     editOverlay.style.display = "flex";
@@ -218,13 +211,11 @@ document.addEventListener("DOMContentLoaded", () => {
     editInput.focus();
   };
 
-  // ✅ 닫기 함수
   const closeEditSheet = () => {
     editSheet.classList.remove("show");
     setTimeout(() => (editOverlay.style.display = "none"), 300);
   };
 
-  // ✅ 버튼 활성화
   const updateSaveButtonState = () => {
     const hasText = editInput.value.trim().length > 0;
     if (hasText) {
@@ -237,14 +228,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   editInput.addEventListener("input", updateSaveButtonState);
 
-  // ✅ 버튼 이벤트
   cancelBtn.addEventListener("click", closeEditSheet);
 
   saveBtn.addEventListener("click", () => {
     if (saveBtn.disabled) return;
     closeEditSheet();
 
-    // 토스트 표시
     let toast = document.getElementById("toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -260,11 +249,66 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === editOverlay) closeEditSheet();
   });
 
-  // ✅ 각 폴더의 수정 버튼 클릭 시 실행
   document.querySelectorAll(".folder-option-edit").forEach((btn) => {
     btn.addEventListener("click", () => {
       const folderNameElem = btn.closest(".folder-list-option").querySelector(".folder-list-option-txt");
       openEditSheet(folderNameElem);
     });
+  });
+});
+
+
+
+// -------------------- 안드로이드 뒤로가기 오버레이 제어 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const overlays = [
+    document.querySelector(".folder-add-overlay"),
+    document.getElementById("searchOverlay"),
+    document.getElementById("recipeOverlay")
+  ].filter(Boolean);
+
+  // 각 오버레이마다 closeOverlay 이벤트 연결
+  overlays.forEach(overlay => {
+    overlay.addEventListener("closeOverlay", () => {
+      if (overlay === document.querySelector(".folder-add-overlay")) {
+        const bottomSheet = document.querySelector(".folder-add");
+        bottomSheet.classList.remove("show");
+        setTimeout(() => overlay.style.display = "none", 300);
+      } else if (overlay.id === "searchOverlay") {
+        const bottomSheet = overlay.querySelector(".bottom-sheet");
+        bottomSheet.classList.remove("show");
+        overlay.style.display = "none";
+        const recipeRegister = document.querySelector('.recipe-register');
+        const bottomNav = document.querySelector('.bottom-navigation');
+        if (recipeRegister) recipeRegister.style.display = 'flex';
+        if (bottomNav) bottomNav.style.display = 'flex';
+      } else if (overlay.id === "recipeOverlay") {
+        const bottomSheet = overlay.querySelector(".bottom-sheet");
+        bottomSheet.classList.remove("show");
+        overlay.style.display = "none";
+        const registerBtn = document.querySelector(".recipe-register");
+        const bottomNav = document.querySelector(".bottom-navigation");
+        if (registerBtn) registerBtn.style.display = 'flex';
+        if (bottomNav) bottomNav.style.display = 'flex';
+      }
+    });
+
+    // overlay가 열리면 history push
+    const observer = new MutationObserver(() => {
+      if (overlay.style.display === "flex" || overlay.style.display === "block") {
+        history.pushState({ overlay: true }, "");
+      }
+    });
+    observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
+  });
+
+  // 뒤로가기 감지
+  window.addEventListener("popstate", (e) => {
+    const anyOpen = overlays.find(o => o.style.display === "flex" || o.style.display === "block");
+    if (anyOpen) {
+      e.preventDefault?.();
+      anyOpen.dispatchEvent(new Event("closeOverlay"));
+      history.pushState({}, ""); // 뒤로가기 막기
+    }
   });
 });
