@@ -720,6 +720,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// -------------------- folder_edit 이동 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const folderEditBtn = document.querySelector(".folder-edit-wrap");
+  if (folderEditBtn) {
+    folderEditBtn.addEventListener("click", () => {
+      window.location.href = "folder_edit.html";
+    });
+  }
+});
 
 // -------------------- 스크랩 폴더 활성화 전환 + list-items 갱신 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -821,3 +830,75 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// -------------------- 폴더추가 바텀시트 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const bottomSheetOverlay = document.querySelector(".folder-add-overlay");
+  const bottomSheet = document.querySelector(".folder-add");
+  const cancelBtn = document.querySelector(".folder-add-cancel");
+  const addBtn = document.querySelector(".folder-add-add");
+  const input = document.querySelector(".folder-add-input");
+
+  const folderAdd = document.querySelector(".folder-addbtn"); 
+  const pageAdd = document.querySelector(".page-add"); 
+
+  const openSheet = () => {
+    bottomSheetOverlay.style.display = "flex";
+    setTimeout(() => {
+      bottomSheet.classList.add("show");
+      input.focus(); 
+    }, 100);
+    input.value = "";
+    updateAddButtonState();
+  };
+
+  const closeSheet = () => {
+    bottomSheet.classList.remove("show");
+    setTimeout(() => (bottomSheetOverlay.style.display = "none"), 300);
+  };
+
+  const updateAddButtonState = () => {
+    const hasText = input.value.trim().length > 0;
+    addBtn.disabled = !hasText;
+    addBtn.classList.toggle("active", hasText);
+  };
+  input.addEventListener("input", updateAddButtonState);
+
+  cancelBtn.addEventListener("click", closeSheet);
+
+  addBtn.addEventListener("click", () => {
+    if (addBtn.disabled) return;
+    const folderName = input.value.trim();
+    closeSheet();
+
+    const toast = document.getElementById("toast");
+    if (toast) {
+      toast.classList.remove("show");
+      void toast.offsetWidth; 
+      toast.textContent = `"${folderName}" 폴더가 추가되었습니다.`;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+  });
+
+  bottomSheetOverlay.addEventListener("click", (e) => {
+    if (e.target === bottomSheetOverlay) closeSheet();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && bottomSheetOverlay.style.display === "flex") {
+      closeSheet();
+    }
+  });
+
+  if (folderAdd) folderAdd.addEventListener("click", openSheet);
+  if (pageAdd) pageAdd.addEventListener("click", openSheet);
+});
+
+
+let toast = document.getElementById("toast");
+if (!toast) {
+  toast = document.createElement("div");
+  toast.id = "toast";
+  document.body.appendChild(toast);
+}

@@ -52,7 +52,7 @@
           <img src="./img/folder_edit.png" alt="폴더편집">
           <span class="folder-edit">폴더 편집</span>
         </div>
-        <div class="folder-add">
+        <div class="folder-addbtn">
           <img src="./img/folder_add.png" alt="폴더추가">
           <span class="folder-edit">폴더 추가</span>
         </div>
@@ -109,10 +109,22 @@
       <img src="./img//bookmark_off.svg" alt="nodata">
       <div class="folder-nonactive-txt">등록된 스크랩이 없네요! <br> 마음에 드는 레시피를 스크랩해두면 <br> 언제든지 쉽게 찾아볼 수 있어요</div>
     </div>
-
   </main>
+  <!-- 폴더 추가 바텀시트 -->
+  <div class="folder-add-overlay" style="display: none;">
+    <div class="folder-add">
+        <div class="folder-add-handle"></div>
+        <div class="folder-add-title">폴더명을 입력해주세요.</div>
+        <input type="text" class="folder-add-input" placeholder="최대 20자까지 등록 가능합니다." maxlength="20"/>
+        <div class="folder-add-buttons">
+        <button class="folder-add-cancel">취소</button>
+        <button class="folder-add-add">폴더추가</button>
+        </div>
+    </div>
+  </div>
 </body>
 <script src="main.js"></script>
+
 </html>
 
 

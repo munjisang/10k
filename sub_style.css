@@ -1,0 +1,595 @@
+@media screen and (max-width: 640px) {
+    body, .fixed-header {
+        width: 100%;
+    }
+
+    .fixed-header {
+        padding: 0 16px;
+    }
+}
+
+body {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--WHITE);
+
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    padding-bottom: calc(24px + constant(safe-area-inset-bottom));
+
+    overflow-y: scroll; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* header */
+.sub-header {
+  position: fixed;
+  width: 100%;
+  max-width: 640px;
+  height: 64px;
+  background: var(--WHITE);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  gap: 16px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(198, 198, 198, 0.1);
+}
+
+.leding-icons {
+    height: 28px;
+    width: 28px;
+    display: flex;
+    align-items: center; 
+}
+
+.leding-icon {
+    height: 28px;
+    cursor: pointer;
+}
+
+.sub-header-title {
+  font: var(--S2);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  flex: 1;
+}
+
+.sub-contents {
+  padding-top: 64px;
+  padding-bottom: 100px;
+  background-color: var(--WHITE);
+}
+
+/* recipe 리스트 UI */
+.recipe-more {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  background-color: var(--WHITE);
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.recipe-more-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.recipe-more-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recipe-more-title {
+  font: var(--S2);
+  color: var(--BLACK-MAIN);
+}
+
+.recipe-more-subtitle {
+  font: var(--B4);
+  color: var(--BLACK-SUB);
+}
+
+.list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.list-item-thumb {
+  flex: 0 0 146px; 
+  position: relative;
+}
+
+.list-item-thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 9; 
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.list-item-thumb
+.video-icon {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recipe-name {
+  font: var(--B3);
+  color: var(--BLACK-MAIN);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.recipe-chef {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+}
+
+.recipe-chef img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.recipe-cook {
+  display: flex;
+  margin-top: 4px;
+  gap: 12px; 
+}
+
+.cook-degree-wrap,
+.cook-time-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px; 
+  font: var(--C3);
+  color: var(--BLACK-SUB);
+}
+
+.cook-degree-wrap img,
+.cook-time-wrap img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* tootip */
+.tootip {
+  margin: 20px 16px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  background: var(--GRAY-03);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.tootip-img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.tootip-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tootip-txt {
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+
+/* 폴더 리스트 UI */
+.folder-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 16px;
+  background-color: var(--WHITE);
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.folder-list-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.folder-list-option-img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.folder-list-option img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.folder-list-option-txt {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-option-edit {
+  padding: 8px 14px;
+  border: 1px solid var(--GRAY-01);
+  border-radius: 2px;
+  background: var(--WHITE);
+  font: var(--C3);
+  color: var(--BLACK-MAIN);
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.folder-option-del {
+  padding: 8px 14px;
+  border: 1px solid var(--PRIMARY-04);
+  border-radius: 2px;
+  background: var(--WHITE);
+  font: var(--C3);
+  color: var(--PRIMARY-04);
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* toast */
+#toast {
+    visibility: hidden;
+    width: calc(100% - 32px);
+    max-width: 640px;
+    background-color: var(--DIM-BLACK);
+    color: var(--WHITE);
+    text-align: center;
+    border-radius: 20px;
+    padding: 12px;
+    position: fixed;
+    left: 50%;
+    top: 80px;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 2000;
+    font: var(--B4);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-sizing: border-box;
+}
+
+#toast.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 폴더 삭제 다이얼로그 */
+.dialog-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.dialog-box {
+  background: var(--WHITE);
+  border-radius: 12px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dialog-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 12px;
+}
+
+.dialog-desc {
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 24px;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dialog-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.dialog-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.dialog-delete {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
+}
+
+/* 폴더편집 페이지 하단 버튼 */
+.page-buttons {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+  background-color: var(--WHITE);
+  gap: 12px;
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.page-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.page-close {
+  background: var(--BLACK-MAIN);
+  color: var(--WHITE);
+  border: none;
+}
+
+.page-add {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
+}
+
+/* 폴더 추가 바텀시트 */
+.folder-add-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 3000;
+  transition: opacity 0.3s ease;
+}
+
+.folder-add {
+  width: 100%;
+  max-width: 640px;
+  background: var(--WHITE);
+  border-radius: 16px 16px 0 0;
+  padding: 30px 16px;
+  box-sizing: border-box;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.folder-add.show {
+  transform: translateY(0);
+}
+
+.folder-add-handle {
+  display: none !important;
+}
+
+.folder-add-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.folder-add-input {
+  width: 100%;
+  height: 56px;
+  border: 1px solid var(--TERTIARY-08);
+  border-radius: 8px;
+  padding: 0 12px;
+  font: var(--B3);
+  color: var(--BLACK-MAIN);
+  box-sizing: border-box;
+  outline: none;
+  text-align: center;
+}
+
+.folder-add-input::placeholder {
+  color: var(--BLACK-SUB);
+}
+
+.folder-add-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.folder-add-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.folder-add-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.folder-add-add {
+  background: var(--DIM-TERTIARY);
+  color: var(--TERTIARY-01);
+  border: none;
+  cursor: not-allowed;
+  transition: background 0.2s ease;
+}
+
+.folder-add-add.active {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  cursor: pointer;
+}
+
+
+/* 폴더 수정 바텀시트 */
+.folder-edit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 3000;
+  transition: opacity 0.3s ease;
+}
+
+.folder-edit {
+  width: 100%;
+  max-width: 640px;
+  background: var(--WHITE);
+  border-radius: 16px 16px 0 0;
+  padding: 30px 16px;
+  box-sizing: border-box;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.folder-edit.show {
+  transform: translateY(0);
+}
+
+.folder-edit-handle {
+  display: none !important;
+}
+
+.folder-edit-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.folder-edit-input {
+  width: 100%;
+  height: 56px;
+  border: 1px solid var(--TERTIARY-08);
+  border-radius: 8px;
+  padding: 0 12px;
+  font: var(--B3);
+  color: var(--BLACK-MAIN);
+  box-sizing: border-box;
+  outline: none;
+  text-align: center;
+}
+
+.folder-edit-input::placeholder {
+  color: var(--BLACK-SUB);
+}
+
+.folder-edit-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.folder-edit-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.folder-edit-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.folder-edit-save {
+  background: var(--DIM-TERTIARY);
+  color: var(--TERTIARY-01);
+  border: none;
+  cursor: not-allowed;
+  transition: background 0.2s ease;
+}
+
+.folder-edit-save.active {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  cursor: pointer;
+}
