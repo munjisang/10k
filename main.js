@@ -733,14 +733,22 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!scrapArea || !listItems || !nodata || !scrapCountElem) return;
 
   let recipeList = [];
+
+  // ✅ fetch 완료 후 초기 폴더 클릭 실행
   fetch('./data/recipe.json')
     .then(res => res.json())
-    .then(data => { recipeList = data.recipes || []; })
+    .then(data => {
+      recipeList = data.recipes || [];
+
+      // ✅ 레시피 로드 완료 후 초기 폴더 클릭
+      const initialFolder = document.querySelector(".folder-active");
+      if (initialFolder) initialFolder.click();
+    })
     .catch(err => console.error('레시피 로드 실패:', err));
 
   folders.forEach(folder => {
     folder.addEventListener("click", () => {
-
+      // 폴더 상태 초기화
       folders.forEach(f => {
         f.className = "folder-nonactive";
         const name = f.querySelector("span");
@@ -750,6 +758,7 @@ document.addEventListener("DOMContentLoaded", () => {
           count.className = "folder-nonactive-count";
         }
       });
+
       folder.className = "folder-active";
       const name = folder.querySelector("span");
       const countDiv = folder.querySelector("div");
@@ -811,7 +820,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-
-  const initialFolder = document.querySelector(".folder-active");
-  if (initialFolder) setTimeout(() => initialFolder.click(), 50);
 });
