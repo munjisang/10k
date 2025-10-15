@@ -81,6 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// -------------------- 닫기버튼 이동 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const folderEditBtn = document.querySelector(".page-close");
+  if (folderEditBtn) {
+    folderEditBtn.addEventListener("click", () => {
+      window.location.href = "scrap.html";
+    });
+  }
+});
+
 // -------------------- folder_삭제 다이얼로그 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const delButtons = document.querySelectorAll(".folder-option-del");
@@ -113,16 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// -------------------- 닫기버튼 이동 --------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const folderEditBtn = document.querySelector(".page-close");
-  if (folderEditBtn) {
-    folderEditBtn.addEventListener("click", () => {
-      window.location.href = "scrap.html";
-    });
-  }
-});
-
 // -------------------- 폴더추가 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const bottomSheetOverlay = document.querySelector(".folder-add-overlay");
@@ -130,15 +130,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelBtn = document.querySelector(".folder-add-cancel");
   const addBtn = document.querySelector(".folder-add-add");
   const input = document.querySelector(".folder-add-input");
-
-  const folderAdd = document.querySelector(".folder-addbtn"); 
-  const pageAdd = document.querySelector(".page-add"); 
+  const folderAdd = document.querySelector(".folder-addbtn");
+  const pageAdd = document.querySelector(".page-add");
 
   const openSheet = () => {
     bottomSheetOverlay.style.display = "flex";
     setTimeout(() => {
       bottomSheet.classList.add("show");
-      input.focus(); 
+      input.focus();
     }, 100);
     input.value = "";
     updateAddButtonState();
@@ -154,8 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
     addBtn.disabled = !hasText;
     addBtn.classList.toggle("active", hasText);
   };
-  input.addEventListener("input", updateAddButtonState);
 
+  input.addEventListener("input", updateAddButtonState);
   cancelBtn.addEventListener("click", closeSheet);
 
   addBtn.addEventListener("click", () => {
@@ -166,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toast = document.getElementById("toast");
     if (toast) {
       toast.classList.remove("show");
-      void toast.offsetWidth; 
+      void toast.offsetWidth;
       toast.textContent = `"${folderName}" 폴더가 추가되었습니다.`;
       toast.classList.add("show");
       setTimeout(() => toast.classList.remove("show"), 2500);
@@ -187,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (pageAdd) pageAdd.addEventListener("click", openSheet);
 });
 
+// -------------------- 토스트 기본 엘리먼트 생성 --------------------
 let toast = document.getElementById("toast");
 if (!toast) {
   toast = document.createElement("div");
@@ -218,28 +218,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateSaveButtonState = () => {
     const hasText = editInput.value.trim().length > 0;
-    if (hasText) {
-      saveBtn.disabled = false;
-      saveBtn.classList.add("active");
-    } else {
-      saveBtn.disabled = true;
-      saveBtn.classList.remove("active");
-    }
+    saveBtn.disabled = !hasText;
+    saveBtn.classList.toggle("active", hasText);
   };
-  editInput.addEventListener("input", updateSaveButtonState);
 
+  editInput.addEventListener("input", updateSaveButtonState);
   cancelBtn.addEventListener("click", closeEditSheet);
 
   saveBtn.addEventListener("click", () => {
     if (saveBtn.disabled) return;
     closeEditSheet();
 
-    let toast = document.getElementById("toast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.id = "toast";
-      document.body.appendChild(toast);
-    }
     toast.textContent = "폴더명이 수정되었습니다.";
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 2500);
@@ -257,58 +246,44 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
 // -------------------- 안드로이드 뒤로가기 오버레이 제어 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const overlays = [
     document.querySelector(".folder-add-overlay"),
-    document.getElementById("searchOverlay"),
-    document.getElementById("recipeOverlay")
+    document.querySelector(".folder-edit-overlay"),
+    document.querySelector(".dialog-overlay"),
   ].filter(Boolean);
 
-  // 각 오버레이마다 closeOverlay 이벤트 연결
   overlays.forEach(overlay => {
     overlay.addEventListener("closeOverlay", () => {
-      if (overlay === document.querySelector(".folder-add-overlay")) {
-        const bottomSheet = document.querySelector(".folder-add");
+      if (overlay.classList.contains("folder-add-overlay")) {
+        const bottomSheet = overlay.querySelector(".folder-add");
         bottomSheet.classList.remove("show");
         setTimeout(() => overlay.style.display = "none", 300);
-      } else if (overlay.id === "searchOverlay") {
-        const bottomSheet = overlay.querySelector(".bottom-sheet");
-        bottomSheet.classList.remove("show");
+      } else if (overlay.classList.contains("folder-edit-overlay")) {
+        const editSheet = overlay.querySelector(".folder-edit");
+        editSheet.classList.remove("show");
+        setTimeout(() => overlay.style.display = "none", 300);
+      } else if (overlay.classList.contains("dialog-overlay")) {
         overlay.style.display = "none";
-        const recipeRegister = document.querySelector('.recipe-register');
-        const bottomNav = document.querySelector('.bottom-navigation');
-        if (recipeRegister) recipeRegister.style.display = 'flex';
-        if (bottomNav) bottomNav.style.display = 'flex';
-      } else if (overlay.id === "recipeOverlay") {
-        const bottomSheet = overlay.querySelector(".bottom-sheet");
-        bottomSheet.classList.remove("show");
-        overlay.style.display = "none";
-        const registerBtn = document.querySelector(".recipe-register");
-        const bottomNav = document.querySelector(".bottom-navigation");
-        if (registerBtn) registerBtn.style.display = 'flex';
-        if (bottomNav) bottomNav.style.display = 'flex';
       }
     });
 
-    // overlay가 열리면 history push
     const observer = new MutationObserver(() => {
-      if (overlay.style.display === "flex" || overlay.style.display === "block") {
+      const style = overlay.style.display;
+      if (style === "flex" || style === "block") {
         history.pushState({ overlay: true }, "");
       }
     });
     observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
   });
 
-  // 뒤로가기 감지
   window.addEventListener("popstate", (e) => {
     const anyOpen = overlays.find(o => o.style.display === "flex" || o.style.display === "block");
     if (anyOpen) {
       e.preventDefault?.();
       anyOpen.dispatchEvent(new Event("closeOverlay"));
-      history.pushState({}, ""); // 뒤로가기 막기
+      history.pushState({}, "");
     }
   });
 });

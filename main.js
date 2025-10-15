@@ -717,6 +717,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// -------------------- 인기 검색어 - 레시피 더보기 이동 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const moreButtons = document.querySelectorAll(".search-more-btn");
+
+  moreButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // 버튼이 속한 아코디언 아이템 찾기
+      const accordionItem = btn.closest(".search-accordion-item");
+      if (!accordionItem) return;
+
+      // 해당 항목의 제목 텍스트 가져오기
+      const titleElem = accordionItem.querySelector(".search-accordion-title");
+      if (!titleElem) return;
+
+      const query = titleElem.textContent.trim();
+
+      // URL 생성 및 이동
+      const targetUrl = `https://m.10000recipe.com/recipe/list.html?q=${encodeURIComponent(query)}`;
+      window.location.href = targetUrl;
+    });
+  });
+});
+
 // -------------------- folder_edit 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const folderEditBtn = document.querySelector(".folder-edit-wrap");

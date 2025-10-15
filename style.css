@@ -865,7 +865,8 @@ main {
 
 .horizontal-items {
   scrollbar-width: none;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
+  gap: 12px;
 }
 
 .horizontal-item {
@@ -880,7 +881,6 @@ main {
 
 .horizontal-item-thumb { 
   position: relative; 
-  width: 140PX; 
   margin-bottom: 4px;
 } 
 
