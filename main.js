@@ -750,6 +750,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// -------------------- scrap_edit 이동 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const folderEditBtn = document.querySelector(".scrap-edit");
+  if (folderEditBtn) {
+    folderEditBtn.addEventListener("click", () => {
+      window.location.href = "scrap_edit.html";
+    });
+  }
+});
+
 // -------------------- 스크랩 폴더 활성화 전환 + list-items 갱신 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const folders = document.querySelectorAll(".folder-list > div");
