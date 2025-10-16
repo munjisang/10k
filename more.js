@@ -223,11 +223,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".folder-edit-overlay"),
     document.querySelector(".dialog-overlay"),
     document.querySelector(".folder-select-overlay"),
+    document.querySelector(".recipe-dialog-overlay"), // 추가
   ].filter(Boolean);
 
   overlays.forEach(overlay => {
     overlay.addEventListener("closeOverlay", () => {
-      const sheet = overlay.querySelector(".folder-add, .folder-edit, .folder-select");
+      const sheet = overlay.querySelector(".folder-add, .folder-edit, .folder-select, .recipe-dialog-box");
       if (sheet) sheet.classList.remove("show");
       overlay.style.display = "none";
     });
