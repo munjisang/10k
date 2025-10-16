@@ -1,0 +1,169 @@
+[
+    {
+        "category_seq": 4,
+        "category_name": "종류별",
+            "sub" : [
+            {
+              "sub_category_seq": 63,
+              "sub_category_name": "밑반찬",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_09.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "메인반찬",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_07.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "국/탕",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_03.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "찌개",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_16.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "디저트",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_06.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "면/만두",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_08.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "밥/죽/떡",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_10.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "퓨전",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_18.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "김치/젓갈/장류",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_05.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "양념/소스/잼",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_14.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "양식",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_15.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "샐러드",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_12.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "스프",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_13.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "빵",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_11.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "과자",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_02.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "차/음료/술",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_17.png"
+            },
+            {
+              "sub_category_seq": 56,
+              "sub_category_name": "기타",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate1_04.png"
+            }
+            ]
+    },
+        {
+        "category_seq": 2,
+        "category_name": "상황별",
+            "sub" : [
+            {
+              "sub_category_seq": 12,
+              "sub_category_name": "일상",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_11.png"
+            },
+            {
+              "sub_category_seq": 18,
+              "sub_category_name": "초스피드",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_12.png"
+            },
+            {
+              "sub_category_seq": 13,
+              "sub_category_name": "손닙접대",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_05.png"
+            },
+            {
+              "sub_category_seq": 19,
+              "sub_category_name": "술안주",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_07.png"
+            },
+            {
+              "sub_category_seq": 21,
+              "sub_category_name": "다이어트",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_03.png"
+            },
+            {
+              "sub_category_seq": 15,
+              "sub_category_name": "도시락",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_04.png"
+            },
+            {
+              "sub_category_seq": 43,
+              "sub_category_name": "영양식",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_09.png"
+            },
+            {
+              "sub_category_seq": 17,
+              "sub_category_name": "간식",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_01.png"
+            },
+            {
+              "sub_category_seq": 45,
+              "sub_category_name": "야식",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_08.png"
+            },
+            {
+              "sub_category_seq": 20,
+              "sub_category_name": "푸드스타일링",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_13.png"
+            },
+            {
+              "sub_category_seq": 46,
+              "sub_category_name": "해장",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_14.png"
+            },
+            {
+              "sub_category_seq": 44,
+              "sub_category_name": "명절",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_06.png"
+            },
+            {
+              "sub_category_seq": 14,
+              "sub_category_name": "이유식",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_10.png"
+            },
+            {
+              "sub_category_seq": 12,
+              "sub_category_name": "기타",
+              "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_02.png"
+            }
+            ]
+    }
+]
