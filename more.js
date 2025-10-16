@@ -290,19 +290,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // -------------------- 스크랩 폴더 활성화 전환 + list-items 갱신 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-
   const scrapArea = document.querySelector(".scrap-area") || document.querySelector(".scrap-edit-area");
   const listItems = scrapArea?.querySelector(".list-items") || null;
   const nodata = document.querySelector(".scrap-area-nodata") || document.querySelector(".scrap-edit-area-nodata");
 
   let recipeList = [];
 
-  // 레시피 데이터 로드 후 폴더 이벤트 등록
+  // ✅ Fisher-Yates 셔플 함수
+  function shuffleArray(array, count) {
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy.slice(0, count);
+  }
+
+  // 레시피 데이터 로드
   fetch('./data/recipe.json')
     .then(res => res.json())
     .then(data => {
       recipeList = data.recipes || [];
-
       initFolderList(".folder-list");
       initFolderList(".scrap-edit-folder");
 
@@ -327,10 +335,12 @@ document.addEventListener("DOMContentLoaded", () => {
       folder._hasFolderClick = true;
 
       folder.addEventListener("click", () => {
+        if (!recipeList.length || !scrapArea || !listItems) return;
 
-        if (!recipeList.length || !scrapArea || !listItems) return; // fetch 전 클릭 방지
+        // 1️⃣ 리스트 초기화
+        listItems.innerHTML = "";
 
-        // 폴더 상태 초기화
+        // 2️⃣ 폴더 상태 초기화
         folders.forEach(f => {
           f.classList.remove("folder-active");
           f.classList.add("folder-nonactive");
@@ -340,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (countDiv) countDiv.className = "folder-nonactive-count";
         });
 
+        // 3️⃣ 현재 폴더 활성화
         folder.classList.remove("folder-nonactive");
         folder.classList.add("folder-active");
         const name = folder.querySelector("span");
@@ -347,18 +358,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (name) name.className = "folder-active-name";
         if (countDiv) countDiv.className = "folder-active-count";
 
-        // 레시피 개수 추출
-        let count = parseInt(countDiv?.textContent.replace("+", ""), 10) || 0;
+        // 4️⃣ count 읽기
+        let count = 0;
+        if (countDiv?.textContent) {
+          const match = countDiv.textContent.match(/\d+/);
+          count = match ? parseInt(match[0], 10) : 0;
+        }
 
-        // 리스트 갱신
+        // 5️⃣ 리스트 갱신
         listItems.setAttribute("data-count", count);
         scrapArea.style.display = count === 0 ? "none" : "flex";
         if (nodata) nodata.style.display = count === 0 ? "flex" : "none";
 
-        listItems.innerHTML = "";
+        const selectedRecipes = shuffleArray(recipeList, count);
 
-        const shuffled = [...recipeList].sort(() => Math.random() - 0.5).slice(0, count);
-        shuffled.forEach(recipe => {
+        selectedRecipes.forEach(recipe => {
           const item = document.createElement("div");
           item.className = "list-item";
           item.innerHTML = `
@@ -380,33 +394,72 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
               </div>
             </div>
+            <div class="overlay">
+              <img src="./img/check_default.png" class="checkbox">
+            </div>
           `;
-          item.addEventListener("click", () =>
-            window.open(`https://m.10000recipe.com/recipe/${recipe.cok_sq_board}`, "_self")
-          );
+
+          // 6️⃣ 레시피 선택 이벤트
+          let selected = false;
+          const overlay = item.querySelector(".overlay");
+          const checkbox = item.querySelector(".checkbox");
+
+          item.addEventListener("click", (e) => {
+            e.stopPropagation();
+            selected = !selected;
+            overlay.style.backgroundColor = selected ? 'var(--DIM-TERTIARY)' : 'var(--DIM-WHITE)';
+            checkbox.src = selected ? './img/check_active.png' : './img/check_default.png';
+
+            const selectedCount = document.querySelectorAll('.list-item .checkbox[src*="check_active.png"]').length;
+            updateEditMenuState(selectedCount);
+          });
+
           listItems.appendChild(item);
         });
 
-        // 폴더 리스트 중앙 정렬
+        // 7️⃣ 폴더 리스트 중앙 정렬
         const folderRect = folder.getBoundingClientRect();
         const listRect = folderList.getBoundingClientRect();
         const center = listRect.width / 4 - folderRect.width / 2;
         const targetScroll = folderRect.left + folderList.scrollLeft - listRect.left - center;
         folderList.scrollTo({ left: targetScroll, behavior: "smooth" });
 
-        // 헤더 + 폴더 높이 고려한 스크롤 이동
+        // 8️⃣ 스크롤 이동 (헤더 + 폴더 높이 고려)
         const headerHeight = document.querySelector(".sub-header")?.offsetHeight || 0;
         const folderHeight = folderList.offsetHeight || 0;
-
-        // scrapArea 화면 기준 위치
         const scrapAreaTop = scrapArea.getBoundingClientRect().top + window.scrollY;
-
-        // 실제 이동할 스크롤 위치 계산
         const scrollToPos = scrapAreaTop - headerHeight - folderHeight;
-
         window.scrollTo({ top: scrollToPos, behavior: "smooth" });
       });
     });
   }
 });
 
+// -------------------- 편집모드 바텀 메뉴 활성화 --------------------
+function updateEditMenuState(selectedCount) {
+  const copyItem = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(1) .edit-menu-icon');
+  const moveItem = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(3) .edit-menu-icon');
+  const delItem  = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(5) .edit-menu-icon');
+
+  const copyLabel = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(1) .edit-menu-label');
+  const moveLabel = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(3) .edit-menu-label');
+  const delLabel  = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(5) .edit-menu-label');
+
+  if (selectedCount > 0) {
+    copyItem.src = './img/edit_copy_on.png';
+    moveItem.src = './img/edit_move_on.png';
+    delItem.src  = './img/edit_del_on.png';
+
+    copyLabel.classList.add('edit-menu-labelactive');
+    moveLabel.classList.add('edit-menu-labelactive');
+    delLabel.classList.add('edit-menu-labelactive');
+  } else {
+    copyItem.src = './img/edit_copy_off.png';
+    moveItem.src = './img/edit_move_off.png';
+    delItem.src  = './img/edit_del_off.png';
+
+    copyLabel.classList.remove('edit-menu-labelactive');
+    moveLabel.classList.remove('edit-menu-labelactive');
+    delLabel.classList.remove('edit-menu-labelactive');
+  }
+}
