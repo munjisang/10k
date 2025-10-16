@@ -8,28 +8,65 @@
   <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="font.css">
   <link rel="stylesheet" href="color.css">
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="sub_style.css">
-  <title>만개의 레시피-스크랩 수정</title>
+  <title>만개의 레시피-스크랩 편집</title>
 </head>
 <body>
-  <!-- 헤더 -->
-  <header class="sub-header">
-    <div class="leding-icons">
-      <img src="./img/back.png" alt="이전화면" class="leding-icon">
-    </div>
-    <div class="sub-header-title">스크랩 편집</div>
-  </header>
-  <!-- 메인 콘텐츠 -->
   <main>
+    <!-- 헤더 -->
+    <header class="sub-header">
+      <div class="leding-icons">
+        <img src="./img/back.png" alt="이전화면" class="leding-icon">
+      </div>
+      <div class="sub-header-title">스크랩 편집</div>
+    </header>
+    <!-- 폴더영역 -->
+    <div class="scrap-edit-folder">
+      <div class="folder-active">
+        <span class="folder-active-name">전체보기</span>
+        <div class="folder-active-count">35</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">기본폴더</span>
+        <div class="folder-nonactive-count">16</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">밑반찬</span>
+        <div class="folder-nonactive-count">3</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">야식</span>
+        <div class="folder-nonactive-count">1</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">막둥이식단</span>
+        <div class="folder-nonactive-count">5</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">다욧!</span>
+        <div class="folder-nonactive-count">10</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">저속노화&비건</span>
+        <div class="folder-nonactive-count">0</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">하루하루 병들어가는 몸뚱아리를 방지하기 위한 영양</span>
+        <div class="folder-nonactive-count">0</div>
+      </div>
+    </div>
     <!-- 스크랩영역 -->
-    <div class="scrap-area">
-      <div class="list-items" data-count="5">
+    <div class="scrap-edit-area">
+      <div class="list-items">
       </div>      
+    </div>
+    <!-- 스크랩영역 - 데이터 없음 -->
+    <div class="scrap-area-nodata">
+      <img src="./img//bookmark_off.svg" alt="nodata">
+      <div class="folder-nonactive-txt">등록된 스크랩이 없네요! <br> 마음에 드는 레시피를 스크랩해두면 <br> 언제든지 쉽게 찾아볼 수 있어요</div>
     </div>
   </main>
 </body>
-<script src="main.js"></script>
 <script src="more.js"></script>
 </html>
     

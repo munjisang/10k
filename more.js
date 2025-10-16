@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   delButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      const folderName = btn.closest(".folder-list-option")?.querySelector(".folder-list-option-txt")?.textContent || "이 폴더";
+      const folderName = btn.closest(".folder-editlist-option")?.querySelector(".folder-editlist-option-txt")?.textContent || "이 폴더";
       dialogDesc.innerHTML = `<b>${folderName}</b>을 삭제할까요?<br>폴더를 삭제하면 폴더에 담긴 레시피도 함께 삭제 됩니다.`;
       dialog.style.display = "flex";
     });
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".folder-option-edit").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const folderNameElem = btn.closest(".folder-list-option").querySelector(".folder-list-option-txt");
+      const folderNameElem = btn.closest(".folder-editlist-option").querySelector(".folder-editlist-option-txt");
       openEditSheet(folderNameElem);
     });
   });
@@ -287,3 +287,126 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// -------------------- 스크랩 폴더 활성화 전환 + list-items 갱신 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+
+  const scrapArea = document.querySelector(".scrap-area") || document.querySelector(".scrap-edit-area");
+  const listItems = scrapArea?.querySelector(".list-items") || null;
+  const nodata = document.querySelector(".scrap-area-nodata") || document.querySelector(".scrap-edit-area-nodata");
+
+  let recipeList = [];
+
+  // 레시피 데이터 로드 후 폴더 이벤트 등록
+  fetch('./data/recipe.json')
+    .then(res => res.json())
+    .then(data => {
+      recipeList = data.recipes || [];
+
+      initFolderList(".folder-list");
+      initFolderList(".scrap-edit-folder");
+
+      // 초기 폴더 클릭
+      const initial =
+        document.querySelector(".folder-active") ||
+        document.querySelector(".folder-list > div") ||
+        document.querySelector(".scrap-edit-folder > div");
+      if (initial) initial.click();
+    })
+    .catch(err => console.error("레시피 로드 실패:", err));
+
+  function initFolderList(selector) {
+    const folderList = document.querySelector(selector);
+    if (!folderList) return;
+
+    const folders = folderList.querySelectorAll(":scope > div");
+    if (!folders.length) return;
+
+    folders.forEach(folder => {
+      if (folder._hasFolderClick) return;
+      folder._hasFolderClick = true;
+
+      folder.addEventListener("click", () => {
+
+        if (!recipeList.length || !scrapArea || !listItems) return; // fetch 전 클릭 방지
+
+        // 폴더 상태 초기화
+        folders.forEach(f => {
+          f.classList.remove("folder-active");
+          f.classList.add("folder-nonactive");
+          const name = f.querySelector("span");
+          const countDiv = f.querySelector("div");
+          if (name) name.className = "folder-nonactive-name";
+          if (countDiv) countDiv.className = "folder-nonactive-count";
+        });
+
+        folder.classList.remove("folder-nonactive");
+        folder.classList.add("folder-active");
+        const name = folder.querySelector("span");
+        const countDiv = folder.querySelector("div");
+        if (name) name.className = "folder-active-name";
+        if (countDiv) countDiv.className = "folder-active-count";
+
+        // 레시피 개수 추출
+        let count = parseInt(countDiv?.textContent.replace("+", ""), 10) || 0;
+
+        // 리스트 갱신
+        listItems.setAttribute("data-count", count);
+        scrapArea.style.display = count === 0 ? "none" : "flex";
+        if (nodata) nodata.style.display = count === 0 ? "flex" : "none";
+
+        listItems.innerHTML = "";
+
+        const shuffled = [...recipeList].sort(() => Math.random() - 0.5).slice(0, count);
+        shuffled.forEach(recipe => {
+          const item = document.createElement("div");
+          item.className = "list-item";
+          item.innerHTML = `
+            <div class="list-item-thumb">
+              <img src="${recipe.cok_thumb}" alt="${recipe.food_name || recipe.cok_title}" class="thumb-img">
+              <img src="./img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
+            </div>
+            <div class="recipe-info">
+              <div class="recipe-name">${recipe.cok_title}</div>
+              <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
+              <div class="recipe-cook">
+                <div class="cook-degree-wrap">
+                  <img src="./img/degree.png" alt="난이도">
+                  <span class="cook-degree">${recipe.cok_degree}</span>
+                </div>
+                <div class="cook-time-wrap">
+                  <img src="./img/time.png" alt="시간">
+                  <span class="cook-time">${recipe.cok_time}</span>
+                </div>
+              </div>
+            </div>
+          `;
+          item.addEventListener("click", () =>
+            window.open(`https://m.10000recipe.com/recipe/${recipe.cok_sq_board}`, "_self")
+          );
+          listItems.appendChild(item);
+        });
+
+        // 폴더 리스트 중앙 정렬
+        const folderRect = folder.getBoundingClientRect();
+        const listRect = folderList.getBoundingClientRect();
+        const center = listRect.width / 4 - folderRect.width / 2;
+        const targetScroll = folderRect.left + folderList.scrollLeft - listRect.left - center;
+        folderList.scrollTo({ left: targetScroll, behavior: "smooth" });
+
+        // 헤더 + 폴더 높이 고려한 스크롤 이동
+        const headerHeight = document.querySelector(".sub-header")?.offsetHeight || 0;
+        const folderHeight = folderList.offsetHeight || 0;
+
+        // scrapArea 화면 기준 위치
+        const scrapAreaTop = scrapArea.getBoundingClientRect().top + window.scrollY;
+
+        // 실제 이동할 스크롤 위치 계산
+        const scrollToPos = scrapAreaTop - headerHeight - folderHeight;
+
+        window.scrollTo({ top: scrollToPos, behavior: "smooth" });
+      });
+    });
+  }
+});
+
