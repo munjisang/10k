@@ -463,3 +463,65 @@ function updateEditMenuState(selectedCount) {
     delLabel.classList.remove('edit-menu-labelactive');
   }
 }
+
+
+// -------------------- 편집모드 바텀 메뉴 클릭 이벤트 (폴더선택 바텀시트) --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const folderOverlay = document.querySelector(".folder-select-overlay");
+  const folderSheet = folderOverlay?.querySelector(".folder-select");
+  const cancelBtn = folderOverlay?.querySelector(".folder-select-cancel");
+  const confirmBtn = folderOverlay?.querySelector(".folder-select-confirm");
+
+  const copyItem = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(1)');
+  const moveItem = document.querySelector('.edit-bottom-menu .edit-menu-item:nth-child(3)');
+
+  function openFolderSheet() {
+    if (!folderOverlay || !folderSheet) return;
+    folderOverlay.style.display = "flex";
+    setTimeout(() => folderSheet.classList.add("show"), 10);
+  }
+
+  function closeFolderSheet() {
+    if (!folderOverlay || !folderSheet) return;
+    folderSheet.classList.remove("show");
+    setTimeout(() => folderOverlay.style.display = "none", 300);
+  }
+
+  // 메뉴 클릭 시 바텀시트 열기 (활성화 상태에서만)
+  [copyItem, moveItem].forEach(item => {
+    item?.addEventListener("click", () => {
+      const icon = item.querySelector(".edit-menu-icon");
+      if (icon && icon.src.includes("_on.png")) {
+        openFolderSheet();
+      }
+    });
+  });
+
+  // 취소 버튼
+  cancelBtn?.addEventListener("click", closeFolderSheet);
+
+  // 확인 버튼 (선택 가능 상태일 때만)
+  confirmBtn?.addEventListener("click", () => {
+    if (!confirmBtn.classList.contains("active")) return;
+    // TODO: 선택된 레시피를 실제 폴더로 이동/복사 로직 추가
+    closeFolderSheet();
+    const toast = document.getElementById("toast");
+    if (toast) {
+      toast.textContent = "선택된 레시피가 폴더로 이동되었습니다.";
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+  });
+
+  // 바깥 클릭 시 닫기
+  folderOverlay?.addEventListener("click", (e) => {
+    if (e.target === folderOverlay) closeFolderSheet();
+  });
+
+  // Escape 키 닫기
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && folderOverlay?.style.display === "flex") {
+      closeFolderSheet();
+    }
+  });
+});

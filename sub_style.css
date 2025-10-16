@@ -1010,3 +1010,118 @@ main {
   margin: 0 8px;
   align-self: center;
 }
+
+
+
+/* 폴더 선택 바텀시트 */
+.folder-select-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 3000;
+  transition: opacity 0.3s ease;
+}
+
+.folder-select {
+  width: 100%;
+  max-width: 640px;
+  background: var(--WHITE);
+  border-radius: 16px 16px 0 0;
+  padding: 30px 16px;
+  box-sizing: border-box;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.folder-select.show {
+  transform: translateY(0);
+}
+
+.folder-select-handle {
+  display: none !important;
+}
+
+.folder-select-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.folder-select-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.folder-select-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.folder-select-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.folder-select-confirm {
+  background: var(--DIM-TERTIARY);
+  color: var(--TERTIARY-01);
+  border: none;
+  cursor: not-allowed;
+  transition: background 0.2s ease;
+}
+
+.folder-select-confirm.active {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  cursor: pointer;
+}
+
+.folder-select-lists {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--WHITE);
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.folder-select-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.folder-select-list-img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.folder-select-list img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.folder-select-list-txt {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
