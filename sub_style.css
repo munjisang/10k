@@ -1098,15 +1098,15 @@ main {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 0;
+  padding: 6px 0;
   justify-content: center;
   cursor: pointer;
   outline: none;
 }
 
 .folder-select-list-img {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -1118,7 +1118,7 @@ main {
 
 .folder-select-list-txt {
   flex: 1;
-  font: var(--B7);
+  font: var(--B4);
   color: var(--BLACK-MAIN);
   text-align: left;
   white-space: nowrap;
