@@ -978,15 +978,15 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  gap: 4px;
+  gap: 6px;
   margin: 20px 0;
   -webkit-tap-highlight-color: transparent;
   outline: none;
 }
 
 .edit-menu-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .edit-menu-label {
@@ -1005,12 +1005,11 @@ main {
 
 .edit-bottom-divider {
   width: 1px;
-  background-color: var(--DIM-WHITE);
+  background-color: var(--BLACK-SUB);
   height: 24px;
   margin: 0 8px;
   align-self: center;
 }
-
 
 
 /* 폴더 선택 바텀시트 */
@@ -1021,7 +1020,7 @@ main {
   display: none;
   justify-content: center;
   align-items: flex-end;
-  z-index: 3000;
+  z-index: 9999; /* 최상단 */
   transition: opacity 0.3s ease;
 }
 
@@ -1034,6 +1033,9 @@ main {
   box-sizing: border-box;
   transform: translateY(100%);
   transition: transform 0.3s ease;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .folder-select.show {
@@ -1049,6 +1051,69 @@ main {
   color: var(--BLACK-MAIN);
   margin-bottom: 20px;
   text-align: center;
+  flex-shrink: 0;
+}
+
+.folder-select-lists {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto; 
+  padding-right: 6px;
+}
+
+/* 스크롤바 디자인 (선택사항) */
+.folder-select-lists::-webkit-scrollbar {
+  width: 4px;
+}
+.folder-select-lists::-webkit-scrollbar-thumb {
+  background: var(--DIM-WHITE);
+  border-radius: 4px;
+}
+
+.folder-select-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.folder-select-list-img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.folder-select-list img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.folder-check-img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.ffolder-check img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.folder-select-list-txt {
+  flex: 1;
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .folder-select-buttons {
@@ -1056,6 +1121,7 @@ main {
   justify-content: center;
   gap: 12px;
   margin-top: 30px;
+  flex-shrink: 0; 
 }
 
 .folder-select-buttons button {
@@ -1086,42 +1152,62 @@ main {
   cursor: pointer;
 }
 
-.folder-select-lists {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--WHITE);
-  gap: 16px;
-  box-sizing: border-box;
-}
-
-.folder-select-list {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 0;
-  justify-content: center;
-  cursor: pointer;
-  outline: none;
-}
-
-.folder-select-list-img {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
-.folder-select-list img {
-  width: 100%;
+/* 레시피 삭제 다이얼로그 */
+.recipe-dialog-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; 
   height: 100%;
-  object-fit: contain;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 40000; /* 바텀시트 바로 아래 */
 }
 
-.folder-select-list-txt {
-  flex: 1;
+.recipe-dialog-box {
+  background: var(--WHITE);
+  border-radius: 12px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.recipe-dialog-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 12px;
+}
+
+.recipe-dialog-desc {
   font: var(--B4);
   color: var(--BLACK-MAIN);
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-bottom: 24px;
+}
+
+.recipe-dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.recipe-dialog-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.recipe-dialog-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.recipe-dialog-delete {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
 }
