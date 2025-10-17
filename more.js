@@ -249,9 +249,6 @@ function showToast(message) {
   }, 2500);
 }
 
-
-
-
 // -------------------- 안드로이드 뒤로가기 오버레이 제어 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const overlays = [
@@ -262,34 +259,51 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".recipe-dialog-overlay"),
   ].filter(Boolean);
 
+  let overlayActive = false; // ✅ 현재 overlay 히스토리 등록 여부
+
+  // -------------------- 공통 닫기 이벤트 --------------------
   overlays.forEach(overlay => {
     overlay.addEventListener("closeOverlay", () => {
       const sheet = overlay.querySelector(".folder-add, .folder-edit, .folder-select, .recipe-dialog-box");
       if (sheet) sheet.classList.remove("show");
       overlay.style.display = "none";
-    });
 
-    const observer = new MutationObserver(() => {
-      const style = overlay.style.display;
-      const isVisible = style === "flex" || style === "block";
-      if (isVisible && !overlay.dataset.historyAdded) {
-        history.pushState({ overlay: true }, "");
-        overlay.dataset.historyAdded = "true";
-      } else if (!isVisible) {
-        delete overlay.dataset.historyAdded;
-      }
+      // 모든 오버레이 닫혔으면 히스토리 상태 해제
+      const anyVisible = overlays.some(o => o.style.display === "flex" || o.style.display === "block");
+      if (!anyVisible) overlayActive = false;
     });
-
-    observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
   });
 
+  // -------------------- 오버레이 열릴 때 pushState 1회만 --------------------
+  const showOverlay = (overlay) => {
+    if (!overlayActive) {
+      history.pushState({ overlay: true }, "");
+      overlayActive = true;
+    }
+    overlay.style.display = "flex";
+  };
+
+  // 이 함수로 열면 됨 → 기존 코드에 `overlay.style.display = "flex";` 부분을 이걸로 대체
+  window.showOverlay = showOverlay;
+
+  // -------------------- 뒤로가기 (popstate) --------------------
   window.addEventListener("popstate", (e) => {
     const openOverlays = overlays.filter(o => o.style.display === "flex" || o.style.display === "block");
+
     if (openOverlays.length > 0) {
       e.preventDefault?.();
+
+      // 맨 위 오버레이 닫기
       const topOverlay = openOverlays[openOverlays.length - 1];
       topOverlay.dispatchEvent(new Event("closeOverlay"));
-      history.pushState({}, "");
+
+      // 모든 오버레이 닫혔으면 overlayActive 해제
+      const anyVisible = overlays.some(o => o.style.display === "flex" || o.style.display === "block");
+      if (!anyVisible) overlayActive = false;
+    } else {
+      // 오버레이 없으면 원래 브라우저 뒤로가기 동작
+      overlayActive = false;
+      history.back();
     }
   });
 });
