@@ -1070,7 +1070,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const bottomHeight = bottomNav.offsetHeight || 80;
 
   // 안전영역(Safe area)까지 포함한 padding-bottom 적용
-  const safePadding = `calc(${bottomHeight + 40}px + env(safe-area-inset-bottom))`;
+  const safePadding = `calc(${bottomHeight + 140}px + env(safe-area-inset-bottom))`;
 
   rightPanel.style.paddingBottom = safePadding;
   if (leftPanel) leftPanel.style.paddingBottom = safePadding;
@@ -1078,7 +1078,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 혹시 리사이즈 시에도 대응 (안드로이드/iOS 가로모드 전환 대비)
   window.addEventListener("resize", () => {
     const newHeight = bottomNav.offsetHeight || 80;
-    const updatedPadding = `calc(${newHeight + 40}px + env(safe-area-inset-bottom))`;
+    const updatedPadding = `calc(${newHeight + 140}px + env(safe-area-inset-bottom))`;
     rightPanel.style.paddingBottom = updatedPadding;
     if (leftPanel) leftPanel.style.paddingBottom = updatedPadding;
   });
