@@ -1001,7 +1001,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const response = await fetch("/data/category.json");
+    const response = await fetch("./data/category.json");
     const data = await response.json();
 
     if (!data || data.length === 0) return;
