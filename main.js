@@ -1023,6 +1023,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.querySelectorAll(".category-left-item").forEach(el => el.classList.remove("active"));
         item.classList.add("active");
         renderSubCategories(category.sub);
+        rightPanel.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
       });
 
       if (index === 0) {
