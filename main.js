@@ -608,24 +608,25 @@ document.addEventListener("DOMContentLoaded", () => {
     return n.toString();
   }
 
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2000);
+  }
+
   fetch("./data/chef.json")
     .then(res => res.json())
     .then(data => {
       if (!Array.isArray(data)) return;
 
       const shuffled = data.sort(() => Math.random() - 0.5);
-
       const chefsToShow = shuffled.slice(0, displayCount);
 
       chefsToShow.forEach(item => {
         const chefItem = document.createElement("div");
         chefItem.className = "chef-item";
-
-        let snsHtml = '';
-        if (item["chef-instargram"]) snsHtml += `<img src="./img/instar.png" alt="인스타그램" class="sns-icon" data-link="${item["chef-instargram"]}">`;
-        if (item["chef-youtube"]) snsHtml += `<img src="./img/youtube.png" alt="유튜브" class="sns-icon" data-link="${item["chef-youtube"]}">`;
-        if (item["chef-blog"]) snsHtml += `<img src="./img/blog.png" alt="블로그" class="sns-icon" data-link="${item["chef-blog"]}">`;
-        if (item["chef-link"]) snsHtml += `<img src="./img/link.png" alt="기타" class="sns-icon" data-link="${item["chef-link"]}">`;
 
         let activeText = '';
         if (item["chef-active"] === 1) activeText = "최근활동 셰프";
@@ -650,24 +651,31 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
           <div class="chef-add-btn">소식받기</div>
-<!--
-          <div class="chef-sns-wrap">
-            ${snsHtml}
-          </div>
--->
         `;
 
-        chefItem.addEventListener("click", (e) => {
-          if (e.target.classList.contains("sns-icon")) return;
-          window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${item.chef_seq}`, '_self');
+        // 버튼 클릭 이벤트
+        const addBtn = chefItem.querySelector(".chef-add-btn");
+        addBtn.addEventListener("click", (e) => {
+          e.stopPropagation(); // 부모 클릭 이벤트 방지
+          const chefName = item["chef-name"];
+          if (addBtn.classList.contains("chef-add-btn")) {
+            // 소식받기 → 소식받는중
+            addBtn.classList.remove("chef-add-btn");
+            addBtn.classList.add("chef-add-flow");
+            addBtn.textContent = "소식받는중";
+            showToast(`${chefName}님의 새로운 소식을 알려드릴께요.`);
+          } else {
+            // 소식받는중 → 소식받기
+            addBtn.classList.remove("chef-add-flow");
+            addBtn.classList.add("chef-add-btn");
+            addBtn.textContent = "소식받기";
+            showToast(`${chefName}님의 소식받기를 취소 했어요.`);
+          }
         });
 
-        chefItem.querySelectorAll(".sns-icon").forEach(icon => {
-          icon.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const link = icon.getAttribute("data-link");
-            if (link) window.open(link, "_blank");
-          });
+        chefItem.addEventListener("click", (e) => {
+          if (e.target.classList.contains("sns-icon") || e.target === addBtn) return;
+          window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${item.chef_seq}`, '_self');
         });
 
         chefContainer.appendChild(chefItem);

@@ -1360,11 +1360,25 @@ main {
 .chef-add-btn {
   width: 60%;
   padding: 8px 14px;
-  border: 1px solid var(--GRAY-01);
   border-radius: 4px;
   background: var(--BLACK-MAIN);
   font: var(--C3);
   color: var(--WHITE);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chef-add-flow {
+  width: 60%;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background: var(--GRAY-01);
+  font: var(--C3);
+  color: var(--BLACK-SUB);
   cursor: pointer;
   text-decoration: none;
   text-align: center;
