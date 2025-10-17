@@ -12,7 +12,7 @@ body {
     max-width: 640px;
     width: 100%;
     margin: 0 auto;
-    background: var(--WHITE);
+    background: var(--GRAY-02);
     padding-bottom: calc(24px + env(safe-area-inset-bottom));
     overflow-y: scroll; 
     scrollbar-width: none;
@@ -66,6 +66,9 @@ main {
 
 .sub-contents {
   background-color: var(--WHITE);
+  margin: 10px 0;
+  padding-top: 20px;
+  border-radius: 8px;
 }
 
 /* 레시피 더보기 */
@@ -220,7 +223,7 @@ main {
 
 /* tootip */
 .tootip {
-  margin: 20px 16px;
+  margin: 0 16px;
   padding: 10px 14px;
   border-radius: 20px;
   background: var(--GRAY-03);
@@ -258,7 +261,7 @@ main {
 .folder-editlist {
   display: flex;
   flex-direction: column;
-  padding: 0px 16px;
+  padding: 20px 16px;
   background-color: var(--WHITE);
   gap: 16px;
   box-sizing: border-box;
@@ -777,6 +780,7 @@ main {
   border-radius: 8px;
   gap: 16px;
   box-sizing: border-box;
+  margin: 10px 0;
 }
 
 .scrap-area-sort {
@@ -929,6 +933,7 @@ main {
   display: flex;
   flex-direction: column;
   padding: 24px 16px;
+  margin: 10px 0;
   background-color: var(--WHITE);
   border-radius: 8px;
   gap: 16px;

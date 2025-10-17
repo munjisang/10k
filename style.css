@@ -1407,7 +1407,7 @@ main {
 /* 카테고리 영역 */
 .category-container {
   display: flex;
-  height: calc(100vh - 160px); /* 헤더/바텀 제외 높이 */
+  height: calc(100vh - 42px); /* 헤더/바텀 제외 높이 */
   background-color: var(--WHITE);
 }
 
