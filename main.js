@@ -981,3 +981,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// -------------------- 카테고리 페이지 스크롤 처리 --------------------
+if (window.location.pathname.includes("category.html")) {
+  document.body.style.overflow = "hidden";
+}
+
+// -------------------- 카테고리 목록 구성 --------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  const leftPanel = document.getElementById("category-left");
+  const rightPanel = document.getElementById("category-right");
+
+  // 소분류 목록 컨테이너 생성 (배너 아래)
+  let subCategoryContainer = rightPanel.querySelector(".sub-category-items");
+  if (!subCategoryContainer) {
+    subCategoryContainer = document.createElement("div");
+    subCategoryContainer.className = "sub-category-items";
+    rightPanel.appendChild(subCategoryContainer);
+  }
+
+  try {
+    const response = await fetch("/data/category.json");
+    const data = await response.json();
+
+    if (!data || data.length === 0) return;
+
+    // 대분류 목록 렌더링
+    data.forEach((category, index) => {
+      const item = document.createElement("div");
+      item.className = "category-left-item";
+      item.textContent = category.category_name;
+
+      item.addEventListener("click", () => {
+        document.querySelectorAll(".category-left-item").forEach(el => el.classList.remove("active"));
+        item.classList.add("active");
+        renderSubCategories(category.sub);
+      });
+
+      if (index === 0) {
+        item.classList.add("active");
+        renderSubCategories(category.sub);
+      }
+
+      leftPanel.appendChild(item);
+    });
+
+  } catch (err) {
+    console.error("❌ 카테고리 데이터를 불러오는 중 오류 발생:", err);
+  }
+
+  // 소분류 렌더링 함수
+  function renderSubCategories(subList) {
+    subCategoryContainer.innerHTML = ""; // 배너는 유지, 소분류만 초기화
+
+    subList.forEach(sub => {
+      const a = document.createElement("a");
+      a.href = sub.sub_category_url;
+      a.className = "sub-category-item";
+      a.target = "_blank";
+
+      a.innerHTML = `
+        <img src="${sub.sub_category_thumb}" alt="${sub.sub_category_name}" class="sub-category-thumb">
+        <span class="sub-category-name">${sub.sub_category_name}</span>
+      `;
+
+      subCategoryContainer.appendChild(a);
+    });
+  }
+});
