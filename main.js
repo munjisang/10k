@@ -932,48 +932,55 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const overlays = [
     document.querySelector(".folder-add-overlay"),
-    document.querySelector(".folder-edit-overlay"),
-    document.querySelector(".dialog-overlay"),
-    document.querySelector(".folder-select-overlay"),
-    document.querySelector(".recipe-dialog-overlay"),
+    document.getElementById("searchOverlay"),
+    document.getElementById("recipeOverlay")
   ].filter(Boolean);
 
-  const overlayStack = []; // 🔹 열린 오버레이를 순서대로 관리
-
+  // 각 오버레이마다 closeOverlay 이벤트 연결
   overlays.forEach(overlay => {
     overlay.addEventListener("closeOverlay", () => {
-      const sheet = overlay.querySelector(".folder-add, .folder-edit, .folder-select, .recipe-dialog-box");
-      if (sheet) sheet.classList.remove("show");
-      overlay.style.display = "none";
-
-      // 스택에서 제거
-      const idx = overlayStack.indexOf(overlay);
-      if (idx !== -1) overlayStack.splice(idx, 1);
+      if (overlay === document.querySelector(".folder-add-overlay")) {
+        const bottomSheet = document.querySelector(".folder-add");
+        bottomSheet.classList.remove("show");
+        setTimeout(() => overlay.style.display = "none", 300);
+      } else if (overlay.id === "searchOverlay") {
+        const bottomSheet = overlay.querySelector(".bottom-sheet");
+        bottomSheet.classList.remove("show");
+        overlay.style.display = "none";
+        const recipeRegister = document.querySelector('.recipe-register');
+        const bottomNav = document.querySelector('.bottom-navigation');
+        if (recipeRegister) recipeRegister.style.display = 'flex';
+        if (bottomNav) bottomNav.style.display = 'flex';
+      } else if (overlay.id === "recipeOverlay") {
+        const bottomSheet = overlay.querySelector(".bottom-sheet");
+        bottomSheet.classList.remove("show");
+        overlay.style.display = "none";
+        const registerBtn = document.querySelector(".recipe-register");
+        const bottomNav = document.querySelector(".bottom-navigation");
+        if (registerBtn) registerBtn.style.display = 'flex';
+        if (bottomNav) bottomNav.style.display = 'flex';
+      }
     });
+
+    // overlay가 열리면 history push
+    const observer = new MutationObserver(() => {
+      if (overlay.style.display === "flex" || overlay.style.display === "block") {
+        history.pushState({ overlay: true }, "");
+      }
+    });
+    observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
   });
 
-  const showOverlay = (overlay) => {
-    if (!overlayStack.includes(overlay)) {
-      overlayStack.push(overlay);
-      history.pushState({ overlay: true }, ""); // 🔹 history push
-    }
-    overlay.style.display = "flex";
-  };
-
-  window.showOverlay = showOverlay;
-
+  // 뒤로가기 감지
   window.addEventListener("popstate", (e) => {
-    if (overlayStack.length > 0) {
+    const anyOpen = overlays.find(o => o.style.display === "flex" || o.style.display === "block");
+    if (anyOpen) {
       e.preventDefault?.();
-
-      // 맨 위 오버레이만 닫음
-      const topOverlay = overlayStack[overlayStack.length - 1];
-      topOverlay.dispatchEvent(new Event("closeOverlay"));
+      anyOpen.dispatchEvent(new Event("closeOverlay"));
+      history.pushState({}, ""); // 뒤로가기 막기
     }
   });
 });
-
-
 
 // -------------------- 카테고리 페이지 스크롤 처리 --------------------
 if (window.location.pathname.includes("category.html")) {
