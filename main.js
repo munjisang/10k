@@ -984,7 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // -------------------- 카테고리 페이지 스크롤 처리 --------------------
 if (window.location.pathname.includes("category.html")) {
-  document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden"; // body 스크롤 활성화
 }
 
 // -------------------- 카테고리 목록 구성 --------------------
@@ -992,7 +992,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const leftPanel = document.getElementById("category-left");
   const rightPanel = document.getElementById("category-right");
 
-  // 소분류 목록 컨테이너 생성 (배너 아래)
   let subCategoryContainer = rightPanel.querySelector(".sub-category-items");
   if (!subCategoryContainer) {
     subCategoryContainer = document.createElement("div");
@@ -1006,7 +1005,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!data || data.length === 0) return;
 
-    // 대분류 목록 렌더링
     data.forEach((category, index) => {
       const item = document.createElement("div");
       item.className = "category-left-item";
@@ -1030,9 +1028,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ 카테고리 데이터를 불러오는 중 오류 발생:", err);
   }
 
-  // 소분류 렌더링 함수
   function renderSubCategories(subList) {
-    subCategoryContainer.innerHTML = ""; // 배너는 유지, 소분류만 초기화
+    const bannerArea = rightPanel.querySelector(".category-banner-area");
+    let subCategoryContainer = rightPanel.querySelector(".sub-category-items");
+    if (!subCategoryContainer) {
+      subCategoryContainer = document.createElement("div");
+      subCategoryContainer.className = "sub-category-items";
+      rightPanel.appendChild(subCategoryContainer);
+    }
+    subCategoryContainer.innerHTML = "";
 
     subList.forEach(sub => {
       const a = document.createElement("a");
@@ -1047,5 +1051,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       subCategoryContainer.appendChild(a);
     });
+
+    // 배너 항상 sub-category-items 위에 유지
+    if (bannerArea && bannerArea.nextSibling !== subCategoryContainer) {
+      rightPanel.querySelector(".category-right-wrapper").insertBefore(subCategoryContainer, bannerArea.nextSibling);
+    }
   }
 });

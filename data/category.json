@@ -567,5 +567,126 @@
         "sub_category_name": "아빠의요리"
       }
     ]
+  },
+  {
+    "category_seq": 10, 
+    "category_name": "A", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리A" 
+      }
+    ]
+  },
+  {
+    "category_seq": 11, 
+    "category_name": "B", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리B" 
+      }
+    ]
+  },
+  {
+    "category_seq": 12, 
+    "category_name": "C", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리C" 
+      }
+    ]
+  },
+  {
+    "category_seq": 13, 
+    "category_name": "D", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리D" 
+      }
+    ]
+  },
+  {
+    "category_seq": 14, 
+    "category_name": "E", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리E" 
+      }
+    ]
+  },
+  {
+    "category_seq": 15, 
+    "category_name": "F", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리F" 
+      }
+    ]
+  },
+  {
+    "category_seq": 16, 
+    "category_name": "G", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리G" 
+      }
+    ]
+  },
+  {
+    "category_seq": 17, 
+    "category_name": "H", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리H" 
+      }
+    ]
+  },
+  {
+    "category_seq": 18, 
+    "category_name": "I", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리I" 
+      }
+    ]
+  },
+  {
+    "category_seq": 19, 
+    "category_name": "J", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리J" 
+      }
+    ]
+  },
+  {
+    "category_seq": 20, 
+    "category_name": "K", 
+    "sub": [
+      {
+        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
+        "sub_category_name": "글로벌요리K" 
+      }
+    ]
   }
 ]
