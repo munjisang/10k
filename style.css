@@ -1357,6 +1357,22 @@ main {
   color: var(--TERTIARY-08);
 }
 
+.chef-add-btn {
+  width: 60%;
+  padding: 8px 14px;
+  border: 1px solid var(--GRAY-01);
+  border-radius: 4px;
+  background: var(--BLACK-MAIN);
+  font: var(--C3);
+  color: var(--WHITE);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* 링크 바로가기 메뉴 영역 */
 .direct-menu {
   display: flex;

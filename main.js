@@ -649,6 +649,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           </div>
+          <div class="chef-add-btn">소식받기</div>
 <!--
           <div class="chef-sns-wrap">
             ${snsHtml}
