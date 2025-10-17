@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".folder-edit-overlay"),
     document.querySelector(".dialog-overlay"),
     document.querySelector(".folder-select-overlay"),
-    document.querySelector(".recipe-dialog-overlay"), // 추가
+    document.querySelector(".recipe-dialog-overlay"),
   ].filter(Boolean);
 
   overlays.forEach(overlay => {
