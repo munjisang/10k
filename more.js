@@ -167,7 +167,7 @@ if (!toast) {
   document.body.appendChild(toast);
 }
 
-// -------------------- 폴더명 수정 바텀시트 --------------------
+// -------------------- 폴더 수정 & 삭제 통합 처리 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const editOverlay = document.querySelector(".folder-edit-overlay");
   const editSheet = document.querySelector(".folder-edit");
@@ -175,6 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelBtn = document.querySelector(".folder-edit-cancel");
   const saveBtn = document.querySelector(".folder-edit-save");
 
+  const dialogOverlay = document.querySelector(".dialog-overlay");
+  const deleteBtn = document.querySelector(".dialog-delete");
+
+  // -------------------- 폴더 수정 바텀시트 --------------------
   const openEditSheet = (folderNameElem) => {
     const folderName = folderNameElem.textContent.trim();
     editOverlay.style.display = "flex";
@@ -201,20 +205,52 @@ document.addEventListener("DOMContentLoaded", () => {
   saveBtn.addEventListener("click", () => {
     if (saveBtn.disabled) return;
     closeEditSheet();
-    toast.textContent = "폴더명이 수정되었습니다.";
-    toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 2500);
+    showToast("폴더명이 수정되었습니다.");
   });
 
-  editOverlay.addEventListener("click", e => { if (e.target === editOverlay) closeEditSheet(); });
+  editOverlay.addEventListener("click", e => { 
+    if (e.target === editOverlay) closeEditSheet(); 
+  });
 
   document.querySelectorAll(".folder-option-edit").forEach(btn => {
     btn.addEventListener("click", () => {
-      const folderNameElem = btn.closest(".folder-editlist-option").querySelector(".folder-editlist-option-txt");
+      const folderNameElem = btn.closest(".folder-editlist-option")
+        .querySelector(".folder-editlist-option-txt");
       openEditSheet(folderNameElem);
     });
   });
+
+  // -------------------- 폴더 삭제 다이얼로그 --------------------
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", () => {
+      dialogOverlay.style.display = "none";
+      showToast("폴더가 삭제되었습니다.");
+    });
+  }
 });
+
+// -------------------- 공용 토스트 함수 --------------------
+let toastTimer = null;
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+
+  // 기존 타이머 제거
+  if (toastTimer) clearTimeout(toastTimer);
+
+  // 새 메시지 표시
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  // 2.5초 뒤 숨김
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
+
+
 
 // -------------------- 안드로이드 뒤로가기 오버레이 제어 --------------------
 document.addEventListener("DOMContentLoaded", () => {
