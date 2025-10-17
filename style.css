@@ -1478,14 +1478,14 @@ main {
 }
 
 .sub-category-thumb {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   margin-bottom: 6px;
 }
 
 .sub-category-name {
-  font: var(--B7);
+  font: var(--C3);
   display: block;
   width: 100%;
   text-align: center;
