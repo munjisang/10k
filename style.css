@@ -1444,6 +1444,12 @@ main {
   background: var(--WHITE);
   border-right: 1px solid var(--GRAY-02);
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-left::-webkit-scrollbar {
+  display: none;
 }
 
 .category-left-item {
@@ -1466,6 +1472,12 @@ main {
   overflow-y: auto;
   padding: 12px;
   box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-left::-webkit-scrollbar {
+  display: none;
 }
 
 .category-right-wrapper {
