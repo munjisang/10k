@@ -632,34 +632,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // -------------------- 헤더 카테고리 선택 셀렉트박스 연동 --------------------
 document.addEventListener("DOMContentLoaded", async () => {
-  // --- DOM 엘리먼트 안전하게 선택 ---
   const selectWrapper = document.querySelector(".cate-select-wrapper");
   const subCateItemsContainer = document.querySelector(".sub-cate-items");
   const listContainer = document.querySelector(".list-items");
 
-  // 셀렉트가 존재하지 않으면 실패하지 않도록 조기 리턴(필요하다면 later로 초기화 가능)
   if (!selectWrapper) {
     console.warn("cate-select-wrapper가 없습니다. cate-custom-select 동작 불가.");
   }
 
-  // 셀렉트 내부 엘리먼트 (안전하게 접근)
   const customSelect = selectWrapper ? selectWrapper.querySelector(".cate-custom-select") : null;
   const selected = customSelect ? customSelect.querySelector(".selected") : null;
   const optionsContainer = customSelect ? customSelect.querySelector(".cate-options") : null;
   const chevron = customSelect ? customSelect.querySelector(".cate-chevron-icon") : null;
 
-  // list 및 서브카테고리 처리에 필요한 변수들
   let categories = [];
   let recipes = [];
   let currentPage = 0;
   const itemsPerPage = 300;
 
-  // URL 파라미터에서 category / sub 값 읽기
   const urlParams = new URLSearchParams(window.location.search);
   const selectedCategoryNameFromURL = urlParams.get("category");
   const selectedSubNameFromURL = urlParams.get("sub");
 
-  // --- 셀렉트 UI 유틸: 열기/닫기 함수 ---
   function openSelect() {
     if (!customSelect || !optionsContainer) return;
     customSelect.classList.add("open");
@@ -676,7 +670,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     optionsContainer.style.display = isOpen ? "block" : "none";
   }
 
-  // --- 레시피 렌더링 (기본: 필터 없이 전체 목록을 보여줌) ---
   function renderItems(reset = false) {
     if (!listContainer) return;
     if (reset) {
@@ -729,20 +722,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // --- 카테고리 로드 및 select 옵션 생성 ---
   try {
     const res = await fetch("./data/category.json");
     categories = await res.json();
     if (!Array.isArray(categories) || categories.length === 0) {
       console.warn("category.json이 비어있거나 배열이 아님");
     } else {
-      // 안전하게 optionsContainer 초기화
       if (optionsContainer) {
         optionsContainer.innerHTML = "";
-        optionsContainer.style.display = "none"; // 초기 숨김
+        optionsContainer.style.display = "none"; 
       }
 
-      // 옵션 목록 생성
       categories.forEach(cat => {
         if (!optionsContainer) return;
         const li = document.createElement("li");
@@ -751,20 +741,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         li.style.cursor = "pointer";
 
         li.addEventListener("click", (e) => {
-          e.stopPropagation(); // 클릭 버블 방지
+          e.stopPropagation(); 
           if (selected) selected.textContent = li.dataset.value;
           closeSelect();
 
           const selectedCategory = categories.find(c => c.category_name === li.dataset.value);
           if (selectedCategory) {
-            renderSubCategories(selectedCategory.sub, null); // URL 기반 active는 렌더Sub에서 처리
+            renderSubCategories(selectedCategory.sub, null); 
           }
         });
 
         optionsContainer.appendChild(li);
       });
 
-      // URL에 category가 있으면 해당 값으로 초기 선택, 없으면 첫 항목
       const initialCategory = categories.find(c => c.category_name === selectedCategoryNameFromURL) || categories[0];
       if (selected) selected.textContent = (initialCategory && initialCategory.category_name) || "";
       if (initialCategory) renderSubCategories(initialCategory.sub, selectedSubNameFromURL);
@@ -773,16 +762,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ category.json 로드 실패:", err);
   }
 
-  // --- selected 클릭(셀렉트 열기/닫기) 처리 ---
   if (selected) {
-    // 클릭 시 select 토글, 이벤트 버블 차단
     selected.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleSelect();
     });
   }
 
-  // chevron 아이콘도 클릭 허용
   if (chevron) {
     chevron.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -790,9 +776,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // 문서 클릭 시 셀렉트 닫기
   document.addEventListener("click", (e) => {
-    // 단, customSelect 내 클릭은 닫지 않음 (stopPropagation 사용으로 대부분 차단됨)
     if (customSelect && !customSelect.contains(e.target)) {
       closeSelect();
     }
@@ -809,35 +793,66 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.textContent = sub.sub_category_name;
       div.style.cursor = "pointer";
 
-      // active 처리: URL에 지정된 sub가 있으면 그걸 우선, 없으면 첫번째
       if (activeSubName && sub.sub_category_name === activeSubName) {
         div.classList.add("active");
       } else if (!activeSubName && idx === 0) {
         div.classList.add("active");
       }
 
-      div.addEventListener("click", (e) => {
+      div.addEventListener("click", async (e) => {
         e.preventDefault();
-        // 활성화 토글
+
+        // 활성화 처리
         subCateItemsContainer.querySelectorAll(".sub-cate-item").forEach(el => el.classList.remove("active"));
         div.classList.add("active");
 
-        // list 새로고침 (요구하신 대로 필터 없이 전체 목록 재출력)
-        listContainer && (listContainer.innerHTML = "");
-        currentPage = 0;
-        renderItems(true);
+        // 스크롤 중앙 이동
+        const listRect = subCateItemsContainer.getBoundingClientRect();
+        const itemRect = div.getBoundingClientRect();
+        const offset = itemRect.left - listRect.left - (listRect.width / 2) + (itemRect.width / 2);
+
+        subCateItemsContainer.scrollTo({
+          left: subCateItemsContainer.scrollLeft + offset,
+          behavior: "smooth"
+        });
+
+        // ✅ 서브카테고리 클릭 시 레시피 새로 로드 + 랜덤 섞기
+        try {
+          const res = await fetch("./data/recipe.json");
+          const recipeData = await res.json();
+
+          // 🔹 랜덤 섞기
+          recipes = Array.isArray(recipeData.recipes)
+            ? recipeData.recipes.sort(() => Math.random() - 0.5).slice(0, 45)
+            : [];
+
+          renderItems(true);
+        } catch (err) {
+          console.error("❌ recipe.json 다시 로드 실패:", err);
+        }
       });
+
+
 
       subCateItemsContainer.appendChild(div);
     });
 
-    // 만약 active가 아예 없으면 첫 번째에 active 부여
-    if (!subCateItemsContainer.querySelector(".sub-cate-item.active") && subCateItemsContainer.firstChild) {
-      subCateItemsContainer.firstChild.classList.add("active");
+    const activeItem = subCateItemsContainer.querySelector(".sub-cate-item.active");
+    if (activeItem) {
+      setTimeout(() => {
+        const listRect = subCateItemsContainer.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
+        const offset = itemRect.left - listRect.left - (listRect.width / 4) + (itemRect.width / 2);
+
+        subCateItemsContainer.scrollBy({
+          left: offset,
+          behavior: "smooth"
+        });
+      }, 100);
     }
   }
 
-  // --- 레시피 데이터 로드 ---
+
   try {
     const resRecipe = await fetch("./data/recipe.json");
     const recipeData = await resRecipe.json();

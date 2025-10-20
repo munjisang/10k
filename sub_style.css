@@ -1321,7 +1321,7 @@ main {
   top: 64px;
   margin-top: 64px;
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   background-color: var(--WHITE);
   border-bottom: 1px solid var(--GRAY-02);
   scrollbar-width: none;
@@ -1337,7 +1337,15 @@ main {
   display: flex;
   gap: 8px;
   padding: 0 12px;
+  overflow-x: auto;
+  white-space: nowrap; 
+  scroll-behavior: smooth;
+  scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+.sub-cate-items::-webkit-scrollbar {
+  display: none;
 }
 
 /* 개별 탭 아이템 */
@@ -1356,7 +1364,6 @@ main {
   white-space: nowrap;
 }
 
-/* 활성 탭 */
 .sub-cate-item.active {
   color: var(--TERTIARY-08);
   border-bottom: 2px solid var(--TERTIARY-08);
@@ -1375,7 +1382,7 @@ main {
 .cate-recipe-more {
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
+  padding: 0 16px 20px 16px;
   background-color: var(--WHITE);
   gap: 20px;
   box-sizing: border-box;
