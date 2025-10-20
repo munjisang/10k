@@ -1055,7 +1055,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const a = document.createElement("a");
       a.href = sub.sub_category_url;
       a.className = "sub-category-item";
-      a.target = "_blank";
+      a.target = "_self";
 
       a.innerHTML = `
         <img src="${sub.sub_category_thumb}" alt="${sub.sub_category_name}" class="sub-category-thumb">
