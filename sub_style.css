@@ -27,7 +27,6 @@ main {
   padding-bottom: 60px;
 }
 
-
 /* header */
 .sub-header {
   position: sticky;
@@ -1314,7 +1313,6 @@ main {
   border: none;
 }
 
-
 /* 서브카테고리 메뉴 영역 */
 .sub-cate {
   position: sticky;
@@ -1348,7 +1346,6 @@ main {
   display: none;
 }
 
-/* 개별 탭 아이템 */
 .sub-cate-item {
   flex: 0 0 auto;
   padding: 10px 8px;
@@ -1370,7 +1367,6 @@ main {
   font: var(--B3);
 }
 
-
 /* 콘텐츠 영역 */
 .cate-contents {
   background-color: var(--WHITE);
@@ -1387,7 +1383,6 @@ main {
   gap: 20px;
   box-sizing: border-box;
 }
-
 
 .cate-recipe-option {
   display: flex;
