@@ -864,4 +864,71 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// -------------------- 필터 오버레이 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const filterOverlay = document.getElementById("filterOverlay");
+  const filterBtnImg = document.querySelector(".cate-recipe-option-img img");
+  const filterBtnWrapper = document.querySelector(".cate-recipe-option-img");
+  const filterClose = filterOverlay.querySelector(".filter-title-area-icon");
+  const cancelBtn = filterOverlay.querySelector(".filter-select-cancel");
+  const confirmBtn = filterOverlay.querySelector(".filter-select-confirm");
+
+  // 모든 filter chip
+  const allChips = filterOverlay.querySelectorAll(".filter-select");
+
+  // 오버레이 열기
+  filterBtnWrapper.addEventListener("click", () => {
+    filterOverlay.style.display = "flex";
+    filterOverlay.querySelector(".filter-sheet").classList.add("show");
+  });
+
+  // 오버레이 닫기
+  const closeOverlay = () => {
+    const sheet = filterOverlay.querySelector(".filter-sheet");
+    sheet.classList.remove("show");
+    setTimeout(() => filterOverlay.style.display = "none", 300);
+  };
+  filterClose.addEventListener("click", closeOverlay);
+
+  // 초기화 버튼 클릭
+  cancelBtn.addEventListener("click", () => {
+    allChips.forEach(chip => chip.classList.remove("active"));
+    updateFilterUI();
+  });
+
+  // 레시피 보기 버튼 클릭
+  confirmBtn.addEventListener("click", () => {
+    closeOverlay();
+    // 선택 상태는 그대로 유지
+  });
+
+  // Chip 선택 토글
+  filterOverlay.addEventListener("click", (e) => {
+    const chip = e.target.closest(".filter-select");
+    if (!chip) return;
+
+    chip.classList.toggle("active");
+    updateFilterUI();
+  });
+
+  // 필터 UI 상태 업데이트
+  function updateFilterUI() {
+    const activeCount = Array.from(allChips).filter(c => c.classList.contains("active")).length;
+
+    // 버튼 텍스트 변경
+    confirmBtn.textContent = activeCount > 0 
+      ? `${activeCount}개 조건 레시피 보기` 
+      : "모든 레시피 보기";
+
+    // 항상 버튼 활성화
+    confirmBtn.disabled = false;
+
+    // 필터 아이콘 변경
+    filterBtnImg.src = activeCount > 0 ? "./img/filter_on.png" : "./img/filter.png";
+  }
+
+  // 초기 상태 반영
+  updateFilterUI();
+});
+
 

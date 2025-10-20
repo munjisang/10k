@@ -229,7 +229,7 @@ body::-webkit-scrollbar {
 
 /* main contents 영역 */
 main {
-  padding-bottom: 100px;
+  padding-bottom: 30px;
 }
 
 /* 상단 배너 영역 */
@@ -1357,42 +1357,12 @@ main {
   color: var(--TERTIARY-08);
 }
 
-.chef-add-btn {
-  width: 60%;
-  padding: 8px 14px;
-  border-radius: 4px;
-  background: var(--BLACK-MAIN);
-  font: var(--C3);
-  color: var(--WHITE);
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chef-add-flow {
-  width: 60%;
-  padding: 8px 14px;
-  border-radius: 4px;
-  background: var(--GRAY-01);
-  font: var(--C3);
-  color: var(--BLACK-SUB);
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* 링크 바로가기 메뉴 영역 */
 .direct-menu {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  padding: 0 12px 16px;
+  padding: 12px 16px;
   scroll-behavior: smooth;
   background-color: var(--WHITE);
   scrollbar-width: none;
@@ -1508,14 +1478,14 @@ main {
 }
 
 .sub-category-thumb {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   margin-bottom: 6px;
 }
 
 .sub-category-name {
-  font: var(--C3);
+  font: var(--B7);
   display: block;
   width: 100%;
   text-align: center;

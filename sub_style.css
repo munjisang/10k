@@ -1469,3 +1469,134 @@ main {
 .cate-recipe-custom-select.open .cate-recipe-chevron-icon {
   transform: translateY(-50%) rotate(180deg);
 }
+
+
+
+
+/* 오버레이 배경 */
+.filteroverlay {
+  display: none; /* 기본 숨김 */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: flex-end; /* 하단에 바텀시트 위치 */
+  z-index: 3000;
+}
+
+.filter-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--WHITE);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 30px 16px 30px 16px; /* 버튼 주변 여백 */
+  gap: 16px;
+  box-sizing: border-box;
+  transform: translateY(100%); /* 초기: 화면 아래로 숨김 */
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-sheet.show {
+  transform: translateY(0); /* 나타날 때 버튼 영역만 보이도록 */
+}
+
+.filter-title-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter-title-area-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.filter-title-area-title {
+  font: var(--B1);
+  color: var(--BLACK-MAIN);
+}
+
+.filter-title-area-icon {
+  height: 22px;
+  display: block;
+  margin-left: auto;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.filter-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.filter-option-title {
+  font: var(--B3);
+  color: var(--BLACK-MAIN);
+}
+
+.filter-selects {
+  display: flex;
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+  gap: 8px;        /* 아이템 간 간격 */
+  margin-top: 8px;
+}
+
+.filter-select {
+  flex: 0 0 auto;           /* 최소/최대 너비 고정 */
+  padding: 8px 16px;
+  border-radius: 24px;
+  border: 1px solid var(--GRAY-02);
+  background-color: var(--WHITE);
+  color: var(--BLACK-MAIN);
+  font: var(--B8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.filter-select.active {
+  background-color: var(--DIM-TERTIARY);
+  color: var(--TERTIARY-08);
+}
+
+.filter-select-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.filter-select-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.filter-select-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.filter-select-confirm {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
+  cursor: not-allowed;
+}
