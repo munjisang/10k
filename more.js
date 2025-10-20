@@ -476,7 +476,6 @@ function updateEditMenuState(selectedCount) {
   }
 }
 
-
 // -------------------- 레시피 삭제 & 폴더 선택 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -598,4 +597,164 @@ document.addEventListener("DOMContentLoaded", () => {
   folderOverlay?.addEventListener("click", e => { if(e.target===folderOverlay) { closeFolderSheet(); resetFolderSelection(); resetRecipeSelection(); } });
   document.addEventListener("keydown", e => { if(e.key==="Escape" && folderOverlay?.style.display==="flex") { closeFolderSheet(); resetFolderSelection(); resetRecipeSelection(); } });
 
+});
+
+// -------------------- 헤더 카테고리 선택 셀렉트박스 연동 --------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  const selectWrapper = document.querySelector(".cate-select-wrapper");
+  const subCateContainer = document.querySelector(".sub-cate-items");
+  if (!selectWrapper || !subCateContainer) return;
+
+  const customSelect = selectWrapper.querySelector(".cate-custom-select");
+  const selected = customSelect.querySelector(".selected");
+  const optionsContainer = customSelect.querySelector(".cate-options");
+
+  let categories = [];
+
+  try {
+    const response = await fetch("./data/category.json");
+    categories = await response.json();
+
+    if (!Array.isArray(categories)) return;
+
+    optionsContainer.innerHTML = "";
+
+    categories.forEach((category, index) => {
+      const li = document.createElement("li");
+      li.dataset.value = category.category_name;
+      li.textContent = category.category_name;
+
+      // 초기 선택값 및 서브카테고리 렌더링
+      if (index === 0) {
+        selected.textContent = category.category_name;
+        renderSubCategories(category.sub);
+      }
+
+      li.addEventListener("click", () => {
+        selected.textContent = li.dataset.value;
+        optionsContainer.style.display = "none";
+        customSelect.classList.remove("open");
+
+        const selectedCategory = categories.find(c => c.category_name === li.dataset.value);
+        if (selectedCategory) renderSubCategories(selectedCategory.sub);
+      });
+
+      optionsContainer.appendChild(li);
+    });
+  } catch (err) {
+    console.error("❌ category.json 로드 실패:", err);
+  }
+
+  selected.addEventListener("click", () => {
+    const isOpen = customSelect.classList.toggle("open");
+    optionsContainer.style.display = isOpen ? "block" : "none";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!customSelect.contains(e.target)) {
+      customSelect.classList.remove("open");
+      optionsContainer.style.display = "none";
+    }
+  });
+
+  // -------------------- 서브카테고리 렌더링 --------------------
+  function renderSubCategories(subs) {
+    subCateContainer.innerHTML = "";
+    subs.forEach((sub, idx) => {
+      const div = document.createElement("div");
+      div.classList.add("sub-cate-item");
+      if (idx === 0) div.classList.add("active"); // 첫번째 항목 활성화
+      div.textContent = sub.sub_category_name;
+      subCateContainer.appendChild(div);
+    });
+  }
+});
+
+
+
+/*
+document.addEventListener("DOMContentLoaded", async () => {
+  const selectWrapper = document.querySelector(".cate-select-wrapper");
+  if (!selectWrapper) return;
+
+  const customSelect = selectWrapper.querySelector(".cate-custom-select");
+  const selected = customSelect.querySelector(".selected");
+  const optionsContainer = customSelect.querySelector(".cate-options");
+  const chevron = customSelect.querySelector(".cate-chevron-icon");
+
+  try {
+    const response = await fetch("./data/category.json");
+    const data = await response.json();
+
+    if (!Array.isArray(data)) return;
+
+    optionsContainer.innerHTML = "";
+
+    data.forEach((category, index) => {
+      const li = document.createElement("li");
+      li.dataset.value = category.category_name;
+      li.textContent = category.category_name;
+
+      if (index === 0) {
+        selected.textContent = category.category_name;
+      }
+
+      li.addEventListener("click", () => {
+        selected.textContent = li.dataset.value;
+        optionsContainer.style.display = "none";
+        customSelect.classList.remove("open");
+      });
+
+      optionsContainer.appendChild(li);
+    });
+  } catch (err) {
+    console.error("❌ category.json 로드 실패:", err);
+  }
+
+  selected.addEventListener("click", () => {
+    const isOpen = customSelect.classList.toggle("open");
+    optionsContainer.style.display = isOpen ? "block" : "none";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!customSelect.contains(e.target)) {
+      customSelect.classList.remove("open");
+      optionsContainer.style.display = "none";
+    }
+  });
+});
+*/
+
+
+
+
+// -------------------- 정렬 셀렉트박스 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const recipeSelect = document.querySelector(".cate-recipe-custom-select");
+  const selected = recipeSelect.querySelector(".selected");
+  const options = recipeSelect.querySelector(".cate-recipe-options");
+  const optionItems = options.querySelectorAll("li");
+
+  // 셀렉트 클릭 (열기/닫기)
+  selected.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = recipeSelect.classList.toggle("open");
+    options.style.display = isOpen ? "block" : "none";
+  });
+
+  // 옵션 클릭 시 선택 및 닫기
+  optionItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation(); // 부모 이벤트 차단
+      selected.textContent = e.target.dataset.value;
+      recipeSelect.classList.remove("open");
+      options.style.display = "none";
+    });
+  });
+
+  // 외부 클릭 시 닫기
+  document.addEventListener("click", () => {
+    recipeSelect.classList.remove("open");
+    options.style.display = "none";
+  });
 });

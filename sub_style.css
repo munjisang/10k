@@ -27,6 +27,7 @@ main {
   padding-bottom: 60px;
 }
 
+
 /* header */
 .sub-header {
   position: sticky;
@@ -64,6 +65,103 @@ main {
   flex: 1;
 }
 
+/* header */
+.cate-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 640px;
+  height: 64px;
+  background: var(--WHITE);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  gap: 16px;
+  z-index: 2000;
+}
+
+.cate-header .cate-header-icons {
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+}
+
+.cate-header .icon {
+    height: 24px;
+    cursor: pointer;
+}
+
+.cate-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cate-custom-select {
+  position: relative;
+  font: var(--B3);
+  color: var(--TERTIARY-08);
+  padding: 6px 20px;
+  padding-right: 30px;
+  border-radius: 60px;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--DIM-TERTIARY);
+}
+
+.cate-custom-select .selected {
+  display: block;
+  margin-right: 8px;
+}
+
+.cate-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--WHITE);
+  border: 1px solid var(--TERTIARY-08);
+  border-radius: 6px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.1),
+    0 0 6px rgba(0,0,0,0.06);
+}
+
+.cate-options li {
+  padding: 6px 10px;
+  color: var(--BLACK-MAIN);
+  font: var(--B3);
+  cursor: pointer;
+}
+
+.cate-options li:hover {
+  background: var(--GRAY-02);
+}
+
+.cate-chevron-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.cate-custom-select.open .cate-chevron-icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* 콘텐츠 영역 */
 .sub-contents {
   background-color: var(--WHITE);
   margin: 10px 0;
@@ -643,6 +741,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 14px;
 }
 
 .folder-edit-wrap {
@@ -1216,20 +1315,155 @@ main {
 }
 
 
-.direct-menu {
+/* 서브카테고리 메뉴 영역 */
+.sub-cate {
+  position: sticky;
   top: 64px;
-  padding: 12px 16px;
-  background-color: var(--WHITE);
+  margin-top: 64px;
   display: flex;
-  flex-direction: row;
   overflow-x: auto;
-  gap: 8px;
-  scroll-behavior: smooth;
-  box-sizing: border-box;
+  background-color: var(--WHITE);
+  border-bottom: 1px solid var(--GRAY-02);
   scrollbar-width: none;
-  z-index: 999;
+  -ms-overflow-style: none;
+  z-index: 1000;
 }
 
-.direct-menu::-webkit-scrollbar {
+.sub-cate::-webkit-scrollbar {
   display: none;
+}
+
+.sub-cate-items {
+  display: flex;
+  gap: 8px;
+  padding: 0 12px;
+  -ms-overflow-style: none;
+}
+
+/* 개별 탭 아이템 */
+.sub-cate-item {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent;
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+  text-align: center;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+/* 활성 탭 */
+.sub-cate-item.active {
+  color: var(--TERTIARY-08);
+  border-bottom: 2px solid var(--TERTIARY-08);
+  font: var(--B6);
+}
+
+
+/* 콘텐츠 영역 */
+.cate-contents {
+  background-color: var(--WHITE);
+  margin: 10px 0;
+  padding-top: 20px;
+  border-radius: 8px;
+}
+
+.cate-recipe-more {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  background-color: var(--WHITE);
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+
+.cate-recipe-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cate-recipe-option-img {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.cate-recipe-option-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.cate-recipe-select-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+}
+
+.cate-recipe-custom-select {
+  position: relative;
+  font: var(--B8);
+  color: var(--BLACK-MAIN);
+  padding: 6px 0;
+  cursor: pointer;
+  user-select: none;
+  min-width: 70px;
+}
+
+.cate-recipe-custom-select .selected {
+  display: block;
+}
+
+.cate-recipe-options {
+  position: absolute;
+  min-width: 70px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--WHITE);
+  border: 1px solid var(--TERTIARY-08);
+  border-radius: 6px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.1),
+    0 0 6px rgba(0,0,0,0.06);
+}
+
+.cate-recipe-options li {
+  padding: 10px 16px;
+  color: var(--BLACK-MAIN);
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.cate-recipe-options li:hover {
+  background: var(--GRAY-02);
+}
+
+.cate-recipe-chevron-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.cate-recipe-custom-select.open .cate-recipe-chevron-icon {
+  transform: translateY(-50%) rotate(180deg);
 }
