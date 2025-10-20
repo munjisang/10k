@@ -1048,16 +1048,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       item.addEventListener("click", () => {
         document.querySelectorAll(".category-left-item").forEach(el => el.classList.remove("active"));
         item.classList.add("active");
-        renderSubCategories(category.sub);
-        rightPanel.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
+        renderSubCategories(category.category_name, category.sub);
+        rightPanel.scrollTo({ top: 0, behavior: "smooth" });
       });
 
       if (index === 0) {
         item.classList.add("active");
-        renderSubCategories(category.sub);
+        renderSubCategories(category.category_name, category.sub);
       }
 
       leftPanel.appendChild(item);
@@ -1067,7 +1064,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ 카테고리 데이터를 불러오는 중 오류 발생:", err);
   }
 
-  function renderSubCategories(subList) {
+  function renderSubCategories(categoryName, subList) {
     const bannerArea = rightPanel.querySelector(".category-banner-area");
     let subCategoryContainer = rightPanel.querySelector(".sub-category-items");
     if (!subCategoryContainer) {
@@ -1079,7 +1076,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     subList.forEach(sub => {
       const a = document.createElement("a");
-      a.href = sub.sub_category_url;
+      a.href = `./category_list.html?category=${encodeURIComponent(categoryName)}&sub=${encodeURIComponent(sub.sub_category_name)}`;
       a.className = "sub-category-item";
       a.target = "_self";
 

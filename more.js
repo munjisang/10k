@@ -599,28 +599,91 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// -------------------- 정렬 셀렉트박스 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const recipeSelect = document.querySelector(".cate-recipe-custom-select");
+  const selected = recipeSelect.querySelector(".selected");
+  const options = recipeSelect.querySelector(".cate-recipe-options");
+  const optionItems = options.querySelectorAll("li");
+
+  // 셀렉트 클릭 (열기/닫기)
+  selected.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = recipeSelect.classList.toggle("open");
+    options.style.display = isOpen ? "block" : "none";
+  });
+
+  // 옵션 클릭 시 선택 및 닫기
+  optionItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation(); // 부모 이벤트 차단
+      selected.textContent = e.target.dataset.value;
+      recipeSelect.classList.remove("open");
+      options.style.display = "none";
+    });
+  });
+
+  // 외부 클릭 시 닫기
+  document.addEventListener("click", () => {
+    recipeSelect.classList.remove("open");
+    options.style.display = "none";
+  });
+});
+
 // -------------------- 헤더 카테고리 선택 셀렉트박스 연동 --------------------
 document.addEventListener("DOMContentLoaded", async () => {
+  // --- DOM 엘리먼트 안전하게 선택 ---
   const selectWrapper = document.querySelector(".cate-select-wrapper");
-  const customSelect = selectWrapper.querySelector(".cate-custom-select");
-  const selected = customSelect.querySelector(".selected");
-  const optionsContainer = customSelect.querySelector(".cate-options");
-  const chevron = customSelect.querySelector(".cate-chevron-icon");
-
   const subCateItemsContainer = document.querySelector(".sub-cate-items");
   const listContainer = document.querySelector(".list-items");
 
+  // 셀렉트가 존재하지 않으면 실패하지 않도록 조기 리턴(필요하다면 later로 초기화 가능)
+  if (!selectWrapper) {
+    console.warn("cate-select-wrapper가 없습니다. cate-custom-select 동작 불가.");
+  }
+
+  // 셀렉트 내부 엘리먼트 (안전하게 접근)
+  const customSelect = selectWrapper ? selectWrapper.querySelector(".cate-custom-select") : null;
+  const selected = customSelect ? customSelect.querySelector(".selected") : null;
+  const optionsContainer = customSelect ? customSelect.querySelector(".cate-options") : null;
+  const chevron = customSelect ? customSelect.querySelector(".cate-chevron-icon") : null;
+
+  // list 및 서브카테고리 처리에 필요한 변수들
   let categories = [];
   let recipes = [];
   let currentPage = 0;
   const itemsPerPage = 300;
 
-  // --- 레시피 렌더링 ---
+  // URL 파라미터에서 category / sub 값 읽기
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedCategoryNameFromURL = urlParams.get("category");
+  const selectedSubNameFromURL = urlParams.get("sub");
+
+  // --- 셀렉트 UI 유틸: 열기/닫기 함수 ---
+  function openSelect() {
+    if (!customSelect || !optionsContainer) return;
+    customSelect.classList.add("open");
+    optionsContainer.style.display = "block";
+  }
+  function closeSelect() {
+    if (!customSelect || !optionsContainer) return;
+    customSelect.classList.remove("open");
+    optionsContainer.style.display = "none";
+  }
+  function toggleSelect() {
+    if (!customSelect || !optionsContainer) return;
+    const isOpen = customSelect.classList.toggle("open");
+    optionsContainer.style.display = isOpen ? "block" : "none";
+  }
+
+  // --- 레시피 렌더링 (기본: 필터 없이 전체 목록을 보여줌) ---
   function renderItems(reset = false) {
+    if (!listContainer) return;
     if (reset) {
       listContainer.innerHTML = "";
       currentPage = 0;
     }
+
     const start = currentPage * itemsPerPage;
     const end = start + itemsPerPage;
     const pageItems = recipes.slice(start, end);
@@ -653,91 +716,132 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
       listContainer.appendChild(item);
     });
+
     currentPage++;
   }
 
   function handleScroll() {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 100) {
-      if (currentPage * itemsPerPage < recipes.length) {
+      if ((currentPage) * itemsPerPage < recipes.length) {
         renderItems();
       }
     }
   }
 
-  // --- 카테고리 및 서브카테고리 로드 ---
+  // --- 카테고리 로드 및 select 옵션 생성 ---
   try {
     const res = await fetch("./data/category.json");
     categories = await res.json();
-
-    // 셀렉트박스 옵션 생성
-    optionsContainer.innerHTML = "";
-    categories.forEach((cat, index) => {
-      const li = document.createElement("li");
-      li.dataset.value = cat.category_name;
-      li.textContent = cat.category_name;
-
-      if (index === 0) {
-        selected.textContent = cat.category_name;
-        renderSubCategories(cat.sub);
+    if (!Array.isArray(categories) || categories.length === 0) {
+      console.warn("category.json이 비어있거나 배열이 아님");
+    } else {
+      // 안전하게 optionsContainer 초기화
+      if (optionsContainer) {
+        optionsContainer.innerHTML = "";
+        optionsContainer.style.display = "none"; // 초기 숨김
       }
 
-      li.addEventListener("click", () => {
-        selected.textContent = li.dataset.value;
-        optionsContainer.style.display = "none";
-        customSelect.classList.remove("open");
+      // 옵션 목록 생성
+      categories.forEach(cat => {
+        if (!optionsContainer) return;
+        const li = document.createElement("li");
+        li.dataset.value = cat.category_name;
+        li.textContent = cat.category_name;
+        li.style.cursor = "pointer";
 
-        const selectedCategory = categories.find(c => c.category_name === li.dataset.value);
-        if (selectedCategory) {
-          renderSubCategories(selectedCategory.sub);
-        }
+        li.addEventListener("click", (e) => {
+          e.stopPropagation(); // 클릭 버블 방지
+          if (selected) selected.textContent = li.dataset.value;
+          closeSelect();
+
+          const selectedCategory = categories.find(c => c.category_name === li.dataset.value);
+          if (selectedCategory) {
+            renderSubCategories(selectedCategory.sub, null); // URL 기반 active는 렌더Sub에서 처리
+          }
+        });
+
+        optionsContainer.appendChild(li);
       });
 
-      optionsContainer.appendChild(li);
-    });
+      // URL에 category가 있으면 해당 값으로 초기 선택, 없으면 첫 항목
+      const initialCategory = categories.find(c => c.category_name === selectedCategoryNameFromURL) || categories[0];
+      if (selected) selected.textContent = (initialCategory && initialCategory.category_name) || "";
+      if (initialCategory) renderSubCategories(initialCategory.sub, selectedSubNameFromURL);
+    }
   } catch (err) {
     console.error("❌ category.json 로드 실패:", err);
   }
 
-  selected.addEventListener("click", () => {
-    const isOpen = customSelect.classList.toggle("open");
-    optionsContainer.style.display = isOpen ? "block" : "none";
-  });
+  // --- selected 클릭(셀렉트 열기/닫기) 처리 ---
+  if (selected) {
+    // 클릭 시 select 토글, 이벤트 버블 차단
+    selected.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleSelect();
+    });
+  }
 
+  // chevron 아이콘도 클릭 허용
+  if (chevron) {
+    chevron.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleSelect();
+    });
+  }
+
+  // 문서 클릭 시 셀렉트 닫기
   document.addEventListener("click", (e) => {
-    if (!customSelect.contains(e.target)) {
-      customSelect.classList.remove("open");
-      optionsContainer.style.display = "none";
+    // 단, customSelect 내 클릭은 닫지 않음 (stopPropagation 사용으로 대부분 차단됨)
+    if (customSelect && !customSelect.contains(e.target)) {
+      closeSelect();
     }
   });
 
   // --- 서브카테고리 렌더링 ---
-  function renderSubCategories(subs) {
+  function renderSubCategories(subs, activeSubName = null) {
+    if (!subCateItemsContainer) return;
     subCateItemsContainer.innerHTML = "";
+
     subs.forEach((sub, idx) => {
       const div = document.createElement("div");
       div.className = "sub-cate-item";
-      if (idx === 0) div.classList.add("active");
       div.textContent = sub.sub_category_name;
+      div.style.cursor = "pointer";
 
-      div.addEventListener("click", () => {
-        // 활성화 처리
+      // active 처리: URL에 지정된 sub가 있으면 그걸 우선, 없으면 첫번째
+      if (activeSubName && sub.sub_category_name === activeSubName) {
+        div.classList.add("active");
+      } else if (!activeSubName && idx === 0) {
+        div.classList.add("active");
+      }
+
+      div.addEventListener("click", (e) => {
+        e.preventDefault();
+        // 활성화 토글
         subCateItemsContainer.querySelectorAll(".sub-cate-item").forEach(el => el.classList.remove("active"));
         div.classList.add("active");
 
-        // 리스트 새로고침
+        // list 새로고침 (요구하신 대로 필터 없이 전체 목록 재출력)
+        listContainer && (listContainer.innerHTML = "");
+        currentPage = 0;
         renderItems(true);
       });
 
       subCateItemsContainer.appendChild(div);
     });
+
+    // 만약 active가 아예 없으면 첫 번째에 active 부여
+    if (!subCateItemsContainer.querySelector(".sub-cate-item.active") && subCateItemsContainer.firstChild) {
+      subCateItemsContainer.firstChild.classList.add("active");
+    }
   }
 
   // --- 레시피 데이터 로드 ---
   try {
     const resRecipe = await fetch("./data/recipe.json");
     const recipeData = await resRecipe.json();
-    recipes = recipeData.recipes.slice(0, 45); // 초기 데이터
+    recipes = Array.isArray(recipeData.recipes) ? recipeData.recipes.slice(0, 45) : [];
     renderItems();
     window.addEventListener("scroll", handleScroll);
   } catch (err) {
@@ -745,33 +849,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// -------------------- 정렬 셀렉트박스 --------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const recipeSelect = document.querySelector(".cate-recipe-custom-select");
-  const selected = recipeSelect.querySelector(".selected");
-  const options = recipeSelect.querySelector(".cate-recipe-options");
-  const optionItems = options.querySelectorAll("li");
 
-  // 셀렉트 클릭 (열기/닫기)
-  selected.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isOpen = recipeSelect.classList.toggle("open");
-    options.style.display = isOpen ? "block" : "none";
-  });
-
-  // 옵션 클릭 시 선택 및 닫기
-  optionItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      e.stopPropagation(); // 부모 이벤트 차단
-      selected.textContent = e.target.dataset.value;
-      recipeSelect.classList.remove("open");
-      options.style.display = "none";
-    });
-  });
-
-  // 외부 클릭 시 닫기
-  document.addEventListener("click", () => {
-    recipeSelect.classList.remove("open");
-    options.style.display = "none";
-  });
-});
