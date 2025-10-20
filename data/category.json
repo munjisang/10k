@@ -1,5 +1,287 @@
 [
   {
+    "category_seq": 1,
+    "category_name": "방법별",
+    "sub": [
+      {
+        "sub_category_seq": 6,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=6",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_06.png",
+        "sub_category_name": "볶음"
+      },
+      {
+        "sub_category_seq": 1,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=1",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_03.png",
+        "sub_category_name": "끓이기"
+      },
+      {
+        "sub_category_seq": 7,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=7",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_07.png",
+        "sub_category_name": "부침"
+      },
+      {
+        "sub_category_seq": 36,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=36",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_11.png",
+        "sub_category_name": "조림"
+      },
+      {
+        "sub_category_seq": 41,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=41",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_05.png",
+        "sub_category_name": "무침"
+      },
+      {
+        "sub_category_seq": 42,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=42",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_08.png",
+        "sub_category_name": "비빔"
+      },
+      {
+        "sub_category_seq": 8,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=8",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_12.png",
+        "sub_category_name": "찜"
+      },
+      {
+        "sub_category_seq": 10,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=10",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_10.png",
+        "sub_category_name": "절임"
+      },
+      {
+        "sub_category_seq": 9,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=9",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_13.png",
+        "sub_category_name": "튀김"
+      },
+      {
+        "sub_category_seq": 38,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=38",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_09.png",
+        "sub_category_name": "삶기"
+      },
+      {
+        "sub_category_seq": 67,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=67",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_01.png",
+        "sub_category_name": "굽기"
+      },
+      {
+        "sub_category_seq": 39,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=39",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_04.png",
+        "sub_category_name": "데치기"
+      },
+      {
+        "sub_category_seq": 37,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=37",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_14.png",
+        "sub_category_name": "회"
+      },
+      {
+        "sub_category_seq": 11,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=11",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_02.png",
+        "sub_category_name": "기타"
+      }
+    ]
+  },
+  {
+    "category_seq": 2,
+    "category_name": "재료별",
+    "sub": [
+      {
+        "sub_category_seq": 70,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=70",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_11.png",
+        "sub_category_name": "소고기"
+      },
+      {
+        "sub_category_seq": 71,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=71",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_08.png",
+        "sub_category_name": "돼지고기"
+      },
+      {
+        "sub_category_seq": 72,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=72",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_07.png",
+        "sub_category_name": "닭고기"
+      },
+      {
+        "sub_category_seq": 23,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=23",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_13.png",
+        "sub_category_name": "육류"
+      },
+      {
+        "sub_category_seq": 28,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=28",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_14.png",
+        "sub_category_name": "채소류"
+      },
+      {
+        "sub_category_seq": 24,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=24",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_16.png",
+        "sub_category_name": "해물류"
+      },
+      {
+        "sub_category_seq": 50,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=50",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_06.png",
+        "sub_category_name": "달걀/유제품"
+      },
+      {
+        "sub_category_seq": 33,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=33",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_01.png",
+        "sub_category_name": "가공식품류"
+      },
+      {
+        "sub_category_seq": 47,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=47",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_12.png",
+        "sub_category_name": "쌀"
+      },
+      {
+        "sub_category_seq": 32,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=32",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_09.png",
+        "sub_category_name": "밀가루"
+      },
+      {
+        "sub_category_seq": 25,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=25",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_02.png",
+        "sub_category_name": "건어물류"
+      },
+      {
+        "sub_category_seq": 31,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=31",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_10.png",
+        "sub_category_name": "버섯류"
+      },
+      {
+        "sub_category_seq": 48,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=48",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_04.png",
+        "sub_category_name": "과일류"
+      },
+      {
+        "sub_category_seq": 27,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=27",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_15.png",
+        "sub_category_name": "콩/견과류"
+      },
+      {
+        "sub_category_seq": 26,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=26",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_03.png",
+        "sub_category_name": "곡류"
+      },
+      {
+        "sub_category_seq": 34,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=34",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_05.png",
+        "sub_category_name": "기타"
+      }
+    ]
+  },
+  {
+    "category_seq": 3,
+    "category_name": "상황별",
+    "sub": [
+      {
+        "sub_category_seq": 12,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=12",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_11.png",
+        "sub_category_name": "일상"
+      },
+      {
+        "sub_category_seq": 18,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=18",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_12.png",
+        "sub_category_name": "초스피드"
+      },
+      {
+        "sub_category_seq": 13,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=13",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_05.png",
+        "sub_category_name": "손님접대"
+      },
+      {
+        "sub_category_seq": 19,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=19",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_07.png",
+        "sub_category_name": "술안주"
+      },
+      {
+        "sub_category_seq": 21,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=21",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_03.png",
+        "sub_category_name": "다이어트"
+      },
+      {
+        "sub_category_seq": 15,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=15",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_04.png",
+        "sub_category_name": "도시락"
+      },
+      {
+        "sub_category_seq": 43,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=43",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_09.png",
+        "sub_category_name": "영양식"
+      },
+      {
+        "sub_category_seq": 17,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=17",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_01.png",
+        "sub_category_name": "간식"
+      },
+      {
+        "sub_category_seq": 45,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=45",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_08.png",
+        "sub_category_name": "야식"
+      },
+      {
+        "sub_category_seq": 20,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=20",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_13.png",
+        "sub_category_name": "푸드스타일링"
+      },
+      {
+        "sub_category_seq": 46,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=46",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_14.png",
+        "sub_category_name": "해장"
+      },
+      {
+        "sub_category_seq": 44,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=44",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_06.png",
+        "sub_category_name": "명절"
+      },
+      {
+        "sub_category_seq": 14,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=14",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_10.png",
+        "sub_category_name": "이유식"
+      },
+      {
+        "sub_category_seq": 22,
+        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=22",
+        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_02.png",
+        "sub_category_name": "기타"
+      }
+    ]
+  },
+  {
     "category_seq": 4,
     "category_name": "종류별",
     "sub": [
@@ -108,288 +390,6 @@
     ]
   },
   {
-    "category_seq": 3,
-    "category_name": "상황별",
-    "sub": [
-      {
-        "sub_category_seq": 12,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=12",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_11.png",
-        "sub_category_name": "일상"
-      },
-      {
-        "sub_category_seq": 18,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=18",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_12.png",
-        "sub_category_name": "초스피드"
-      },
-      {
-        "sub_category_seq": 13,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=13",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_05.png",
-        "sub_category_name": "손님접대"
-      },
-      {
-        "sub_category_seq": 19,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=19",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_07.png",
-        "sub_category_name": "술안주"
-      },
-      {
-        "sub_category_seq": 21,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=21",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_03.png",
-        "sub_category_name": "다이어트"
-      },
-      {
-        "sub_category_seq": 15,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=15",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_04.png",
-        "sub_category_name": "도시락"
-      },
-      {
-        "sub_category_seq": 43,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=43",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_09.png",
-        "sub_category_name": "영양식"
-      },
-      {
-        "sub_category_seq": 17,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=17",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_01.png",
-        "sub_category_name": "간식"
-      },
-      {
-        "sub_category_seq": 45,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=45",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_08.png",
-        "sub_category_name": "야식"
-      },
-      {
-        "sub_category_seq": 20,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=20",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_13.png",
-        "sub_category_name": "푸드스타일링"
-      },
-      {
-        "sub_category_seq": 46,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=46",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_14.png",
-        "sub_category_name": "해장"
-      },
-      {
-        "sub_category_seq": 44,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=44",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_06.png",
-        "sub_category_name": "명절"
-      },
-      {
-        "sub_category_seq": 14,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=14",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_10.png",
-        "sub_category_name": "이유식"
-      },
-      {
-        "sub_category_seq": 22,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat2=22",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate2_02.png",
-        "sub_category_name": "기타"
-      }
-    ]
-  },
-  {
-    "category_seq": 2,
-    "category_name": "재료별",
-    "sub": [
-      {
-        "sub_category_seq": 70,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=70",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_11.png",
-        "sub_category_name": "소고기"
-      },
-      {
-        "sub_category_seq": 71,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=71",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_08.png",
-        "sub_category_name": "돼지고기"
-      },
-      {
-        "sub_category_seq": 72,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=72",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_07.png",
-        "sub_category_name": "닭고기"
-      },
-      {
-        "sub_category_seq": 23,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=23",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_13.png",
-        "sub_category_name": "육류"
-      },
-      {
-        "sub_category_seq": 28,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=28",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_14.png",
-        "sub_category_name": "채소류"
-      },
-      {
-        "sub_category_seq": 24,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=24",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_16.png",
-        "sub_category_name": "해물류"
-      },
-      {
-        "sub_category_seq": 50,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=50",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_06.png",
-        "sub_category_name": "달걀/유제품"
-      },
-      {
-        "sub_category_seq": 33,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=33",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_01.png",
-        "sub_category_name": "가공식품류"
-      },
-      {
-        "sub_category_seq": 47,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=47",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_12.png",
-        "sub_category_name": "쌀"
-      },
-      {
-        "sub_category_seq": 32,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=32",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_09.png",
-        "sub_category_name": "밀가루"
-      },
-      {
-        "sub_category_seq": 25,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=25",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_02.png",
-        "sub_category_name": "건어물류"
-      },
-      {
-        "sub_category_seq": 31,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=31",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_10.png",
-        "sub_category_name": "버섯류"
-      },
-      {
-        "sub_category_seq": 48,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=48",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_04.png",
-        "sub_category_name": "과일류"
-      },
-      {
-        "sub_category_seq": 27,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=27",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_15.png",
-        "sub_category_name": "콩/견과류"
-      },
-      {
-        "sub_category_seq": 26,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=26",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_03.png",
-        "sub_category_name": "곡류"
-      },
-      {
-        "sub_category_seq": 34,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat3=34",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate3_05.png",
-        "sub_category_name": "기타"
-      }
-    ]
-  },
-  {
-    "category_seq": 1,
-    "category_name": "방법별",
-    "sub": [
-      {
-        "sub_category_seq": 6,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=6",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_06.png",
-        "sub_category_name": "볶음"
-      },
-      {
-        "sub_category_seq": 1,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=1",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_03.png",
-        "sub_category_name": "끓이기"
-      },
-      {
-        "sub_category_seq": 7,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=7",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_07.png",
-        "sub_category_name": "부침"
-      },
-      {
-        "sub_category_seq": 36,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=36",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_11.png",
-        "sub_category_name": "조림"
-      },
-      {
-        "sub_category_seq": 41,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=41",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_05.png",
-        "sub_category_name": "무침"
-      },
-      {
-        "sub_category_seq": 42,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=42",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_08.png",
-        "sub_category_name": "비빔"
-      },
-      {
-        "sub_category_seq": 8,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=8",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_12.png",
-        "sub_category_name": "찜"
-      },
-      {
-        "sub_category_seq": 10,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=10",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_10.png",
-        "sub_category_name": "절임"
-      },
-      {
-        "sub_category_seq": 9,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=9",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_13.png",
-        "sub_category_name": "튀김"
-      },
-      {
-        "sub_category_seq": 38,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=38",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_09.png",
-        "sub_category_name": "삶기"
-      },
-      {
-        "sub_category_seq": 67,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=67",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_01.png",
-        "sub_category_name": "굽기"
-      },
-      {
-        "sub_category_seq": 39,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=39",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_04.png",
-        "sub_category_name": "데치기"
-      },
-      {
-        "sub_category_seq": 37,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=37",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_14.png",
-        "sub_category_name": "회"
-      },
-      {
-        "sub_category_seq": 11,
-        "sub_category_url": "https://m.10000recipe.com/recipe/cate_list.html?cat1=11",
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/mobile/cate4_02.png",
-        "sub_category_name": "기타"
-      }
-    ]
-  },
-  {
     "category_seq": 5,
     "category_name": "여성·뷰티",
     "sub": [
@@ -455,7 +455,7 @@
       }
     ]
   },
-    {
+  {
     "category_seq": 6,
     "category_name": "엄마·아기",
     "sub": [
@@ -668,137 +668,6 @@
       "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016006",
       "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016006.png",
       "sub_category_name": "아빠의요리"
-      }
-    ]
-  },
-  {
-    "category_seq": 10, 
-    "category_name": "A", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리A" 
-      }
-    ]
-  },
-  {
-    "category_seq": 11, 
-    "category_name": "B", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리B" 
-      }
-    ]
-  },
-  {
-    "category_seq": 12, 
-    "category_name": "C", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리C" 
-      }
-    ]
-  },
-  {
-    "category_seq": 13, 
-    "category_name": "D", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리D" 
-      }
-    ]
-  },
-  {
-    "category_seq": 14, 
-    "category_name": "E", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리E" 
-      }
-    ]
-  },
-  {
-    "category_seq": 15, 
-    "category_name": "F", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리F" 
-      }
-    ]
-  },
-  {
-    "category_seq": 16, 
-    "category_name": "G", 
-    "sub": [
-      {"sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리G" 
-      }
-    ]
-  },
-  {
-    "category_seq": 17, 
-    "category_name": "H", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리H" 
-      }
-    ]
-  },
-  {
-    "category_seq": 18, 
-    "category_name": "I", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리I" 
-      }
-    ]
-  },
-  {
-    "category_seq": 19, 
-    "category_name": "J", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리J" 
-      }
-    ]
-  },
-  {
-    "category_seq": 20, 
-    "category_name": "K", 
-    "sub": [
-      {
-        "sub_category_seq": 101016001,
-        "sub_category_url": "https://m.10000recipe.com/recipe/theme_view.html?theme=101016001", 
-        "sub_category_thumb": "https://recipe1.ezmember.co.kr/img/recipe/reco/101016001.png", 
-        "sub_category_name": "글로벌요리K" 
       }
     ]
   }
