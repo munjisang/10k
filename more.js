@@ -809,7 +809,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // 스크롤 중앙 이동
         const listRect = subCateItemsContainer.getBoundingClientRect();
         const itemRect = div.getBoundingClientRect();
-        const offset = itemRect.left - listRect.left - (listRect.width / 2) + (itemRect.width / 2);
+        const offset = itemRect.left - listRect.left - (listRect.width / 4) + (itemRect.width / 2);
 
         subCateItemsContainer.scrollTo({
           left: subCateItemsContainer.scrollLeft + offset,
