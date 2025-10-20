@@ -102,7 +102,7 @@ main {
   position: relative;
   font: var(--B3);
   color: var(--TERTIARY-08);
-  padding: 6px 20px;
+  padding: 10px 20px;
   padding-right: 30px;
   border-radius: 60px;
   cursor: pointer;
@@ -1351,10 +1351,10 @@ main {
 /* 개별 탭 아이템 */
 .sub-cate-item {
   flex: 0 0 auto;
-  padding: 10px 16px;
+  padding: 10px 8px;
   box-sizing: border-box;
   border-bottom: 2px solid transparent;
-  font: var(--B8);
+  font: var(--B4);
   color: var(--BLACK-SUB);
   text-align: center;
   cursor: pointer;
@@ -1367,7 +1367,7 @@ main {
 .sub-cate-item.active {
   color: var(--TERTIARY-08);
   border-bottom: 2px solid var(--TERTIARY-08);
-  font: var(--B6);
+  font: var(--B3);
 }
 
 
