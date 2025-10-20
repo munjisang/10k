@@ -602,32 +602,84 @@ document.addEventListener("DOMContentLoaded", () => {
 // -------------------- 헤더 카테고리 선택 셀렉트박스 연동 --------------------
 document.addEventListener("DOMContentLoaded", async () => {
   const selectWrapper = document.querySelector(".cate-select-wrapper");
-  const subCateContainer = document.querySelector(".sub-cate-items");
-  if (!selectWrapper || !subCateContainer) return;
-
   const customSelect = selectWrapper.querySelector(".cate-custom-select");
   const selected = customSelect.querySelector(".selected");
   const optionsContainer = customSelect.querySelector(".cate-options");
+  const chevron = customSelect.querySelector(".cate-chevron-icon");
+
+  const subCateItemsContainer = document.querySelector(".sub-cate-items");
+  const listContainer = document.querySelector(".list-items");
 
   let categories = [];
+  let recipes = [];
+  let currentPage = 0;
+  const itemsPerPage = 300;
 
+  // --- 레시피 렌더링 ---
+  function renderItems(reset = false) {
+    if (reset) {
+      listContainer.innerHTML = "";
+      currentPage = 0;
+    }
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageItems = recipes.slice(start, end);
+
+    pageItems.forEach(recipe => {
+      const item = document.createElement("div");
+      item.className = "list-item";
+      item.innerHTML = `
+        <div class="list-item-thumb">
+          <img src="${recipe.cok_thumb}" alt="${recipe.food_name || recipe.cok_title}" class="thumb-img">
+          <img src="./img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
+        </div>
+        <div class="recipe-info">
+          <div class="recipe-name">${recipe.cok_title}</div>
+          <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
+          <div class="recipe-cook">
+            <div class="cook-degree-wrap">
+              <img src="./img/degree.png" alt="난이도">
+              <span class="cook-degree">${recipe.cok_degree}</span>
+            </div>
+            <div class="cook-time-wrap">
+              <img src="./img/time.png" alt="시간">
+              <span class="cook-time">${recipe.cok_time}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      item.addEventListener("click", () => {
+        window.open(`https://m.10000recipe.com/recipe/${recipe.cok_sq_board}`, "_blank");
+      });
+      listContainer.appendChild(item);
+    });
+    currentPage++;
+  }
+
+  function handleScroll() {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      if (currentPage * itemsPerPage < recipes.length) {
+        renderItems();
+      }
+    }
+  }
+
+  // --- 카테고리 및 서브카테고리 로드 ---
   try {
-    const response = await fetch("./data/category.json");
-    categories = await response.json();
+    const res = await fetch("./data/category.json");
+    categories = await res.json();
 
-    if (!Array.isArray(categories)) return;
-
+    // 셀렉트박스 옵션 생성
     optionsContainer.innerHTML = "";
-
-    categories.forEach((category, index) => {
+    categories.forEach((cat, index) => {
       const li = document.createElement("li");
-      li.dataset.value = category.category_name;
-      li.textContent = category.category_name;
+      li.dataset.value = cat.category_name;
+      li.textContent = cat.category_name;
 
-      // 초기 선택값 및 서브카테고리 렌더링
       if (index === 0) {
-        selected.textContent = category.category_name;
-        renderSubCategories(category.sub);
+        selected.textContent = cat.category_name;
+        renderSubCategories(cat.sub);
       }
 
       li.addEventListener("click", () => {
@@ -636,7 +688,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         customSelect.classList.remove("open");
 
         const selectedCategory = categories.find(c => c.category_name === li.dataset.value);
-        if (selectedCategory) renderSubCategories(selectedCategory.sub);
+        if (selectedCategory) {
+          renderSubCategories(selectedCategory.sub);
+        }
       });
 
       optionsContainer.appendChild(li);
@@ -657,76 +711,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  // -------------------- 서브카테고리 렌더링 --------------------
+  // --- 서브카테고리 렌더링 ---
   function renderSubCategories(subs) {
-    subCateContainer.innerHTML = "";
+    subCateItemsContainer.innerHTML = "";
     subs.forEach((sub, idx) => {
       const div = document.createElement("div");
-      div.classList.add("sub-cate-item");
-      if (idx === 0) div.classList.add("active"); // 첫번째 항목 활성화
+      div.className = "sub-cate-item";
+      if (idx === 0) div.classList.add("active");
       div.textContent = sub.sub_category_name;
-      subCateContainer.appendChild(div);
-    });
-  }
-});
 
+      div.addEventListener("click", () => {
+        // 활성화 처리
+        subCateItemsContainer.querySelectorAll(".sub-cate-item").forEach(el => el.classList.remove("active"));
+        div.classList.add("active");
 
-
-/*
-document.addEventListener("DOMContentLoaded", async () => {
-  const selectWrapper = document.querySelector(".cate-select-wrapper");
-  if (!selectWrapper) return;
-
-  const customSelect = selectWrapper.querySelector(".cate-custom-select");
-  const selected = customSelect.querySelector(".selected");
-  const optionsContainer = customSelect.querySelector(".cate-options");
-  const chevron = customSelect.querySelector(".cate-chevron-icon");
-
-  try {
-    const response = await fetch("./data/category.json");
-    const data = await response.json();
-
-    if (!Array.isArray(data)) return;
-
-    optionsContainer.innerHTML = "";
-
-    data.forEach((category, index) => {
-      const li = document.createElement("li");
-      li.dataset.value = category.category_name;
-      li.textContent = category.category_name;
-
-      if (index === 0) {
-        selected.textContent = category.category_name;
-      }
-
-      li.addEventListener("click", () => {
-        selected.textContent = li.dataset.value;
-        optionsContainer.style.display = "none";
-        customSelect.classList.remove("open");
+        // 리스트 새로고침
+        renderItems(true);
       });
 
-      optionsContainer.appendChild(li);
+      subCateItemsContainer.appendChild(div);
     });
-  } catch (err) {
-    console.error("❌ category.json 로드 실패:", err);
   }
 
-  selected.addEventListener("click", () => {
-    const isOpen = customSelect.classList.toggle("open");
-    optionsContainer.style.display = isOpen ? "block" : "none";
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!customSelect.contains(e.target)) {
-      customSelect.classList.remove("open");
-      optionsContainer.style.display = "none";
-    }
-  });
+  // --- 레시피 데이터 로드 ---
+  try {
+    const resRecipe = await fetch("./data/recipe.json");
+    const recipeData = await resRecipe.json();
+    recipes = recipeData.recipes.slice(0, 45); // 초기 데이터
+    renderItems();
+    window.addEventListener("scroll", handleScroll);
+  } catch (err) {
+    console.error("❌ recipe.json 로드 실패:", err);
+  }
 });
-*/
-
-
-
 
 // -------------------- 정렬 셀렉트박스 --------------------
 document.addEventListener("DOMContentLoaded", () => {
