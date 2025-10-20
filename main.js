@@ -282,6 +282,61 @@ document.querySelectorAll(".custom-select").forEach(select => {
   });
 });
 
+// -------------------- index.html 카테고리 8개 랜덤 생성 --------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  const menuContainer = document.getElementById("random-category-list");
+  if (!menuContainer) return;
+
+  try {
+    // category.json 불러오기
+    const response = await fetch("./data/category.json");
+    if (!response.ok) throw new Error("category.json을 불러올 수 없습니다.");
+    const categories = await response.json();
+
+    // 모든 소분류(sub)만 추출
+    const allSubCategories = categories.flatMap(cat => cat.sub || []);
+
+    // 데이터가 부족할 경우 처리
+    if (allSubCategories.length === 0) {
+      console.warn("소분류 데이터가 없습니다.");
+      menuContainer.innerHTML = "<p>카테고리 데이터를 불러올 수 없습니다.</p>";
+      return;
+    }
+
+    // Fisher–Yates Shuffle로 랜덤 섞기
+    for (let i = allSubCategories.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allSubCategories[i], allSubCategories[j]] = [allSubCategories[j], allSubCategories[i]];
+    }
+
+    // 랜덤 8개 선택
+    const randomEight = allSubCategories.slice(0, 8);
+
+    // HTML 구성
+    const html = randomEight.map(sub => {
+      const parentCategory = categories.find(cat =>
+        cat.sub?.some(s => s.sub_category_seq === sub.sub_category_seq)
+      );
+
+      const categoryName = parentCategory ? parentCategory.category_name : "기타";
+
+      return `
+        <a href="./category_list.html?category=${encodeURIComponent(categoryName)}&sub=${encodeURIComponent(sub.sub_category_name)}" class="menu-item">
+          <img src="${sub.sub_category_thumb}" alt="${sub.sub_category_name}">
+          <span>${sub.sub_category_name}</span>
+        </a>
+      `;
+    }).join("");
+
+    // DOM에 삽입
+    menuContainer.innerHTML = html;
+
+  } catch (error) {
+    console.error("카테고리 데이터를 불러오는 중 오류 발생:", error);
+    menuContainer.innerHTML = "<p>카테고리 로드 중 오류가 발생했습니다.</p>";
+  }
+});
+
 // -------------------- 레시피 JSON 로드 --------------------
 fetch('./data/recipe.json')
   .then(res => res.json())
@@ -465,7 +520,6 @@ fetch('./data/recipe.json')
     initSearchAccordion();
   }) 
   .catch(err => console.error('레시피 로드 실패:', err));
-
 
 // -------------------- 리뷰 JSON 로드 --------------------
 document.addEventListener("DOMContentLoaded", () => {
