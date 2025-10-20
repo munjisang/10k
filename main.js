@@ -991,10 +991,36 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// -------------------- 카테고리 페이지 스크롤 처리 --------------------
+// -------------------- 카테고리 전체 페이지 스크롤 제한 --------------------
 if (window.location.pathname.includes("category.html")) {
   document.body.style.overflow = "hidden"; // body 스크롤 활성화
 }
+
+// -------------------- 카테고리 목록 스크롤 처리 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const rightPanel = document.querySelector(".category-right");
+  const leftPanel = document.querySelector(".category-left");
+  const bottomNav = document.querySelector(".bottom-navigation");
+
+  if (!rightPanel || !bottomNav) return;
+
+  // 바텀네비 높이 자동 계산 (없을 경우 기본값 80)
+  const bottomHeight = bottomNav.offsetHeight || 80;
+
+  // 안전영역(Safe area)까지 포함한 padding-bottom 적용
+  const safePadding = `calc(${bottomHeight + 140}px + env(safe-area-inset-bottom))`;
+
+  rightPanel.style.paddingBottom = safePadding;
+  if (leftPanel) leftPanel.style.paddingBottom = safePadding;
+
+  // 혹시 리사이즈 시에도 대응 (안드로이드/iOS 가로모드 전환 대비)
+  window.addEventListener("resize", () => {
+    const newHeight = bottomNav.offsetHeight || 80;
+    const updatedPadding = `calc(${newHeight + 140}px + env(safe-area-inset-bottom))`;
+    rightPanel.style.paddingBottom = updatedPadding;
+    if (leftPanel) leftPanel.style.paddingBottom = updatedPadding;
+  });
+});
 
 // -------------------- 카테고리 목록 구성 --------------------
 document.addEventListener("DOMContentLoaded", async () => {
@@ -1065,35 +1091,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       subCategoryContainer.appendChild(a);
     });
 
-    // 배너 항상 sub-category-items 위에 유지
     if (bannerArea && bannerArea.nextSibling !== subCategoryContainer) {
       rightPanel.querySelector(".category-right-wrapper").insertBefore(subCategoryContainer, bannerArea.nextSibling);
     }
   }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const rightPanel = document.querySelector(".category-right");
-  const leftPanel = document.querySelector(".category-left");
-  const bottomNav = document.querySelector(".bottom-navigation");
-
-  if (!rightPanel || !bottomNav) return;
-
-  // 바텀네비 높이 자동 계산 (없을 경우 기본값 80)
-  const bottomHeight = bottomNav.offsetHeight || 80;
-
-  // 안전영역(Safe area)까지 포함한 padding-bottom 적용
-  const safePadding = `calc(${bottomHeight + 140}px + env(safe-area-inset-bottom))`;
-
-  rightPanel.style.paddingBottom = safePadding;
-  if (leftPanel) leftPanel.style.paddingBottom = safePadding;
-
-  // 혹시 리사이즈 시에도 대응 (안드로이드/iOS 가로모드 전환 대비)
-  window.addEventListener("resize", () => {
-    const newHeight = bottomNav.offsetHeight || 80;
-    const updatedPadding = `calc(${newHeight + 140}px + env(safe-area-inset-bottom))`;
-    rightPanel.style.paddingBottom = updatedPadding;
-    if (leftPanel) leftPanel.style.paddingBottom = updatedPadding;
-  });
 });
 
