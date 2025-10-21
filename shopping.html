@@ -20,10 +20,7 @@
     </div>
   </header>
 
-
-  <!-- 메인 콘텐츠 -->
   <main>
-    <!-- Bottom Navigation -->
     <div class="bottom-navigation">
       <div class="nav-item" data-index="0">
         <img src="./img/chefs_hat_off.svg" alt="홈" class="nav-icon">
@@ -46,7 +43,132 @@
         <span class="nav-label">마이</span>
       </div>
     </div>
-
+    <div class="item-area">
+      <div class="item-bar">
+        <input type="text" placeholder="재료 또는 상품명을 입력해주세요.">
+        <button class="add-btn">
+          <img src="./img/plus.png" alt=""> 추가
+        </button>
+      </div>
+    </div>
+    <div class="item-chips">
+      <div class="item-chip">바질</div>
+      <div class="item-chip">메이플시럽</div>
+      <div class="item-chip">청양고추</div>
+      <div class="item-chip">메추리알</div>
+      <div class="item-chip">옥수수</div>
+      <div class="item-chip">매실액</div>
+    </div>
+    <!-- 장보기 목록 -->
+    <div class="shopping-area">
+      <div class="shopping-content-header">
+        <div class="shopping-content-title">장보기 목록</div>
+        <div class="shopping-content-caption">모두삭제</div>
+      </div>
+      <div class="shopping-lists">
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">오이</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">간장</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">복숭아</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">설탕</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">삽겹살</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">참기름</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">고춧가루</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">쌈장</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_off.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-txt">청정원 특등급 국산콩 무농약 콩나물 340g</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_on.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-complete">다진마늘</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_on.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-complete">국내산 한입밤고구마(햇)</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+        <div class="shopping-list">
+          <div class="shopping-list-img">
+            <img src="./img/check_square_on.png" alt="순서변경">
+          </div>
+          <div class="shopping-list-complete">샐러드용 양배추 채</div>
+          <div class="shopping-list-buy">구매</div>
+          <div class="shopping-list-del">삭제</div>
+        </div>
+      </div>
+    </div>
+    <!-- 장보기 목록 - 데이터 없음 -->
+    <div class="shopping-area-nodata">
+      <img src="./img//shopping_off.svg" alt="nodata">
+      <div class="shopping-nonactive-txt">등록된 장보기 목록이 없네요! <br> 필요한 상품이나 자주 사는 상품을 미리 메모해 두시면<br> 언제든지 쉽게 찾아볼 수 있어요</div>
+    </div>
   </main>
 </body>
 <script src="main.js"></script>
