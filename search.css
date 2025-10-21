@@ -193,8 +193,9 @@ main {
   height: 32px;
 }
 
+/* 오늘뭐먹지링크 */
 .today {
-  margin: 16px;
+  margin: 16px 16px 30px 16px;
   padding: 8px 12px;
   border-radius: 2px;
   background: var(--DIM-TERTIARY);
@@ -203,7 +204,7 @@ main {
   color: var(--BLACK-MAIN);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 6px;
   cursor: pointer;
   text-decoration: none;
@@ -229,3 +230,63 @@ main {
   margin-left: auto;
 }
 
+/* 최근 검색어 */
+.history {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.history-title {
+  font: var(--B6);
+  color: var(--BLACK-MAIN);
+}
+
+.history-caption {
+  font: var(--C3);
+  color: var(--BLACK-SUB);
+}
+
+.history-chips {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 6px;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+.history-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.history-chip {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 24px;
+  border: 1px solid var(--GRAY-02);
+  background-color: var(--WHITE);
+  color: var(--BLACK-MAIN);
+  font: var(--B8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.history-chip img{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}

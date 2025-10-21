@@ -130,6 +130,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// -------------------- 검석페이지 이동 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const folderEditBtn = document.querySelector(".cate-header-icons");
+  if (folderEditBtn) {
+    folderEditBtn.addEventListener("click", () => {
+      window.location.href = "search.html";
+    });
+  }
+});
+
 // -------------------- 닫기버튼 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const folderEditBtn = document.querySelector(".page-close");
