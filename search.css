@@ -193,3 +193,39 @@ main {
   height: 32px;
 }
 
+.today {
+  margin: 16px;
+  padding: 8px 12px;
+  border-radius: 2px;
+  background: var(--DIM-TERTIARY);
+  border: 1px solid var(--TERTIARY-08);
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.today-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+}
+
+.today-wrap img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.today-arrow {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+}
+
