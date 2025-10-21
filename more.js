@@ -1,25 +1,158 @@
 // -------------------- 검색창 검색 기능 --------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector('.search-bar input');
-  const searchIcon = document.querySelector('.search-bar .search-icon');
+let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+function addSearch(keyword) {
+  if (!keyword) return;
 
-  if (!searchInput || !searchIcon) return;
+  recentSearches = recentSearches.filter(item => item !== keyword);
+  recentSearches.unshift(keyword);
+  if (recentSearches.length > 10) recentSearches.pop();
 
-  function goSearch() {
-    const query = searchInput.value.trim();
-    if (!query) return;
-    
-    window.location.href = `https://m.10000recipe.com/recipe/list.html?q=${encodeURIComponent(query)}`;
+  localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  renderHistory();
 
-    searchInput.value = '';
-    searchInput.placeholder = '레시피 또는 재료명 입력';
+  window.location.href = `https://m.10000recipe.com/recipe/list.html?q=${encodeURIComponent(keyword)}`;
+}
+
+// -------------------- 최근 검색어 추가 --------------------
+function renderHistory() {
+  const historyChips = document.querySelector(".horizon-chips");
+  const historyNodata = document.querySelector(".horizon-nodata");
+  const historyCaption = document.querySelector(".search-content-caption");
+
+  historyChips.innerHTML = "";
+
+  if (recentSearches.length === 0) {
+    historyNodata.style.display = "block";
+    historyCaption.style.display = "none";
+  } else {
+    historyNodata.style.display = "none";
+    historyCaption.style.display = "block";
+
+    recentSearches.forEach((keyword, index) => {
+      const chip = document.createElement("div");
+      chip.className = "horizon-chip";
+      chip.innerHTML = `<span>${keyword}</span><img src="./img/clear.png" alt="삭제" data-index="${index}">`;
+      historyChips.appendChild(chip);
+    });
   }
+}
 
-  searchInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') goSearch();
+// -------------------- 검색창 입력 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector(".search-bar input");
+  const searchIcon = document.querySelector(".search-bar .search-icon");
+  const historyChips = document.querySelector(".horizon-chips");
+  const historyCaption = document.querySelector(".search-content-caption");
+  const recommendChips = document.querySelector(".recommend-chips");
+
+  renderHistory();
+
+  searchInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      addSearch(searchInput.value.trim());
+      searchInput.value = "";
+    }
   });
 
-  searchIcon.addEventListener('click', goSearch);
+  searchIcon.addEventListener("click", () => {
+    addSearch(searchInput.value.trim());
+    searchInput.value = "";
+  });
+
+  historyChips.addEventListener("click", e => {
+    if (e.target.tagName === "SPAN") {
+      addSearch(e.target.textContent);
+    } else if (e.target.tagName === "IMG" && e.target.alt === "삭제") {
+      const index = parseInt(e.target.dataset.index);
+      recentSearches.splice(index, 1);
+      localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+      renderHistory();
+    }
+  });
+
+  historyCaption.addEventListener("click", () => {
+    recentSearches = [];
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+    renderHistory();
+  });
+
+  if (recommendChips) {
+    recommendChips.addEventListener("click", e => {
+      if (e.target.classList.contains("recommend-chip")) {
+        const keyword = e.target.textContent.trim();
+        addSearch(keyword);
+      }
+    });
+  }
+});
+
+// -------------------- 인기 검색어 목록 구성 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const popularLeft = document.querySelector(".popular-left");
+  const popularRight = document.querySelector(".popular-right");
+
+  const popularKeywords = [
+    { rank: 1, keyword: "김치찜", trend: "up" },
+    { rank: 2, keyword: "잔치국수", trend: "same" },
+    { rank: 3, keyword: "깍뚜기", trend: "same" },
+    { rank: 4, keyword: "소불고기", trend: "up" },
+    { rank: 5, keyword: "오징어볶음", trend: "down" },
+    { rank: 6, keyword: "무생채", trend: "same" },
+    { rank: 7, keyword: "된장찌개", trend: "same" },
+    { rank: 8, keyword: "오이무침", trend: "down" },
+    { rank: 9, keyword: "두부조림", trend: "down" },
+    { rank: 10, keyword: "김밥", trend: "up" },
+  ];
+
+  function renderPopular() {
+    popularLeft.innerHTML = "";
+    popularRight.innerHTML = "";
+
+    popularKeywords.forEach((item, i) => {
+      const div = document.createElement("div");
+      div.className = "popular-item";
+
+      const trendSymbol =
+        item.trend === "up" ? "▲" :
+        item.trend === "down" ? "▼" : "-";
+      const trendClass =
+        item.trend === "up" ? "trend-up" :
+        item.trend === "down" ? "trend-down" : "trend-same";
+
+      div.innerHTML = `
+        <div class="popular-rank">${item.rank}</div>
+        <div class="popular-trend ${trendClass}">${trendSymbol}</div>
+        <div class="popular-keyword">${item.keyword}</div>
+      `;
+
+      // ✅ 인기 검색어 클릭 시도 addSearch 호출
+      div.addEventListener("click", () => {
+        addSearch(item.keyword);
+      });
+
+      if (i < 5) {
+        popularLeft.appendChild(div);
+      } else {
+        popularRight.appendChild(div);
+      }
+    });
+  }
+
+  renderPopular();
+});
+
+// -------------------- 인기 검색어 어제 날짜 가져오기 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const dateEl = document.querySelector(".search-content-date");
+  if (dateEl) {
+    const now = new Date();
+    now.setDate(now.getDate() - 1); // ✅ 어제 날짜로 설정
+
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    dateEl.textContent = `${month}.${day} 기준`;
+  }
 });
 
 // -------------------- 카메라 오버레이 --------------------
@@ -1003,3 +1136,49 @@ document.addEventListener("DOMContentLoaded", () => {
   updateFilterUI();
 });
 
+// -------------------- 레시피 JSON 로드 --------------------
+fetch('./data/recipe.json')
+  .then(res => res.json())
+  .then(data => {
+    const list = data.recipes;
+
+    document.querySelectorAll('.list-items, .grid-items, .horizontal-items').forEach(area => {
+      const count = parseInt(area.dataset.count, 10) || 0;
+      const randomRecipes = list.sort(() => Math.random() - 0.5).slice(0, count);
+
+      randomRecipes.forEach(recipe => {
+        const item = document.createElement('div');
+        let layout = '';
+
+        if (area.classList.contains('list-items')) layout = 'list-item';
+        else if (area.classList.contains('grid-items')) layout = 'grid-item';
+        else layout = 'horizontal-item';
+
+        item.className = layout;
+        item.innerHTML = `
+          <div class="${layout}-thumb">
+            <img src="${recipe.cok_thumb}" alt="${recipe.food_name || recipe.cok_title}" class="thumb-img">
+            <img src="./img/move.png" class="video-icon" style="display:${recipe.cok_video_src ? '' : 'none'};">
+          </div>
+          <div class="recipe-info">
+            <div class="recipe-name">${recipe.cok_title}</div>
+            <div class="recipe-chef">by. ${recipe.cok_reg_nm}</div>
+            <div class="recipe-cook">
+              <div class="cook-degree-wrap">
+                <img src="./img/degree.png" alt="난이도">
+                <span class="cook-degree">${recipe.cok_degree}</span>
+              </div>
+              <div class="cook-time-wrap">
+                <img src="./img/time.png" alt="시간">
+                <span class="cook-time">${recipe.cok_time}</span>
+              </div>
+            </div>
+          </div>
+        `;
+        item.addEventListener('click', () =>
+          window.open(`https://m.10000recipe.com/recipe/${recipe.cok_sq_board}`, '_self')
+        );
+        area.appendChild(item);
+      });
+    });
+  });
