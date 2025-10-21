@@ -1,27 +1,3 @@
-// -------------------- 검색창 검색 기능 --------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector('.search-bar input');
-  const searchIcon = document.querySelector('.search-bar .search-icon');
-
-  if (!searchInput || !searchIcon) return;
-
-  function goSearch() {
-    const query = searchInput.value.trim();
-    if (!query) return;
-    
-    window.location.href = `https://m.10000recipe.com/recipe/list.html?q=${encodeURIComponent(query)}`;
-
-    searchInput.value = '';
-    searchInput.placeholder = '레시피 또는 재료명 입력';
-  }
-
-  searchInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') goSearch();
-  });
-
-  searchIcon.addEventListener('click', goSearch);
-});
-
 // -------------------- 헤더 알림 클릭 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const alarmIcon = document.querySelector('.header-icons .icon');
@@ -32,39 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// -------------------- 갤러리 오버레이 --------------------
+// -------------------- 검석페이지 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-  const galleryIcon = document.querySelector('.search-bar .gallery-icon');
-  const searchOverlay = document.getElementById('searchOverlay');
-  const searchBottomSheet = searchOverlay?.querySelector('.bottom-sheet');
-  const closeBtn = searchOverlay?.querySelector('.sheet-area-icon');
-  const recipeRegister = document.querySelector('.recipe-register');
-  const bottomNavigation = document.querySelector('.bottom-navigation');
-
-  if (!galleryIcon || !searchOverlay || !searchBottomSheet || !closeBtn) return;
-
-  galleryIcon.addEventListener('click', () => {
-    searchOverlay.style.display = 'block';
-    searchBottomSheet.classList.add('show');
-    if (recipeRegister) recipeRegister.style.display = 'none';
-    if (bottomNavigation) bottomNavigation.style.display = 'none';
-  });
-
-  closeBtn.addEventListener('click', () => {
-    searchBottomSheet.classList.remove('show');
-    searchOverlay.style.display = 'none';
-    if (recipeRegister) recipeRegister.style.display = 'flex';
-    if (bottomNavigation) bottomNavigation.style.display = 'flex';
-  });
-
-  searchOverlay.addEventListener('click', e => {
-    if (e.target === searchOverlay) {
-      searchBottomSheet.classList.remove('show');
-      searchOverlay.style.display = 'none';
-      if (recipeRegister) recipeRegister.style.display = 'flex';
-      if (bottomNavigation) bottomNavigation.style.display = 'flex';
-    }
-  });
+  const folderEditBtn = document.querySelector(".search-bar");
+  if (folderEditBtn) {
+    folderEditBtn.addEventListener("click", () => {
+      window.location.href = "search.html";
+    });
+  }
 });
 
 // -------------------- 배너 자동롤링 + 스와이프 --------------------

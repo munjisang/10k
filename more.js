@@ -1,3 +1,57 @@
+// -------------------- 검색창 검색 기능 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector('.search-bar input');
+  const searchIcon = document.querySelector('.search-bar .search-icon');
+
+  if (!searchInput || !searchIcon) return;
+
+  function goSearch() {
+    const query = searchInput.value.trim();
+    if (!query) return;
+    
+    window.location.href = `https://m.10000recipe.com/recipe/list.html?q=${encodeURIComponent(query)}`;
+
+    searchInput.value = '';
+    searchInput.placeholder = '레시피 또는 재료명 입력';
+  }
+
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') goSearch();
+  });
+
+  searchIcon.addEventListener('click', goSearch);
+});
+
+// -------------------- 카메라 오버레이 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const cameraIcon = document.querySelector('.search-trailing-icon img'); 
+  const overlay = document.getElementById('searchOverlay');
+  const bottomSheet = overlay?.querySelector('.bottom-sheet');
+  const closeBtn = overlay?.querySelector('.sheet-area-icon');
+
+  if (!cameraIcon || !overlay || !bottomSheet || !closeBtn) return;
+
+  cameraIcon.addEventListener('click', () => {
+    overlay.classList.add('show');
+    bottomSheet.classList.add('show');
+    document.body.style.overflow = 'hidden'; 
+  });
+
+  closeBtn.addEventListener('click', () => {
+    bottomSheet.classList.remove('show');
+    overlay.classList.remove('show');
+    document.body.style.overflow = ''; 
+  });
+
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) {
+      bottomSheet.classList.remove('show');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
 // -------------------- 레시피 더보기 (무한 스크롤) --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const listContainer = document.querySelector(".list-items");
@@ -63,13 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // -------------------- header 이전버튼 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-  const backBtn = document.querySelector(".leding-icons");
-  if (backBtn) {
-    backBtn.addEventListener("click", () => {
-      if (document.referrer) window.history.back();
-      else window.location.href = "index.html";
+  const backBtns = document.querySelectorAll(".leding-icons, .search-leding-icon");
+  
+  backBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (document.referrer) {
+        window.history.back();
+      } else {
+        window.location.href = "index.html";
+      }
     });
-  }
+  });
 });
 
 // -------------------- 닫기버튼 이동 --------------------
@@ -934,3 +992,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateFilterUI();
 });
+
