@@ -337,14 +337,12 @@ main {
 }
 
 .horizon-banner {
-  flex: 0 0 280px; 
+  flex: 0 0 320px; 
   box-sizing: border-box;
 }
 
 .horizon-banner-thumb { 
   position: relative; 
-  margin-bottom: 6px;
-  border-radius: 8px;
   overflow: hidden;
 } 
 
@@ -354,13 +352,26 @@ main {
   border-radius: 8px; 
   display: block; 
   transition: transform 0.3s ease; 
+  margin-bottom: 6px;
 } 
+
+.horizon-banner-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px; 
+}
+
+.horizon-banner-division {
+  font: var(--B7);
+  color: var(--TERTIARY-08);
+}
+
 
 .horizon-banner-name {
   font: var(--B7);
   color: var(--BLACK-MAIN);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
