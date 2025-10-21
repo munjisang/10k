@@ -46,38 +46,29 @@ main {
   box-shadow: 0 4px 8px rgba(198, 198, 198, 0.1);
 }
 
-.search-leding-icon {
-  height: 28px;
-  width: 28px;
-  display: flex;
-  align-items: center; 
-}
-
-.search-leding-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
+.search-leding-icon,
 .search-trailing-icon {
-  height: 32px;
-  width: 32px;
-  cursor: pointer;
   display: flex;
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0; /* flex 축소 방지 */
 }
 
+.search-leding-icon img,
 .search-trailing-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 640px;
+  flex: 1;
+  min-width: 0;
   margin: 0 auto;
   height: 44px;
   background-color: var(--GRAY-02);
@@ -97,6 +88,7 @@ main {
 
 .search-bar input {
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   font: var(--B7);
