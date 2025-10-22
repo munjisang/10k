@@ -1099,3 +1099,206 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// -------------------- 장보기 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const itemChips = document.querySelectorAll(".item-chip");
+  const shoppingLists = document.querySelector(".shopping-lists");
+  const shoppingArea = document.querySelector(".shopping-area");
+  const shoppingAreaNoData = document.querySelector(".shopping-area-nodata");
+  const input = document.querySelector(".item-bar input");
+  const addBtn = document.querySelector(".add-btn");
+  const toast = document.getElementById("toast");
+
+  // 🧾 다이얼로그 관련 요소
+  const dialog = document.querySelector(".shopping-dialog-overlay");
+  const dialogDesc = dialog.querySelector(".shopping-dialog-desc");
+  const cancelBtn = dialog.querySelector(".shopping-dialog-cancel");
+  const deleteBtn = dialog.querySelector(".shopping-dialog-delete");
+  const dialogTitle = dialog.querySelector(".shopping-dialog-title");
+
+  // ✅ 토스트 메시지
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2000);
+  }
+
+  // ✅ 쿠키 처리
+  function setCookie(name, value, days = 30) {
+    const d = new Date();
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/`;
+  }
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return decodeURIComponent(match[2]);
+    return null;
+  }
+
+  function saveShoppingListToCookie() {
+    const items = Array.from(shoppingLists.children).map(listItem => {
+      const textDiv = listItem.querySelector(".shopping-list-txt, .shopping-list-complete");
+      const isChecked = textDiv.classList.contains("shopping-list-complete");
+      return { name: textDiv.textContent.trim(), checked: isChecked };
+    });
+    setCookie("shoppingList", JSON.stringify(items));
+  }
+
+  function loadShoppingListFromCookie() {
+    const cookieData = getCookie("shoppingList");
+    if (!cookieData) return;
+    const items = JSON.parse(cookieData);
+    items.forEach(item => {
+      const newItem = document.createElement("div");
+      newItem.className = "shopping-list";
+      newItem.innerHTML = `
+        <div class="shopping-list-img">
+          <img src="./img/${item.checked ? "check_square_on.png" : "check_square_off.png"}" alt="체크">
+        </div>
+        <div class="${item.checked ? "shopping-list-complete" : "shopping-list-txt"}">${item.name}</div>
+        <div class="shopping-list-buy">구매</div>
+        <div class="shopping-list-del">삭제</div>
+      `;
+      if (item.checked) shoppingLists.append(newItem);
+      else shoppingLists.prepend(newItem);
+    });
+    checkNoData();
+  }
+
+  // ✅ 장보기 목록 유무 확인
+  function checkNoData() {
+    const hasItems = shoppingLists.children.length > 0;
+    shoppingArea.style.display = hasItems ? "flex" : "none";
+    shoppingAreaNoData.style.display = hasItems ? "none" : "flex";
+  }
+
+  // ✅ 장보기 항목 추가
+  function addItemToShoppingList(itemName) {
+    if (!itemName.trim()) return;
+
+    const allItems = shoppingLists.querySelectorAll(".shopping-list-txt, .shopping-list-complete");
+    const duplicate = Array.from(allItems).some(el => el.textContent.trim() === itemName);
+
+    if (duplicate) {
+      showToast("이미 추가된 상품이에요!");
+      return;
+    }
+
+    const newItem = document.createElement("div");
+    newItem.className = "shopping-list";
+    newItem.innerHTML = `
+      <div class="shopping-list-img">
+        <img src="./img/check_square_off.png" alt="체크">
+      </div>
+      <div class="shopping-list-txt">${itemName}</div>
+      <div class="shopping-list-buy">구매</div>
+      <div class="shopping-list-del">삭제</div>
+    `;
+    shoppingLists.prepend(newItem);
+    checkNoData();
+    saveShoppingListToCookie();
+  }
+
+  // ✅ 다이얼로그 열기
+  function openDialog(type, targetItem = null) {
+    dialog.style.display = "flex";
+    if (type === "single") {
+      const itemName = targetItem.querySelector(".shopping-list-txt, .shopping-list-complete").textContent.trim();
+      dialogTitle.textContent = "상품삭제";
+      dialogDesc.textContent = `"${itemName}"을(를) 삭제하시겠습니까?`;
+      deleteBtn.onclick = () => {
+        targetItem.remove();
+        dialog.style.display = "none";
+        checkNoData();
+        saveShoppingListToCookie();
+        showToast("상품이 삭제되었습니다.");
+      };
+    } else if (type === "all") {
+      dialogTitle.textContent = "상품삭제";
+      dialogDesc.textContent = "등록된 모든 상품을 삭제하시겠습니까?";
+      deleteBtn.onclick = () => {
+        shoppingLists.innerHTML = "";
+        dialog.style.display = "none";
+        checkNoData();
+        saveShoppingListToCookie();
+        showToast("전체 상품이 삭제되었습니다.");
+      };
+    }
+  }
+
+  // ✅ 다이얼로그 취소
+  cancelBtn.addEventListener("click", () => {
+    dialog.style.display = "none";
+  });
+
+  dialog.addEventListener("click", e => {
+    if (e.target === dialog) dialog.style.display = "none";
+  });
+
+  // ✅ 아이템칩 클릭
+  itemChips.forEach(chip => {
+    chip.addEventListener("click", () => addItemToShoppingList(chip.textContent.trim()));
+  });
+
+  // ✅ 입력한 내용 추가 버튼
+  addBtn.addEventListener("click", () => {
+    const value = input.value.trim();
+    if (value) {
+      addItemToShoppingList(value);
+      input.value = "";
+    }
+  });
+
+  // ✅ 리스트 클릭 이벤트
+  shoppingLists.addEventListener("click", e => {
+    const target = e.target;
+    const listItem = target.closest(".shopping-list");
+    if (!listItem) return;
+
+    // 체크박스 및 텍스트 클릭
+    if (target.closest(".shopping-list-img") || target.classList.contains("shopping-list-txt") || target.classList.contains("shopping-list-complete")) {
+      const img = listItem.querySelector(".shopping-list-img img");
+      const textDiv = listItem.querySelector(".shopping-list-txt, .shopping-list-complete");
+      const isChecked = img.src.includes("check_square_on.png");
+
+      if (isChecked) {
+        img.src = "./img/check_square_off.png";
+        textDiv.className = "shopping-list-txt";
+        shoppingLists.prepend(listItem);
+      } else {
+        img.src = "./img/check_square_on.png";
+        textDiv.className = "shopping-list-complete";
+        shoppingLists.append(listItem);
+      }
+      saveShoppingListToCookie();
+    }
+
+    // [구매] 버튼 클릭
+    if (target.classList.contains("shopping-list-buy")) {
+      const itemName = listItem.querySelector(".shopping-list-txt, .shopping-list-complete").textContent.trim();
+      const url = `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(itemName)}`;
+      window.open(url, "_blank");
+    }
+
+    // 개별 삭제 버튼 클릭
+    if (target.classList.contains("shopping-list-del")) {
+      openDialog("single", listItem);
+    }
+  });
+
+  // ✅ 모두삭제 클릭
+  const deleteAllBtn = document.querySelector(".shopping-content-caption");
+  deleteAllBtn.addEventListener("click", () => {
+    if (shoppingLists.children.length > 0) openDialog("all");
+    else showToast("삭제할 상품이 없어요!");
+  });
+
+  // ✅ 페이지 로드시 쿠키 복원
+  loadShoppingListFromCookie();
+
+  // ✅ 초기 상태 확인
+  checkNoData();
+});

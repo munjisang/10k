@@ -1724,20 +1724,87 @@ main {
 .shopping-area-nodata {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;    
   padding: 30px 16px;
   gap: 10px;
   margin: 10px 0;
   box-sizing: border-box;
-  align-items: center;
+  text-align: center;
 }
 
 .shopping-area-nodata img {
   width: 32px;
   height: 32px;
+  display: block;
+  margin: 0 auto; 
 }
 
 .shopping-nonactive-txt {
-  font: var(--B4);
+  font: var(--B8);
   color: var(--BLACK-MAIN);
   text-align: center;
+}
+
+
+
+
+/* 삭제 다이얼로그 */
+.shopping-dialog-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.shopping-dialog-box {
+  background: var(--WHITE);
+  border-radius: 12px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.shopping-dialog-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 12px;
+}
+
+.shopping-dialog-desc {
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 24px;
+}
+
+.shopping-dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.shopping-dialog-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.shopping-dialog-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.shopping-dialog-delete {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
 }
