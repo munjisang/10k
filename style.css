@@ -1341,19 +1341,6 @@ main {
   object-fit: contain;
 }
 
-.chef-sns-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-}
-
-.chef-sns-wrap img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
 .chef-active {
   font: var(--C1);
   color: var(--TERTIARY-08);
@@ -1746,10 +1733,7 @@ main {
   text-align: center;
 }
 
-
-
-
-/* 삭제 다이얼로그 */
+/* 장보기 삭제 다이얼로그 */
 .shopping-dialog-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -1806,5 +1790,131 @@ main {
 .shopping-dialog-delete {
   background: var(--TERTIARY-08);
   color: var(--WHITE);
+  border: none;
+}
+
+/* MY 프로필 영역 */
+.my-profile {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  background-color: var(--WHITE);
+  gap: 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.my-profile-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.my-profile-thumb {
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+}
+
+.my-profile-thumb img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 200px;
+}
+
+.profile-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-user-name {
+  font: var(--B3);
+  color: var(--BLACK-MAIN);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.profile-user-follow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 6px;
+}
+
+.follow-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.follow-info-caption {
+  font: var(--C1);
+  color: var(--BLACK-SUB);
+}
+
+.follow-info-detail {
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+}
+
+.profile-user-detail {
+  font: var(--B8);
+  color: var(--BLACK-MAIN);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.profile-sns-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-sns-wrap img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.profile-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 12px;
+}
+
+.profile-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 2px;
+  font: var(--C3);
+  cursor: pointer;
+}
+
+.profile-buttons-edit {
+  background: var(--WHITE);
+  color: var(--BLACK-SUB);
+  border: 1px solid var(--BLACK-SUB);
+}
+
+.profile-buttons-recipe {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  cursor: pointer;
   border: none;
 }
