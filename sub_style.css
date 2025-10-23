@@ -1646,6 +1646,7 @@ main {
   cursor: not-allowed;
 }
 
+/* 설정 페이지 콘텐츠 영역 */
 .setting-area {
   display: flex;
   flex-direction: column;
@@ -1663,13 +1664,13 @@ main {
   color: var(--BLACK-SUB);
 }
 
-.setting-info-wrap {
+.my-activity-wrap {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.setting-info {
+.activity-info {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1679,19 +1680,19 @@ main {
   color: inherit;
 }
 
-.setting-info-img {
+.activity-info-img {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
 }
 
-.setting-info-img img {
+.activity-info-img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.setting-name {
+.activity-name {
   flex: 1;
   font: var(--B7);
   color: var(--BLACK-MAIN);
@@ -1701,25 +1702,111 @@ main {
   text-overflow: ellipsis;
 }
 
-.setting-cont {
+.activity-cont {
   font: var(--B8);
   color: var(--TERTIARY-08);
   min-width: 60px;
   text-align: right;
 }
 
-.setting-more-img {
+.activity-more-img {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.setting-more-img img {
+.activity-more-img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
   vertical-align: middle;
+}
+
+.my-business-area {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  background-color: var(--WHITE);
+  border-radius: 8px;
+  justify-content: space-around;
+  box-sizing: border-box;
+  margin: 10px 0;
+  align-items: center;
+}
+
+.profile-sns-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-sns-wrap img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.my-logout {
+  margin: 24px;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  font: var(--B7);
+  color: var(--BLACK-SUB);
+  text-decoration: underline;
+}
+
+/*마이-최근본 레시피*/
+.horizon-items { 
+  display: flex;
+  flex-direction: row; 
+  overflow-x: auto; 
+  margin-bottom: 16px; 
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.horizon-items::-webkit-scrollbar {
+  display: none;
+}
+
+.horizon-items {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 12px;
+}
+
+.horizon-item {
+  flex: 0 0 150px; 
+  box-sizing: border-box;
+}
+
+.horizon-item { 
+  scroll-snap-align: start; 
+} 
+
+.horizon-item-thumb { 
+  position: relative; 
+  margin-bottom: 4px;
+} 
+
+.horizon-item-thumb img { 
+  width: 100%; 
+  aspect-ratio: 16 / 9; 
+  object-fit: cover; 
+  border-radius: 8px; 
+  display: block; 
+} 
+
+.horizon-item-thumb 
+.video-icon { 
+  position: absolute; 
+  right: 8px; 
+  bottom: 8px; 
+  width: 24px; 
+  height: 24px; 
+  object-fit: contain; 
 }
 
 /* 토글버튼 */
@@ -1765,6 +1852,7 @@ input:not(:checked) + .toggle-label::after {
   transform: translateX(0);
 }
 
+/* 약관보기 본분 */
 .terms-area {
   display: flex;
   flex-direction: column;
@@ -1777,8 +1865,7 @@ input:not(:checked) + .toggle-label::after {
   overflow-y: auto; /* 내용이 길면 스크롤 가능 */
 }
 
-
-/* 검책창 영역 */
+/* 내 레시피 검책창 영역 */
 .search-area {
     background-color: var(--WHITE);
     width: 100%;

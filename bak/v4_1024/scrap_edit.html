@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="sub_style.css">
+  <title>만개의 레시피-스크랩 편집</title>
+</head>
+<body>
+  <main>
+    <!-- 헤더 -->
+    <header class="sub-header">
+      <div class="leding-icons">
+        <img src="./img/back.png" alt="이전화면" class="leding-icon">
+      </div>
+      <div class="sub-header-title">스크랩 편집</div>
+    </header>
+    <!-- 폴더영역 -->
+    <div class="scrap-edit-folder">
+      <div class="folder-active">
+        <span class="folder-active-name">전체보기</span>
+        <div class="folder-active-count">114</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">기본폴더</span>
+        <div class="folder-nonactive-count">16</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">밑반찬</span>
+        <div class="folder-nonactive-count">38</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">야식</span>
+        <div class="folder-nonactive-count">1</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">막둥이식단</span>
+        <div class="folder-nonactive-count">11</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">다욧!</span>
+        <div class="folder-nonactive-count">48</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">저속노화&비건</span>
+        <div class="folder-nonactive-count">0</div>
+      </div>
+      <div class="folder-nonactive">
+        <span class="folder-nonactive-name">하루하루 병들어가는 몸뚱아리를 방지하기 위한 영양</span>
+        <div class="folder-nonactive-count">0</div>
+      </div>
+    </div>
+    <!-- 스크랩영역 -->
+    <div class="scrap-edit-area">
+      <div class="list-items">
+      </div>      
+    </div>
+    <!-- 스크랩영역 - 데이터 없음 -->
+    <div class="scrap-area-nodata">
+      <img src="./img//bookmark_off.svg" alt="nodata">
+      <div class="folder-nonactive-txt">등록된 스크랩이 없네요! <br> 마음에 드는 레시피를 스크랩해두면 <br> 언제든지 쉽게 찾아볼 수 있어요</div>
+    </div>
+    <!-- 스크랩편집 바텀메뉴 -->
+    <div class="edit-bottom-menu">
+      <div class="edit-menu-item">
+        <img src="./img/edit_copy_off.png" alt="복사" class="edit-menu-icon">
+        <span class="edit-menu-label">복사</span>
+      </div>
+      <div class="edit-bottom-divider"></div>
+      <div class="edit-menu-item">
+        <img src="./img/edit_move_off.png" alt="이동" class="edit-menu-icon">
+        <span class="edit-menu-label">이동</span>
+      </div>
+      <div class="edit-bottom-divider"></div>
+      <div class="edit-menu-item">
+        <img src="./img/edit_del_off.png" alt="삭제" class="edit-menu-icon">
+        <span class="edit-menu-label">삭제</span>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- 레시피 삭제 다이얼로그 -->
+  <div class="recipe-dialog-overlay" style="display:none;">
+    <div class="recipe-dialog-box">
+      <div class="recipe-dialog-title">레시피삭제</div>
+      <div class="recipe-dialog-desc"></div>
+      <div class="recipe-dialog-buttons">
+        <button class="recipe-dialog-cancel">취소</button>
+        <button class="recipe-dialog-delete">삭제</button>
+      </div>
+    </div>
+  </div>
+  <div id="toast">레시피가 삭제 되었습니다.</div>
+  
+
+  <!-- 폴더선택 바텀시트 -->
+  <div class="folder-select-overlay" style="display: none;">
+    <div class="folder-select">
+      <div class="folder-select-handle"></div>
+      <div class="folder-select-title">폴더를 선택해주세요.</div>
+      <div class="folder-select-lists">
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">밑반찬</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">야식</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">막둥이식단</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">다욧!</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">저속노화&비건</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">하루하루 병들어가는 몸뚱아리를 방지하기 위한 영양</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">냉장고를부탁해</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+        <div class="folder-select-list">
+          <div class="folder-select-list-img">
+            <img src="./img/folder.png" alt="폴더">
+          </div>
+          <div class="folder-select-list-txt">편스토랑</div>
+          <div class="folder-check-img">
+            <img src="./img/check_off.png" alt="선택">
+          </div>
+        </div>
+      <div class="folder-select-buttons">
+        <button class="folder-select-cancel">취소</button>
+        <button class="folder-select-confirm">선택</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="more.js"></script>
+</html>
+    
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="style.css">
+  <title>만개의 레시피-장보기</title>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <img src="./img/logo.png" alt="로고" class="logo">
+    <div class="header-icons">
+      <img src="./img/alram.png" alt="알림함" class="icon">
+    </div>
+  </header>
+
+  <main>
+    <div class="bottom-navigation">
+      <div class="nav-item" data-index="0">
+        <img src="./img/chefs_hat_off.svg" alt="홈" class="nav-icon">
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item" data-index="1">
+        <img src="./img/bookmark_off.svg" alt="스크랩" class="nav-icon">
+        <span class="nav-label">스크랩</span>
+      </div>
+      <div class="nav-item" data-index="2">
+        <img src="./img/widgets_off.svg" alt="분류" class="nav-icon">
+        <span class="nav-label">분류</span>
+      </div>
+      <div class="nav-item" data-index="3">
+        <img src="./img/shopping_off.svg" alt="장보기" class="nav-icon">
+        <span class="nav-label">장보기</span>
+      </div>
+      <div class="nav-item" data-index="4">
+        <img src="./img/user_off.svg" alt="마이" class="nav-icon">
+        <span class="nav-label">마이</span>
+      </div>
+    </div>
+    <div class="item-area">
+      <div class="item-bar">
+        <input type="text" placeholder="재료 또는 상품명을 입력해주세요.">
+        <button class="add-btn">
+          <img src="./img/plus.png" alt=""> 추가
+        </button>
+      </div>
+    </div>
+    <div class="item-chips">
+      <div class="item-chip">바질</div>
+      <div class="item-chip">메이플시럽</div>
+      <div class="item-chip">청양고추</div>
+      <div class="item-chip">메추리알</div>
+      <div class="item-chip">옥수수</div>
+      <div class="item-chip">매실액</div>
+    </div>
+    <!-- 장보기 목록 -->
+    <div class="shopping-area">
+      <div class="shopping-content-header">
+        <div class="shopping-content-title">장보기 목록</div>
+        <div class="shopping-content-caption">모두삭제</div>
+      </div>
+      <div class="shopping-lists">
+      </div>
+    </div>
+    <!-- 장보기 목록 - 데이터 없음 -->
+    <div class="shopping-area-nodata">
+      <img src="./img//shopping_off.svg" alt="nodata">
+      <div class="shopping-nonactive-txt">등록된 장보기 목록이 없네요! <br> 필요한 상품이나 자주 사는 상품을 미리 메모해 두시면<br> 언제든지 쉽게 찾아볼 수 있어요</div>
+    </div>
+    <div id="toast"></div>
+  </main>
+  <!-- 상품 삭제 다이얼로그 -->
+  <div class="shopping-dialog-overlay" style="display:none;">
+    <div class="shopping-dialog-box">
+      <div class="shopping-dialog-title">상품삭제</div>
+      <div class="shopping-dialog-desc"></div>
+      <div class="shopping-dialog-buttons">
+        <button class="shopping-dialog-cancel">취소</button>
+        <button class="shopping-dialog-delete">삭제</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="main.js"></script>
+</html>

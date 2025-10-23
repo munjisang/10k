@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sub_style.css">
+  <title>만개의 레시피-스크랩</title>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <img src="./img/logo.png" alt="로고" class="logo">
+    <div class="header-icons">
+      <img src="./img/alram.png" alt="알림함" class="icon">
+    </div>
+  </header>
+  <!-- 메인 콘텐츠 -->
+  <main>
+    <!-- Bottom Navigation -->
+    <div class="bottom-navigation">
+      <div class="nav-item" data-index="0">
+        <img src="./img/chefs_hat_off.svg" alt="홈" class="nav-icon">
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item" data-index="1">
+        <img src="./img/bookmark_off.svg" alt="스크랩" class="nav-icon">
+        <span class="nav-label">스크랩</span>
+      </div>
+      <div class="nav-item" data-index="2">
+        <img src="./img/widgets_off.svg" alt="분류" class="nav-icon">
+        <span class="nav-label">분류</span>
+      </div>
+      <div class="nav-item" data-index="3">
+        <img src="./img/shopping_off.svg" alt="장보기" class="nav-icon">
+        <span class="nav-label">장보기</span>
+      </div>
+      <div class="nav-item" data-index="4">
+        <img src="./img/user_off.svg" alt="마이" class="nav-icon">
+        <span class="nav-label">마이</span>
+      </div>
+    </div>
+    <!-- 폴더영역 -->
+    <div class="folder-area">
+      <div class="folder-area-top">
+        <button class="folder-edit-wrap">
+          <img src="./img/folder_edit.png" alt=""> 폴더편집
+        </ㅅbutton>
+        <button class="folder-addbtn">
+          <img src="./img/folder_add.png" alt=""> 폴더 추가
+        </button>
+      </div>
+      <div class="folder-list">
+        <div class="folder-active">
+          <span class="folder-active-name">전체보기</span>
+          <div class="folder-active-count">114</div>
+        </div>
+        <div class="folder-nonactive">
+          <span class="folder-nonactive-name">기본폴더</span>
+          <div class="folder-nonactive-count">16</div>
+        </div>
+        <div class="folder-nonactive">
+          <span class="folder-nonactive-name">밑반찬</span>
+          <div class="folder-nonactive-count">38</div>
+        </div>
+        <div class="folder-nonactive">
+          <span class="folder-nonactive-name">야식</span>
+          <div class="folder-nonactive-count">1</div>
+        </div>
+        <div class="folder-nonactive">
+          <span class="folder-nonactive-name">막둥이식단</span>
+          <div class="folder-nonactive-count">11</div>
+        </div>
+        <div class="folder-nonactive">
+          <span class="folder-nonactive-name">다욧!</span>
+          <div class="folder-nonactive-count">48</div>
+        </div>
+        <div class="folder-nonactive">
+          <span class="folder-nonactive-name">저속노화&비건</span>
+          <div class="folder-nonactive-count">0</div>
+        </div>
+        <div class="folder-nonactive">
+          <span class="folder-nonactive-name">하루하루 병들어가는 몸뚱아리를 방지하기 위한 영양</span>
+          <div class="folder-nonactive-count">0</div>
+        </div>
+      </div>
+    </div>
+    <!-- 스크랩영역 -->
+    <div class="scrap-area">
+      <div class="scrap-area-sort">
+        <div class="scrap-count"></div>
+          <button class="scrap-edit" type="button">
+            <img src="./img/pen.png" alt=""> 스크랩 편집
+          </button>
+      </div>
+      <div class="list-items">
+      </div>      
+    </div>
+    <!-- 스크랩영역 - 데이터 없음 -->
+    <div class="scrap-area-nodata">
+      <img src="./img//bookmark_off.svg" alt="nodata">
+      <div class="folder-nonactive-txt">등록된 스크랩이 없네요! <br> 마음에 드는 레시피를 스크랩해두면 <br> 언제든지 쉽게 찾아볼 수 있어요</div>
+    </div>
+  </main>
+  <!-- 폴더 추가 바텀시트 -->
+  <div class="folder-add-overlay" style="display: none;">
+    <div class="folder-add">
+        <div class="folder-add-handle"></div>
+        <div class="folder-add-title">폴더명을 입력해주세요.</div>
+        <input type="text" class="folder-add-input" placeholder="최대 20자까지 등록 가능합니다." maxlength="20"/>
+        <div class="folder-add-buttons">
+        <button class="folder-add-cancel">취소</button>
+        <button class="folder-add-add">폴더추가</button>
+        </div>
+    </div>
+  </div>
+</body>
+<script src="main.js"></script>
+
+</html>
+
+
+
+
+    
+    

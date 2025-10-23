@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="sub_style.css">
+  <title>만개의 레시피-카테고리별 레시피</title>
+</head>
+<body>
+<!-- 헤더 -->
+  <header class="cate-header">
+    <div class="leding-icons">
+        <img src="./img/back.png" alt="이전화면" class="leding-icon">
+    </div>
+    <div class="cate-select-wrapper">
+        <div class="cate-custom-select">
+        <span class="selected"></span>
+        <ul class="cate-options">
+            <li data-value=""></li>
+        </ul>
+        <img src="./img/chevron_down.png" alt="dropdown" class="cate-chevron-icon">
+        </div>
+    </div>
+    <div class="cate-header-icons">
+      <img src="./img/search.png" alt="알림함" class="icon">
+    </div>
+  </header>
+
+  <main>
+    <div class="sub-cate">
+      <div class="sub-cate-items">
+        <div class="sub-cate-item active"></div>
+        <div class="sub-cate-item"></div>
+      </div>
+    </div>
+    <div class="cate-contents">
+      <div class="cate-recipe-more">
+        <div class="cate-recipe-option">
+          <div class="cate-recipe-option-img">
+            <img src="./img/filter.png" alt="필터">
+          </div>
+          <div class="cate-recipe-select-wrapper">
+            <div class="cate-recipe-custom-select">
+              <span class="selected">추천순</span>
+              <ul class="cate-recipe-options">
+                <li data-value="인기순">인기순</li>
+                <li data-value="최신순">최신순</li>
+                <li data-value="추천순">추천순</li>
+              </ul>
+              <img src="./img/chevron_down_b.png" alt="dropdown" class="cate-recipe-chevron-icon">
+            </div>
+          </div>
+        </div>
+        <div class="list-items">
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="filterOverlay" class="filteroverlay">
+    <div class="filter-sheet">
+      <div class="filter-title-area">
+        <div class="filter-title-area-text">
+            <div class="filter-title-area-title">필터</div>
+        </div>
+        <img src="./img/clear.png" alt="닫기" class="filter-title-area-icon">
+      </div>
+      <div class="filter-wrap">
+        <div class="filter-options">
+        <div class="filter-option">
+            <div class="filter-option-title">👨‍👩‍👧‍👦 인원수</div>
+            <div class="filter-selects">
+                <label class="filter-select">1인분</label>
+                <label class="filter-select">2인분</label>
+                <label class="filter-select">3인분</label>
+                <label class="filter-select">4인분</label>
+                <label class="filter-select">5인분</label>
+                <label class="filter-select">6인분 이상</label>
+            </div>
+        </div>
+        </div>
+        <div class="filter-options">
+        <div class="filter-option">
+            <div class="filter-option-title">⏱️ 요리시간</div>
+            <div class="filter-selects">
+                <label class="filter-select">5분 이내</label>
+                <label class="filter-select">10분 이내</label>
+                <label class="filter-select">15분 이내</label>
+                <label class="filter-select">20분 이내</label>
+                <label class="filter-select">30분 이내</label>
+                <label class="filter-select">90분 이내</label>
+                <label class="filter-select">2시간 이내</label>
+                <label class="filter-select">2시간 이상</label>
+            </div>
+        </div>
+        </div>
+        <div class="filter-options">
+        <div class="filter-option">
+            <div class="filter-option-title">🧑‍🍳 난이도</div>
+            <div class="filter-selects">
+                <label class="filter-select">아무나</label>
+                <label class="filter-select">초급</label>
+                <label class="filter-select">중급</label>
+                <label class="filter-select">고급</label>
+                <label class="filter-select">신의경지</label>
+            </div>
+        </div>
+        </div>
+      </div>  
+      <div class="filter-select-buttons">
+        <button class="filter-select-cancel">초기화</button>
+        <button class="filter-select-confirm" disabled>레시피 보기</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="more.js"></script>
+
+</html>

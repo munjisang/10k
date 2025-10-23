@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="style.css">
+  <title>만개의 레시피-마이</title>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <img src="./img/logo.png" alt="로고" class="logo">
+    <div class="header-icons">
+      <img src="./img/alram.png" alt="알림함" class="icon">
+      <img src="./img/my_setting.png" alt="설정" class="icon">
+    </div>
+  </header>
+  <main>
+    <div class="recipe-register">
+      레시피 등록하기
+      <img src="./img/arrow_up.png" alt="화살표" class="arrow">
+    </div>
+    <div id="recipeOverlay" class="overlay">
+      <div class="bottom-sheet">
+        <div class="sheet-area-content">
+          <div class="sheet-area-text">
+            <div class="sheet-area-title">레시피 등록하기</div>
+          </div>
+          <img src="./img/clear.png" alt="닫기" class="sheet-area-icon">
+        </div>
+
+        <div class="sheet-buttons">
+          <a href="https://m.10000recipe.com/inbox/insert.html" class="sheet-btn">
+            <img src="./img/cookbook.png" alt="아이콘">
+            <span>직접 등록</span>
+          </a>
+          <a href="https://m.10000recipe.com/inbox/get_insta.html" class="sheet-btn">
+            <img src="./img/video.png" alt="아이콘">
+            <span>영상 레시피 가져오기</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-navigation">
+      <div class="nav-item" data-index="0">
+        <img src="./img/chefs_hat_off.svg" alt="홈" class="nav-icon">
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item" data-index="1">
+        <img src="./img/bookmark_off.svg" alt="스크랩" class="nav-icon">
+        <span class="nav-label">스크랩</span>
+      </div>
+      <div class="nav-item" data-index="2">
+        <img src="./img/widgets_off.svg" alt="분류" class="nav-icon">
+        <span class="nav-label">분류</span>
+      </div>
+      <div class="nav-item" data-index="3">
+        <img src="./img/shopping_off.svg" alt="장보기" class="nav-icon">
+        <span class="nav-label">장보기</span>
+      </div>
+      <div class="nav-item" data-index="4">
+        <img src="./img/user_off.svg" alt="마이" class="nav-icon">
+        <span class="nav-label">마이</span>
+      </div>
+    </div>
+    <div class="my-profile">
+      <div class="my-profile-info">
+        <div class="my-profile-thumb">
+          <img src="https://recipe1.ezmember.co.kr/cache/rpf/2015/07/29/e4be91d70e81a206b600e8b92217915e1.jpg" alt="프로필사진">
+        </div>
+        <div class="profile-user-info">
+          <div class="profile-user-name">내 이름은 이효리 😄</div>
+          <div class="profile-user-follow">
+            <div class="follow-info" id="follow-recipe">
+              <div class="follow-info-caption">레시피</div>
+              <div class="follow-info-detail">999</div>
+            </div>
+            <div class="follow-info">
+              <div class="follow-info-caption">팔로워</div>
+              <div class="follow-info-detail">11.1만</div>
+            </div>
+            <div class="follow-info">
+              <div class="follow-info-caption">팔로잉</div>
+              <div class="follow-info-detail">9,999</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-user-detail">
+        맛있는 요리를 누구나 쉽게 만드실수 있도록 도움 드리고 싶은 뽀유TV입니다:) 방문해 주신 모든분들 감사합니다♥ 
+      </div>
+      <div class="profile-sns-wrap">
+        <img src="./img/instar.png" alt="인스타그램">
+        <img src="./img/youtube.png" alt="유튜브">
+        <img src="./img/blog.png" alt="블로그">
+        <img src="./img/link.png" alt="기타">
+        <img src="./img/add_circle.png" alt="추가">
+      </div>
+      <div class="profile-buttons">
+        <button class="profile-buttons-edit">
+          <img src="./img/my_user.png" alt="">
+          <span>프로필 편집</span>
+        </button>
+        <button class="profile-buttons-recipe">
+          <img src="./img/my_food.png" alt="">
+          <span>내 레시피</span>
+        </button>
+      </div>
+    </div>
+    <div class="my-activity-area">
+      <div class="my-activity-title">내 활동</div>
+      <div class="my-activity-wrap">
+        <div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_eye_on.png" alt="">
+          </div>          
+          <span class="activity-name"> 최근 본 레시피 </span>
+          <span class="activity-cont"> 99 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="horizon-items" data-count="5"></div>
+        </div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_star.png" alt="">
+          </div>
+          <span class="activity-name"> 요리후기 </span>
+          <span class="activity-cont"> 9,999 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_message.png" alt="">
+          </div>          
+          <span class="activity-name"> 댓글 </span>
+          <span class="activity-cont"> 999 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_book.png" alt="">
+          </div>          
+          <span class="activity-name"> 레시피 노트 </span>
+          <span class="activity-cont"> 99 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_add.png" alt="">
+          </div>          
+          <span class="activity-name"> 광고제거 </span>
+          <span class="activity-cont"> 사용중 (~2026.10.21) </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-activity-area">
+      <div class="my-activity-title">고객센터</div>
+      <div class="my-activity-wrap">
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_event.png" alt="">
+          </div>          
+          <span class="activity-name"> 이벤트/공모전 </span>
+          <span class="activity-cont"> 5 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_qna.png" alt="">
+          </div>          
+          <span class="activity-name"> 문의하기 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_speaker.png" alt="">
+          </div>          
+          <span class="activity-name"> 공지사항 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="activity-info">
+          <div class="activity-info-img">
+            <img src="./img/my_letter.png" alt="">
+          </div>          
+          <span class="activity-name"> 제휴/광고 문의 </span>
+          <div class="activity-more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-business-area">
+      <div class="business-info">
+        <div class="business-info-img">
+          <img src="./img/my_brand.png" alt="">
+        </div>
+        <span class="business-name"> 브랜드 </span>
+      </div>
+      <div class="divider-vertical"></div>
+      <div class="business-info">
+        <div class="business-info-img">
+          <img src="./img/my_chef.png" alt="">
+        </div>
+        <span class="business-name"> 만개 셰프 </span>
+      </div>
+      <div class="divider-vertical"></div>
+      <div class="business-info">
+        <div class="business-info-img">
+          <img src="./img/my_cretor.png" alt="">
+        </div>
+        <span class="business-name"> 만개 크리에이터 </span>
+      </div>
+    </div>
+    <div class="my-business-area">
+      <div class="my-activity-title">만개의레시피 공식 SNS</div>
+      <div class="profile-sns-wrap">
+        <img src="./img/instar.png" alt="인스타그램">
+        <img src="./img/youtube.png" alt="유튜브">
+        <img src="./img/blog.png" alt="블로그">
+        <img src="./img/facebook.png" alt="페이스북">
+      </div>
+    </div>
+    <div class="my-logout">로그아웃</div>
+  </main>
+</body>
+<script src="main.js"></script>
+</html>

@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // -------------------- 검석페이지 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const folderEditBtn = document.querySelector(".search-bar");
@@ -1316,8 +1315,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ 초기 상태 확인
   checkNoData();
 });
-
-
 
 // -------------------- 마이페이지 // 이동처리 --------------------
 document.addEventListener("DOMContentLoaded", () => {

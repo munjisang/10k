@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="search.css">
+  <title>만개의 레시피-검색</title>
+</head>
+<body>
+  <header class="search-header">
+    <div class="search-leding-icon">
+      <img src="./img/back.png" alt="이전화면">
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="레시피 또는 재료명 입력">
+      <img src="./img/search.png" alt="검색" class="search-icon">
+    </div>
+    <div class="search-trailing-icon">
+      <img src="./img/frame.png" alt="갤러리" class="search-trailing-icon">
+    </div>    
+    </div>
+  </header>
+  <div id="searchOverlay" class="cameraoverlay">
+    <div class="bottom-sheet">
+      <div class="sheet-area-content">
+        <div class="sheet-area-text">
+          <div class="sheet-area-title">사진으로 레시피 검색하기</div>
+        </div>
+        <img src="./img/clear.png" alt="닫기" class="sheet-area-icon">
+      </div>
+      <div class="sheet-buttons">
+        <label class="sheet-btn">
+          <img src="./img/picture.png" alt="아이콘">
+          <span>사진 보관함</span>
+          <input type="file" accept="image/*" style="display:none" id="galleryInput">
+        </label>
+        <label class="sheet-btn">
+          <img src="./img/camera.png" alt="아이콘">
+          <span>사진촬영</span>
+          <input type="file" accept="image/*" capture="environment" style="display:none" id="cameraInput">
+        </label>
+      </div>
+    </div>
+  </div>
+  <main>
+    <div class="search-contents">
+        <a href="https://m.10000recipe.com/recipe/today_recommend.html" class="today">
+            <div class="today-wrap">
+                <img src="https://recipe1.ezmember.co.kr/img/mobile/2023/icon_h2_today.png" alt="오늘 뭐먹지?">
+                <span class="today-text">오늘 뭐 먹을지 고민된다면?</span>
+            </div>
+            <img src="./img/right.png" alt="더보기 아이콘" class="today-arrow">
+        </a>
+        <div class="search-content">
+            <div class="search-content-header"> 
+                <div class="search-content-title">최근 검색어</div> 
+                <div class="search-content-caption">전체삭제</div> 
+            </div> 
+            <div class="horizon-chips"> 
+                <div class="horizon-chip"> <span></span> <img src="./img/clear.png" alt="삭제"> </div> 
+            </div> 
+            <div class="horizon-nodata">최근 검색어가 없습니다.</div> 
+        </div>
+        <div class="search-content">
+            <div class="search-content-title">추천 검색어</div>
+            <div class="recommend-chips">
+                <div class="recommend-chip">두부조림</div>
+                <div class="recommend-chip">제육볶음</div>
+                <div class="recommend-chip">순두부찌개</div>
+                <div class="recommend-chip">잔치국수</div>
+                <div class="recommend-chip">잡채</div>
+                <div class="recommend-chip">장조림</div>
+                <div class="recommend-chip">부대찌개</div>
+                <div class="recommend-chip">소고기미역국</div>
+                <div class="recommend-chip">오징어무국</div>
+                <div class="recommend-chip">주말간식</div>
+            </div>
+        </div>
+        <div class="search-content">
+            <div class="search-content-title">에디터 추천</div>
+            <div class="horizontal-items" data-count="5"></div>
+        </div>        
+        <div class="search-content">
+            <div class="search-content-header"> 
+                <div class="search-content-title">인기 검색어</div> 
+                <div class="search-content-date">`${month}.${day} 기준`</div> 
+            </div> 
+            <div class="popular-container">
+                <div class="popular-left"></div>
+                <div class="popular-right"></div>
+            </div> 
+        </div>
+        <div class="search-content">
+            <div class="search-content-header"> 
+                <div class="search-content-title">이벤트</div> 
+            </div> 
+            <div class="horizon-banners">
+                <div class="horizon-banner">
+                    <a href="https://m.10000recipe.com/event/484" class="horizon-banner-thumb">
+                        <img src="./img/banner1.jpg" alt="배너1">
+                    </a>
+                    <div class="horizon-banner-title-wrap">
+                        <div class="horizon-banner-division">[공모전]</div>
+                        <div class="horizon-banner-name">나만의 특별한 한우 레시피</div>
+                    </div>
+                </div>
+                <div class="horizon-banner">
+                    <a href="https://m.10000recipe.com/event/478" class="horizon-banner-thumb">
+                        <img src="./img/banner2.jpg" alt="배너2">
+                    </a>
+                    <div class="horizon-banner-title-wrap">
+                        <div class="horizon-banner-division">[공모전]</div>
+                        <div class="horizon-banner-name">초코몽으로 만드는 특별한 디저트</div>
+                    </div>
+                </div>
+                <div class="horizon-banner">
+                    <a href="https://m.10000recipe.com/event/467" class="horizon-banner-thumb">
+                        <img src="./img/banner3.jpg" alt="배너3">
+                    </a>
+                    <div class="horizon-banner-title-wrap">
+                        <div class="horizon-banner-division">[이벤트]</div>
+                        <div class="horizon-banner-name">경기관광 플랫폼 소문내기</div>
+                    </div>
+                </div>
+                <div class="horizon-banner">
+                    <a href="https://m.10000recipe.com/event/446" class="horizon-banner-thumb">
+                        <img src="./img/banner4.jpg" alt="배너4">
+                    </a>
+                    <div class="horizon-banner-title-wrap">
+                        <div class="horizon-banner-division">[이벤트]</div>
+                        <div class="horizon-banner-name">4월 한달간 회원들의 마음을 사로잡은 레시피는?</div>
+                    </div>
+                </div>
+                <div class="horizon-banner">
+                    <a href="https://m.10000recipe.com/event/415" class="horizon-banner-thumb">
+                        <img src="./img/banner5.jpg" alt="배너5">
+                    </a>
+                    <div class="horizon-banner-title-wrap">
+                        <div class="horizon-banner-division">[공모전]</div>
+                        <div class="horizon-banner-name">두부로 만드는 나만의 레시피</div>
+                    </div>
+                </div>
+            </div> 
+        </div>        
+    </div>
+</main>
+</body>
+<script src="more.js"></script>
+
+</html>

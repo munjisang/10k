@@ -1,0 +1,51 @@
+:root {
+    /* Primary */
+    --PRIMARY-08: #FF3D00;
+    --PRIMARY-07: #FE5019;
+    --PRIMARY-06: #FD6231;
+    --PRIMARY-05: #FC754A;
+    --PRIMARY-04: #FB8762;
+    --PRIMARY-03: #FA997B;
+    --PRIMARY-02: #F9AB93;
+    --PRIMARY-01: #FFE6DE;
+    /* Secondary */
+    --SECONDARY-08: #046CAA;
+    --SECONDARY-07: #0088DA;
+    --SECONDARY-06: #009BEF;
+    --SECONDARY-05: #00B8FF;
+    --SECONDARY-04: #44C4FF;
+    --SECONDARY-03: #7DD5FF;
+    --SECONDARY-02: #B2E5FF;
+    --SECONDARY-01: #E1F5FF;
+    /* Tertiary */
+    --TERTIARY-08: #46AE4F;
+    --TERTIARY-07: #58B660;
+    --TERTIARY-06: #69BC70;
+    --TERTIARY-05: #7BC481;
+    --TERTIARY-04: #8CCA91;
+    --TERTIARY-03: #9ED2A2;
+    --TERTIARY-02: #AFD9B3;
+    --TERTIARY-01: #C1E0C4;
+    /* Neutral */
+    --BLACK-MAIN: #1D1B20;
+    --BLACK-SUB: #767676;
+    --GRAY-01: #C5C8CE;
+    --GRAY-02: #E9EBEE;
+    --GRAY-03: #F7F8F9;
+    --WHITE: #FFFFFF;
+    /* Accent */
+    --YELLOW: #FFCD00;
+    --GREEN: #00B771;
+    --PINK: #FF7CAA;
+    --PURPLE: #9916FF;
+    --RED: #EA001B;
+    --ORANGE: #FF5F01;
+    /* Dim */
+    --DIM-BLACK: rgba(0, 0, 0, 0.7);
+    --DIM-WHITE: rgba(255, 255, 255, 0.7);
+    --DIM-PRIMARY: rgba(255, 61, 0, 0.1);
+    --DIM-TERTIARY: rgba(70, 174, 79, 0.1);
+    /* Gradient */
+    --LINEAR-RED: linear-gradient(90deg, #E00000, #E497CB);
+    --LINEAR-PURPLE: linear-gradient(90deg, #DF5EFF, #66CCFF);
+}
