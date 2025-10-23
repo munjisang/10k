@@ -1617,3 +1617,120 @@ main {
   border: none;
   cursor: not-allowed;
 }
+
+.setting-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  background-color: var(--WHITE);
+  border-radius: 8px;
+  gap: 8px;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+
+.setting-title {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-SUB);
+}
+
+.setting-info-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.setting-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  position: relative;
+}
+
+.setting-info-img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.setting-info-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.setting-name {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.setting-cont {
+  font: var(--B8);
+  color: var(--TERTIARY-08);
+  min-width: 60px;
+  text-align: right;
+}
+
+.setting-more-img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.setting-more-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  vertical-align: middle;
+}
+
+/* 토글버튼 */
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.toggle-label {
+  display: block;
+  width: 50px;
+  height: 26px;
+  background-color: var(--TERTIARY-08); 
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.toggle-label::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background-color: var(--WHITE);
+  border-radius: 50%;
+  transition: transform 0.3s;
+  transform: translateX(24px); 
+}
+
+input:not(:checked) + .toggle-label {
+  background-color: var(--GRAY-02);
+}
+
+input:not(:checked) + .toggle-label::after {
+  transform: translateX(0);
+}

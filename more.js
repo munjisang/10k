@@ -1182,3 +1182,40 @@ fetch('./data/recipe.json')
       });
     });
   });
+
+// -------------------- 토글버튼 --------------------
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.toggle-switch').forEach((wrap, idx) => {
+    const input = wrap.querySelector('input.myToggle');
+    const label = wrap.querySelector('.toggle-label');
+
+    if (!input || !label) return;
+
+    if (!input.id) {
+      input.id = `myToggle_${Date.now().toString(36)}_${idx}`;
+    }
+    label.htmlFor = input.id;
+
+    updateToggleVisual(input);
+
+    input.addEventListener('change', () => {
+      updateToggleVisual(input);
+      const name = wrap.closest('.setting-info')?.querySelector('.setting-name')?.textContent?.trim() || input.id;
+    });
+
+    label.tabIndex = 0;
+    label.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        input.click();
+      }
+    });
+  });
+
+  function updateToggleVisual(input) {
+    const label = document.querySelector(`label[for="${input.id}"]`);
+    if (!label) return;
+    if (input.checked) label.classList.add('on');
+    else label.classList.remove('on');
+  }
+});

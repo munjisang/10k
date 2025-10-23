@@ -1,12 +1,25 @@
-// -------------------- 헤더 알림 클릭 --------------------
+// -------------------- 헤더 알림 / 설정 클릭 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-  const alarmIcon = document.querySelector('.header-icons .icon');
-  if (!alarmIcon) return;
+  const headerIcons = document.querySelectorAll('.header-icons .icon');
+  if (!headerIcons.length) return;
 
-  alarmIcon.addEventListener('click', () => {
-    window.location.href = 'https://m.10000recipe.com/profile/alim2.html';
+  headerIcons.forEach(icon => {
+    const altText = icon.getAttribute('alt');
+
+    if (altText.includes('알림')) {
+      // 알림 아이콘 클릭 시
+      icon.addEventListener('click', () => {
+        window.location.href = 'https://m.10000recipe.com/profile/alim2.html';
+      });
+    } else if (altText.includes('설정')) {
+      // 설정 아이콘 클릭 시
+      icon.addEventListener('click', () => {
+        window.location.href = './setting.html';
+      });
+    }
   });
 });
+
 
 // -------------------- 검석페이지 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
