@@ -294,7 +294,7 @@ fetch('./data/recipe.json')
   .then(data => {
     const list = data.recipes;
 
-    document.querySelectorAll('.list-items, .grid-items, .horizontal-items').forEach(area => {
+    document.querySelectorAll('.list-items, .grid-items, .horizontal-items, .horizon-items').forEach(area => {
       const count = parseInt(area.dataset.count, 10) || 0;
       const randomRecipes = list.sort(() => Math.random() - 0.5).slice(0, count);
 
@@ -304,6 +304,7 @@ fetch('./data/recipe.json')
 
         if (area.classList.contains('list-items')) layout = 'list-item';
         else if (area.classList.contains('grid-items')) layout = 'grid-item';
+        else if (area.classList.contains('horizon-items')) layout = 'horizon-item';
         else layout = 'horizontal-item';
 
         item.className = layout;
