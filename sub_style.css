@@ -1647,6 +1647,8 @@ main {
   gap: 10px;
   padding: 12px 0;
   position: relative;
+  text-decoration: none;
+  color: inherit;
 }
 
 .setting-info-img {

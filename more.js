@@ -1183,7 +1183,7 @@ fetch('./data/recipe.json')
     });
   });
 
-// -------------------- 토글버튼 --------------------
+// -------------------- 토글 버튼 --------------------
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.toggle-switch').forEach((wrap, idx) => {
     const input = wrap.querySelector('input.myToggle');
@@ -1218,4 +1218,41 @@ document.addEventListener('DOMContentLoaded', () => {
     if (input.checked) label.classList.add('on');
     else label.classList.remove('on');
   }
+});
+
+// -------------------- 토글버튼 토스트 메시지 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const toggles = document.querySelectorAll('.toggle-switch input');
+  const toast = document.getElementById('toast');
+
+  function showToast(message) {
+    const now = new Date();
+    const formatted = now.toLocaleString('ko-KR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    }).replace(/\. /g, '.').replace('.', '').replace(',', '');
+
+    toast.innerHTML = `
+      ${message}<br>
+      - 전송자 : (주)만개의레시피<br>
+      - 수신일시 : ${formatted}
+    `;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3500);
+  }
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('change', e => {
+      const name = e.target.closest('.setting-info').querySelector('.setting-name').innerText;
+      const state = e.target.checked ? '허용' : '거부';
+      showToast(`${name}이 수신 ${state} 되었습니다`);
+    });
+  });
 });
