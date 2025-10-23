@@ -2107,3 +2107,13 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.my-logout {
+  margin: 24px;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  font: var(--B7);
+  color: var(--BLACK-SUB);
+  text-decoration: underline;
+}
