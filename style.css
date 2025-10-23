@@ -1948,6 +1948,7 @@ main {
 }
 
 .my-activity-title {
+  flex: 1;
   font: var(--B3);
   color: var(--BLACK-MAIN);
 }
@@ -2070,7 +2071,7 @@ main {
   justify-content: space-around;
   box-sizing: border-box;
   margin: 10px 0;
-  align-items: stretch;
+  align-items: center;
 }
 
 .divider-vertical {
