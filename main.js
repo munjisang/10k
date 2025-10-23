@@ -1316,3 +1316,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ 초기 상태 확인
   checkNoData();
 });
+
+
+
+// -------------------- 마이페이지 // 이동처리 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+    const recipeInfo = document.getElementById("follow-recipe");
+    recipeInfo.addEventListener("click", () => {
+      window.location.href = "my_recipe.html";
+    });
+  });

@@ -64,6 +64,34 @@ main {
   flex: 1;
 }
 
+/* header 닫기 */
+.closed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 640px;
+  height: 64px;
+  background: var(--WHITE);
+  display: flex;
+  justify-content: flex-end; /* 아이콘을 오른쪽 끝으로 */
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(198, 198, 198, 0.1);
+}
+
+.closed-icons {
+  display: flex;
+  align-items: center;
+}
+
+.closed-icon {
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
+}
+
 /* header 카테고리 */
 .cate-header {
   position: fixed;
@@ -1735,4 +1763,67 @@ input:not(:checked) + .toggle-label {
 
 input:not(:checked) + .toggle-label::after {
   transform: translateX(0);
+}
+
+.terms-area {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 👈 화면 전체 높이로 변경 */
+  margin-top: 64px; /* 헤더 높이만큼 아래로 내림 */
+  padding: 24px 16px;
+  background-color: var(--WHITE);
+  gap: 8px;
+  box-sizing: border-box;
+  overflow-y: auto; /* 내용이 길면 스크롤 가능 */
+}
+
+
+/* 검책창 영역 */
+.search-area {
+    background-color: var(--WHITE);
+    width: 100%;
+    padding: 0 16px 16px;
+    box-sizing: border-box;
+    top: 0;
+    z-index: 900;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 요소 사이 균등 배치 유지 */
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    height: 56px;
+    background-color: var(--WHITE);
+    border: 1px solid var(--TERTIARY-08);
+    border-radius: 8px;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+
+.search-bar img {
+    display: block;
+    flex-shrink: 0; /* 이미지 크기 고정 */
+}
+
+.search-bar .search-icon {
+    height: 18px;
+}
+
+.search-bar input {
+    flex: 1; /* 가능한 공간 모두 차지 */
+    min-width: 0; /* 긴 텍스트 때문에 overflow 방지 */
+    border: none;
+    outline: none;
+    font: var(--B7);
+    color: var(--BLACK-MAIN);
+    height: 100%;
+    line-height: normal;
+    padding: 0 8px; /* 좌우 여백 추가 */
+}
+
+.search-bar input::placeholder {
+    color: var(--BLACK-SUB);
 }
