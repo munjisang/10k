@@ -1324,8 +1324,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
-
 // -------------------- 정렬 셀렉트박스 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const recipeSelect = document.querySelector(".recipe-sort-select");
@@ -1356,4 +1354,13 @@ document.addEventListener("DOMContentLoaded", () => {
     recipeSelect.classList.remove("open");
     options.style.display = "none";
   });
+});
+
+// -------------------- 팔로워 / 팔로잉 클릭 시 이동 --------------------
+document.getElementById("follower-tab").addEventListener("click", () => {
+  window.location.href = "follow.html?tab=follower";
+});
+
+document.getElementById("following-tab").addEventListener("click", () => {
+  window.location.href = "follow.html?tab=following";
 });

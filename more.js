@@ -263,7 +263,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// -------------------- 검석페이지 이동 --------------------
+// -------------------- 닫기 버튼 클릭 시 이전 페이지로 이동 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const closeBtn = document.querySelector(".closed-icon");
+  closeBtn.addEventListener("click", () => {
+    history.back() = "setting.html"; 
+  });
+});
+
+// -------------------- 검색페이지 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const folderEditBtn = document.querySelector(".cate-header-icons");
   if (folderEditBtn) {
@@ -1257,3 +1265,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// -------------------- 팔로워 / 팔로잉 클릭 시 이동 --------------------
+const params = new URLSearchParams(window.location.search);
+const tab = params.get('tab');
+
+if (tab === 'following') {
+  document.querySelector('.follow-tab:nth-child(2)').classList.add('active');
+  document.querySelector('.follow-tab:nth-child(1)').classList.remove('active');
+}
+
+// -------------------- 탭 클릭 시 활성화 --------------------
+document.querySelectorAll('.follow-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.follow-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
