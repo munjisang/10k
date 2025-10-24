@@ -301,7 +301,7 @@ main {
 }
 
 .recipe-name {
-  font: var(--B3);
+  font: var(--B7);
   color: var(--BLACK-MAIN);
   display: -webkit-box;
   -webkit-line-clamp: 2;

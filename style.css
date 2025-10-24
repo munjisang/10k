@@ -373,16 +373,15 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  
 }
 
 .recipe-area-title {
-  font: var(--S1);
+  font: var(--B1);
   color: var(--BLACK-MAIN);
 }
 
 .recipe-area-subtitle {
-  font: var(--B3);
+  font: var(--B7);
   color: var(--BLACK-SUB);
 }
 
@@ -402,7 +401,7 @@ main {
 }
 
 .recipe-name {
-  font: var(--B3);
+  font: var(--B7);
   color: var(--BLACK-MAIN);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1013,7 +1012,7 @@ main {
 }
 
 .review-recipe-name {
-  font: var(--B8);
+  font: var(--B7);
   color: var(--BLACK-MAIN);
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -1248,7 +1247,7 @@ main {
 
 .editor-badge 
 .editor-badge-title {
-  font: var(--B6);
+  font: var(--B7);
   color: var(--TERTIARY-08);
 }
 
@@ -1822,8 +1821,8 @@ main {
 }
 
 .my-profile-thumb img {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 200px;
 }
@@ -1837,9 +1836,28 @@ main {
   min-width: 0;
 }
 
+.profile-user-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
 .profile-user-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font: var(--B3);
   color: var(--BLACK-MAIN);
+  width: 100%;
+}
+
+.profile-user-name img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.profile-user-name span {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1849,17 +1867,16 @@ main {
 
 .profile-user-follow {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  gap: 6px;
+  gap: 32px;
 }
 
 .follow-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1;
 }
 
 .follow-info-caption {
@@ -1936,3 +1953,159 @@ main {
   height: 16px;
 }
 
+/* 내 레시피 */
+.my-recipe-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  background-color: var(--WHITE);
+  border-radius: 8px;
+  gap: 16px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+.my-recipe-area-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.my-recipe-area-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.my-recipe-area-title {
+  font: var(--B1);
+  color: var(--BLACK-MAIN);
+}
+
+.my-recipe-area-subtitle {
+  font: var(--B7);
+  color: var(--BLACK-SUB);
+}
+
+/* 내 레시피 검색 */
+.my-search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  height: 48px;
+  background-color: var(--WHITE);
+  border: 1px solid var(--TERTIARY-08);
+  border-radius: 8px;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.my-search-bar img {
+  display: block;
+  flex-shrink: 0; 
+}
+
+.my-search-bar .my-search-icon {
+  height: 16px;
+}
+
+.my-search-bar input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  height: 100%;
+  line-height: normal;
+  padding: 0 8px; 
+}
+
+.my-search-bar input::placeholder {
+  color: var(--BLACK-SUB);
+}
+
+/* 내 레시피 정렬 */
+.recipe-sort {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recipe-sort-count {
+  flex: 1;
+  font: var(--B7);
+  color: var(--TERTIARY-08);
+}
+
+.recipe-sort-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+}
+
+.recipe-sort-select {
+  position: relative;
+  font: var(--B8);
+  color: var(--BLACK-MAIN);
+  padding: 6px 0;
+  cursor: pointer;
+  user-select: none;
+  min-width: 120px;
+  text-align: right;
+}
+
+.recipe-sort-select .selected {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding-right: 34px;
+  box-sizing: border-box;
+}
+
+.recipe-sort-options {
+  position: absolute;
+  min-width: 120px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--WHITE);
+  border: 1px solid var(--TERTIARY-08);
+  border-radius: 6px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.1),
+    0 0 6px rgba(0,0,0,0.06);
+}
+
+.recipe-sort-options li {
+  padding: 10px 16px;
+  text-align: center;
+  color: var(--BLACK-MAIN);
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.recipe-sort-chevron-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.recipe-sort-select.open .recipe-sort-chevron-icon {
+  transform: translateY(-50%) rotate(180deg);
+}

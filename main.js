@@ -1323,3 +1323,37 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "my_recipe.html";
     });
   });
+
+
+
+// -------------------- 정렬 셀렉트박스 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const recipeSelect = document.querySelector(".recipe-sort-select");
+  const selected = recipeSelect.querySelector(".selected");
+  const options = recipeSelect.querySelector(".recipe-sort-options");
+  const optionItems = options.querySelectorAll("li");
+
+  // 셀렉트 클릭 (열기/닫기)
+  selected.addEventListener("click", (e) => {
+    e.stopPropagation();
+    selected.textContent = e.target.textContent;
+    const isOpen = recipeSelect.classList.toggle("open");
+    options.style.display = isOpen ? "block" : "none";
+  });
+
+  // 옵션 클릭 시 선택 및 닫기
+  optionItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation(); // 부모 이벤트 차단
+      selected.textContent = e.target.dataset.value;
+      recipeSelect.classList.remove("open");
+      options.style.display = "none";
+    });
+  });
+
+  // 외부 클릭 시 닫기
+  document.addEventListener("click", () => {
+    recipeSelect.classList.remove("open");
+    options.style.display = "none";
+  });
+});

@@ -74,12 +74,19 @@
           <img src="https://recipe1.ezmember.co.kr/cache/rpf/2015/07/29/e4be91d70e81a206b600e8b92217915e1.jpg" alt="프로필사진">
         </div>
         <div class="profile-user-info">
-          <div class="profile-user-name">내 이름은 이효리 😄</div>
+          <div class="profile-user-header">
+            <div class="profile-user-name">
+              <img src="https://recipe1.ezmember.co.kr/img/mobile/2025/influ_icon.png">
+              <span>내 이름은 이효리 😄</span>              
+            </div>
+          </div>            
           <div class="profile-user-follow">
+            <!--
             <div class="follow-info" id="follow-recipe">
               <div class="follow-info-caption">레시피</div>
               <div class="follow-info-detail">999</div>
             </div>
+            -->
             <div class="follow-info">
               <div class="follow-info-caption">팔로워</div>
               <div class="follow-info-detail">11.1만</div>
@@ -111,6 +118,31 @@
           <span>내 레시피</span>
         </button>
       </div>
+    </div>
+    <div class="my-recipe-area">
+      <div class="my-recipe-area-title">내 이름은 이효리 😄님의 레시피</div>
+      <div class="my-search-bar">
+        <input type="text" placeholder="레시피 검색">
+        <img src="./img/search.png" alt="검색" class="my-search-icon">
+      </div>
+      <div class="recipe-sort">
+          <div class="recipe-sort-count">9,431개</div>
+          <div class="recipe-sort-wrapper">
+            <div class="recipe-sort-select">
+              <span class="selected">최신순</span>
+              <ul class="recipe-sort-options">
+                <li data-value="최신순">최신순</li>
+                <li data-value="조회수순">조회수순</li>
+                <li data-value="스크랩순">스크랩순</li>
+                <li data-value="후기순">후기순</li>
+                <li data-value="댓글순">댓글순</li>
+                <li data-value="공유순">공유순</li>
+              </ul>
+              <img src="./img/chevron_down_b.png" alt="dropdown" class="recipe-sort-chevron-icon">
+            </div>
+          </div>
+        </div>
+      <div class="grid-items" data-count="30"></div>
     </div>
   </main>
 </body>
