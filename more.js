@@ -1283,3 +1283,18 @@ document.querySelectorAll('.follow-tab').forEach(tab => {
   });
 });
 
+
+// -------------------- 팔로우 버튼 --------------------
+document.querySelectorAll('.follower-list-follow').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.classList.contains('follower-list-unfollow')) {
+      btn.classList.remove('follower-list-unfollow');
+      btn.classList.add('follower-list-follow');
+      btn.textContent = '팔로우';
+    } else {
+      btn.classList.remove('follower-list-follow');
+      btn.classList.add('follower-list-unfollow');
+      btn.textContent = '팔로우 취소';
+    }
+  });
+});

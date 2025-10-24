@@ -1907,3 +1907,83 @@ input:not(:checked) + .toggle-label::after {
   height: 2px;
   background-color: var(--TERTIARY-08);
 }
+
+/* 팔로워 리스트 전체 */
+.follower-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  gap: 16px;
+  background-color: var(--WHITE);
+  box-sizing: border-box;
+  margin-top: 120px;
+}
+
+.follower-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.follower-list-img {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+}
+
+.follower-list-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.follower-content-user {
+  flex: 1; 
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.follower-content-name {
+  font: var(--B6);
+  color: var(--BLACK-MAIN);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.follower-content-msg {
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.follower-list-follow,
+.follower-list-unfollow {
+  flex-shrink: 0;
+  width: 80px;
+  height: 36px;
+  border-radius: 2px;
+  background: var(--WHITE);
+  font: var(--C3);
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.follower-list-follow {
+  border: 1px solid var(--GRAY-01);
+  color: var(--BLACK-MAIN);
+}
+
+.follower-list-unfollow {
+  border: 1px solid var(--PRIMARY-04);
+  color: var(--PRIMARY-04);
+}
