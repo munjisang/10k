@@ -1919,10 +1919,20 @@ input:not(:checked) + .toggle-label::after {
   margin-top: 120px;
 }
 
+.follower-lists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
 .follower-list {
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
 }
 
 .follower-list-img {
@@ -1940,7 +1950,7 @@ input:not(:checked) + .toggle-label::after {
 
 .follower-content-user {
   flex: 1; 
-  min-width: 0;
+  min-width: 180px;
   display: flex;
   flex-direction: column;
   gap: 2px;

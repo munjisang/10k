@@ -368,14 +368,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (pageAdd) pageAdd.addEventListener("click", openSheet);
 });
 
-// -------------------- 토스트 기본 엘리먼트 생성 --------------------
-let toast = document.getElementById("toast");
-if (!toast) {
-  toast = document.createElement("div");
-  toast.id = "toast";
-  document.body.appendChild(toast);
-}
-
 // -------------------- 폴더 수정 & 삭제 통합 처리 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const editOverlay = document.querySelector(".folder-edit-overlay");
@@ -437,6 +429,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// -------------------- 토스트 기본 엘리먼트 생성 --------------------
+let toast = document.getElementById("toast");
+if (!toast) {
+  toast = document.createElement("div");
+  toast.id = "toast";
+  document.body.appendChild(toast);
+}
 
 // -------------------- 공용 토스트 함수 --------------------
 let toastTimer = null;
@@ -1266,35 +1266,104 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// -------------------- 팔로워 / 팔로잉 클릭 시 이동 --------------------
-const params = new URLSearchParams(window.location.search);
-const tab = params.get('tab');
+// -------------------- user.JSON 불러오기 --------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  const tabs = document.querySelectorAll(".follow-tab");
+  const listContainer = document.querySelector(".follower-lists");
 
-if (tab === 'following') {
-  document.querySelector('.follow-tab:nth-child(2)').classList.add('active');
-  document.querySelector('.follow-tab:nth-child(1)').classList.remove('active');
-}
+  let userData = {};
 
-// -------------------- 탭 클릭 시 활성화 --------------------
-document.querySelectorAll('.follow-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.follow-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
+  // -------------------- URL 파라미터 확인 --------------------
+  const params = new URLSearchParams(window.location.search);
+  const initialTab = params.get('tab') === 'following' ? 'followings' : 'followers';
+
+  // -------------------- JSON 불러오기 --------------------
+  try {
+    const res = await fetch("./data/user.json");
+    userData = await res.json();
+  } catch (err) {
+    console.error("❌ user.json 불러오기 실패:", err);
+    return;
+  }
+
+  // -------------------- 초기 탭 활성화 --------------------
+  tabs.forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.type === initialTab);
   });
-});
 
+  // -------------------- 초기 리스트 렌더링 --------------------
+  renderList(initialTab);
 
-// -------------------- 팔로우 버튼 --------------------
-document.querySelectorAll('.follower-list-follow').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.classList.contains('follower-list-unfollow')) {
-      btn.classList.remove('follower-list-unfollow');
-      btn.classList.add('follower-list-follow');
-      btn.textContent = '팔로우';
-    } else {
-      btn.classList.remove('follower-list-follow');
-      btn.classList.add('follower-list-unfollow');
-      btn.textContent = '팔로우 취소';
+  // -------------------- 탭 클릭 이벤트 --------------------
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const type = tab.dataset.type;
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderList(type);
+    });
+  });
+
+  // -------------------- 리스트 렌더링 함수 --------------------
+  function renderList(type) {
+    const data = userData[type] || [];
+    listContainer.innerHTML = "";
+
+    data.slice(0, 15).forEach(user => {
+      const listItem = document.createElement("div");
+      listItem.className = "follower-list";
+      listItem.innerHTML = `
+        <div class="follower-list-img">
+          <img src="${user["user-img"]}" alt="${user["user-name"]}">
+        </div>
+        <div class="follower-content-user">
+          <div class="follower-content-name">${user["user-name"]}</div>
+          <div class="follower-content-msg">${user["user-msg"] || ''}</div>
+        </div>
+        <div class="${type === "followers" ? "follower-list-unfollow" : "follower-list-follow"}">
+          ${type === "followers" ? "소식끊기" : "소식받기"}
+        </div>
+      `;
+
+      // 프로필 클릭
+      listItem.addEventListener("click", (e) => {
+        if (
+          e.target.classList.contains("follower-list-follow") ||
+          e.target.classList.contains("follower-list-unfollow")
+        ) return;
+        window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${user["user-seq"]}`, "_self");
+      });
+
+      listContainer.appendChild(listItem);
+    });
+  }
+
+// -------------------- 팔로우 / 소식끊기 버튼 + 토스트 --------------------
+document.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("follower-list-follow") ||
+    e.target.classList.contains("follower-list-unfollow")
+  ) {
+    e.stopPropagation(); // 부모 클릭 방지
+
+    const listItem = e.target.closest(".follower-list");
+    const userName = listItem.querySelector(".follower-content-name").textContent;
+
+    const toast = document.getElementById("toast");
+
+    if (e.target.classList.contains("follower-list-follow")) {
+      e.target.classList.remove("follower-list-follow");
+      e.target.classList.add("follower-list-unfollow");
+      e.target.textContent = "소식끊기";
+
+      showToast(`${userName}님의 소식을 알려드릴께요!`);
+    } else if (e.target.classList.contains("follower-list-unfollow")) {
+      e.target.classList.remove("follower-list-unfollow");
+      e.target.classList.add("follower-list-follow");
+      e.target.textContent = "소식받기";
+
+      showToast(`${userName}님 팔로우를 취소했어요.`);
     }
-  });
+  }
+});
 });
