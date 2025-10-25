@@ -319,7 +319,7 @@ main {
 
 .out-info-divider {
   width: 1px;
-  background-color: var(--BLACK-SUB);
-  height: 16px;
+  background-color: var(--GRAY-02);
+  height: 12px;
   align-self: center;
 }
