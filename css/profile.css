@@ -1,0 +1,325 @@
+@media screen and (max-width: 640px) {
+    body, .fixed-header {
+        width: 100%;
+    }
+
+    .fixed-header {
+        padding: 0 16px;
+    }
+}
+
+body {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--WHITE);
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    overflow-y: scroll; 
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+main {
+  padding-bottom: 0;
+}
+
+/* header 뒤로가기 */
+.sub-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-width: 640px;
+  height: 64px;
+  background: var(--WHITE);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  gap: 16px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(198, 198, 198, 0.1);
+}
+
+.leding-icons {
+    height: 28px;
+    width: 28px;
+    display: flex;
+    align-items: center; 
+}
+
+.leding-icon {
+    height: 28px;
+    cursor: pointer;
+}
+
+.sub-header-title {
+  font: var(--S2);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  flex: 1;
+}
+
+/* header 닫기 */
+.closed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 640px;
+  height: 64px;
+  background: var(--WHITE);
+  display: flex;
+  justify-content: flex-end; /* 아이콘을 오른쪽 끝으로 */
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.closed-icons {
+  display: flex;
+  align-items: center;
+}
+
+.closed-icon {
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
+}
+
+/* toast */
+#toast {
+    visibility: hidden;
+    width: calc(100% - 32px);
+    max-width: 640px;
+    background-color: var(--DIM-BLACK);
+    color: var(--WHITE);
+    text-align: center;
+    border-radius: 20px;
+    padding: 12px;
+    position: fixed;
+    left: 50%;
+    top: 80px;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 2000;
+    font: var(--B4);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-sizing: border-box;
+}
+
+#toast.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 프로필 이미지 영역 */
+.img-area {
+  display: flex;
+  padding: 20px 16px;
+  background-color: var(--WHITE);
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-thumb { 
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  position: relative;
+} 
+
+.profile-thumb img { 
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 200px;
+  display: block; 
+} 
+
+.profile-thumb 
+.edit-icon { 
+  position: absolute; 
+  right: -8px; 
+  bottom: 0; 
+  width: 40px; 
+  height: 40px; 
+  object-fit: contain; 
+}
+
+.profile-thumb-default {
+  font: var(--B6);
+  color: var(--BLACK-SUB);
+}
+
+/* 카메라 바텀시트 */
+.profileoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 2000;
+}
+
+.profileoverlay.show {
+  display: flex;
+}
+
+.bottom-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--WHITE);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 30px 16px;
+  box-sizing: border-box;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-sheet.show {
+  transform: translateY(0);
+}
+
+.sheet-area-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sheet-area-title {
+  font: var(--B1);
+  color: var(--BLACK-MAIN);
+}
+
+.sheet-area-icon {
+  height: 22px;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.sheet-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.sheet-btn {
+  width: 100%;
+  height: 56px;  
+  background: var(--WHITE);
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sheet-btn img {
+  width: 32px;
+  height: 32px;
+}
+
+/* 프로필 콘텐츠 영역 */
+.edit-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  background-color: var(--WHITE);
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+
+.edit-lists {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+.edit-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.edit-name {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit-detail {
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+  min-width: 60px;
+  text-align: right;
+}
+
+.more-img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.more-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  vertical-align: middle;
+}
+
+.out-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.out-name {
+  padding: 12px 24px;
+  font: var(--B7);
+  color: var(--BLACK-SUB);
+}
+
+.out-info-divider {
+  width: 1px;
+  background-color: var(--BLACK-SUB);
+  height: 16px;
+  align-self: center;
+}

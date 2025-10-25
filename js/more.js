@@ -155,34 +155,61 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// -------------------- 카메라 오버레이 --------------------
+// -------------------- 카메라 & 프로필 오버레이 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const cameraIcon = document.querySelector('.search-trailing-icon img'); 
-  const overlay = document.getElementById('searchOverlay');
-  const bottomSheet = overlay?.querySelector('.bottom-sheet');
-  const closeBtn = overlay?.querySelector('.sheet-area-icon');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchSheet = searchOverlay?.querySelector('.bottom-sheet');
+  const searchClose = searchOverlay?.querySelector('.sheet-area-icon');
 
-  if (!cameraIcon || !overlay || !bottomSheet || !closeBtn) return;
+  if (cameraIcon && searchOverlay && searchSheet && searchClose) {
+    cameraIcon.addEventListener('click', () => {
+      searchOverlay.classList.add('show');
+      searchSheet.classList.add('show');
+      document.body.style.overflow = 'hidden'; 
+    });
 
-  cameraIcon.addEventListener('click', () => {
-    overlay.classList.add('show');
-    bottomSheet.classList.add('show');
-    document.body.style.overflow = 'hidden'; 
-  });
+    searchClose.addEventListener('click', () => {
+      searchSheet.classList.remove('show');
+      searchOverlay.classList.remove('show');
+      document.body.style.overflow = ''; 
+    });
 
-  closeBtn.addEventListener('click', () => {
-    bottomSheet.classList.remove('show');
-    overlay.classList.remove('show');
-    document.body.style.overflow = ''; 
-  });
+    searchOverlay.addEventListener('click', e => {
+      if (e.target === searchOverlay) {
+        searchSheet.classList.remove('show');
+        searchOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+  }
 
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) {
-      bottomSheet.classList.remove('show');
-      overlay.classList.remove('show');
+  const profileOverlay = document.getElementById('profileoverlay');
+  const profileSheet = profileOverlay?.querySelector('.bottom-sheet');
+  const profileClose = profileOverlay?.querySelector('.sheet-area-icon');
+  const profileTrigger = document.querySelector('.profile-thumb, .edit-icon'); 
+
+  if (profileOverlay && profileSheet && profileClose && profileTrigger) {
+    profileTrigger.addEventListener('click', () => {
+      profileOverlay.classList.add('show');
+      profileSheet.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+
+    profileClose.addEventListener('click', () => {
+      profileSheet.classList.remove('show');
+      profileOverlay.classList.remove('show');
       document.body.style.overflow = '';
-    }
-  });
+    });
+
+    profileOverlay.addEventListener('click', e => {
+      if (e.target === profileOverlay) {
+        profileSheet.classList.remove('show');
+        profileOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+  }
 });
 
 // -------------------- 레시피 더보기 (무한 스크롤) --------------------

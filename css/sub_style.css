@@ -150,19 +150,18 @@ main {
   border: 1px solid var(--TERTIARY-08);
   border-radius: 6px;
   margin-top: 4px;
-  max-height: 200px;
   overflow-y: auto;
   display: none;
   z-index: 10;
   list-style: none;
-  padding: 0;
+  padding: 12px 0;
   box-shadow:
     0 4px 8px rgba(0,0,0,0.1),
     0 0 6px rgba(0,0,0,0.06);
 }
 
 .cate-options li {
-  padding: 6px 10px;
+  padding: 6px 16px;
   color: var(--BLACK-MAIN);
   font: var(--B3);
   cursor: pointer;
@@ -1746,16 +1745,6 @@ main {
   object-fit: contain;
 }
 
-.my-logout {
-  margin: 24px;
-  align-items: center;
-  text-align: center;
-  box-sizing: border-box;
-  font: var(--B7);
-  color: var(--BLACK-SUB);
-  text-decoration: underline;
-}
-
 /*마이-최근본 레시피*/
 .horizon-items { 
   display: flex;
@@ -1989,8 +1978,8 @@ input:not(:checked) + .toggle-label::after {
 }
 
 .follower-list-follow {
-  border: 1px solid var(--GRAY-01);
-  color: var(--BLACK-MAIN);
+  border: 1px solid var(--TERTIARY-08);
+  color: var(--TERTIARY-08);
 }
 
 .follower-list-unfollow {

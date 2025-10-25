@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/font.css">
+  <link rel="stylesheet" href="./css/color.css">
+  <link rel="stylesheet" href="./css/profile.css">
+  <title>만개의 레시피 - 프로필 편집</title>
+</head>
+
+<body>
+  <header class="sub-header">
+    <div class="leding-icons">
+      <img src="./img/back.png" alt="이전화면" class="leding-icon">
+    </div>
+    <div class="sub-header-title">프로필 편집</div>
+  </header>
+  <main>
+    <div class="img-area">
+      <div class="profile-thumb">
+        <img src="https://recipe1.ezmember.co.kr/cache/rpf/2015/07/29/e4be91d70e81a206b600e8b92217915e1.jpg" alt="프로필사진">
+        <img src="./img/edit_pen.png" class="edit-icon">
+      </div>
+      <div class="profile-thumb-default"> 기본 프로필로 변경</div>
+    </div>
+
+    <div id="profileoverlay" class="profileoverlay">
+      <div class="bottom-sheet">
+        <div class="sheet-area-content">
+          <div class="sheet-area-text">
+            <div class="sheet-area-title">프로필 사진 등록</div>
+          </div>
+          <img src="./img/clear.png" alt="닫기" class="sheet-area-icon">
+        </div>
+        <div class="sheet-buttons">
+          <label class="sheet-btn">
+            <img src="./img/picture.png" alt="아이콘">
+            <span>앨범에서 선택하기</span>
+            <input type="file" accept="image/*" style="display:none" id="galleryInput">
+          </label>
+          <label class="sheet-btn">
+            <img src="./img/camera.png" alt="아이콘">
+            <span>카메라로 촬영하기</span>
+            <input type="file" accept="image/*" capture="environment" style="display:none" id="cameraInput">
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-area">
+      <div class="edit-lists">
+        <div class="edit-list">
+          <div class="edit-name">이메일</div>
+          <div class="edit-detail">aksrodmlfptlvl@gmail.com</div>
+          <div class="more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="edit-list">
+          <div class="edit-name">닉네임</div>
+          <div class="edit-detail">내 이름은 이효리 😄</div>
+          <div class="more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="edit-list">
+          <div class="edit-name">소개</div>
+          <div class="more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="edit-list">
+          <div class="edit-name">내 SNS 링크</div>
+          <div class="edit-detail">3개</div>
+          <div class="more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+        <div class="edit-list">
+          <div class="edit-name">차단회원 관리</div>
+          <div class="more-img">
+            <img src="./img/my_right.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-area">
+      <div class="out-info">
+        <div class="out-name"> 로그아웃</div>
+        <div class="out-info-divider"></div>
+        <div class="out-name"> 회원탈퇴</div>
+      </div>
+
+    </div>
+  </main>
+  <div id="toast" class="toast"></div>
+</body>
+<script src="./js/more.js"></script>
+</html>

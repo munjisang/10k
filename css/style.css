@@ -1907,7 +1907,7 @@ main {
   height: 36px;
   object-fit: contain;
 }
-
+/* 미사용 -----
 .profile-buttons {
   display: flex;
   width: 100%;
@@ -1951,6 +1951,21 @@ main {
 .profile-buttons img {
   width: 16px;
   height: 16px;
+}
+*/
+
+.profile-edit {
+  border-radius: 200px;
+  font: var(--C3);
+  cursor: pointer;
+  padding: 10px 14px;
+  background: var(--DIM-TERTIARY);
+  color: var(--TERTIARY-08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: auto;
 }
 
 /* 내 레시피 */
@@ -2054,7 +2069,7 @@ main {
   padding: 6px 0;
   cursor: pointer;
   user-select: none;
-  min-width: 120px;
+  min-width: 100px;
   text-align: right;
 }
 
@@ -2068,7 +2083,7 @@ main {
 
 .recipe-sort-options {
   position: absolute;
-  min-width: 120px;
+  min-width: 100px;
   top: 100%;
   left: 0;
   right: 0;
@@ -2076,7 +2091,6 @@ main {
   border: 1px solid var(--TERTIARY-08);
   border-radius: 6px;
   margin-top: 4px;
-  max-height: 200px;
   overflow-y: auto;
   display: none;
   z-index: 10;

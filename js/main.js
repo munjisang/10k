@@ -1316,13 +1316,15 @@ document.addEventListener("DOMContentLoaded", () => {
   checkNoData();
 });
 
-// -------------------- 마이페이지 // 이동처리 --------------------
+// -------------------- 마이페이지 // 프로필 이동처리 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-    const recipeInfo = document.getElementById("follow-recipe");
-    recipeInfo.addEventListener("click", () => {
-      window.location.href = "my_recipe.html";
+  const profileEditBtn = document.querySelector(".profile-edit");
+  if (profileEditBtn) {
+    profileEditBtn.addEventListener("click", () => {
+      window.location.href = "profile.html";
     });
-  });
+  }
+});
 
 // -------------------- 정렬 셀렉트박스 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -1360,7 +1362,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("follower-tab").addEventListener("click", () => {
   window.location.href = "follow.html?tab=follower";
 });
-
 document.getElementById("following-tab").addEventListener("click", () => {
   window.location.href = "follow.html?tab=following";
 });
