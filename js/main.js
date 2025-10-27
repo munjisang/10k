@@ -680,7 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // 소식받기 → 소식받는중
             addBtn.classList.remove("chef-add-btn");
             addBtn.classList.add("chef-add-flow");
-            addBtn.textContent = "소식받는중";
+            addBtn.textContent = "소식끊기";
             showToast(`${chefName}님의 새로운 소식을 알려드릴께요.`);
           } else {
             // 소식받는중 → 소식받기

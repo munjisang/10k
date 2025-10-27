@@ -155,11 +155,6 @@ main {
   object-fit: contain; 
 }
 
-.profile-thumb-default {
-  font: var(--B6);
-  color: var(--BLACK-SUB);
-}
-
 /* 카메라 바텀시트 */
 .profileoverlay {
   position: fixed;
@@ -258,7 +253,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 12px;
+  gap: 6px;
 }
 
 .edit-list {
@@ -308,6 +303,7 @@ main {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  margin-top: 20px;
   width: 100%;
 }
 
@@ -319,7 +315,7 @@ main {
 
 .out-info-divider {
   width: 1px;
-  background-color: var(--GRAY-02);
+  background-color: var(--GRAY-01);
   height: 12px;
   align-self: center;
 }
