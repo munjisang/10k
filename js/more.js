@@ -1620,19 +1620,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadSNSData = () => {
     const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     snsInputs.forEach((input, index) => {
-      if (data[index]) input.value = data[index];
+      input.value = data[index] || ""; // 값 없으면 빈 문자열
     });
     updateSaveButtonState();
   };
 
   // -------------------- 저장 버튼 상태 업데이트 --------------------
   const updateSaveButtonState = () => {
-    let hasValue = false;
-    snsInputs.forEach(input => {
-      if (input.value.trim().length > 0) hasValue = true;
-    });
-    saveBtn.disabled = !hasValue;
-    saveBtn.classList.toggle("active", hasValue);
+    let hasValue = Array.from(snsInputs).some(input => input.value.trim().length > 0);
+    saveBtn.disabled = false; // 항상 저장 가능
+    saveBtn.classList.toggle("active", hasValue); // 값이 있을 때만 active 스타일
   };
 
   // -------------------- 이벤트 바인딩 --------------------
@@ -1643,7 +1640,7 @@ document.addEventListener("DOMContentLoaded", () => {
   saveBtn.addEventListener("click", () => {
     const data = {};
     snsInputs.forEach((input, index) => {
-      data[index] = input.value.trim();
+      data[index] = input.value.trim(); // 빈값도 그대로 저장
     });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
