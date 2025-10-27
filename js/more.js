@@ -1473,3 +1473,116 @@ document.addEventListener("click", (e) => {
   }
 });
 });
+
+// -------------------- 프로필 변경 바텀시트 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const editOverlay = document.querySelector(".profile-edit-overlay");
+  const editSheet = editOverlay.querySelector(".profile-edit");
+  const editTitle = editSheet.querySelector(".profile-edit-title");
+  const editInput = editSheet.querySelector(".profile-edit-input");
+  const editTextarea = editSheet.querySelector(".profile-edit-textarea");
+  const cancelBtn = editSheet.querySelector(".profile-edit-cancel");
+  const confirmBtn = editSheet.querySelector(".profile-edit-confirm");
+
+  const editItems = document.querySelectorAll(".edit-list");
+  let currentEditItem = null;
+
+  // -------------------- 바텀시트 열기 --------------------
+  const openEditSheet = (item) => {
+    currentEditItem = item;
+    const field = item.querySelector(".edit-name").textContent.trim();
+
+    switch (field) {
+      case "닉네임":
+        editTitle.textContent = "닉네임을 입력해주세요.";
+        editInput.placeholder = "최대 20자까지 등록 가능합니다.";
+        editInput.maxLength = 20;
+        editInput.value = item.querySelector(".edit-detail")?.textContent || "";
+
+        editInput.style.display = "block";
+        editTextarea.style.display = "none";
+        break;
+
+      case "소개":
+        editTitle.textContent = "소개를 입력해주세요.";
+        editTextarea.placeholder = "최대 50자까지 등록 가능합니다.";
+        editTextarea.maxLength = 50;
+        editTextarea.value = item.querySelector(".edit-detail")?.textContent || "";
+
+        editInput.style.display = "none";
+        editTextarea.style.display = "block";
+        break;
+
+      case "이메일":
+        editTitle.textContent = "이메일을 입력해주세요.";
+        editInput.placeholder = "이메일을 입력해주세요.";
+        editInput.maxLength = 50;
+        editInput.value = item.querySelector(".edit-detail")?.textContent || "";
+
+        editInput.style.display = "block";
+        editTextarea.style.display = "none";
+        break;
+
+      default:
+        return; // 위 세 가지 외에는 바텀시트 열지 않음
+    }
+
+    editOverlay.style.display = "flex";
+    setTimeout(() => editSheet.classList.add("show"), 10);
+    (editInput.style.display === "block" ? editInput : editTextarea).focus();
+    updateConfirmButtonState();
+  };
+
+  // -------------------- 바텀시트 닫기 --------------------
+  const closeEditSheet = () => {
+    editSheet.classList.remove("show");
+    setTimeout(() => (editOverlay.style.display = "none"), 300);
+    editInput.value = "";
+    editTextarea.value = "";
+  };
+
+  // -------------------- 버튼 상태 업데이트 --------------------
+  const updateConfirmButtonState = () => {
+    const activeField = editInput.style.display === "block" ? editInput : editTextarea;
+    const hasText = activeField.value.trim().length > 0;
+    confirmBtn.disabled = !hasText;
+    confirmBtn.classList.toggle("active", hasText);
+  };
+
+  // -------------------- 이벤트 바인딩 --------------------
+  editItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const field = item.querySelector(".edit-name").textContent.trim();
+
+      // 예외 처리 (바텀시트 안 열리는 메뉴)
+      if (field === "내 SNS 링크" || field === "차단회원 관리") return;
+
+      openEditSheet(item);
+    });
+  });
+
+  editInput.addEventListener("input", updateConfirmButtonState);
+  editTextarea.addEventListener("input", updateConfirmButtonState);
+
+  cancelBtn.addEventListener("click", closeEditSheet);
+
+  confirmBtn.addEventListener("click", () => {
+    if (confirmBtn.disabled || !currentEditItem) return;
+
+    const value = (editInput.style.display === "block" ? editInput : editTextarea).value.trim();
+    const detail = currentEditItem.querySelector(".edit-detail");
+    if (detail) detail.textContent = value;
+
+    closeEditSheet();
+  });
+
+  // 오버레이 바깥 클릭 시 닫기
+  editOverlay.addEventListener("click", e => {
+    if (e.target === editOverlay) closeEditSheet();
+  });
+
+  // ESC 키 닫기
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && editOverlay.style.display === "flex") closeEditSheet();
+  });
+});
