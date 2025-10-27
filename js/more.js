@@ -231,41 +231,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ✅ 앨범에서 선택하기
     const galleryInput = document.getElementById('galleryInput');
-    const galleryBtn = profileOverlay.querySelector('.sheet-btn:nth-child(2)');
-    if (galleryBtn && galleryInput) {
-      galleryBtn.addEventListener('click', () => galleryInput.click());
+    if (galleryInput) {
       galleryInput.addEventListener('change', e => {
         const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = e => {
-            profileImg.src = e.target.result;
-            localStorage.setItem('profileImage', e.target.result); // 저장
-          };
-          reader.readAsDataURL(file);
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = e2 => {
+          const imgData = e2.target.result;
+          profileImg.src = imgData;
+          localStorage.setItem('profileImage', imgData);
           closeProfileOverlay();
-        }
+        };
+        reader.readAsDataURL(file);
+
+        // 동일 파일 재선택 가능하게 초기화
+        e.target.value = "";
       });
     }
 
-    // ✅ 카메라로 촬영하기
+    // ✅ 카메라로 촬영하기도 동일하게 처리
     const cameraInput = document.getElementById('cameraInput');
-    const cameraBtn = profileOverlay.querySelector('.sheet-btn:nth-child(3)');
-    if (cameraBtn && cameraInput) {
-      cameraBtn.addEventListener('click', () => cameraInput.click());
+    if (cameraInput) {
       cameraInput.addEventListener('change', e => {
         const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = e => {
-            profileImg.src = e.target.result;
-            localStorage.setItem('profileImage', e.target.result); // 저장
-          };
-          reader.readAsDataURL(file);
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = e2 => {
+          const imgData = e2.target.result;
+          profileImg.src = imgData;
+          localStorage.setItem('profileImage', imgData);
           closeProfileOverlay();
-        }
+        };
+        reader.readAsDataURL(file);
+
+        e.target.value = "";
       });
     }
+
+
 
     // ✅ 오버레이 닫기 공통 함수
     function closeProfileOverlay() {
