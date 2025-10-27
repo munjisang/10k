@@ -1368,24 +1368,26 @@ document.getElementById("following-tab").addEventListener("click", () => {
 
 
 // -------------------- 로컬스토리지 프로필 이미지 불러오기 --------------------
-function applySavedProfileImage() {
-  const editProfileImg = document.querySelector(".profile-thumb img:first-child");
-  const myProfileImg = document.querySelector(".my-profile-thumb img");
-  const savedProfileImg = localStorage.getItem("profileImage");
+function loadProfileImage() {
+  const profileImg = document.querySelector(".my-profile-thumb img");
+  if (!profileImg) return;
 
+  const savedProfileImg = localStorage.getItem("profileImage");
   if (savedProfileImg) {
-    if (editProfileImg) editProfileImg.src = savedProfileImg;
-    if (myProfileImg) myProfileImg.src = savedProfileImg;
+    profileImg.src = savedProfileImg;
   }
 }
 
-// ✅ 최초 페이지 로드 시
-document.addEventListener("DOMContentLoaded", applySavedProfileImage);
+// ✅ 페이지 최초 로드 시 실행
+document.addEventListener("DOMContentLoaded", loadProfileImage);
 
-// ✅ 뒤로가기 또는 캐시 복원 시 (BFCache 대응)
+// ✅ 브라우저 뒤로가기 / 앞으로가기 시 (BFCache 복원 대응)
 window.addEventListener("pageshow", (event) => {
-  // event.persisted = true → BFCache에서 복원된 경우
   if (event.persisted) {
-    applySavedProfileImage();
+    // BFCache(뒤로가기 캐시)에서 복원된 경우 이미지 다시 불러오기
+    loadProfileImage();
+  } else {
+    // 일부 브라우저에서는 persisted가 false여도 pageshow가 새로 실행됨
+    loadProfileImage();
   }
 });
