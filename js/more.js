@@ -187,98 +187,107 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------------------- 프로필 오버레이 --------------------
-  const profileOverlay = document.getElementById('profileoverlay');
-  const profileSheet = profileOverlay?.querySelector('.bottom-sheet');
-  const profileClose = profileOverlay?.querySelector('.sheet-area-icon');
-  const profileTrigger = document.querySelector('.profile-thumb, .edit-icon'); 
-  const profileImg = document.querySelector('.profile-thumb img:first-child');
+const profileOverlay = document.getElementById('profileoverlay');
+const profileSheet = profileOverlay?.querySelector('.bottom-sheet');
+const profileClose = profileOverlay?.querySelector('.sheet-area-icon');
+const profileTrigger = document.querySelector('.profile-thumb, .edit-icon'); 
+const profileImg = document.querySelector('.profile-thumb img:first-child');
 
-  if (profileOverlay && profileSheet && profileClose && profileTrigger && profileImg) {
+if (profileOverlay && profileSheet && profileClose && profileTrigger && profileImg) {
 
-    // ✅ 페이지 로드 시 저장된 이미지 불러오기
-    const savedProfileImg = localStorage.getItem('profileImage');
-    if (savedProfileImg) {
-      profileImg.src = savedProfileImg;
-    }
+  // 저장된 이미지 불러오기
+  const savedProfileImg = localStorage.getItem('profileImage');
+  if (savedProfileImg) profileImg.src = savedProfileImg;
 
-    // 오버레이 열기
-    profileTrigger.addEventListener('click', () => {
-      profileOverlay.classList.add('show');
-      profileSheet.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    });
+  profileTrigger.addEventListener('click', () => {
+    profileOverlay.classList.add('show');
+    profileSheet.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
 
-    // 닫기 버튼
-    profileClose.addEventListener('click', () => {
+  profileClose.addEventListener('click', closeProfileOverlay);
+  profileOverlay.addEventListener('click', e => { if (e.target === profileOverlay) closeProfileOverlay(); });
+
+  // 기본 프로필 변경
+  const defaultProfileBtn = profileOverlay.querySelector('.sheet-btn:nth-child(1)');
+  if (defaultProfileBtn) {
+    defaultProfileBtn.addEventListener('click', () => {
+      const defaultSrc = './img/profile_default.png';
+      profileImg.src = defaultSrc;
+      localStorage.setItem('profileImage', defaultSrc);
       closeProfileOverlay();
     });
-
-    // 바깥 클릭 시 닫기
-    profileOverlay.addEventListener('click', e => {
-      if (e.target === profileOverlay) closeProfileOverlay();
-    });
-
-    // ✅ 기본 프로필로 변경
-    const defaultProfileBtn = profileOverlay.querySelector('.sheet-btn:nth-child(1)');
-    if (defaultProfileBtn) {
-      defaultProfileBtn.addEventListener('click', () => {
-        const defaultSrc = './img/profile_default.png';
-        profileImg.src = defaultSrc;
-        localStorage.setItem('profileImage', defaultSrc); // 저장
-        closeProfileOverlay();
-      });
-    }
-
-    // ✅ 앨범에서 선택하기
-    const galleryInput = document.getElementById('galleryInput');
-    if (galleryInput) {
-      galleryInput.addEventListener('change', e => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = e2 => {
-          const imgData = e2.target.result;
-          profileImg.src = imgData;
-          localStorage.setItem('profileImage', imgData);
-          closeProfileOverlay();
-        };
-        reader.readAsDataURL(file);
-
-        // 동일 파일 재선택 가능하게 초기화
-        e.target.value = "";
-      });
-    }
-
-    // ✅ 카메라로 촬영하기도 동일하게 처리
-    const cameraInput = document.getElementById('cameraInput');
-    if (cameraInput) {
-      cameraInput.addEventListener('change', e => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = e2 => {
-          const imgData = e2.target.result;
-          profileImg.src = imgData;
-          localStorage.setItem('profileImage', imgData);
-          closeProfileOverlay();
-        };
-        reader.readAsDataURL(file);
-
-        e.target.value = "";
-      });
-    }
-
-
-
-    // ✅ 오버레이 닫기 공통 함수
-    function closeProfileOverlay() {
-      profileSheet.classList.remove('show');
-      profileOverlay.classList.remove('show');
-      document.body.style.overflow = '';
-    }
   }
+
+  // ✅ 이미지 리사이즈 + 저장 함수
+  function resizeAndSaveImage(file, maxWidth = 1024) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let scale = 1;
+          if (img.width > maxWidth) scale = maxWidth / img.width;
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.8); // JPEG 80% 압축
+          resolve(dataUrl);
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // 앨범에서 선택
+  const galleryInput = document.getElementById('galleryInput');
+  if (galleryInput) {
+    galleryInput.addEventListener('change', async e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const imgData = await resizeAndSaveImage(file);
+        profileImg.src = imgData;
+        localStorage.setItem('profileImage', imgData);
+        closeProfileOverlay();
+      } catch (err) {
+        alert("이미지 처리 중 오류가 발생했습니다.");
+        console.error(err);
+      }
+      e.target.value = "";
+    });
+  }
+
+  // 카메라 촬영
+  const cameraInput = document.getElementById('cameraInput');
+  if (cameraInput) {
+    cameraInput.addEventListener('change', async e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const imgData = await resizeAndSaveImage(file);
+        profileImg.src = imgData;
+        localStorage.setItem('profileImage', imgData);
+        closeProfileOverlay();
+      } catch (err) {
+        alert("이미지 처리 중 오류가 발생했습니다.");
+        console.error(err);
+      }
+      e.target.value = "";
+    });
+  }
+
+  function closeProfileOverlay() {
+    profileSheet.classList.remove('show');
+    profileOverlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+
 });
 
 
