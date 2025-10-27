@@ -254,5 +254,259 @@
       "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/12/04/8690496d21096e814aaeb8e0c8acd9ca1.jpg",
       "user-msg": "유니규입니다. 특색 있는 재료 조합으로 누구나 따라 할 수 있는 요리를 제안해요."
     }
+  ],
+  "blockuser": [
+    {
+      "user-seq": "25847923",
+      "user-name": "행복사랑 Oriana Cacharuco 😄",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2020/10/20/3541825da3195af8e0cd8cabd368554b1.jpg",
+      "user-msg": "식탁 위에 작은 행복을 놓고, 사랑이 담긴 요리를 나눠요."
+    },
+    {
+      "user-seq": "66378193",
+      "user-name": "yizhen09",
+      "user-img": "https://recipe1.ezmember.co.kr/img/df/pf_100_100.png",
+      "user-msg": "깔끔하고 간단한 요리로 바쁜 일상 속 여유를 만들어가요."
+    },
+    {
+      "user-seq": "96815359",
+      "user-name": "김치동",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/20/b60c81ce6f7edf569db6affcd09016ce1.jpg",
+      "user-msg": "전통의 맛과 현대의 감각이 만나는 레시피를 즐겨 만들어봐요."
+    },
+    {
+      "user-seq": "89398452",
+      "user-name": "구순란",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2023/01/24/bb269c862adfdc8c5baefb2377d578451.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "80567798",
+      "user-name": "mariasharapova",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/04/05/f359ac5ff48765558e2289390d3d3fac1.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "71781610",
+      "user-name": "은미",
+      "user-img": "https://recipe1.ezmember.co.kr/img/df/pf_100_100.png",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "96207173",
+      "user-name": "hyesun",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2023/09/25/27864535b1a982391aab2b4ad57c752f1.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "21071520",
+      "user-name": "차선회",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/08/d4265ff7781e06a32043fe6c764324ab1.jpg",
+      "user-msg": "차선회입니다. 새로운 재료에 도전하며 나만의 스타일로 요리를 재해석해요."
+    },
+    {
+      "user-seq": "43483281",
+      "user-name": "정미자",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2022/02/08/6c83ea4145148f792b52d30472036bf31.jpg",
+      "user-msg": "정미자입니다. 익숙하고 편안한 맛으로 식구들의 마음을 따뜻하게 만들고 싶어요."
+    },
+    {
+      "user-seq": "95212690",
+      "user-name": "Maga Ulya",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/18/2cb4e74a5b5790521a8240c518b995c41.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "64444968",
+      "user-name": "유니규",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/12/04/8690496d21096e814aaeb8e0c8acd9ca1.jpg",
+      "user-msg": "유니규입니다. 특색 있는 재료 조합으로 누구나 따라 할 수 있는 요리를 제안해요."
+    },
+    {
+      "user-seq": "62538282",
+      "user-name": "이충신",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/14/2024d064f3acbfe047d44e7172dfcb371.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "24306649",
+      "user-name": "최수경입니다. 요리를 통해 매일 조금씩 성장하는 즐거움을 느껴요.",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/05/04/53caeb29f489447a9f4ec6da0a151c081.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "83262113",
+      "user-name": "박형륜입니다. 간단하지만 깊이 있는 맛을 만드는 데 집중해요.",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2022/07/25/3b23b7c93f9ebc89f61985e086beae3d1.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "89998601",
+      "user-name": "ha****",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/03/25/9b109544aeb0baef0f292705ceef95481.jpg",
+      "user-msg": "ha****입니다. 이름은 숨겼지만 정성은 숨기지 않았어요. 함께 요리해요!"
+    },
+    {
+      "user-seq": "53028185",
+      "user-name": "Po Max",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/13/84572fddbcd48c9a89f42320b2af41d81.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "33169891",
+      "user-name": "오은석 오은석",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2018/10/11/543bd0dc5db42537c4ed89f9a254203f1.jpg",
+      "user-msg": "오은석 오은석입니다. 정해진 틀 없이 나만의 감각으로 요리를 풀어가요."
+    },
+    {
+      "user-seq": "40801455",
+      "user-name": "hope",
+      "user-img": "https://recipe1.ezmember.co.kr/img/df/pf_100_100.png",
+      "user-msg": "hope입니다. 작은 희망이 담긴 요리로 식탁을 따뜻하게 채워요."
+    },
+    {
+      "user-seq": "94031023",
+      "user-name": "은구슬",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/01/7e9dea1c9e59940a169ac7c01d4369ff1.jpg",
+      "user-msg": "은구슬입니다. 반짝반짝 새롭고 즐거운 요리 경험을 전하고 싶어요."
+    },
+    {
+      "user-seq": "20022271",
+      "user-name": "이혜현",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/09/17/3c23a6ded09d4afe60bbc87f187edeee1.jpg",
+      "user-msg": "이혜현입니다. 꾸준함이 담긴 한 끼로 매일의 일상을 채워요."
+    },
+    {
+      "user-seq": "64076535",
+      "user-name": "박교순",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/13/f7f2826ba9b781d8f1a9b15dd8db2d421.jpg",
+      "user-msg": "박교순입니다. 정성스럽게 선택한 재료로 따뜻한 식탁을 완성해요."
+    },
+    {
+      "user-seq": "28301212",
+      "user-name": "onefineday72",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2016/07/21/e2d6a75d2e1345205e9900e94f60b41a1.jpg",
+      "user-msg": "onefineday72입니다. 소소한 일상 속 특별한 요리 순간을 기록해요."
+    },
+    {
+      "user-seq": "29465857",
+      "user-name": "apple",
+      "user-img": "https://recipe1.ezmember.co.kr/img/df/pf_100_100.png",
+      "user-msg": "apple입니다. 기본에 충실한 요리를 통해 누구나 쉽게 따라오도록 돕고 싶어요."
+    },
+    {
+      "user-seq": "54394175",
+      "user-name": "조윤희",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/09/08/4d6bc6075f2e0869ad9899e7caa068021.jpg",
+      "user-msg": "조윤희입니다. 향기로운 재료와 감성을 더해 식사시간을 풍요롭게 만들고 싶어요."
+    },
+    {
+      "user-seq": "50660420",
+      "user-name": "수백",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2023/10/08/fbbc3272f81cabb1157e1134285a572e1.jpg",
+      "user-msg": "수백입니다. 간결하고 맛있는 한 끼로 바쁜 하루에 여유를 주고 싶어요."
+    },
+    {
+      "user-seq": "60494078",
+      "user-name": "양시우",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/12/fb347c104fc0f8ad70be81c16a9bc4f31.jpg",
+      "user-msg": "양시우입니다. 참여하고 나누는 요리를 통해 함께 성장하고 싶어요."
+    },
+    {
+      "user-seq": "93158055",
+      "user-name": "준수",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/11/da6bce2cdd62650cea7a6647c2eefed81.jpg",
+      "user-msg": "준수입니다. 깔끔하고 세련된 요리를 지향하며 식탁 위에 차이를 만들어요."
+    },
+    {
+      "user-seq": "70670598",
+      "user-name": "이은희",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2021/08/16/a410fd060390d28ec5b561f8ee05bb701.jpg",
+      "user-msg": "이은희입니다. 정갈하고 차분한 분위기의 요리를 선호해요. 당신의 하루를 위한 한 끼."
+    },
+    {
+      "user-seq": "hsh5330",
+      "user-name": "twinstar",
+      "user-img": "https://recipe1.ezmember.co.kr/img/df/pm_100_100.png",
+      "user-msg": "twinstar입니다. 반짝이는 아이디어로 요리의 즐거움을 빛내고 싶어요."
+    },
+    {
+      "user-seq": "12531063",
+      "user-name": "이성용",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/04/d0a3f2fa61277d5cc63202187a4862e51.jpg",
+      "user-msg": "이성용입니다. 식재료 본연의 맛을 존중하며 최대한 자연스럽게 요리해요."
+    },
+    {
+      "user-seq": "95212690",
+      "user-name": "Maga Ulya",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/18/2cb4e74a5b5790521a8240c518b995c41.jpg",
+      "user-msg": "Maga Ulya입니다. 문화와 맛이 만나는 요리로 다양한 이야기를 함께 이어가요."
+    },
+    {
+      "user-seq": "64444968",
+      "user-name": "유니규",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/12/04/8690496d21096e814aaeb8e0c8acd9ca1.jpg",
+      "user-msg": "유니규입니다. 특색 있는 재료 조합으로 누구나 따라 할 수 있는 요리를 제안해요."
+    },
+    {
+      "user-seq": "kjh0120uni",
+      "user-name": "꼬모기",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/04/22/4bcbd96afc6810d0f8422f51387562611.jpg",
+      "user-msg": "요리로 하루를 기록하는 꼬모기입니다. 간단하지만 맛있는 한 끼, 작은 행복을 함께 나누어요 :)"
+    },
+    {
+      "user-seq": "44914251",
+      "user-name": "소윤세연맘♥",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/09/26/068f0e24828cde605adbb9a64486ae091.jpg",
+      "user-msg": "아이와 함께하는 요리 시간, 소윤세연맘♥이 전해요. 따뜻한 가족의 식탁이 되기를 바라요."
+    },
+    {
+      "user-seq": "52259225",
+      "user-name": "진원",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/24/e42615ffbba769c54c274f85346f3a541.jpg",
+      "user-msg": "요리로 마음을 전하는 진원입니다. 오늘도 정성 담은 한 접시로 기분 좋은 하루 만들어봐요."
+    },
+    {
+      "user-seq": "84680393",
+      "user-name": "연동옥 Dongok Yeon",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/07/01/af82ab69c8774274739b581f0d491c671.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "50167299",
+      "user-name": "박소연",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/09/13/3560bfe9d731eac6480cca6473ee66921.jpg",
+      "user-msg": ""
+    },
+    {
+      "user-seq": "62275188",
+      "user-name": "qwer34402",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2018/09/10/2a4eae56e6f150ad039b5014f5941d0e1.jpg",
+      "user-msg": "익숙하고 편안한 요리를 좋아해요."
+    },
+    {
+      "user-seq": "56450571",
+      "user-name": "김광명",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2023/09/09/7be4ecfbd89f4b4839b8113f043c10b81.jpg",
+      "user-msg": "오늘도 한끼 고민 해결해보세요!"
+    },
+    {
+      "user-seq": "71196520",
+      "user-name": "강수연",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2024/07/05/29af5bf4e431bc84d8b7427bd0ab44ac1.jpg",
+      "user-msg": "강수연입니다."
+    },
+    {
+      "user-seq": "25271347",
+      "user-name": "Oriana Cacharuco",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2025/10/22/86ead8ab9e4940b054005da3eb8364661.jpg",
+      "user-msg": "다양한 나라의 맛을 탐구하며 요리로 연결되는 교감을 즐겨요."
+    },
+    {
+      "user-seq": "32544413",
+      "user-name": "@@@@@@@@@",
+      "user-img": "https://recipe1.ezmember.co.kr/cache/rpf/2017/11/18/8a61413e058c449457d241e942993dd91.jpg",
+      "user-msg": ""
+    }
   ]
 }

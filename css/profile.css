@@ -546,3 +546,92 @@ main {
   background: var(--DIM-TERTIARY);
   color: var(--TERTIARY-08);
 }
+
+/* 차단 리스트 전체 */
+.block-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  gap: 16px;
+  background-color: var(--WHITE);
+  box-sizing: border-box;
+}
+
+.block-lists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.block-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.block-list-img {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+}
+
+.block-list-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.block-content-user {
+  flex: 1; 
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.block-content-name {
+  font: var(--B6);
+  color: var(--BLACK-MAIN);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.block-content-msg {
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.block-list-follow,
+.block-list-unfollow {
+  flex-shrink: 0;
+  width: 80px;
+  height: 36px;
+  border-radius: 2px;
+  background: var(--WHITE);
+  font: var(--C3);
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.block-list-follow {
+  border: 1px solid var(--TERTIARY-08);
+  color: var(--TERTIARY-08);
+}
+
+.block-list-unfollow {
+  border: 1px solid var(--PRIMARY-04);
+  color: var(--PRIMARY-04);
+}

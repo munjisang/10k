@@ -1371,108 +1371,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// -------------------- user.JSON 불러오기 --------------------
-document.addEventListener("DOMContentLoaded", async () => {
-  const tabs = document.querySelectorAll(".follow-tab");
-  const listContainer = document.querySelector(".follower-lists");
-
-  let userData = {};
-
-  // -------------------- URL 파라미터 확인 --------------------
-  const params = new URLSearchParams(window.location.search);
-  const initialTab = params.get('tab') === 'following' ? 'followings' : 'followers';
-
-  // -------------------- JSON 불러오기 --------------------
-  try {
-    const res = await fetch("./data/user.json");
-    userData = await res.json();
-  } catch (err) {
-    console.error("❌ user.json 불러오기 실패:", err);
-    return;
-  }
-
-  // -------------------- 초기 탭 활성화 --------------------
-  tabs.forEach(tab => {
-    tab.classList.toggle('active', tab.dataset.type === initialTab);
-  });
-
-  // -------------------- 초기 리스트 렌더링 --------------------
-  renderList(initialTab);
-
-  // -------------------- 탭 클릭 이벤트 --------------------
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      const type = tab.dataset.type;
-      tabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-      renderList(type);
-    });
-  });
-
-  // -------------------- 리스트 렌더링 함수 --------------------
-  function renderList(type) {
-    const data = userData[type] || [];
-    listContainer.innerHTML = "";
-
-    data.slice(0, 15).forEach(user => {
-      const listItem = document.createElement("div");
-      listItem.className = "follower-list";
-      listItem.innerHTML = `
-        <div class="follower-list-img">
-          <img src="${user["user-img"]}" alt="${user["user-name"]}">
-        </div>
-        <div class="follower-content-user">
-          <div class="follower-content-name">${user["user-name"]}</div>
-          <div class="follower-content-msg">${user["user-msg"] || ''}</div>
-        </div>
-        <div class="${type === "followers" ? "follower-list-unfollow" : "follower-list-follow"}">
-          ${type === "followers" ? "소식끊기" : "소식받기"}
-        </div>
-      `;
-
-      // 프로필 클릭
-      listItem.addEventListener("click", (e) => {
-        if (
-          e.target.classList.contains("follower-list-follow") ||
-          e.target.classList.contains("follower-list-unfollow")
-        ) return;
-        window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${user["user-seq"]}`, "_self");
-      });
-
-      listContainer.appendChild(listItem);
-    });
-  }
-
-// -------------------- 팔로우 / 소식끊기 버튼 + 토스트 --------------------
-document.addEventListener("click", (e) => {
-  if (
-    e.target.classList.contains("follower-list-follow") ||
-    e.target.classList.contains("follower-list-unfollow")
-  ) {
-    e.stopPropagation(); // 부모 클릭 방지
-
-    const listItem = e.target.closest(".follower-list");
-    const userName = listItem.querySelector(".follower-content-name").textContent;
-
-    const toast = document.getElementById("toast");
-
-    if (e.target.classList.contains("follower-list-follow")) {
-      e.target.classList.remove("follower-list-follow");
-      e.target.classList.add("follower-list-unfollow");
-      e.target.textContent = "소식끊기";
-
-      showToast(`${userName}님의 소식을 알려드릴께요!`);
-    } else if (e.target.classList.contains("follower-list-unfollow")) {
-      e.target.classList.remove("follower-list-unfollow");
-      e.target.classList.add("follower-list-follow");
-      e.target.textContent = "소식받기";
-
-      showToast(`${userName}님 팔로우를 취소했어요.`);
-    }
-  }
-});
-});
-
 // -------------------- 프로필 변경 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const editItems = document.querySelectorAll(".edit-list");
@@ -1576,7 +1474,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const field = item.querySelector(".edit-name").textContent.trim();
 
       // 바텀시트를 열지 않을 항목
-      if (field === "차단회원 관리") return;
+      if (field === "차단회원 관리") {
+        window.location.href = "block.html"; // 이동할 URL
+        return;
+      }
 
       // 내 SNS 링크 클릭 시 페이지 이동
       if (field === "내 SNS 링크") {
@@ -1612,48 +1513,300 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // -------------------- SNS 정보 저장/불러오기 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-  const snsInputs = document.querySelectorAll(".sns-bar input");
+  const snsBars = document.querySelectorAll(".sns-bar");
   const saveBtn = document.querySelector(".sns-add-btn");
-  const STORAGE_KEY = "mySNS"; // localStorage 키
+  const STORAGE_KEY = "mySNS";
 
   // -------------------- 저장된 값 불러오기 --------------------
   const loadSNSData = () => {
     const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    snsInputs.forEach((input, index) => {
-      input.value = data[index] || ""; // 값 없으면 빈 문자열
+
+    snsBars.forEach((bar, index) => {
+      const prefix = bar.querySelector(".sns-url span")?.textContent.trim() || "";
+      const input = bar.querySelector("input");
+      const fullUrl = data[index] || "";
+
+      // prefix가 포함되어 있으면 prefix 이후 부분만 input에 표시
+      if (fullUrl.startsWith(prefix)) {
+        input.value = fullUrl.slice(prefix.length);
+      } else {
+        input.value = fullUrl; // 혹시 모를 prefix 누락 대비
+      }
     });
+
     updateSaveButtonState();
   };
 
   // -------------------- 저장 버튼 상태 업데이트 --------------------
   const updateSaveButtonState = () => {
-    let hasValue = Array.from(snsInputs).some(input => input.value.trim().length > 0);
+    const hasValue = Array.from(snsBars).some(bar => bar.querySelector("input").value.trim().length > 0);
     saveBtn.disabled = false; // 항상 저장 가능
-    saveBtn.classList.toggle("active", hasValue); // 값이 있을 때만 active 스타일
+    saveBtn.classList.toggle("active", hasValue);
   };
 
-  // -------------------- 이벤트 바인딩 --------------------
-  snsInputs.forEach(input => {
+  snsBars.forEach(bar => {
+    const input = bar.querySelector("input");
     input.addEventListener("input", updateSaveButtonState);
   });
 
+  // -------------------- 저장 이벤트 --------------------
   saveBtn.addEventListener("click", () => {
     const data = {};
-    snsInputs.forEach((input, index) => {
-      data[index] = input.value.trim(); // 빈값도 그대로 저장
-    });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
-    // 토스트 표시
+    snsBars.forEach((bar, index) => {
+      const prefix = bar.querySelector(".sns-url span")?.textContent.trim() || "";
+      const input = bar.querySelector("input");
+      const value = input.value.trim();
+      data[index] = value ? prefix + value : "";
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    sessionStorage.setItem("snsSaved", "true");
+
     const toast = document.getElementById("toast");
     if (toast) {
       toast.textContent = "SNS 정보가 저장되었습니다.";
       toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2000);
+      setTimeout(() => {
+        toast.classList.remove("show");
+        window.location.replace("profile.html");
+      }, 500);
+    } else {
+      window.location.replace("profile.html");
     }
   });
 
-  // 페이지 로드 시 데이터 불러오기
+  // 페이지 로드 시 불러오기
   loadSNSData();
 });
 
+// -------------------- mysns history back 이벤트 바인딩 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  // mysns.html에서 돌아온 경우라면, 뒤로가기 한 번 자동 실행
+  if (sessionStorage.getItem("snsSaved") === "true") {
+    sessionStorage.removeItem("snsSaved");
+    history.replaceState(null, "", location.href); // 히스토리 정리
+    history.back(); // 자동으로 my.html로 돌아감
+  }
+});
+
+
+// -------------------- sns 갯수 가져오기 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const STORAGE_KEY = "mySNS";
+  const snsData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+  // "내 SNS 링크" 행의 edit-detail 찾기
+  const snsRow = [...document.querySelectorAll(".edit-list")].find(el => {
+    return el.querySelector(".edit-name")?.textContent.trim() === "내 SNS 링크";
+  });
+
+  if (snsRow) {
+    const detailEl = snsRow.querySelector(".edit-detail");
+    const filledCount = Object.values(snsData).filter(v => v && v.trim().length > 0).length;
+
+    // edit-detail이 없으면 새로 만들어서 추가
+    let detailDiv = detailEl;
+    if (!detailDiv) {
+      detailDiv = document.createElement("div");
+      detailDiv.className = "edit-detail";
+      snsRow.insertBefore(detailDiv, snsRow.querySelector(".more-img"));
+    }
+
+    detailDiv.textContent = `${filledCount}개`;
+  }
+});
+
+
+// -------------------- user.JSON 불러오기 --------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  const tabs = document.querySelectorAll(".follow-tab");
+  const listContainer = document.querySelector(".follower-lists");
+
+  let userData = {};
+
+  // -------------------- URL 파라미터 확인 --------------------
+  const params = new URLSearchParams(window.location.search);
+  const initialTab = params.get('tab') === 'following' ? 'followings' : 'followers';
+
+  // -------------------- JSON 불러오기 --------------------
+  try {
+    const res = await fetch("./data/user.json");
+    userData = await res.json();
+  } catch (err) {
+    console.error("❌ user.json 불러오기 실패:", err);
+    return;
+  }
+
+  // -------------------- 초기 탭 활성화 --------------------
+  tabs.forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.type === initialTab);
+  });
+
+  // -------------------- 초기 리스트 렌더링 --------------------
+  renderList(initialTab);
+
+  // -------------------- 탭 클릭 이벤트 --------------------
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const type = tab.dataset.type;
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderList(type);
+    });
+  });
+
+  // -------------------- 리스트 렌더링 함수 --------------------
+  function renderList(type) {
+    const data = userData[type] || [];
+    listContainer.innerHTML = "";
+
+    data.slice(0, 15).forEach(user => {
+      const listItem = document.createElement("div");
+      listItem.className = "follower-list";
+      listItem.innerHTML = `
+        <div class="follower-list-img">
+          <img src="${user["user-img"]}" alt="${user["user-name"]}">
+        </div>
+        <div class="follower-content-user">
+          <div class="follower-content-name">${user["user-name"]}</div>
+          <div class="follower-content-msg">${user["user-msg"] || ''}</div>
+        </div>
+        <div class="${type === "followers" ? "follower-list-unfollow" : "follower-list-follow"}">
+          ${type === "followers" ? "소식끊기" : "소식받기"}
+        </div>
+      `;
+
+      // 프로필 클릭
+      listItem.addEventListener("click", (e) => {
+        if (
+          e.target.classList.contains("follower-list-follow") ||
+          e.target.classList.contains("follower-list-unfollow")
+        ) return;
+        window.open(`https://m.10000recipe.com/profile/recipe.html?uid=${user["user-seq"]}`, "_self");
+      });
+
+      listContainer.appendChild(listItem);
+    });
+  }
+
+// -------------------- 팔로우 / 소식끊기 버튼 + 토스트 --------------------
+document.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("follower-list-follow") ||
+    e.target.classList.contains("follower-list-unfollow")
+  ) {
+    e.stopPropagation(); // 부모 클릭 방지
+
+    const listItem = e.target.closest(".follower-list");
+    const userName = listItem.querySelector(".follower-content-name").textContent;
+
+    const toast = document.getElementById("toast");
+
+    if (e.target.classList.contains("follower-list-follow")) {
+      e.target.classList.remove("follower-list-follow");
+      e.target.classList.add("follower-list-unfollow");
+      e.target.textContent = "소식끊기";
+
+      showToast(`${userName}님의 소식을 알려드릴께요!`);
+    } else if (e.target.classList.contains("follower-list-unfollow")) {
+      e.target.classList.remove("follower-list-unfollow");
+      e.target.classList.add("follower-list-follow");
+      e.target.textContent = "소식받기";
+
+      showToast(`${userName}님 팔로우를 취소했어요.`);
+    }
+  }
+});
+});
+
+// -------------------- 차단회원 관리 전체 코드 --------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  const listContainer = document.querySelector(".block-lists");
+  const STORAGE_KEY = "blockedUsers";
+  let userData = {};
+  let blockedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+  // -------------------- JSON 불러오기 --------------------
+  try {
+    const res = await fetch("./data/user.json");
+    userData = await res.json();
+  } catch (err) {
+    console.error("❌ user.json 불러오기 실패:", err);
+    listContainer.innerHTML = "<p>차단회원 목록을 불러오지 못했습니다.</p>";
+    return;
+  }
+
+  // -------------------- 차단회원 리스트 렌더링 --------------------
+  function renderBlockList() {
+    const data = userData.blockuser || [];
+    listContainer.innerHTML = "";
+
+    if (data.length === 0) {
+      listContainer.innerHTML = "<p>차단회원이 없습니다.</p>";
+      return;
+    }
+
+    data.forEach(user => {
+      const userSeq = user["user-seq"];
+      // 기본값: 차단 상태로 초기화
+      if (!(userSeq in blockedState)) blockedState[userSeq] = true;
+
+      const listItem = document.createElement("div");
+      listItem.className = "block-list";
+      listItem.dataset.userSeq = userSeq;
+      listItem.innerHTML = `
+        <div class="block-list-img">
+          <img src="${user["user-img"]}" alt="${user["user-name"]}">
+        </div>
+        <div class="block-content-user">
+          <div class="block-content-name">${user["user-name"]}</div>
+        </div>
+        <div class="${blockedState[userSeq] ? "block-list-unfollow" : "block-list-follow"}">
+          ${blockedState[userSeq] ? "차단해제" : "차단하기"}
+        </div>
+      `;
+      listContainer.appendChild(listItem);
+    });
+
+    // 로컬스토리지에 초기 상태 저장
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(blockedState));
+  }
+
+  // -------------------- 토스트 표시 --------------------
+  function showToast(msg) {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2000);
+  }
+
+  // -------------------- 차단/차단해제 버튼 클릭 이벤트 --------------------
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("block-list-follow") || e.target.classList.contains("block-list-unfollow")) {
+      e.stopPropagation();
+
+      const listItem = e.target.closest(".block-list");
+      const userSeq = listItem.dataset.userSeq;
+      const userName = listItem.querySelector(".block-content-name").textContent;
+
+      if (e.target.classList.contains("block-list-follow")) {
+        e.target.classList.replace("block-list-follow", "block-list-unfollow");
+        e.target.textContent = "차단해제";
+        blockedState[userSeq] = true;
+        showToast(`${userName}님을 차단했습니다.`);
+      } else {
+        e.target.classList.replace("block-list-unfollow", "block-list-follow");
+        e.target.textContent = "차단하기";
+        blockedState[userSeq] = false;
+        showToast(`${userName}님 차단을 해제했습니다.`);
+      }
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(blockedState));
+    }
+  });
+
+  // -------------------- 초기 렌더링 --------------------
+  renderBlockList();
+});
