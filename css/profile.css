@@ -541,3 +541,8 @@ main {
   text-decoration: none;
   margin: 16px;
 }
+
+.sns-add-btn :disabled{
+  background: var(--DIM-TERTIARY);
+  color: var(--TERTIARY-08);
+}

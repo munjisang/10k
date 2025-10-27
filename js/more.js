@@ -155,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
 // -------------------- 카메라 & 프로필 오버레이 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const cameraIcon = document.querySelector('.search-trailing-icon img'); 
@@ -1610,3 +1609,54 @@ document.addEventListener("DOMContentLoaded", () => {
   editOverlay.addEventListener("click", e => { if (e.target === editOverlay) closeEditSheet(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && editOverlay.style.display === "flex") closeEditSheet(); });
 });
+
+// -------------------- SNS 정보 저장/불러오기 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const snsInputs = document.querySelectorAll(".sns-bar input");
+  const saveBtn = document.querySelector(".sns-add-btn");
+  const STORAGE_KEY = "mySNS"; // localStorage 키
+
+  // -------------------- 저장된 값 불러오기 --------------------
+  const loadSNSData = () => {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    snsInputs.forEach((input, index) => {
+      if (data[index]) input.value = data[index];
+    });
+    updateSaveButtonState();
+  };
+
+  // -------------------- 저장 버튼 상태 업데이트 --------------------
+  const updateSaveButtonState = () => {
+    let hasValue = false;
+    snsInputs.forEach(input => {
+      if (input.value.trim().length > 0) hasValue = true;
+    });
+    saveBtn.disabled = !hasValue;
+    saveBtn.classList.toggle("active", hasValue);
+  };
+
+  // -------------------- 이벤트 바인딩 --------------------
+  snsInputs.forEach(input => {
+    input.addEventListener("input", updateSaveButtonState);
+  });
+
+  saveBtn.addEventListener("click", () => {
+    const data = {};
+    snsInputs.forEach((input, index) => {
+      data[index] = input.value.trim();
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+    // 토스트 표시
+    const toast = document.getElementById("toast");
+    if (toast) {
+      toast.textContent = "SNS 정보가 저장되었습니다.";
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2000);
+    }
+  });
+
+  // 페이지 로드 시 데이터 불러오기
+  loadSNSData();
+});
+
