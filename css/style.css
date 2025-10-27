@@ -1896,6 +1896,7 @@ main {
   font: var(--B8);
   color: var(--BLACK-MAIN);
   line-height: 1.5;
+  white-space: pre-wrap;
   word-break: break-word;
 }
 

@@ -1476,53 +1476,88 @@ document.addEventListener("click", (e) => {
 
 // -------------------- 프로필 변경 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
+  const editItems = document.querySelectorAll(".edit-list");
+  const STORAGE_KEY = "profileData";
+
+  // -------------------- 저장된 데이터 불러오기 --------------------
+  const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  editItems.forEach(item => {
+    const field = item.querySelector(".edit-name").textContent.trim();
+    if (savedData[field]) {
+      const detail = item.querySelector(".edit-detail");
+      if (detail) detail.textContent = savedData[field];
+    }
+  });
+
+  // -------------------- 바텀시트 요소 --------------------
   const editOverlay = document.querySelector(".profile-edit-overlay");
   const editSheet = editOverlay.querySelector(".profile-edit");
   const editTitle = editSheet.querySelector(".profile-edit-title");
   const editInput = editSheet.querySelector(".profile-edit-input");
   const editTextarea = editSheet.querySelector(".profile-edit-textarea");
+  const supportingText = editSheet.querySelector(".profile-edit-Supporting");
   const cancelBtn = editSheet.querySelector(".profile-edit-cancel");
   const confirmBtn = editSheet.querySelector(".profile-edit-confirm");
 
-  const editItems = document.querySelectorAll(".edit-list");
   let currentEditItem = null;
-  let currentField = ""; // 현재 수정 중인 항목 저장
+  let currentField = "";
+
+  // -------------------- 이메일 형식 체크 --------------------
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  // -------------------- 버튼 상태 업데이트 --------------------
+  const updateConfirmButtonState = () => {
+    const activeField = editInput.style.display === "block" ? editInput : editTextarea;
+    const value = activeField.value.trim();
+    let isValid = value.length > 0;
+
+    if (currentField === "이메일") isValid = isValidEmail(value);
+
+    confirmBtn.disabled = !isValid;
+    confirmBtn.classList.toggle("active", isValid);
+  };
 
   // -------------------- 바텀시트 열기 --------------------
   const openEditSheet = (item) => {
     currentEditItem = item;
     currentField = item.querySelector(".edit-name").textContent.trim();
 
-    // 기본 상태 초기화
     editInput.type = "text";
+    supportingText.textContent = "";
+
+    // 저장된 값 + DOM 값 병합
+    const savedValue = savedData[currentField] || item.querySelector(".edit-detail")?.textContent || "";
 
     switch (currentField) {
       case "닉네임":
         editTitle.textContent = "닉네임을 입력해주세요.";
         editInput.placeholder = "최대 20자까지 등록 가능합니다.";
         editInput.maxLength = 20;
-        editInput.value = item.querySelector(".edit-detail")?.textContent || "";
+        editInput.value = savedValue;
         editInput.style.display = "block";
         editTextarea.style.display = "none";
+        supportingText.textContent = "ⓘ 닉네임은 최대 20자까지 등록 가능합니다.";
         break;
 
       case "소개":
         editTitle.textContent = "소개를 입력해주세요.";
         editTextarea.placeholder = "최대 50자까지 등록 가능합니다.";
         editTextarea.maxLength = 50;
-        editTextarea.value = item.querySelector(".edit-detail")?.textContent || "";
+        editTextarea.value = savedValue;
         editInput.style.display = "none";
         editTextarea.style.display = "block";
+        supportingText.textContent = "ⓘ 소개내용은 최대 50자까지 등록 가능합니다.";
         break;
 
       case "이메일":
         editTitle.textContent = "이메일을 입력해주세요.";
         editInput.placeholder = "example@email.com";
         editInput.maxLength = 50;
-        editInput.type = "email"; // ✅ 이메일 입력 타입 지정
-        editInput.value = item.querySelector(".edit-detail")?.textContent || "";
+        editInput.type = "email";
+        editInput.value = savedValue;
         editInput.style.display = "block";
         editTextarea.style.display = "none";
+        supportingText.textContent = "ⓘ 이메일 형식에 맞게 입력해주세요.";
         break;
 
       default:
@@ -1544,28 +1579,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentField = "";
   };
 
-  // -------------------- 이메일 형식 검사 --------------------
-  const isValidEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  // -------------------- 버튼 상태 업데이트 --------------------
-  const updateConfirmButtonState = () => {
-    const activeField = editInput.style.display === "block" ? editInput : editTextarea;
-    const value = activeField.value.trim();
-    let isValid = value.length > 0;
-
-    // 이메일일 경우 추가 검증
-    if (currentField === "이메일") {
-      isValid = isValidEmail(value);
-    }
-
-    confirmBtn.disabled = !isValid;
-    confirmBtn.classList.toggle("active", isValid);
-  };
-
-  // -------------------- 이벤트 바인딩 --------------------
+  // -------------------- 항목 클릭 --------------------
   editItems.forEach(item => {
     item.addEventListener("click", () => {
       const field = item.querySelector(".edit-name").textContent.trim();
@@ -1576,9 +1590,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   editInput.addEventListener("input", updateConfirmButtonState);
   editTextarea.addEventListener("input", updateConfirmButtonState);
-
   cancelBtn.addEventListener("click", closeEditSheet);
 
+  // -------------------- 변경사항 저장 --------------------
   confirmBtn.addEventListener("click", () => {
     if (confirmBtn.disabled || !currentEditItem) return;
 
@@ -1586,16 +1600,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const detail = currentEditItem.querySelector(".edit-detail");
     if (detail) detail.textContent = value;
 
+    // localStorage 저장
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    data[currentField] = value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
     closeEditSheet();
   });
 
-  // 오버레이 바깥 클릭 시 닫기
-  editOverlay.addEventListener("click", e => {
-    if (e.target === editOverlay) closeEditSheet();
-  });
-
-  // ESC 키 닫기
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && editOverlay.style.display === "flex") closeEditSheet();
-  });
+  // -------------------- 오버레이 클릭 및 ESC --------------------
+  editOverlay.addEventListener("click", e => { if (e.target === editOverlay) closeEditSheet(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && editOverlay.style.display === "flex") closeEditSheet(); });
 });

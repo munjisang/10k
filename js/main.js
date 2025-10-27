@@ -1367,27 +1367,35 @@ document.getElementById("following-tab").addEventListener("click", () => {
 });
 
 
-// -------------------- 로컬스토리지 프로필 이미지 불러오기 --------------------
-function loadProfileImage() {
-  const profileImg = document.querySelector(".my-profile-thumb img");
-  if (!profileImg) return;
+// -------------------- my.html: 프로필 정보 불러오기 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const profileImgEl = document.querySelector(".my-profile-thumb img");
+  const profileNameEl = document.querySelector(".profile-user-name span");
+  const profileIntroEl = document.querySelector(".profile-user-detail");
+  const recipeTitleEl = document.querySelector(".my-recipe-area-title");
 
-  const savedProfileImg = localStorage.getItem("profileImage");
-  if (savedProfileImg) {
-    profileImg.src = savedProfileImg;
-  }
-}
+  const STORAGE_KEY = "profileData"; // more.js에서 저장한 key와 동일하게
 
-// ✅ 페이지 최초 로드 시 실행
-document.addEventListener("DOMContentLoaded", loadProfileImage);
+  const loadProfileData = () => {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
-// ✅ 브라우저 뒤로가기 / 앞으로가기 시 (BFCache 복원 대응)
-window.addEventListener("pageshow", (event) => {
-  if (event.persisted) {
-    // BFCache(뒤로가기 캐시)에서 복원된 경우 이미지 다시 불러오기
-    loadProfileImage();
-  } else {
-    // 일부 브라우저에서는 persisted가 false여도 pageshow가 새로 실행됨
-    loadProfileImage();
-  }
+    if (data.image && profileImgEl) profileImgEl.src = data.image;
+
+    if (data.닉네임 && profileNameEl) {
+      profileNameEl.textContent = data.닉네임;
+      if (recipeTitleEl) recipeTitleEl.textContent = `${data.닉네임}님의 레시피`;
+    }
+
+    if (data.소개 && profileIntroEl) {
+      profileIntroEl.textContent = data.소개; // 줄바꿈 그대로 적용됨 (CSS pre-wrap)
+    }
+  };
+
+  // 페이지 로드 시
+  loadProfileData();
+
+  // BFCache 대응
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) loadProfileData();
+  });
 });

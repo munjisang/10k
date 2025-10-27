@@ -360,6 +360,12 @@ main {
   text-align: center;
 }
 
+.profile-edit-Supporting {
+  margin-top: 4px;
+  font: var(--B8);
+  color: var(--BLACK-MAIN);
+}
+
 .profile-edit-input {
   width: 100%;
   height: 56px;
