@@ -162,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchSheet = searchOverlay?.querySelector('.bottom-sheet');
   const searchClose = searchOverlay?.querySelector('.sheet-area-icon');
 
+  // -------------------- 검색 오버레이 --------------------
   if (cameraIcon && searchOverlay && searchSheet && searchClose) {
     cameraIcon.addEventListener('click', () => {
       searchOverlay.classList.add('show');
@@ -189,20 +190,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileSheet = profileOverlay?.querySelector('.bottom-sheet');
   const profileClose = profileOverlay?.querySelector('.sheet-area-icon');
   const profileTrigger = document.querySelector('.profile-thumb, .edit-icon'); 
+  const profileImg = document.querySelector('.profile-thumb img:first-child');
 
-  if (profileOverlay && profileSheet && profileClose && profileTrigger) {
+  if (profileOverlay && profileSheet && profileClose && profileTrigger && profileImg) {
+    // 열기
     profileTrigger.addEventListener('click', () => {
       profileOverlay.classList.add('show');
       profileSheet.classList.add('show');
       document.body.style.overflow = 'hidden';
     });
 
+    // 닫기 버튼
     profileClose.addEventListener('click', () => {
       profileSheet.classList.remove('show');
       profileOverlay.classList.remove('show');
       document.body.style.overflow = '';
     });
 
+    // 바깥 클릭 시 닫기
     profileOverlay.addEventListener('click', e => {
       if (e.target === profileOverlay) {
         profileSheet.classList.remove('show');
@@ -211,18 +216,56 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // ✅ 기본 프로필로 변경 기능 추가
-    const defaultProfileBtn = profileOverlay.querySelector('.sheet-btn span:nth-child(2)')?.parentElement; 
-    const profileImg = document.querySelector('.profile-thumb img:first-child');
-
-    if (defaultProfileBtn && profileImg) {
+    // ✅ 기본 프로필로 변경
+    const defaultProfileBtn = profileOverlay.querySelector('.sheet-btn:nth-child(1)');
+    if (defaultProfileBtn) {
       defaultProfileBtn.addEventListener('click', () => {
         profileImg.src = './img/profile_default.png';
-        // 오버레이 닫기
-        profileSheet.classList.remove('show');
-        profileOverlay.classList.remove('show');
-        document.body.style.overflow = '';
+        closeProfileOverlay();
       });
+    }
+
+    // ✅ 앨범에서 선택하기
+    const galleryInput = document.getElementById('galleryInput');
+    const galleryBtn = profileOverlay.querySelector('.sheet-btn:nth-child(2)');
+    if (galleryBtn && galleryInput) {
+      galleryBtn.addEventListener('click', () => galleryInput.click());
+      galleryInput.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            profileImg.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+          closeProfileOverlay();
+        }
+      });
+    }
+
+    // ✅ 카메라로 촬영하기
+    const cameraInput = document.getElementById('cameraInput');
+    const cameraBtn = profileOverlay.querySelector('.sheet-btn:nth-child(3)');
+    if (cameraBtn && cameraInput) {
+      cameraBtn.addEventListener('click', () => cameraInput.click());
+      cameraInput.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            profileImg.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+          closeProfileOverlay();
+        }
+      });
+    }
+
+    // ✅ 오버레이 닫기 공통 함수
+    function closeProfileOverlay() {
+      profileSheet.classList.remove('show');
+      profileOverlay.classList.remove('show');
+      document.body.style.overflow = '';
     }
   }
 });
