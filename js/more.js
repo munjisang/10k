@@ -1479,7 +1479,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const editItems = document.querySelectorAll(".edit-list");
   const STORAGE_KEY = "profileData";
 
-  // -------------------- 저장된 데이터 불러오기 --------------------
   const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   editItems.forEach(item => {
     const field = item.querySelector(".edit-name").textContent.trim();
@@ -1489,7 +1488,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // -------------------- 바텀시트 요소 --------------------
   const editOverlay = document.querySelector(".profile-edit-overlay");
   const editSheet = editOverlay.querySelector(".profile-edit");
   const editTitle = editSheet.querySelector(".profile-edit-title");
@@ -1502,10 +1500,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentEditItem = null;
   let currentField = "";
 
-  // -------------------- 이메일 형식 체크 --------------------
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  // -------------------- 버튼 상태 업데이트 --------------------
   const updateConfirmButtonState = () => {
     const activeField = editInput.style.display === "block" ? editInput : editTextarea;
     const value = activeField.value.trim();
@@ -1517,7 +1513,6 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmBtn.classList.toggle("active", isValid);
   };
 
-  // -------------------- 바텀시트 열기 --------------------
   const openEditSheet = (item) => {
     currentEditItem = item;
     currentField = item.querySelector(".edit-name").textContent.trim();
@@ -1525,7 +1520,6 @@ document.addEventListener("DOMContentLoaded", () => {
     editInput.type = "text";
     supportingText.textContent = "";
 
-    // 저장된 값 + DOM 값 병합
     const savedValue = savedData[currentField] || item.querySelector(".edit-detail")?.textContent || "";
 
     switch (currentField) {
@@ -1570,7 +1564,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateConfirmButtonState();
   };
 
-  // -------------------- 바텀시트 닫기 --------------------
   const closeEditSheet = () => {
     editSheet.classList.remove("show");
     setTimeout(() => (editOverlay.style.display = "none"), 300);
@@ -1579,11 +1572,19 @@ document.addEventListener("DOMContentLoaded", () => {
     currentField = "";
   };
 
-  // -------------------- 항목 클릭 --------------------
   editItems.forEach(item => {
     item.addEventListener("click", () => {
       const field = item.querySelector(".edit-name").textContent.trim();
-      if (field === "내 SNS 링크" || field === "차단회원 관리") return;
+
+      // 바텀시트를 열지 않을 항목
+      if (field === "차단회원 관리") return;
+
+      // 내 SNS 링크 클릭 시 페이지 이동
+      if (field === "내 SNS 링크") {
+        window.location.href = "mysns.html"; // 이동할 URL
+        return;
+      }
+
       openEditSheet(item);
     });
   });
@@ -1592,7 +1593,6 @@ document.addEventListener("DOMContentLoaded", () => {
   editTextarea.addEventListener("input", updateConfirmButtonState);
   cancelBtn.addEventListener("click", closeEditSheet);
 
-  // -------------------- 변경사항 저장 --------------------
   confirmBtn.addEventListener("click", () => {
     if (confirmBtn.disabled || !currentEditItem) return;
 
@@ -1600,7 +1600,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const detail = currentEditItem.querySelector(".edit-detail");
     if (detail) detail.textContent = value;
 
-    // localStorage 저장
     const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     data[currentField] = value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -1608,7 +1607,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeEditSheet();
   });
 
-  // -------------------- 오버레이 클릭 및 ESC --------------------
   editOverlay.addEventListener("click", e => { if (e.target === editOverlay) closeEditSheet(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && editOverlay.style.display === "flex") closeEditSheet(); });
 });
