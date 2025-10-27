@@ -1365,3 +1365,18 @@ document.getElementById("follower-tab").addEventListener("click", () => {
 document.getElementById("following-tab").addEventListener("click", () => {
   window.location.href = "follow.html?tab=following";
 });
+
+
+// -------------------- 로컬스토리지 프로필 이미지 불러오기 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const profileImg = document.querySelector(".my-profile-thumb img");
+  if (!profileImg) return;
+
+  // localStorage에서 저장된 이미지 확인
+  const savedProfileImg = localStorage.getItem("profileImage");
+
+  // 저장된 이미지가 있다면 적용
+  if (savedProfileImg) {
+    profileImg.src = savedProfileImg;
+  }
+});

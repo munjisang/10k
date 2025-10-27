@@ -155,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 // -------------------- 카메라 & 프로필 오버레이 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const cameraIcon = document.querySelector('.search-trailing-icon img'); 
@@ -193,7 +194,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileImg = document.querySelector('.profile-thumb img:first-child');
 
   if (profileOverlay && profileSheet && profileClose && profileTrigger && profileImg) {
-    // 열기
+
+    // ✅ 페이지 로드 시 저장된 이미지 불러오기
+    const savedProfileImg = localStorage.getItem('profileImage');
+    if (savedProfileImg) {
+      profileImg.src = savedProfileImg;
+    }
+
+    // 오버레이 열기
     profileTrigger.addEventListener('click', () => {
       profileOverlay.classList.add('show');
       profileSheet.classList.add('show');
@@ -202,25 +210,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 닫기 버튼
     profileClose.addEventListener('click', () => {
-      profileSheet.classList.remove('show');
-      profileOverlay.classList.remove('show');
-      document.body.style.overflow = '';
+      closeProfileOverlay();
     });
 
     // 바깥 클릭 시 닫기
     profileOverlay.addEventListener('click', e => {
-      if (e.target === profileOverlay) {
-        profileSheet.classList.remove('show');
-        profileOverlay.classList.remove('show');
-        document.body.style.overflow = '';
-      }
+      if (e.target === profileOverlay) closeProfileOverlay();
     });
 
     // ✅ 기본 프로필로 변경
     const defaultProfileBtn = profileOverlay.querySelector('.sheet-btn:nth-child(1)');
     if (defaultProfileBtn) {
       defaultProfileBtn.addEventListener('click', () => {
-        profileImg.src = './img/profile_default.png';
+        const defaultSrc = './img/profile_default.png';
+        profileImg.src = defaultSrc;
+        localStorage.setItem('profileImage', defaultSrc); // 저장
         closeProfileOverlay();
       });
     }
@@ -236,6 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const reader = new FileReader();
           reader.onload = e => {
             profileImg.src = e.target.result;
+            localStorage.setItem('profileImage', e.target.result); // 저장
           };
           reader.readAsDataURL(file);
           closeProfileOverlay();
@@ -254,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const reader = new FileReader();
           reader.onload = e => {
             profileImg.src = e.target.result;
+            localStorage.setItem('profileImage', e.target.result); // 저장
           };
           reader.readAsDataURL(file);
           closeProfileOverlay();
