@@ -1367,14 +1367,14 @@ document.getElementById("following-tab").addEventListener("click", () => {
 });
 
 
-// -------------------- my.html: 프로필 정보 불러오기 --------------------
+// -------------------- 프로필 정보 불러오기 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const profileImgEl = document.querySelector(".my-profile-thumb img");
   const profileNameEl = document.querySelector(".profile-user-name span");
   const profileIntroEl = document.querySelector(".profile-user-detail");
   const recipeTitleEl = document.querySelector(".my-recipe-area-title");
 
-  const STORAGE_KEY = "profileData"; // more.js에서 저장한 key와 동일하게
+  const STORAGE_KEY = "profileData";
 
   const loadProfileData = () => {
     const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
@@ -1387,15 +1387,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (data.소개 && profileIntroEl) {
-      profileIntroEl.textContent = data.소개; // 줄바꿈 그대로 적용됨 (CSS pre-wrap)
+      profileIntroEl.textContent = data.소개;
     }
   };
 
-  // 페이지 로드 시
   loadProfileData();
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) loadProfileData();
+  });
+});
+
+
+// -------------------- 프로필 이미지 불러오기 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const profileImgEl = document.querySelector(".my-profile-thumb img");
+
+  const STORAGE_KEY = "profileImage"; // more.js에서 저장한 키와 동일
+
+  const loadProfileImage = () => {
+    const savedImage = localStorage.getItem(STORAGE_KEY);
+    if (savedImage && profileImgEl) {
+      profileImgEl.src = savedImage;
+    }
+  };
+
+  loadProfileImage();
 
   // BFCache 대응
   window.addEventListener("pageshow", (event) => {
-    if (event.persisted) loadProfileData();
+    if (event.persisted) loadProfileImage();
   });
 });
