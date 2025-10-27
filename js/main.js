@@ -1366,7 +1366,6 @@ document.getElementById("following-tab").addEventListener("click", () => {
   window.location.href = "follow.html?tab=following";
 });
 
-
 // -------------------- 프로필 정보 불러오기 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const profileImgEl = document.querySelector(".my-profile-thumb img");
@@ -1397,7 +1396,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.persisted) loadProfileData();
   });
 });
-
 
 // -------------------- 프로필 이미지 불러오기 --------------------
 document.addEventListener("DOMContentLoaded", () => {
