@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // -------------------- 프로필 오버레이 --------------------
   const profileOverlay = document.getElementById('profileoverlay');
   const profileSheet = profileOverlay?.querySelector('.bottom-sheet');
   const profileClose = profileOverlay?.querySelector('.sheet-area-icon');
@@ -209,8 +210,23 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = '';
       }
     });
+
+    // ✅ 기본 프로필로 변경 기능 추가
+    const defaultProfileBtn = profileOverlay.querySelector('.sheet-btn span:nth-child(2)')?.parentElement; 
+    const profileImg = document.querySelector('.profile-thumb img:first-child');
+
+    if (defaultProfileBtn && profileImg) {
+      defaultProfileBtn.addEventListener('click', () => {
+        profileImg.src = './img/profile_default.png';
+        // 오버레이 닫기
+        profileSheet.classList.remove('show');
+        profileOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+    }
   }
 });
+
 
 // -------------------- 레시피 더보기 (무한 스크롤) --------------------
 document.addEventListener("DOMContentLoaded", () => {
