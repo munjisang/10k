@@ -1368,15 +1368,24 @@ document.getElementById("following-tab").addEventListener("click", () => {
 
 
 // -------------------- 로컬스토리지 프로필 이미지 불러오기 --------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const profileImg = document.querySelector(".my-profile-thumb img");
-  if (!profileImg) return;
-
-  // localStorage에서 저장된 이미지 확인
+function applySavedProfileImage() {
+  const editProfileImg = document.querySelector(".profile-thumb img:first-child");
+  const myProfileImg = document.querySelector(".my-profile-thumb img");
   const savedProfileImg = localStorage.getItem("profileImage");
 
-  // 저장된 이미지가 있다면 적용
   if (savedProfileImg) {
-    profileImg.src = savedProfileImg;
+    if (editProfileImg) editProfileImg.src = savedProfileImg;
+    if (myProfileImg) myProfileImg.src = savedProfileImg;
+  }
+}
+
+// ✅ 최초 페이지 로드 시
+document.addEventListener("DOMContentLoaded", applySavedProfileImage);
+
+// ✅ 뒤로가기 또는 캐시 복원 시 (BFCache 대응)
+window.addEventListener("pageshow", (event) => {
+  // event.persisted = true → BFCache에서 복원된 경우
+  if (event.persisted) {
+    applySavedProfileImage();
   }
 });
