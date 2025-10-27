@@ -1486,19 +1486,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editItems = document.querySelectorAll(".edit-list");
   let currentEditItem = null;
+  let currentField = ""; // 현재 수정 중인 항목 저장
 
   // -------------------- 바텀시트 열기 --------------------
   const openEditSheet = (item) => {
     currentEditItem = item;
-    const field = item.querySelector(".edit-name").textContent.trim();
+    currentField = item.querySelector(".edit-name").textContent.trim();
 
-    switch (field) {
+    // 기본 상태 초기화
+    editInput.type = "text";
+
+    switch (currentField) {
       case "닉네임":
         editTitle.textContent = "닉네임을 입력해주세요.";
         editInput.placeholder = "최대 20자까지 등록 가능합니다.";
         editInput.maxLength = 20;
         editInput.value = item.querySelector(".edit-detail")?.textContent || "";
-
         editInput.style.display = "block";
         editTextarea.style.display = "none";
         break;
@@ -1508,23 +1511,22 @@ document.addEventListener("DOMContentLoaded", () => {
         editTextarea.placeholder = "최대 50자까지 등록 가능합니다.";
         editTextarea.maxLength = 50;
         editTextarea.value = item.querySelector(".edit-detail")?.textContent || "";
-
         editInput.style.display = "none";
         editTextarea.style.display = "block";
         break;
 
       case "이메일":
         editTitle.textContent = "이메일을 입력해주세요.";
-        editInput.placeholder = "이메일을 입력해주세요.";
+        editInput.placeholder = "example@email.com";
         editInput.maxLength = 50;
+        editInput.type = "email"; // ✅ 이메일 입력 타입 지정
         editInput.value = item.querySelector(".edit-detail")?.textContent || "";
-
         editInput.style.display = "block";
         editTextarea.style.display = "none";
         break;
 
       default:
-        return; // 위 세 가지 외에는 바텀시트 열지 않음
+        return;
     }
 
     editOverlay.style.display = "flex";
@@ -1539,24 +1541,35 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (editOverlay.style.display = "none"), 300);
     editInput.value = "";
     editTextarea.value = "";
+    currentField = "";
+  };
+
+  // -------------------- 이메일 형식 검사 --------------------
+  const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   };
 
   // -------------------- 버튼 상태 업데이트 --------------------
   const updateConfirmButtonState = () => {
     const activeField = editInput.style.display === "block" ? editInput : editTextarea;
-    const hasText = activeField.value.trim().length > 0;
-    confirmBtn.disabled = !hasText;
-    confirmBtn.classList.toggle("active", hasText);
+    const value = activeField.value.trim();
+    let isValid = value.length > 0;
+
+    // 이메일일 경우 추가 검증
+    if (currentField === "이메일") {
+      isValid = isValidEmail(value);
+    }
+
+    confirmBtn.disabled = !isValid;
+    confirmBtn.classList.toggle("active", isValid);
   };
 
   // -------------------- 이벤트 바인딩 --------------------
   editItems.forEach(item => {
     item.addEventListener("click", () => {
       const field = item.querySelector(".edit-name").textContent.trim();
-
-      // 예외 처리 (바텀시트 안 열리는 메뉴)
       if (field === "내 SNS 링크" || field === "차단회원 관리") return;
-
       openEditSheet(item);
     });
   });
