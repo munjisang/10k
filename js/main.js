@@ -1419,14 +1419,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // -------------------- SNS 불러오기 --------------------
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", loadSNSData);
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    // 뒤로가기로 복원된 경우 다시 불러오기
+    loadSNSData();
+  }
+});
+
+function loadSNSData() {
   const STORAGE_KEY = "mySNS";
   const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   const snsWrap = document.querySelector(".profile-sns-wrap");
 
-  if (!snsWrap) return; // 안전 처리
+  if (!snsWrap) return;
 
-  // SNS 기본 정보 (index 순서 고정)
   const snsInfo = [
     { name: "인스타그램", icon: "./img/instar.png" },
     { name: "유튜브", icon: "./img/youtube.png" },
@@ -1435,19 +1442,16 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "기타", icon: "./img/link.png" },
   ];
 
-  // 저장된 SNS 중 유효한 항목만 필터링
   const validEntries = Object.entries(data).filter(([_, url]) => url && url.trim().length > 0);
 
-  // 저장된 SNS가 없으면 영역 전체 미노출
   if (validEntries.length === 0) {
     snsWrap.style.display = "none";
     return;
   }
 
-  // 기존 내용 초기화
+  snsWrap.style.display = "";
   snsWrap.innerHTML = "";
 
-  // 저장된 SNS만 노출
   validEntries.forEach(([index, url]) => {
     const info = snsInfo[index];
     if (!info) return;
@@ -1465,8 +1469,7 @@ document.addEventListener("DOMContentLoaded", () => {
     snsWrap.appendChild(a);
   });
 
-  // SNS 저장 이후 페이지 새로고침 방지
   if (sessionStorage.getItem("snsSaved") === "true") {
     sessionStorage.removeItem("snsSaved");
   }
-});
+}
