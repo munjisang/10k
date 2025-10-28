@@ -1819,7 +1819,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // -------------------- 로그아웃 다이얼로그 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-  const logoutBtn = document.querySelector(".out-name:nth-child(1)"); // 첫 번째 '로그아웃' 버튼
+  const logoutBtn = document.querySelector(".out-name:nth-child(1)");
   const dialog = document.querySelector(".member-dialog-overlay");
   const cancelBtn = dialog.querySelector(".member-dialog-cancel");
   const confirmBtn = dialog.querySelector(".member-dialog-delete");

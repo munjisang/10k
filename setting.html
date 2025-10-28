@@ -28,12 +28,8 @@
             <img src="./img/my_eye_on.png" alt="">
           </div>          
           <span class="activity-name"> 최근 본 레시피 </span>
-          <span class="activity-cont"> 99 </span>
-          <div class="activity-more-img">
-            <img src="./img/my_right.png" alt="">
-          </div>
         </div>
-        <div class="horizon-items" data-count="5"></div>
+        <div class="horizon-items" data-count="15"></div>
         </div>
         <div class="activity-info">
           <div class="activity-info-img">
@@ -80,7 +76,8 @@
     <div class="setting-area">
       <div class="setting-title">고객센터</div>
       <div class="my-activity-wrap">
-        <div class="activity-info">
+
+        <a href="https://m.10000recipe.com/event/list.html" class="activity-info">
           <div class="activity-info-img">
             <img src="./img/my_event.png" alt="">
           </div>          
@@ -89,8 +86,9 @@
           <div class="activity-more-img">
             <img src="./img/my_right.png" alt="">
           </div>
-        </div>
-        <div class="activity-info">
+        </a>
+
+        <a href="https://m.10000recipe.com/profile/qna.html" class="activity-info">
           <div class="activity-info-img">
             <img src="./img/my_qna.png" alt="">
           </div>          
@@ -98,8 +96,9 @@
           <div class="activity-more-img">
             <img src="./img/my_right.png" alt="">
           </div>
-        </div>
-        <div class="activity-info">
+        </a>
+
+        <a href="https://m.10000recipe.com/customer/list.html?bid=1" class="activity-info">
           <div class="activity-info-img">
             <img src="./img/my_speaker.png" alt="">
           </div>          
@@ -107,22 +106,33 @@
           <div class="activity-more-img">
             <img src="./img/my_right.png" alt="">
           </div>
-        </div>
+        </a>
+
       </div>
     </div>
     <div class="my-business-area">
       <div class="activity-name">만개의레시피 공식 SNS</div>
       <div class="profile-sns-wrap">
-        <img src="./img/instar.png" alt="인스타그램">
-        <img src="./img/youtube.png" alt="유튜브">
-        <img src="./img/blog.png" alt="블로그">
-        <img src="./img/facebook.png" alt="페이스북">
+        <a href="https://www.instagram.com/10000recipe" target="_blank" rel="noopener noreferrer">
+          <img src="./img/instar.png" alt="인스타그램">
+        </a>
+        <a href="https://www.youtube.com/@만개의레시피" target="_blank" rel="noopener noreferrer">
+          <img src="./img/youtube.png" alt="유튜브">
+        </a>
+        <a href="https://blog.naver.com/ezday1" target="_blank" rel="noopener noreferrer">
+          <img src="./img/blog.png" alt="블로그">
+        </a>
+        <a href="https://www.facebook.com/10000recipe" target="_blank" rel="noopener noreferrer">
+          <img src="./img/facebook.png" alt="페이스북">
+        </a>
       </div>
+
     </div>
     <div class="setting-area">
       <div class="setting-title">Business</div>
       <div class="my-activity-wrap">
-        <div class="activity-info">
+
+        <a href="https://www.10000recipe.com/app/contactus.html" class="activity-info">
           <div class="activity-info-img">
             <img src="./img/my_letter.png" alt="">
           </div>          
@@ -130,8 +140,9 @@
           <div class="activity-more-img">
             <img src="./img/my_right.png" alt="">
           </div>
-        </div>
-        <div class="activity-info">
+        </a>
+
+        <a href="https://m.10000recipe.com/brand/home.html" class="activity-info">
           <div class="activity-info-img">
             <img src="./img/my_brand.png" alt="">
           </div>          
@@ -139,8 +150,9 @@
           <div class="activity-more-img">
             <img src="./img/my_right.png" alt="">
           </div>
-        </div>
-        <div class="activity-info">
+        </a>
+
+        <a href="https://m.10000recipe.com/chef/chef_list.html" class="activity-info">
           <div class="activity-info-img">
             <img src="./img/my_chef.png" alt="">
           </div>          
@@ -148,8 +160,9 @@
           <div class="activity-more-img">
             <img src="./img/my_right.png" alt="">
           </div>
-        </div>
-        <div class="activity-info">
+        </a>
+        
+        <a href="https://m.10000recipe.com/chef/celeb_list.html" class="activity-info">
           <div class="activity-info-img">
             <img src="./img/my_cretor.png" alt="">
           </div>          
@@ -157,7 +170,7 @@
           <div class="activity-more-img">
             <img src="./img/my_right.png" alt="">
           </div>
-        </div>
+        </a>
       </div>
     </div>
     <div class="setting-area">
@@ -244,8 +257,24 @@
         </a>
       </div>
     </div>
+    <div class="out-info">
+      <div class="out-name"> 로그아웃</div>
+      <div class="out-info-divider"></div>
+      <div class="out-name"> 회원탈퇴</div>
+    </div>
   </main>
   <div id="toast" class="toast"></div>
+
+  <div class="member-dialog-overlay" style="display:none;">
+    <div class="member-dialog-box">
+      <div class="member-dialog-title">로그아웃</div>
+      <div class="member-dialog-desc"></div>
+        <div class="member-dialog-buttons">
+          <button class="member-dialog-cancel">취소</button>
+          <button class="member-dialog-delete">로그아웃</button>
+        </div>
+    </div>
+  </div>  
 </body>
 <script src="./js/more.js"></script>
 </html>
