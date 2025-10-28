@@ -1620,6 +1620,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     detailDiv.textContent = `${filledCount}개`;
   }
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) loadSNSData();
+  });
+
 });
 
 // -------------------- user.JSON 불러오기 --------------------

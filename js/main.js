@@ -1468,4 +1468,8 @@ document.addEventListener("DOMContentLoaded", () => {
     a.appendChild(img);
     snsWrap.appendChild(a);
   });
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) loadSNSData();
+  });
 });
