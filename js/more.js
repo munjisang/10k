@@ -1590,7 +1590,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
 // -------------------- sns 갯수 가져오기 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const STORAGE_KEY = "mySNS";
@@ -1600,6 +1599,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const snsRow = [...document.querySelectorAll(".edit-list")].find(el => {
     return el.querySelector(".edit-name")?.textContent.trim() === "내 SNS 링크";
   });
+
+  // SNS 저장 후 새로고침 처리
+  if (sessionStorage.getItem("snsSaved") === "true") {
+    sessionStorage.removeItem("snsSaved");
+    location.reload();
+  }
 
   if (snsRow) {
     const detailEl = snsRow.querySelector(".edit-detail");

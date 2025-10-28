@@ -1426,6 +1426,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!snsWrap) return; // 안전 처리
 
+  if (sessionStorage.getItem("snsSaved") === "true") {
+    sessionStorage.removeItem("snsSaved");
+    location.reload();
+  }
+
   // SNS 기본 정보 (index 순서 고정)
   const snsInfo = [
     { name: "인스타그램", icon: "./img/instar.png" },
