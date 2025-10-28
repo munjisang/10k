@@ -1622,7 +1622,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
 // -------------------- user.JSON 불러오기 --------------------
 document.addEventListener("DOMContentLoaded", async () => {
   const tabs = document.querySelectorAll(".follow-tab");
@@ -1814,4 +1813,44 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // -------------------- 초기 렌더링 --------------------
   renderBlockList();
+});
+
+// -------------------- 로그아웃 다이얼로그 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.querySelector(".out-name:nth-child(1)"); // 첫 번째 '로그아웃' 버튼
+  const dialog = document.querySelector(".member-dialog-overlay");
+  const cancelBtn = dialog.querySelector(".member-dialog-cancel");
+  const confirmBtn = dialog.querySelector(".member-dialog-delete");
+
+  const toast = document.getElementById("toast");
+
+  if (!logoutBtn || !dialog) return;
+
+  logoutBtn.addEventListener("click", () => {
+    dialog.style.display = "flex";
+    dialog.querySelector(".member-dialog-desc").textContent = "정말 로그아웃 하시겠습니까?";
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    dialog.style.display = "none";
+  });
+
+  confirmBtn.addEventListener("click", () => {
+    localStorage.clear();
+    sessionStorage.clear();
+
+    dialog.style.display = "none";
+
+    if (toast) {
+      toast.textContent = "로그아웃 되었습니다.";
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        window.location.href = "index.html";
+      }, 500);
+    } else {
+      window.location.href = "index.html";
+    }
+  });
 });

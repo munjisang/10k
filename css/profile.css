@@ -635,3 +635,65 @@ main {
   border: 1px solid var(--PRIMARY-04);
   color: var(--PRIMARY-04);
 }
+
+
+
+/* 다이얼로그 */
+.member-dialog-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 40000; 
+}
+
+.member-dialog-box {
+  background: var(--WHITE);
+  border-radius: 12px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.member-dialog-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 12px;
+}
+
+.member-dialog-desc {
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 24px;
+}
+
+.member-dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.member-dialog-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.member-dialog-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.member-dialog-delete {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
+}
