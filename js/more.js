@@ -1595,12 +1595,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const STORAGE_KEY = "mySNS";
   const snsData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
-  // "내 SNS 링크" 행의 edit-detail 찾기
   const snsRow = [...document.querySelectorAll(".edit-list")].find(el => {
     return el.querySelector(".edit-name")?.textContent.trim() === "내 SNS 링크";
   });
 
-  // SNS 저장 후 새로고침 처리
   if (sessionStorage.getItem("snsSaved") === "true") {
     sessionStorage.removeItem("snsSaved");
     location.reload();
@@ -1610,7 +1608,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const detailEl = snsRow.querySelector(".edit-detail");
     const filledCount = Object.values(snsData).filter(v => v && v.trim().length > 0).length;
 
-    // edit-detail이 없으면 새로 만들어서 추가
     let detailDiv = detailEl;
     if (!detailDiv) {
       detailDiv = document.createElement("div");
@@ -1622,7 +1619,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("pageshow", (event) => {
-    if (event.persisted) loadSNSData();
+    if (event.persisted) location.reload();
   });
 
 });

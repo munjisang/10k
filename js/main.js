@@ -1426,11 +1426,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!snsWrap) return; // 안전 처리
 
-  if (sessionStorage.getItem("snsSaved") === "true") {
-    sessionStorage.removeItem("snsSaved");
-    location.reload();
-  }
-
   // SNS 기본 정보 (index 순서 고정)
   const snsInfo = [
     { name: "인스타그램", icon: "./img/instar.png" },
@@ -1460,6 +1455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const a = document.createElement("a");
     a.href = url;
     a.target = "_blank";
+    a.rel = "noopener noreferrer";
 
     const img = document.createElement("img");
     img.src = info.icon;
@@ -1469,7 +1465,8 @@ document.addEventListener("DOMContentLoaded", () => {
     snsWrap.appendChild(a);
   });
 
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) loadSNSData();
-  });
+  // SNS 저장 이후 페이지 새로고침 방지
+  if (sessionStorage.getItem("snsSaved") === "true") {
+    sessionStorage.removeItem("snsSaved");
+  }
 });
