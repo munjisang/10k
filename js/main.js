@@ -1535,6 +1535,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <img src="./img/star.png" alt="별점">
               <span class="my-review-rate">${r.review_rate}</span>
             </div>
+            <div class="my-review-info-del">삭제</div>
           </div>
           <div class="my-review-text-wrap">
             <span class="my-review-text">${r.review_message}</span>
@@ -1545,8 +1546,13 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
 
-        item.addEventListener("click", () => {
-          window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_self");
+        const textWrap = item.querySelector(".my-review-text-wrap");
+        const recipeBody = item.querySelector(".my-review-body");
+
+        [textWrap, recipeBody].forEach(el => {
+          el.addEventListener("click", () => {
+            window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_self");
+          });
         });
 
         container.appendChild(item);
