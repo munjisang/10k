@@ -536,7 +536,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .block-list {
@@ -550,8 +550,8 @@ main {
 
 .block-list-img {
   flex-shrink: 0;
-  width: 58px;
-  height: 58px;
+  width: 40px;
+  height: 40px;
 }
 
 .block-list-img img {

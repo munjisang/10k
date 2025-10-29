@@ -1911,52 +1911,6 @@ main {
   height: 36px;
   object-fit: contain;
 }
-/* 미사용 -----
-.profile-buttons {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 12px;
-}
-
-.profile-buttons button {
-  height: 44px;
-  border-radius: 2px;
-  font: var(--C3);
-  cursor: pointer;
-}
-
-.profile-buttons-edit {
-  width: 35%;
-  padding: 8px 10px;
-  border: 1px solid var(--BLACK-SUB);
-  background: var(--WHITE);
-  color: var(--BLACK-SUB);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  text-decoration: none;
-}
-
-.profile-buttons-recipe {
-  flex: 1;
-  padding: 8px 10px;
-  border: 1px solid var(--TERTIARY-08);
-  background: var(--WHITE);
-  color: var(--TERTIARY-08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  text-decoration: none;
-}
-
-.profile-buttons img {
-  width: 16px;
-  height: 16px;
-}
-*/
 
 .profile-edit {
   border-radius: 200px;
@@ -1972,79 +1926,53 @@ main {
   margin-left: auto;
 }
 
+/* 마이 탭메뉴 영역 */
+.my-tab-items {
+  position: sticky;
+  display: flex;
+  top: 0;
+  z-index: 1000;
+  margin-top: 16px;
+  padding: 16px 16px 0 16px;
+  background-color: var(--WHITE);
+  gap: 8px;
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid var(--GRAY-02);
+}
+
+.my-tab-items::-webkit-scrollbar {
+  display: none;
+}
+
+.my-tab-item {
+  padding: 10px 8px;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent;
+  font: var(--B4);
+  color: var(--BLACK-SUB);
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.my-tab-item.active {
+  color: var(--TERTIARY-08);
+  border-bottom: 2px solid var(--TERTIARY-08);
+  font: var(--B3);
+}
+
 /* 내 레시피 */
 .my-recipe-area {
   display: flex;
   flex-direction: column;
-  padding: 24px 16px;
+  padding: 16px 16px 32px 16px;
   background-color: var(--WHITE);
-  border-radius: 8px;
   gap: 16px;
-  margin: 10px 0;
   box-sizing: border-box;
-}
-
-.my-recipe-area-content {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.my-recipe-area-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.my-recipe-area-title {
-  font: var(--B1);
-  color: var(--BLACK-MAIN);
-}
-
-.my-recipe-area-subtitle {
-  font: var(--B7);
-  color: var(--BLACK-SUB);
-}
-
-/* 내 레시피 검색 */
-.my-search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; 
-  width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
-  height: 48px;
-  background-color: var(--WHITE);
-  border: 1px solid var(--TERTIARY-08);
-  border-radius: 8px;
-  padding: 0 12px;
-  box-sizing: border-box;
-}
-
-.my-search-bar img {
-  display: block;
-  flex-shrink: 0; 
-}
-
-.my-search-bar .my-search-icon {
-  height: 16px;
-}
-
-.my-search-bar input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  font: var(--B7);
-  color: var(--BLACK-MAIN);
-  height: 100%;
-  line-height: normal;
-  padding: 0 8px; 
-}
-
-.my-search-bar input::placeholder {
-  color: var(--BLACK-SUB);
 }
 
 /* 내 레시피 정렬 */
@@ -2127,3 +2055,4 @@ main {
 .recipe-sort-select.open .recipe-sort-chevron-icon {
   transform: translateY(-50%) rotate(180deg);
 }
+
