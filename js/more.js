@@ -1432,12 +1432,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       case "소개":
         editTitle.textContent = "소개를 입력해주세요.";
-        editTextarea.placeholder = "최대 50자까지 등록 가능합니다.";
-        editTextarea.maxLength = 50;
+        editTextarea.placeholder = "최대 100자까지 등록 가능합니다.";
+        editTextarea.maxLength = 100;
         editTextarea.value = savedValue;
         editInput.style.display = "none";
         editTextarea.style.display = "block";
-        supportingText.textContent = "ⓘ 소개내용은 최대 50자까지 등록 가능합니다.";
+        supportingText.textContent = "ⓘ 소개내용은 최대 100자까지 등록 가능합니다.";
         break;
 
       case "이메일":

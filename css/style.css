@@ -2056,3 +2056,98 @@ main {
   transform: translateY(-50%) rotate(180deg);
 }
 
+
+/* my 요리후기 UI */
+.review-area {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 32px 16px;
+  background-color: var(--WHITE);
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.my-review-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.my-review-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--GRAY-02);
+}
+
+.my-review-items > .my-review-item:last-child {
+  border-bottom: none;
+}
+
+.my-review-info {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.my-review-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--B8);
+  color: var(--BLACK-SUB);
+}
+
+.my-review-rate-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px; 
+  font: var(--B6);
+  color: var(--BLACK-MAIN);
+  margin-left: auto;
+}
+
+.my-review-rate-wrap img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.my-review-text-wrap {
+  display: flex;
+  gap: 12px;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+}
+
+.my-review-text-wrap img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-left: auto;
+}
+
+.my-review-body {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: var(--DIM-TERTIARY);
+  border-radius: 200px;
+}
+
+.my-review-recipe-name {
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  white-space: normal;
+}

@@ -1478,3 +1478,117 @@ function loadSNSData() {
     sessionStorage.removeItem("snsSaved");
   }
 }
+
+// -------------------- 마이 리뷰 JSON 로드 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".my-review-items");
+  if (!container) return;
+
+  const maxCount = parseInt(container.dataset.count, 10) || 5;
+
+  function formatReviewDate(dateStr) {
+    const now = new Date();
+    const reviewDate = new Date(dateStr.replace(/-/g, "/"));
+    const diffMs = now - reviewDate;
+    const diffMin = Math.floor(diffMs / 60000);
+    const diffHr = Math.floor(diffMin / 60);
+
+    if (diffMin < 60) return "방금";
+    else if (diffHr < 12) return `${diffHr}시간전`;
+    else {
+      const yy = String(reviewDate.getFullYear()).slice(2);
+      const mm = String(reviewDate.getMonth() + 1).padStart(2, "0");
+      const dd = String(reviewDate.getDate()).padStart(2, "0");
+      const hh = String(reviewDate.getHours()).padStart(2, "0");
+      const min = String(reviewDate.getMinutes()).padStart(2, "0");
+      return `${yy}.${mm}.${dd} ${hh}:${min}`;
+    }
+  }
+
+  fetch("./data/review.json")
+    .then(res => res.json())
+    .then(list => {
+      // 최신순 정렬
+      const sorted = list.sort((a, b) =>
+        new Date(b.review_date.replace(/-/g, "/")) -
+        new Date(a.review_date.replace(/-/g, "/"))
+      );
+
+      // ❌ 기존: slice(0, 10)
+      // ✅ 수정: 전체 리스트에서 maxCount 개수만큼 불러오기
+      const reviews = sorted.slice(0, maxCount);
+
+      reviews.forEach(r => {
+        const item = document.createElement("div");
+        item.className = "my-review-item";
+
+        const reviewPhoto = r.review_thumb
+          ? `<img src="${r.review_thumb}" alt="후기사진" class="review-photo">`
+          : "";
+
+        const displayDate = formatReviewDate(r.review_date);
+
+        item.innerHTML = `
+          <div class="my-review-info">
+            <div class="my-review-date">${displayDate}</div>
+            <div class="my-review-rate-wrap">
+              <img src="./img/star.png" alt="별점">
+              <span class="my-review-rate">${r.review_rate}</span>
+            </div>
+          </div>
+          <div class="my-review-text-wrap">
+            <span class="my-review-text">${r.review_message}</span>
+            ${reviewPhoto}
+          </div>
+          <div class="my-review-body">
+            <div class="my-review-recipe-name">${r.cok_title}</div>          
+          </div>
+        `;
+
+        item.addEventListener("click", () => {
+          window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_self");
+        });
+
+        container.appendChild(item);
+      });
+    })
+    .catch(err => console.error("리뷰 로드 실패:", err));
+});
+
+
+// -------------------- MY 탭 전환 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const tabItems = document.querySelectorAll(".my-tab-item");
+  const recipeArea = document.querySelector(".my-recipe-area");
+  const reviewArea = document.querySelector(".review-area");
+
+  if (!tabItems.length || !recipeArea || !reviewArea) return;
+
+  tabItems.forEach(tab => {
+    tab.addEventListener("click", () => {
+      // 모든 탭에서 active 제거
+      tabItems.forEach(t => t.classList.remove("active"));
+      // 클릭한 탭 활성화
+      tab.classList.add("active");
+
+      // 탭명에 따라 영역 전환
+      const text = tab.textContent.trim();
+
+      if (text === "레시피") {
+        recipeArea.style.display = "flex";
+        reviewArea.style.display = "none";
+      } else if (text === "요리후기") {
+        recipeArea.style.display = "none";
+        reviewArea.style.display = "flex";
+      } else {
+        // 나머지 탭 클릭 시 모두 숨김 (댓글 등)
+        recipeArea.style.display = "none";
+        reviewArea.style.display = "none";
+      }
+    });
+  });
+
+  // 초기 상태: 레시피 탭만 표시
+  recipeArea.style.display = "block";
+  reviewArea.style.display = "none";
+});
