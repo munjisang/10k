@@ -289,7 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-
 // -------------------- 레시피 더보기 (무한 스크롤) --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const listContainer = document.querySelector(".list-items");
@@ -385,6 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 // -------------------- 닫기버튼 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -1817,9 +1817,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderBlockList();
 });
 
-// -------------------- 로그아웃 다이얼로그 --------------------
+// -------------------- 로그아웃 / 회원탈퇴 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.querySelector(".out-name:nth-child(1)");
+  const withdrawBtn = document.querySelector(".out-name:nth-child(3)"); // ✅ 회원탈퇴 버튼
   const dialog = document.querySelector(".member-dialog-overlay");
   const cancelBtn = dialog.querySelector(".member-dialog-cancel");
   const confirmBtn = dialog.querySelector(".member-dialog-delete");
@@ -1828,6 +1829,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!logoutBtn || !dialog) return;
 
+  // -------------------- 로그아웃 --------------------
   logoutBtn.addEventListener("click", () => {
     dialog.style.display = "flex";
     dialog.querySelector(".member-dialog-desc").textContent = "정말 로그아웃 하시겠습니까?";
@@ -1855,4 +1857,77 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "index.html";
     }
   });
+
+  // -------------------- 회원탈퇴 이동 --------------------
+  withdrawBtn?.addEventListener("click", () => {
+    window.location.href = "withdraw.html";
+  });
+});
+
+// -------------------- 회원탈퇴 체크 및 다이얼로그 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const agreeBox = document.querySelector(".draw-agree");
+  const agreeImg = agreeBox.querySelector("img");
+  const confirmBtn = document.querySelector(".draw-btn-confirm");
+  const cancelBtn = document.querySelector(".draw-btn-cancel");
+  const dialog = document.querySelector(".draw-dialog-overlay");
+  const dialogDesc = dialog.querySelector(".draw-dialog-desc");
+  const dialogCancel = dialog.querySelector(".draw-dialog-cancel");
+  const dialogDelete = dialog.querySelector(".draw-dialog-delete");
+
+  let isAgreed = false; // 체크 상태 저장
+
+  // -------------------- 1. 체크 on/off --------------------
+  agreeBox.addEventListener("click", () => {
+    isAgreed = !isAgreed;
+
+    if (isAgreed) {
+      agreeImg.src = "./img/check_square_on.png";
+      confirmBtn.disabled = false;
+    } else {
+      agreeImg.src = "./img/check_square_off.png";
+      confirmBtn.disabled = true;
+    }
+  });
+
+  // -------------------- 2. 회원탈퇴 버튼 클릭 시 --------------------
+  confirmBtn.addEventListener("click", () => {
+    if (confirmBtn.disabled) return;
+
+    dialog.style.display = "flex";
+    dialogDesc.textContent = "정말 탈퇴하시겠습니까? 탈퇴 시 모든 정보는 삭제됩니다.";
+  });
+
+  // -------------------- 3. 다이얼로그 버튼 처리 --------------------
+  dialogCancel.addEventListener("click", () => {
+    dialog.style.display = "none";
+  });
+
+  dialogDelete.addEventListener("click", () => {
+    // 실제 탈퇴 처리 로직 추가 가능 (예: API 호출)
+    localStorage.clear();
+    sessionStorage.clear();
+
+    const toast = document.getElementById("toast");
+    dialog.style.display = "none";
+
+    if (toast) {
+      toast.textContent = "회원탈퇴가 완료되었습니다.";
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+        window.location.href = "index.html";
+      }, 800);
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+
+  // -------------------- 4. 취소 버튼 처리 --------------------
+  cancelBtn.addEventListener("click", () => {
+    window.history.back();
+  });
+
+  // 초기 상태: 버튼 비활성화
+  confirmBtn.disabled = true;
 });

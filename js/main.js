@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
       icon.addEventListener('click', () => {
         window.location.href = './setting.html';
       });
+    } else if (altText.includes('검색')) {
+      // 검색 아이콘 클릭 시
+      icon.addEventListener('click', () => {
+        window.location.href = './search.html';
+      });
     }
   });
 });

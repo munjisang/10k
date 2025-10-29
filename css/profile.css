@@ -610,3 +610,165 @@ main {
   border: 1px solid var(--PRIMARY-04);
   color: var(--PRIMARY-04);
 }
+
+/* 회원탈퇴 콘텐츠 영역 */
+.draw-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  background-color: var(--WHITE);
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 10px 0;
+  gap: 30px;
+  font: var(--B6);
+  color: var(--BLACK-MAIN);
+}
+
+.draw-title {
+  flex: 1;
+  font: var(--H5);
+  line-height: 1.4;
+  color: var(--BLACK-MAIN);
+}
+
+.draw-info-wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid var(--TERTIARY-08);
+  gap: 8px;
+}
+
+ul {
+  padding : 0;
+  margin : 0 0 0 12px;
+}
+
+li {
+  padding: 6px 0;
+  font: var(--B8);
+  color: var(--BLACK-MAIN);
+}
+
+.draw-agree {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.draw-agree-img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.draw-agree img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.draw-agree-txt {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.draw-btns {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.draw-btns button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.draw-btn-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.draw-btn-confirm {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
+}
+
+.draw-btn-confirm:disabled{
+  background: var(--DIM-TERTIARY);
+  color: var(--TERTIARY-08);
+}
+
+/* 다이얼로그 */
+.draw-dialog-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 40000; 
+}
+
+.draw-dialog-box {
+  background: var(--WHITE);
+  border-radius: 12px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.draw-dialog-title {
+  font: var(--S1);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 12px;
+}
+
+.draw-dialog-desc {
+  font: var(--B4);
+  color: var(--BLACK-MAIN);
+  margin-bottom: 24px;
+}
+
+.draw-dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.draw-dialog-buttons button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font: var(--B8);
+  cursor: pointer;
+}
+
+.draw-dialog-cancel {
+  background: var(--GRAY-02);
+  color: var(--BLACK-MAIN);
+  border: none;
+}
+
+.draw-dialog-delete {
+  background: var(--TERTIARY-08);
+  color: var(--WHITE);
+  border: none;
+}

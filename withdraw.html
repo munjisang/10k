@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/font.css">
+  <link rel="stylesheet" href="./css/color.css">
+  <link rel="stylesheet" href="./css/profile.css">
+  <title>만개의 레시피 - 회원탈퇴</title>
+</head>
+<body>
+  <header class="sub-header">
+    <div class="leding-icons">
+      <img src="./img/back.png" alt="이전화면" class="leding-icon">
+    </div>
+    <div class="sub-header-title">회원탈퇴</div>
+  </header>
+  <main>
+    <div class="draw-area">
+      <div class="draw-title">
+        <span> 탈퇴하신다니 아쉬워요 <br> 탈퇴 전 아래 유의사항을 확인해주세요.</span>
+      </div>
+      <div class="draw-info-wrap">
+        <span>회원 탈퇴 시 유의사항</span>
+        <ul>
+          <li>탈퇴하면 앞으로 이 계정으로 로그인할 수 없습니다.</li>
+          <li>가입정보를 변경하고 싶다면 회원정보수정에서 변경할 수 있습니다.</li>
+          <li>탈퇴시 해당 계정으로 저장된 모든 개인정보는 영구적으로 삭제 되어 복구할 수 없습니다.</li>
+          <li>공공의 성격을 가진 게시물은 탈퇴 후에도 삭제되지 않으므로 반드시 직접 삭제하신 후 탈퇴해 주시기 바랍니다.</li>
+          <li>회원 탈퇴 시 보유하신 적립금과 포인트는 소멸하고, 복구가 불가능합니다.</li>
+        </ul>
+      </div>
+      <div class="draw-agree">
+        <div class="draw-agree-img">
+          <img src="./img/check_square_off.png" alt="체크">
+        </div>
+        <div class="draw-agree-txt">위 탈퇴 정책을 확인하였으며, 내용에 동의합니다.</div>
+      </div>
+      <div class="draw-btns">
+        <button class="draw-btn-cancel">취소</button>
+        <button class="draw-btn-confirm">회원탈퇴</button>
+      </div>
+    </div>
+  </main>
+  <div id="toast" class="toast"></div>
+  <div class="draw-dialog-overlay" style="display:none;">
+    <div class="draw-dialog-box">
+      <div class="draw-dialog-title">회원탈퇴</div>
+      <div class="draw-dialog-desc"></div>
+        <div class="draw-dialog-buttons">
+          <button class="draw-dialog-cancel">취소</button>
+          <button class="draw-dialog-delete">탈퇴하기</button>
+        </div>
+    </div>
+  </div>  
+</body>
+<script src="./js/more.js"></script>
+</html>
