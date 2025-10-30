@@ -1010,7 +1010,7 @@ main {
   font: var(--B5);
   color: var(--TERTIARY-08);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
@@ -2174,28 +2174,12 @@ main {
   font: var(--B5);
   color: var(--TERTIARY-08);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
   white-space: normal;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .reply-info {
   display: flex;
@@ -2217,13 +2201,11 @@ main {
   max-width: 300px;
 }
 
-/* 닉네임 */
 .reply-user-name {
   font: var(--C2);
   color: var(--BLACK-MAIN);
 }
 
-/* 말풍선 */
 .reply-text {
   position: relative;
   display: inline-block;
@@ -2236,7 +2218,6 @@ main {
   white-space: pre-line;
 }
 
-/* ◀ 꼬리 */
 .reply-text::after {
   content: "";
   position: absolute;
