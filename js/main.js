@@ -1560,8 +1560,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const recipeArea = document.querySelector(".my-recipe-area");
   const reviewArea = document.querySelector(".review-area");
   const commentArea = document.querySelector(".comment-area");
+  const noteArea = document.querySelector(".my_cont-area");
 
-  if (!tabItems.length || !recipeArea || !reviewArea || !commentArea) return;
+  if (!tabItems.length || !recipeArea || !reviewArea || !commentArea || !noteArea) return;
 
   tabItems.forEach(tab => {
     tab.addEventListener("click", () => {
@@ -1577,23 +1578,31 @@ document.addEventListener("DOMContentLoaded", () => {
         recipeArea.style.display = "flex";
         reviewArea.style.display = "none";
         commentArea.style.display = "none";
+        noteArea.style.display = "none";
       } else if (text === "요리후기") {
         recipeArea.style.display = "none";
         reviewArea.style.display = "flex";
         commentArea.style.display = "none";
-      } else {
-        // 나머지 탭 클릭 시 모두 숨김 (댓글 등)
+        noteArea.style.display = "none";
+      } else if (text === "댓글") {
         recipeArea.style.display = "none";
         reviewArea.style.display = "none";
         commentArea.style.display = "flex";
+        noteArea.style.display = "none";
+      } else {
+        recipeArea.style.display = "none";
+        reviewArea.style.display = "none";
+        commentArea.style.display = "none";
+        noteArea.style.display = "flex";
       }
     });
   });
 
   // 초기 상태: 레시피 탭만 표시
-  recipeArea.style.display = "block";
+  recipeArea.style.display = "flex";
   reviewArea.style.display = "none";
   commentArea.style.display = "none";
+  noteArea.style.display = "none";
 });
 
 // -------------------- 후기 / 댓글 삭제 다이얼로그 + 토스트 --------------------

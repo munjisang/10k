@@ -1745,58 +1745,6 @@ main {
   object-fit: contain;
 }
 
-/*마이-최근본 레시피*/
-.horizon-items { 
-  display: flex;
-  flex-direction: row; 
-  overflow-x: auto; 
-  margin-bottom: 16px; 
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
-
-.horizon-items::-webkit-scrollbar {
-  display: none;
-}
-
-.horizon-items {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  gap: 12px;
-}
-
-.horizon-item {
-  flex: 0 0 150px; 
-  box-sizing: border-box;
-}
-
-.horizon-item { 
-  scroll-snap-align: start; 
-} 
-
-.horizon-item-thumb { 
-  position: relative; 
-  margin-bottom: 4px;
-} 
-
-.horizon-item-thumb img { 
-  width: 100%; 
-  aspect-ratio: 16 / 9; 
-  object-fit: cover; 
-  border-radius: 8px; 
-  display: block; 
-} 
-
-.horizon-item-thumb 
-.video-icon { 
-  position: absolute; 
-  right: 8px; 
-  bottom: 8px; 
-  width: 24px; 
-  height: 24px; 
-  object-fit: contain; 
-}
-
 /* 토글버튼 */
 .toggle-switch {
   position: relative;
@@ -2069,4 +2017,98 @@ input:not(:checked) + .toggle-label::after {
   background: var(--TERTIARY-08);
   color: var(--WHITE);
   border: none;
+}
+
+
+
+
+.recent-area {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  background-color: var(--WHITE);
+  border-radius: 8px;
+  gap: 8px;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+
+/*마이-최근본 레시피*/
+.recent-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.recent-title {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-SUB);
+  padding: 12px 16px;
+}
+
+.recent-name {
+  flex: 1;
+  font: var(--B7);
+  color: var(--BLACK-MAIN);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.horizon-items { 
+  display: flex;
+  flex-direction: row; 
+  overflow-x: auto; 
+  padding: 0 16px;
+  margin-bottom: 16px; 
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.horizon-items::-webkit-scrollbar {
+  display: none;
+}
+
+.horizon-items {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 12px;
+}
+
+.horizon-item {
+  flex: 0 0 150px; 
+  box-sizing: border-box;
+}
+
+.horizon-item { 
+  scroll-snap-align: start; 
+} 
+
+.horizon-item-thumb { 
+  position: relative; 
+  margin-bottom: 4px;
+} 
+
+.horizon-item-thumb img { 
+  width: 100%; 
+  aspect-ratio: 16 / 9; 
+  object-fit: cover; 
+  border-radius: 8px; 
+  display: block; 
+} 
+
+.horizon-item-thumb 
+.video-icon { 
+  position: absolute; 
+  right: 8px; 
+  bottom: 8px; 
+  width: 24px; 
+  height: 24px; 
+  object-fit: contain; 
 }
