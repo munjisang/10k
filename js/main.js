@@ -1595,3 +1595,76 @@ document.addEventListener("DOMContentLoaded", () => {
   reviewArea.style.display = "none";
   commentArea.style.display = "none";
 });
+
+// -------------------- 후기 / 댓글 삭제 다이얼로그 + 토스트 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const dialogOverlay = document.querySelector(".my-dialog-overlay");
+  const dialogTitle = dialogOverlay.querySelector(".my-dialog-title");
+  const dialogDesc = dialogOverlay.querySelector(".my-dialog-desc");
+  const cancelBtn = dialogOverlay.querySelector(".my-dialog-cancel");
+  const deleteBtn = dialogOverlay.querySelector(".my-dialog-delete");
+  const toast = document.getElementById("toast");
+
+  let currentTarget = null;
+  let deleteType = "";
+
+  // 삭제 버튼 클릭 감지
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("my-review-info-del")) {
+      e.preventDefault();
+      deleteType = "review";
+      currentTarget = e.target.closest(".my-review-item");
+      showDialog(deleteType);
+    }
+
+    if (e.target.classList.contains("my-comment-info-del")) {
+      e.preventDefault();
+      deleteType = "comment";
+      currentTarget = e.target.closest(".my-comment-item");
+      showDialog(deleteType);
+    }
+  });
+
+  // 다이얼로그 표시
+  function showDialog(type) {
+    if (type === "review") {
+      dialogTitle.textContent = "요리후기 삭제";
+      dialogDesc.innerHTML =
+        "요리후기를 삭제하시겠습니까?<br>삭제된 요리후기는 복구 되지 않습니다.";
+    } else if (type === "comment") {
+      dialogTitle.textContent = "댓글 삭제";
+      dialogDesc.innerHTML =
+        "댓글을 삭제하시겠습니까?<br>삭제된 댓글은 복구 되지 않습니다.";
+    }
+
+    dialogOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  // 취소 버튼
+  cancelBtn.addEventListener("click", () => {
+    dialogOverlay.style.display = "none";
+    document.body.style.overflow = "auto";
+    currentTarget = null;
+  });
+
+  // 삭제 버튼
+  deleteBtn.addEventListener("click", () => {
+    if (currentTarget) currentTarget.remove();
+    dialogOverlay.style.display = "none";
+    document.body.style.overflow = "auto";
+
+  // ✅ 토스트 메시지 표시
+    showToast(deleteType === "review" ? "요리후기가 삭제되었습니다." : "댓글이 삭제되었습니다.");
+  });
+
+  // -------------------- 토스트 메시지 함수 --------------------
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2500);
+  }
+});

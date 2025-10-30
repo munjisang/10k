@@ -1728,7 +1728,9 @@ main {
 }
 
 /* 장보기 삭제 다이얼로그 */
-.shopping-dialog-overlay {
+.shopping-dialog-overlay,
+.my-dialog-overlay
+{
   position: fixed;
   top: 0; left: 0;
   width: 100%; 
@@ -1740,7 +1742,9 @@ main {
   z-index: 2000;
 }
 
-.shopping-dialog-box {
+.shopping-dialog-box,
+.my-dialog-box 
+{
   background: var(--WHITE);
   border-radius: 12px;
   width: 300px;
@@ -1749,25 +1753,33 @@ main {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.shopping-dialog-title {
+.shopping-dialog-title,
+.my-dialog-title 
+{
   font: var(--S1);
   color: var(--BLACK-MAIN);
   margin-bottom: 12px;
 }
 
-.shopping-dialog-desc {
+.shopping-dialog-desc,
+.my-dialog-desc
+{
   font: var(--B4);
   color: var(--BLACK-MAIN);
   margin-bottom: 24px;
 }
 
-.shopping-dialog-buttons {
+.shopping-dialog-buttons,
+.my-dialog-buttons
+{
   display: flex;
   justify-content: center;
   gap: 12px;
 }
 
-.shopping-dialog-buttons button {
+.shopping-dialog-buttons button, 
+.my-dialog-buttons button
+{
   flex: 1;
   height: 48px;
   border-radius: 12px;
@@ -1775,13 +1787,17 @@ main {
   cursor: pointer;
 }
 
-.shopping-dialog-cancel {
+.shopping-dialog-cancel,
+.my-dialog-cancel
+{
   background: var(--GRAY-02);
   color: var(--BLACK-MAIN);
   border: none;
 }
 
-.shopping-dialog-delete {
+.shopping-dialog-delete,
+.my-dialog-delete
+{
   background: var(--TERTIARY-08);
   color: var(--WHITE);
   border: none;
