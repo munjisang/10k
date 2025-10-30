@@ -2180,3 +2180,69 @@ main {
   word-break: break-word;
   white-space: normal;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.reply-info {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.reply-info-thumb img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.reply-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 300px;
+}
+
+/* 닉네임 */
+.reply-user-name {
+  font: var(--C2);
+  color: var(--BLACK-MAIN);
+}
+
+/* 말풍선 */
+.reply-text {
+  position: relative;
+  display: inline-block;
+  background: var(--GRAY-02);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font: var(--B8);
+  color: var(--BLACK-MAIN);
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* ◀ 꼬리 */
+.reply-text::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -6px;
+  border-width: 6px 6px 6px 0;
+  border-style: solid;
+  border-color: transparent var(--GRAY-02) transparent transparent;
+}
