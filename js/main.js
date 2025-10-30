@@ -490,7 +490,7 @@ fetch('./data/recipe.json')
   }) 
   .catch(err => console.error('레시피 로드 실패:', err));
 
-// -------------------- 리뷰 JSON 로드 --------------------
+// -------------------- 홈//요리후기 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".review-items");
   if (!container) return;
@@ -559,15 +559,12 @@ document.addEventListener("DOMContentLoaded", () => {
               <span class="review-rate">${r.review_rate}</span>
             </div>
           </div>
-
+          <div class="review-recipe-name">${r.cok_title}</div>
           <div class="review-text-wrap">
             <span class="review-text">${r.review_message}</span>
             ${reviewPhoto}
           </div>
-          <div class="review-body">
-            <div class="review-recipe-name">${r.cok_title}
-            </div>          
-          </div>
+        </div>
         `;
 
         item.addEventListener("click", () => {
@@ -1479,7 +1476,7 @@ function loadSNSData() {
   }
 }
 
-// -------------------- 마이 리뷰 JSON 로드 --------------------
+// -------------------- 마이 > 요리 후기 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".my-review-items");
   if (!container) return;
@@ -1508,14 +1505,11 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("./data/review.json")
     .then(res => res.json())
     .then(list => {
-      // 최신순 정렬
       const sorted = list.sort((a, b) =>
         new Date(b.review_date.replace(/-/g, "/")) -
         new Date(a.review_date.replace(/-/g, "/"))
       );
 
-      // ❌ 기존: slice(0, 10)
-      // ✅ 수정: 전체 리스트에서 maxCount 개수만큼 불러오기
       const reviews = sorted.slice(0, maxCount);
 
       reviews.forEach(r => {
@@ -1537,19 +1531,18 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="my-review-info-del">삭제</div>
           </div>
+          <div class="my-review-recipe-name">${r.cok_title}</div> 
           <div class="my-review-text-wrap">
             <span class="my-review-text">${r.review_message}</span>
             ${reviewPhoto}
           </div>
-          <div class="my-review-body">
-            <div class="my-review-recipe-name">${r.cok_title}</div>          
-          </div>
         `;
 
         const textWrap = item.querySelector(".my-review-text-wrap");
-        const recipeBody = item.querySelector(".my-review-body");
+        const recipeName = item.querySelector(".my-review-recipe-name");
 
-        [textWrap, recipeBody].forEach(el => {
+
+        [textWrap, recipeName].forEach(el => {
           el.addEventListener("click", () => {
             window.open(`https://m.10000recipe.com/recipe/${r.cok_sq_board}`, "_self");
           });
@@ -1561,14 +1554,14 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("리뷰 로드 실패:", err));
 });
 
-
 // -------------------- MY 탭 전환 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const tabItems = document.querySelectorAll(".my-tab-item");
   const recipeArea = document.querySelector(".my-recipe-area");
   const reviewArea = document.querySelector(".review-area");
+  const commentArea = document.querySelector(".comment-area");
 
-  if (!tabItems.length || !recipeArea || !reviewArea) return;
+  if (!tabItems.length || !recipeArea || !reviewArea || !commentArea) return;
 
   tabItems.forEach(tab => {
     tab.addEventListener("click", () => {
@@ -1583,6 +1576,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (text === "레시피") {
         recipeArea.style.display = "flex";
         reviewArea.style.display = "none";
+        commentArea.style.display = "none";
       } else if (text === "요리후기") {
         recipeArea.style.display = "none";
         reviewArea.style.display = "flex";
@@ -1590,6 +1584,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // 나머지 탭 클릭 시 모두 숨김 (댓글 등)
         recipeArea.style.display = "none";
         reviewArea.style.display = "none";
+        commentArea.style.display = "flex";
       }
     });
   });
