@@ -1580,6 +1580,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (text === "요리후기") {
         recipeArea.style.display = "none";
         reviewArea.style.display = "flex";
+        commentArea.style.display = "none";
       } else {
         // 나머지 탭 클릭 시 모두 숨김 (댓글 등)
         recipeArea.style.display = "none";
@@ -1592,4 +1593,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // 초기 상태: 레시피 탭만 표시
   recipeArea.style.display = "block";
   reviewArea.style.display = "none";
+  commentArea.style.display = "none";
 });
