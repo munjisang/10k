@@ -27,7 +27,6 @@ main {
   padding-bottom: 20px;
 }
 
-/* header 뒤로가기 */
 .sub-header {
   position: sticky;
   top: 0;
@@ -63,8 +62,6 @@ main {
   text-align: left;
   flex: 1;
 }
-
-
 
 .adless_top {
   position: relative;
@@ -167,12 +164,11 @@ main {
   width: 100%;
 }
 
-
 .adless_review {
   display: flex;
   flex-direction: column;
   padding: 24px 16px;
-  gap: 8px;
+  gap: 40px;
   box-sizing: border-box;
 }
 
@@ -187,64 +183,85 @@ main {
   width: 230px;
 }
 
-
-
-
-
-.adless_review .swiper-container {
-    width: 100%;
-    height: 240px;
-    padding-bottom: 45px;
+.swiper-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 0 16px;
+  margin-bottom: 80px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.adless_review .swiper-slide {
+.swiper-container::-webkit-scrollbar {
+  display: none;
 }
 
 .adless_review_cont {
-    background: #fff;
-    border-radius: 18px;
-    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.07);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.07);
-    text-align: center;
-    padding: 26px 20px
+  flex: 0 0 85%; /* ✅ 카드 폭 (비율로 조정 가능) */
+  scroll-snap-align: center; /* ✅ 슬라이드처럼 중앙 정렬 */
+  background: var(--WHITE);
+  border-radius: 18px;
+  max-height: 200px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.07);
 }
 
-.adless_review_cont dt {
-    font-size: 18px;
-    letter-spacing: -0.05em;
-    line-height: 1;
+.adless_review_cont-name {
+  font: var(--B2);
+  color: var(--BLACK-MAIN);
 }
 
-.adless_review_cont dt p {
-    padding-top: 6px;
+.adless_review_cont-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.adless_review_cont dt p img {
-    width: 80px;
+.adless_review_cont-img img {
+  width: 100px;
 }
 
-.adless_review_cont dd {
-    letter-spacing: -0.05em;
-    line-height: 1.6;
-    padding-top: 18px;
+.adless_review_cont-txt {
+  font: var(--B5);
+  color: var(--BLACK-MAIN);
+  line-height: 1.6;
+  padding-top: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  white-space: normal;
 }
 
-.adless_review_cont dd span {
-    position: relative;
-    line-height: 1;
-    z-index: 0;
+.adless_review_cont-txt span {
+  position: relative;
+  line-height: 1;
+  z-index: 0;
 }
 
-.adless_review_cont dd span::before {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 55%;
-    background: #ccff00;
-    content: "";
-    z-index: -1;
+.adless_review_cont-txt span::before {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: #ccff00;
+  content: "";
+  z-index: -1;
 }
+
+
+
+
+
+
+
 
 .adless_btn {
     padding: 0px 20px 20px;
