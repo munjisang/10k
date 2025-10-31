@@ -178,11 +178,13 @@ main {
 
 .adless_review-img {
   position: relative;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .adless_review-img img {
-  width: 80%;
+  width: 50%;
 }
 
 
