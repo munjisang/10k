@@ -2019,9 +2019,7 @@ input:not(:checked) + .toggle-label::after {
   border: none;
 }
 
-
-
-
+/*마이-최근본 레시피*/
 .recent-area {
   display: flex;
   flex-direction: column;
@@ -2033,7 +2031,6 @@ input:not(:checked) + .toggle-label::after {
   margin: 10px 0;
 }
 
-/*마이-최근본 레시피*/
 .recent-info {
   display: flex;
   align-items: center;

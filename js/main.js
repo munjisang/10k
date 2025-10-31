@@ -906,7 +906,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // -------------------- 폴더추가 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const bottomSheetOverlay = document.querySelector(".folder-add-overlay");
@@ -1599,90 +1598,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!tabItems.length || !recipeArea || !reviewArea || !commentArea || !noteArea) return;
 
-  // ✅ 마지막으로 본 탭 불러오기
-  const savedTab = sessionStorage.getItem("activeMyTab") || "레시피";
-
-  // 탭 전환 함수
-  const switchTab = (tabName) => {
+  // ✅ 탭 전환 함수
+  const switchTab = (tabName, save = true) => {
+    // 모든 탭 비활성화
     tabItems.forEach(t => t.classList.remove("active"));
+    // 모든 콘텐츠 숨김
+    recipeArea.style.display = "none";
+    reviewArea.style.display = "none";
+    commentArea.style.display = "none";
+    noteArea.style.display = "none";
 
-    tabItems.forEach(t => {
-      if (t.textContent.trim() === tabName) {
-        t.classList.add("active");
-      }
-    });
+    // 선택한 탭 활성화
+    const targetTab = Array.from(tabItems).find(t => t.textContent.trim() === tabName);
+    if (targetTab) targetTab.classList.add("active");
 
-    recipeArea.style.display = (tabName === "레시피") ? "flex" : "none";
-    reviewArea.style.display = (tabName === "요리후기") ? "flex" : "none";
-    commentArea.style.display = (tabName === "댓글") ? "flex" : "none";
-    noteArea.style.display = (tabName === "레시피 노트") ? "flex" : "none";
+    // 콘텐츠 표시
+    if (tabName === "레시피") recipeArea.style.display = "flex";
+    else if (tabName === "요리후기") reviewArea.style.display = "flex";
+    else if (tabName === "댓글") commentArea.style.display = "flex";
+    else if (tabName === "레시피 노트") noteArea.style.display = "flex";
+
+    if (save) sessionStorage.setItem("activeMyTab", tabName);
   };
 
-  // ✅ 각 탭 클릭 시 저장 + 전환
+  // ✅ URL 파라미터 확인
+  const params = new URLSearchParams(window.location.search);
+  const urlTab = params.get("tab");
+
+  // ✅ sessionStorage에서 마지막 탭 불러오기
+  const savedTab = sessionStorage.getItem("activeMyTab");
+
+  // ✅ URL 파라미터 > 세션저장 > 기본값 순으로 탭 결정
+  let activeTabName = "레시피";
+  if (urlTab === "review") activeTabName = "요리후기";
+  else if (urlTab === "comment") activeTabName = "댓글";
+  else if (urlTab === "cont") activeTabName = "레시피 노트";
+  else if (urlTab === "recipe") activeTabName = "레시피";
+  else if (savedTab) activeTabName = savedTab;
+
+  // ✅ 탭 클릭 시 전환 + 세션 저장 + URL 동기화
   tabItems.forEach(tab => {
     tab.addEventListener("click", () => {
       const text = tab.textContent.trim();
-      sessionStorage.setItem("activeMyTab", text); // 탭 상태 저장
       switchTab(text);
+
+      // URL 갱신 (뒤로가기 시 유지)
+      const tabParam =
+        text === "요리후기" ? "review" :
+        text === "댓글" ? "comment" :
+        text === "레시피 노트" ? "cont" :
+        text === "레시피" ? "recipe" : "";
+      const newUrl = tabParam ? `?tab=${tabParam}` : window.location.pathname;
+      window.history.replaceState(null, "", newUrl);
     });
   });
 
-  // ✅ 페이지 로드시 저장된 탭으로 복원
-  switchTab(savedTab);
+  // ✅ 페이지 로드시 URL or 세션 값으로 복원
+  switchTab(activeTabName, false);
+
+  // ✅ URL 파라미터가 존재하면 세션보다 우선 적용 (비동기 꼬임 방지)
+  if (urlTab) {
+    setTimeout(() => {
+      switchTab(activeTabName, false);
+    }, 0);
+  }
 });
 
-/*
-// -------------------- MY 탭 전환 --------------------
+// -------------------- 설정에서 MY 탭 이동 --------------------
 document.addEventListener("DOMContentLoaded", () => {
-  const tabItems = document.querySelectorAll(".my-tab-item");
-  const recipeArea = document.querySelector(".my-recipe-area");
-  const reviewArea = document.querySelector(".review-area");
-  const commentArea = document.querySelector(".comment-area");
-  const noteArea = document.querySelector(".my_cont-area");
+  const params = new URLSearchParams(window.location.search);
+  const activeTab = params.get("tab");
 
-  if (!tabItems.length || !recipeArea || !reviewArea || !commentArea || !noteArea) return;
+  const allTabs = document.querySelectorAll(".my-tab-item");
+  allTabs.forEach(tab => tab.classList.remove("active")); // ✅ 기존 active 초기화
 
-  tabItems.forEach(tab => {
-    tab.addEventListener("click", () => {
-      // 모든 탭에서 active 제거
-      tabItems.forEach(t => t.classList.remove("active"));
-      // 클릭한 탭 활성화
-      tab.classList.add("active");
-
-      // 탭명에 따라 영역 전환
-      const text = tab.textContent.trim();
-
-      if (text === "레시피") {
-        recipeArea.style.display = "flex";
-        reviewArea.style.display = "none";
-        commentArea.style.display = "none";
-        noteArea.style.display = "none";
-      } else if (text === "요리후기") {
-        recipeArea.style.display = "none";
-        reviewArea.style.display = "flex";
-        commentArea.style.display = "none";
-        noteArea.style.display = "none";
-      } else if (text === "댓글") {
-        recipeArea.style.display = "none";
-        reviewArea.style.display = "none";
-        commentArea.style.display = "flex";
-        noteArea.style.display = "none";
-      } else {
-        recipeArea.style.display = "none";
-        reviewArea.style.display = "none";
-        commentArea.style.display = "none";
-        noteArea.style.display = "flex";
-      }
-    });
-  });
-
-  // 초기 상태: 레시피 탭만 표시
-  recipeArea.style.display = "flex";
-  reviewArea.style.display = "none";
-  commentArea.style.display = "none";
-  noteArea.style.display = "none";
+  if (activeTab) {
+    const tab = document.getElementById(activeTab);
+    if (tab) tab.classList.add("active"); // ✅ URL에 맞는 탭만 활성화
+  } else {
+    // 기본 탭 (예: 첫 번째 탭)을 지정하고 싶다면 여기에
+    allTabs[0].classList.add("active");
+  }
 });
-*/
 
 // -------------------- 후기 / 댓글 삭제 다이얼로그 + 토스트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
