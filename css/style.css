@@ -2365,19 +2365,20 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 20px; 
+  padding: 18px;
   transition: all 0.25s ease;
   cursor: pointer;
   box-sizing: border-box;
   overflow: hidden;
+  box-shadow: 6px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 .note-cover::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 10px;
-  width: 2px;
+  left: 6px;
+  width: 6px;
   height: 100%;
   background: var(--TERTIARY-02);
 }
@@ -2386,10 +2387,11 @@ main {
   font: var(--C4);
   color: var(--BLACK-SUB);
   margin-bottom: 6px;
+  flex-shrink: 0;
 }
 
 .note-title {
-  font: var(--B2);
+  font: var(--B6);
   color: var(--TERTIARY-08);
   line-height: 1.5;
   text-align: left;
@@ -2399,12 +2401,12 @@ main {
   overflow: hidden;
   word-break: break-word;
   white-space: normal;
-  border-bottom: 1px solid var(--TERTIARY-02);
-  margin-bottom: 14px;
+  margin-bottom: 24px;
+  flex-shrink: 0;
 }
 
 .note-summary {
-  font: var(--B4);
+  font: var(--B8);
   color: var(--BLACK-SUB);
   line-height: 1.5;
   text-align: left;
@@ -2412,4 +2414,6 @@ main {
   word-break: break-word;
   white-space: pre-line;
   max-height: 7.5em;
+  flex-grow: 1;
+  flex-shrink: 1
 }
