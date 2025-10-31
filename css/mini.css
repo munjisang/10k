@@ -184,23 +184,12 @@ main {
 }
 
 .adless_review-img img {
-  width: 50%;
+  width: 230px;
 }
 
 
 
 
-
-
-.adless_review_tit {
-    text-align: center;
-    padding: 36px 0 30px;
-}
-
-.adless_review_tit img {
-    width: 100%;
-    max-width: 230px;
-}
 
 .adless_review .swiper-container {
     width: 100%;
