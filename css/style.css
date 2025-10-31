@@ -2357,7 +2357,7 @@ main {
 /* 📘 노트 표지 스타일 */
 .note-cover {
   background: var(--DIM-TERTIARY);
-  border: 1px solid var(--TERTIARY-02);
+  border: 2px solid var(--TERTIARY-02);
   border-radius: 8px;
   aspect-ratio: 3/4;
   position: relative;
