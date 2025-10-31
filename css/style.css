@@ -2368,6 +2368,8 @@ main {
   padding: 20px; 
   transition: all 0.25s ease;
   cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .note-cover::before {
@@ -2388,7 +2390,7 @@ main {
 
 .note-title {
   font: var(--B2);
-  color: var(--BLACK-MAIN);
+  color: var(--TERTIARY-08);
   line-height: 1.5;
   text-align: left;
   display: -webkit-box;
@@ -2397,19 +2399,17 @@ main {
   overflow: hidden;
   word-break: break-word;
   white-space: normal;
-  margin-bottom: 14px;
   border-bottom: 1px solid var(--TERTIARY-02);
+  margin-bottom: 14px;
 }
 
 .note-summary {
   font: var(--B4);
-  color: var(--BLACK-MAIN);
+  color: var(--BLACK-SUB);
   line-height: 1.5;
   text-align: left;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
-  white-space: normal;
+  white-space: pre-line;
+  max-height: 7.5em;
 }
