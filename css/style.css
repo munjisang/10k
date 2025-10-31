@@ -29,7 +29,7 @@ body::-webkit-scrollbar {
     background: transparent;
 }
 
-/* 헤더영역 */
+/* 헤더영역*/
 .header {
   position: static;
   width: 100%;
@@ -1940,8 +1940,8 @@ main {
   display: flex;
   top: 0;
   z-index: 1000;
-  margin-top: 16px;
-  padding: 16px 16px 0 16px;
+  margin-top: 10px;
+  padding: 10px 16px 0 16px;
   background-color: var(--WHITE);
   gap: 8px;
   border-radius: 16px 16px 0 0;
@@ -2112,10 +2112,10 @@ main {
   gap: 4px;
   font: var(--B8);
   color: var(--BLACK-SUB);
+  margin-right: auto;
 }
 
-.my-review-rate-wrap,
-.my-comment-rate-wrap {
+.my-review-rate-wrap {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -2124,15 +2124,13 @@ main {
   margin-left: auto;
 }
 
-.my-review-rate-wrap img,
-.my-comment-rate-wrap img {
+.my-review-rate-wrap img {
   width: 18px;
   height: 18px;
   object-fit: contain;
 }
 
-.my-review-info img,
-.my-comment-info img {
+.my-review-info img {
   width: 18px;
   height: 18px;
   object-fit: contain;
@@ -2216,7 +2214,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-width: 300px;
+  max-width: 85%;
 }
 
 .reply-user-name {
@@ -2257,8 +2255,6 @@ main {
   border-radius: 0 0 16px 16px;
 }
 
-
-/* 📒 노트 그리드 레이아웃 */
 .note-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2266,7 +2262,6 @@ main {
   max-width: 640px;
 }
 
-/* 📘 노트 표지 스타일 */
 .note-cover {
   background: var(--DIM-TERTIARY);
   border: 2px solid var(--TERTIARY-02);
@@ -2327,18 +2322,8 @@ main {
   white-space: pre-line;
   max-height: 7.5em;
   flex-grow: 1;
-  flex-shrink: 1
+  flex-shrink: 1;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

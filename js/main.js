@@ -611,7 +611,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollTimer) clearTimeout(scrollTimer);
     scrollTimer = setTimeout(() => {
       showBars();
-    }, 500);
+    }, 1000);
   });
 });
 
@@ -726,6 +726,7 @@ document.addEventListener("DOMContentLoaded", () => {
     icon.src = newSrc;
   };
 
+  // 현재 페이지 아이콘 상태
   navItems.forEach((item, idx) => {
     const page = pages[idx];
     const icon = item.querySelector("img");
@@ -737,10 +738,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 클릭 이벤트
   navItems.forEach((item, idx) => {
     item.addEventListener("click", () => {
       const target = pages[idx];
+
       if (currentPage === target) return;
+
+      if (target === "my.html") {
+        sessionStorage.setItem("activeMyTab", "레시피");
+      }
+
       window.location.href = target;
     });
   });
@@ -801,6 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!scrapArea || !listItems || !nodata || !scrapCountElem) return;
 
   let recipeList = [];
+  let initialLoad = true; // 초기 로딩 여부 체크
 
   // ✅ fetch 완료 후 초기 폴더 클릭 실행
   fetch('./data/recipe.json')
@@ -848,13 +857,18 @@ document.addEventListener("DOMContentLoaded", () => {
         nodata.style.display = "none";
       }
 
+      // 폴더 가로 스크롤 맞춤
       const folderRect = folder.getBoundingClientRect();
       const listRect = folderList.getBoundingClientRect();
       const offset = folderRect.left - listRect.left - (listRect.width / 4) + (folderRect.width / 2);
       folderList.scrollBy({ left: offset, behavior: "smooth" });
 
-      window.scrollTo({ top: 90, behavior: "smooth" });
+      // 초기 로딩 시에는 페이지 스크롤하지 않음
+      if (!initialLoad) {
+        window.scrollTo({ top: 90, behavior: "smooth" });
+      }
 
+      // 레시피 목록 갱신
       listItems.innerHTML = "";
       const recipesToShow = recipeList.sort(() => Math.random() - 0.5).slice(0, count);
 
@@ -886,9 +900,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         listItems.appendChild(item);
       });
+
+      initialLoad = false; // 첫 폴더 클릭 이후 스크롤 허용
     });
   });
 });
+
 
 // -------------------- 폴더추가 바텀시트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -1554,6 +1571,67 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("리뷰 로드 실패:", err));
 });
 
+// -------------------- 댓글 이동처리 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const commentItems = document.querySelectorAll(".my-comment-item");
+
+  commentItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      // 🔸 "삭제" 버튼 클릭 시에는 이동하지 않도록 예외 처리
+      if (e.target.closest(".my-comment-info-del")) return;
+
+      // 🔸 각 댓글에 맞는 레시피 링크 지정 (data 속성으로 설정)
+      const recipeUrl = item.dataset.url;
+      if (recipeUrl) {
+        window.open(recipeUrl, "_self");
+      }
+    });
+  });
+});
+
+// -------------------- MY 탭 전환 --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const tabItems = document.querySelectorAll(".my-tab-item");
+  const recipeArea = document.querySelector(".my-recipe-area");
+  const reviewArea = document.querySelector(".review-area");
+  const commentArea = document.querySelector(".comment-area");
+  const noteArea = document.querySelector(".my_cont-area");
+
+  if (!tabItems.length || !recipeArea || !reviewArea || !commentArea || !noteArea) return;
+
+  // ✅ 마지막으로 본 탭 불러오기
+  const savedTab = sessionStorage.getItem("activeMyTab") || "레시피";
+
+  // 탭 전환 함수
+  const switchTab = (tabName) => {
+    tabItems.forEach(t => t.classList.remove("active"));
+
+    tabItems.forEach(t => {
+      if (t.textContent.trim() === tabName) {
+        t.classList.add("active");
+      }
+    });
+
+    recipeArea.style.display = (tabName === "레시피") ? "flex" : "none";
+    reviewArea.style.display = (tabName === "요리후기") ? "flex" : "none";
+    commentArea.style.display = (tabName === "댓글") ? "flex" : "none";
+    noteArea.style.display = (tabName === "레시피 노트") ? "flex" : "none";
+  };
+
+  // ✅ 각 탭 클릭 시 저장 + 전환
+  tabItems.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const text = tab.textContent.trim();
+      sessionStorage.setItem("activeMyTab", text); // 탭 상태 저장
+      switchTab(text);
+    });
+  });
+
+  // ✅ 페이지 로드시 저장된 탭으로 복원
+  switchTab(savedTab);
+});
+
+/*
 // -------------------- MY 탭 전환 --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const tabItems = document.querySelectorAll(".my-tab-item");
@@ -1604,6 +1682,7 @@ document.addEventListener("DOMContentLoaded", () => {
   commentArea.style.display = "none";
   noteArea.style.display = "none";
 });
+*/
 
 // -------------------- 후기 / 댓글 삭제 다이얼로그 + 토스트 --------------------
 document.addEventListener("DOMContentLoaded", () => {
